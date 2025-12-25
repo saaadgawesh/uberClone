@@ -1,0 +1,96 @@
+import 'package:flutter/material.dart';
+import 'package:uber/core/constant/App_Color.dart';
+import 'package:uber/core/resources/App_Size.dart';
+import 'package:uber/core/resources/customAppIcon.dart';
+import 'package:uber/core/resources/customAppText.dart';
+import 'package:uber/core/resources/sizedboxWidget.dart';
+import 'package:uber/core/widgets/App_ElevatedButton.dart';
+import 'package:uber/core/widgets/CustomContainer.dart';
+
+class ChooseYourBussinessWidget extends StatelessWidget {
+  const ChooseYourBussinessWidget({
+    super.key,
+    required this.backGroundColor,
+    required this.title,
+    required this.text1,
+    required this.text2,
+    required this.text3,
+    required this.text4,
+    required this.textbutton,
+    required this.bgButtonColor,
+    required this.icon,
+    required this.iconcolor,
+    required this.bgIconColor,
+    required this.onpressed,
+  });
+  final Color backGroundColor;
+  final Color bgButtonColor;
+  final Color iconcolor;
+  final Color bgIconColor;
+  final String title;
+  final String text1;
+  final String text2;
+  final String text3;
+  final String text4;
+  final String textbutton;
+  final IconData icon;
+  final VoidCallback onpressed;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10, top: 20),
+      child: CustomContainer(
+        padding: EdgeInsets.all(15),
+        height: appHeight(context) * 0.37,
+        width: appWidth(context) * 0.9,
+        borderRadius: BorderRadius.circular(15),
+        bgContainerColor: backGroundColor,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    customAppText(
+                      text: title,
+                      textColor: AppColor.blackColor,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    customAppText(
+                      text: text1,
+                      // ignore: deprecated_member_use
+                      textColor: AppColor.blackColor.withOpacity(0.4),
+                    ),
+                    customAppText(text: text2, textColor: AppColor.blackColor),
+                    customAppText(text: text3, textColor: AppColor.blackColor),
+                    customAppText(text: text4, textColor: AppColor.blackColor),
+                  ],
+                ),
+                widthSizedbox(10),
+
+                CustomContainer(
+                  height: 50,
+                  width: 40,
+                  borderRadius: BorderRadius.circular(10),
+                  bgContainerColor: bgIconColor,
+                  child: customAppIcon(iconcolor, icon),
+                ),
+              ],
+            ),
+            heightSizedbox(10),
+            defaultElevatedButton(
+              textbutton: textbutton,
+              bgButtonColor: bgButtonColor,
+              onPressed: onpressed,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
