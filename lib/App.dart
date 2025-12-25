@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uber/feature/homeScreen/NavBar.dart';
+import 'package:uber/feature/navBar/screens/NavBar.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

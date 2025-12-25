@@ -1,123 +1,6 @@
-// import 'package:flutter/material.dart';
-// import 'package:uber/core/constant/App_Color.dart';
-
-// class DefaultTextFormField extends StatelessWidget {
-//   const DefaultTextFormField({
-//     super.key,
-//     this.readonly,
-//     this.controller,
-//     this.textalign,
-//     this.textdirection,
-//     this.obsecuretext,
-//     this.keyboardtype,
-//    required this.cursorWidth,
-//     this.cursorHeight,
-//     this.cursorRadius,
-//     this.cursorColor,
-//     this.cursorErrorColor,
-//     this.label,
-//     this.hinttext,
-//     this.hinttextstyle,
-//     this.prefix,
-//     this.suffix,
-//     this.filled,
-//     this.fillColor,
-//     this.errorBorder,
-//     this.focusedBorder,
-//     this.focusedErrorBorder,
-//     this.disabledBorder,
-//     this.enabledBorder,
-//     this.prefixText,
-//     this.suffixtext,
-//   });
-//   final bool? readonly;
-//   final TextEditingController? controller;
-//   final TextAlign? textalign;
-//   final TextDirection? textdirection;
-//   final bool? obsecuretext;
-//   final TextInputType? keyboardtype;
-//   final double cursorWidth;
-//   final double? cursorHeight;
-//   final Radius? cursorRadius;
-//   final Color? cursorColor;
-//   final Color? cursorErrorColor;
-//   final Widget? label;
-//   final String? hinttext;
-//   final String? prefixText;
-//   final String? suffixtext;
-//   final TextStyle? hinttextstyle;
-//   final Widget? prefix;
-//   final Widget? suffix;
-//   final bool? filled;
-//   final Color? fillColor;
-//   final InputBorder? errorBorder;
-//   final InputBorder? focusedBorder;
-//   final InputBorder? focusedErrorBorder;
-//   final InputBorder? disabledBorder;
-//   final InputBorder? enabledBorder;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return TextFormField(
-//       cursorWidth: 2,
-//       cursorHeight: cursorHeight,
-//       cursorRadius: cursorRadius,
-//       cursorColor: cursorColor,
-//       cursorErrorColor: cursorErrorColor,
-//       keyboardType: keyboardtype,
-//       obscureText: obsecuretext,
-//       textDirection: textdirection,
-//       textAlign: textalign!,
-//       controller: controller,
-//       readOnly: readonly!,
-//       decoration: InputDecoration(
-//         label: label,
-//         hintText: hinttext,
-//         hintStyle: hinttextstyle,
-//         prefix: prefix,
-//         prefixText: prefixText,
-//         suffix: suffix,
-//         suffixText: suffixtext,
-//         filled: filled,
-//         fillColor: fillColor,
-
-//         errorBorder: AppInputBorders.error(),
-//         focusedBorder: AppInputBorders.focused(),
-//         focusedErrorBorder: AppInputBorders.focused(),
-//         disabledBorder: AppInputBorders.normal(),
-//       ),
-//     );
-//   }
-// }
-
-// extension AppInputBorders on InputBorder {
-//   static OutlineInputBorder normal() {
-//     return OutlineInputBorder(
-//       borderRadius: BorderRadius.circular(12),
-//       borderSide: BorderSide(color: AppColor.greyColor, width: 1),
-//     );
-//   }
-
-//   static OutlineInputBorder focused() {
-//     return OutlineInputBorder(
-//       borderRadius: BorderRadius.circular(12),
-//       borderSide: BorderSide(color: AppColor.blueColor, width: 2),
-//     );
-//   }
-
-//   static OutlineInputBorder error() {
-//     return OutlineInputBorder(
-//       borderRadius: BorderRadius.circular(12),
-//       borderSide: BorderSide(color: AppColor.redColor, width: 1.5),
-//     );
-//   }
-// }
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uber/core/constant/App_Color.dart';
-
 
 enum TextFieldBorderType { filled, outlined, underlined, none }
 
@@ -207,7 +90,7 @@ class AppTextField extends StatelessWidget {
       case TextFieldBorderType.underlined:
         return UnderlineInputBorder(
           borderSide: BorderSide(
-            color: borderColor ??AppColor.blueColor,
+            color: borderColor ?? AppColor.blueColor,
             width: borderWidth,
           ),
         );
@@ -227,14 +110,14 @@ class AppTextField extends StatelessWidget {
         return OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
           borderSide: BorderSide(
-            color: borderColor ??AppColor.blueColor,
+            color: borderColor ?? AppColor.blueColor,
             width: borderWidth,
           ),
         );
       case TextFieldBorderType.underlined:
         return UnderlineInputBorder(
           borderSide: BorderSide(
-            color: borderColor ??AppColor.blueColor,
+            color: borderColor ?? AppColor.blueColor,
             width: borderWidth,
           ),
         );
@@ -248,16 +131,16 @@ class AppTextField extends StatelessWidget {
       case TextFieldBorderType.filled:
         return OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: BorderSide(color:AppColor.redColor, width: borderWidth),
+          borderSide: BorderSide(color: AppColor.redColor, width: borderWidth),
         );
       case TextFieldBorderType.outlined:
         return OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: BorderSide(color:AppColor.redColor, width: borderWidth),
+          borderSide: BorderSide(color: AppColor.redColor, width: borderWidth),
         );
       case TextFieldBorderType.underlined:
         return UnderlineInputBorder(
-          borderSide: BorderSide(color:AppColor.redColor, width: borderWidth),
+          borderSide: BorderSide(color: AppColor.redColor, width: borderWidth),
         );
       case TextFieldBorderType.none:
         return InputBorder.none;
@@ -295,7 +178,7 @@ class AppTextField extends StatelessWidget {
         fillColor:
             filledColor ??
             (borderType == TextFieldBorderType.filled
-                ? AppColor.greyColor
+                ? AppColor.greyColor.withOpacity(0.1)
                 : null),
         prefixIcon: prefix,
         suffixIcon: suffix,

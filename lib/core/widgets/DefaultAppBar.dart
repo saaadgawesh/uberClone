@@ -7,22 +7,24 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   const DefaultAppBar({
     super.key,
     this.title,
-    required this.actionOntap,
-    required this.leadingonTap,
+    this.actionOntap,
+    this.leadingonTap,
     this.actiontitle,
     this.actionDesc,
+    this.leadIconName,
   });
   final String? title;
   final String? actiontitle;
   final String? actionDesc;
-  final VoidCallback actionOntap;
-  final VoidCallback leadingonTap;
+  final IconData? leadIconName;
+  final VoidCallback? actionOntap;
+  final VoidCallback? leadingonTap;
   @override
   Size get preferredSize => Size.fromHeight(56);
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadiusGeometry.only(
           bottomRight: Radius.circular(15),
           bottomLeft: Radius.circular(15),
@@ -57,10 +59,12 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ],
-      leading: GestureDetector(
-        onTap: leadingonTap,
-        child: customAppIcon(AppColor.whiteColor, Icons.person),
-      ),
+      leading: leadIconName == null
+          ? null
+          : GestureDetector(
+              onTap: leadingonTap,
+              child: customAppIcon(AppColor.whiteColor, leadIconName!),
+            ),
     );
   }
 }

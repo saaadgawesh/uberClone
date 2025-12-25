@@ -50,7 +50,7 @@ class ProcessWidget extends StatelessWidget {
             height: 65,
             width: 50,
             borderRadius: BorderRadius.circular(10),
-            bgContainerColor: AppColor.greyColor,
+            bgContainerColor: AppColor.greyColor.withOpacity(0.4),
             child: customAppIcon(AppColor.whiteColor, actionIcon),
           ),
         ],

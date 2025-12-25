@@ -4,8 +4,8 @@ import 'package:uber/core/resources/App_Size.dart';
 import 'package:uber/core/resources/customAppIcon.dart';
 import 'package:uber/core/resources/customAppText.dart';
 import 'package:uber/core/resources/sizedboxWidget.dart';
-import 'package:uber/core/widgets/App_ElevatedButton.dart';
 import 'package:uber/core/widgets/CustomContainer.dart';
+import 'package:uber/core/widgets/defaultElevatedButton.dart';
 
 class ChooseYourBussinessWidget extends StatelessWidget {
   const ChooseYourBussinessWidget({
@@ -87,6 +87,8 @@ class ChooseYourBussinessWidget extends StatelessWidget {
               textbutton: textbutton,
               bgButtonColor: bgButtonColor,
               onPressed: onpressed,
+              iconName: icon,
+              width: appWidth(context) * 0.2,
             ),
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uber/core/constant/App_Color.dart';
 
 class CustomContainer extends StatelessWidget {
   const CustomContainer({
@@ -10,12 +11,14 @@ class CustomContainer extends StatelessWidget {
     required this.borderRadius,
     required this.bgContainerColor,
     this.padding,
+    this.borderwidth,
   });
 
   final IconData? actionIcon;
   final Widget child;
   final double height;
   final double width;
+  final double? borderwidth;
   final Color bgContainerColor;
   final BorderRadius borderRadius;
   final EdgeInsetsGeometry? padding;
@@ -27,6 +30,9 @@ class CustomContainer extends StatelessWidget {
       height: height,
       width: width,
       decoration: BoxDecoration(
+        border: borderwidth == null
+            ? null
+            : Border.all(width: borderwidth!, color: AppColor.greyColor),
         color: bgContainerColor,
         borderRadius: borderRadius,
       ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:uber/core/constant/App_Color.dart';
-import 'package:uber/core/resources/App_Size.dart';
 import 'package:uber/core/resources/customAppIcon.dart';
 import 'package:uber/core/resources/customAppText.dart';
 import 'package:uber/core/resources/sizedboxWidget.dart';
@@ -9,10 +8,10 @@ import 'package:uber/core/widgets/CustomContainer.dart';
 // ignore: non_constant_identifier_names
 Widget CustomServiceWidget(BuildContext context) {
   return CustomContainer(
-    height: appHeight(context) * 0.25,
-    width: appWidth(context) * 0.4,
+    height: 50,
+    width: 50,
     borderRadius: BorderRadius.circular(10),
-    bgContainerColor: AppColor.greyColor,
+    bgContainerColor: AppColor.greyColor.withOpacity(0.1),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
