@@ -49,6 +49,7 @@
 import 'package:flutter/material.dart';
 import 'package:uber/core/constant/App_Color.dart';
 import 'package:uber/core/resources/App_Size.dart';
+import 'package:uber/core/resources/customAppIcon.dart';
 import 'package:uber/core/resources/customAppText.dart';
 import 'package:uber/core/widgets/CustomContainer.dart';
 
@@ -59,10 +60,12 @@ class defaultElevatedButton extends StatelessWidget {
     required this.textbutton,
     required this.bgButtonColor,
     required this.onPressed,
+    this.iconName,
   });
   final String textbutton;
   final Color bgButtonColor;
   final VoidCallback onPressed;
+  final IconData? iconName;
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
@@ -76,7 +79,12 @@ class defaultElevatedButton extends StatelessWidget {
           elevation: 0,
         ),
         onPressed: onPressed,
-        child: customAppText(text: textbutton, textColor: AppColor.whiteColor),
+        child: Row(
+          children: [
+            customAppIcon(AppColor.whiteColor, iconName ?? Icons.abc),
+            customAppText(text: textbutton, textColor: AppColor.whiteColor),
+          ],
+        ),
       ),
     );
   }

@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:uber/core/constant/App_Color.dart';
 import 'package:uber/core/resources/customAppIcon.dart';
+import 'package:uber/core/resources/customAppText.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   const DefaultAppBar({
     super.key,
-    required this.title,
+    this.title,
     required this.actionOntap,
     required this.leadingonTap,
+    this.actiontitle,
+    this.actionDesc,
   });
-  final String title;
+  final String? title;
+  final String? actiontitle;
+  final String? actionDesc;
   final VoidCallback actionOntap;
   final VoidCallback leadingonTap;
   @override
@@ -25,22 +30,31 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       backgroundColor: const Color.fromARGB(255, 9, 76, 132),
       elevation: 0,
-      title: Text(title),
-      centerTitle: true,
-      titleTextStyle: TextStyle(
-        color: AppColor.whiteColor,
+      title: customAppText(
+        text: title ?? '',
+        textColor: AppColor.whiteColor,
         fontSize: 20,
         fontWeight: FontWeight.w600,
       ),
+      centerTitle: true,
+
       actions: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(
-              onPressed: actionOntap,
-              icon: customAppIcon(AppColor.whiteColor, Icons.arrow_forward_ios),
-            ),
-          ],
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              customAppText(
+                text: actiontitle ?? '',
+                textColor: AppColor.whiteColor,
+                fontWeight: FontWeight.w700,
+              ),
+              customAppText(
+                text: actionDesc ?? '',
+                textColor: AppColor.whiteColor,
+              ),
+            ],
+          ),
         ),
       ],
       leading: GestureDetector(
