@@ -15,9 +15,13 @@ class defaultElevatedButton extends StatelessWidget {
     this.iconName,
     required this.width,
     this.padding,
+    this.iconColor,
+    required this.textcolor,
   });
   final String textbutton;
+  final Color textcolor;
   final Color bgButtonColor;
+  final Color? iconColor;
   final VoidCallback onPressed;
   final IconData? iconName;
   final double width;
@@ -39,9 +43,10 @@ class defaultElevatedButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            customAppText(text: textbutton, textColor: AppColor.whiteColor),
-            widthSizedbox(10),
-            if (iconName != null) customAppIcon(AppColor.whiteColor, iconName!),
+            customAppText(text: textbutton, textColor: textcolor),
+            widthSizedbox(5),
+            if (iconName != null && iconColor != null)
+              customAppIcon(iconColor!, iconName!),
           ],
         ),
       ),

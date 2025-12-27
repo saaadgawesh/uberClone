@@ -32,13 +32,13 @@ class Custombuttomnavbar extends StatelessWidget {
         onTap: onTap,
         type: BottomNavigationBarType.fixed,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'profile'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           BottomNavigationBarItem(
             icon: Icon(Icons.car_crash_sharp),
-            label: 'requests',
+            label: 'Requests',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'menu'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
+          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Reports'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
         ],
       ),
     );

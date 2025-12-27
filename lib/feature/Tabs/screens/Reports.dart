@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:uber/core/constant/App_Color.dart';
+import 'package:uber/core/resources/App_Size.dart';
 import 'package:uber/core/resources/customAppText.dart';
 import 'package:uber/core/resources/sizedboxWidget.dart';
 import 'package:uber/core/widgets/App_TextField.dart';
 import 'package:uber/core/widgets/CustomCounter.dart';
 import 'package:uber/core/widgets/DefaultAppBar.dart';
+import 'package:uber/core/widgets/defaultElevatedButton.dart';
 
 class Reports extends StatelessWidget {
   const Reports({super.key});
@@ -63,17 +65,18 @@ class Reports extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
+            heightSizedbox(5),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomCounter(
-                  width: 35,
+                  width: appWidth(context) * 0.1,
                   bgColor: AppColor.whiteColor.withOpacity(0.2),
                   widget: Icon(Icons.add),
                   iconcolor: AppColor.blackColor,
                 ),
                 CustomCounter(
-                  width: 200,
+                  width: appWidth(context) * 0.7,
                   bgColor: AppColor.whiteColor.withOpacity(0.2),
                   widget: Text(
                     '1',
@@ -83,12 +86,19 @@ class Reports extends StatelessWidget {
                   iconcolor: AppColor.blackColor,
                 ),
                 CustomCounter(
-                  width: 35,
+                  width: appWidth(context) * 0.1,
                   bgColor: AppColor.whiteColor.withOpacity(0.2),
                   widget: Icon(Icons.remove),
                   iconcolor: AppColor.blackColor,
                 ),
               ],
+            ),
+            heightSizedbox(10),
+            defaultElevatedButton(
+              textbutton: "enter customer data",
+              bgButtonColor: AppColor.blueColor,
+              onPressed: () {},
+              width: appWidth(context) * 0.87, textcolor: AppColor.whiteColor,
             ),
           ],
         ),

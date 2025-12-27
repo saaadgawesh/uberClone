@@ -3,7 +3,7 @@ import 'package:uber/core/constant/App_Color.dart';
 import 'package:uber/core/resources/customAppText.dart';
 import 'package:uber/core/resources/sizedboxWidget.dart';
 import 'package:uber/core/widgets/CustomServiceWidget.dart';
-import 'package:uber/core/widgets/ProcessWdget.dart';
+import 'package:uber/feature/Tabs/widgets/Processitem.dart';
 import 'package:uber/core/widgets/DefaultAppBar.dart';
 
 class Home extends StatelessWidget {
@@ -30,7 +30,7 @@ class Home extends StatelessWidget {
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
               ),
-              ProcessWidget(
+              Processitem(
                 title: "title",
                 description: "description",
                 leadIcon: Icons.arrow_back,
@@ -38,7 +38,7 @@ class Home extends StatelessWidget {
                 backgroundColor: AppColor.blueColor,
               ),
               heightSizedbox(10),
-              ProcessWidget(
+              Processitem(
                 title: "title",
                 description: "description",
                 leadIcon: Icons.arrow_back,

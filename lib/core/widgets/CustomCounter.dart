@@ -18,7 +18,7 @@ class CustomCounter extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomContainer(
       borderwidth: 1,
-      height: appHeight(context) * 0.08,
+      height: appHeight(context) * 0.06,
       width: width,
       borderRadius: BorderRadius.circular(10),
       bgContainerColor: bgColor,

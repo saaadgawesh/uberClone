@@ -86,7 +86,7 @@ class Profile extends StatelessWidget {
                 bgButtonColor: AppColor.blueColor,
                 onPressed: () {},
 
-                width: appWidth(context),
+                width: appWidth(context), textcolor: AppColor.whiteColor,
               ),
             ],
           ),

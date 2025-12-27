@@ -11,7 +11,7 @@ Widget CustomServiceWidget(BuildContext context) {
     height: 50,
     width: 50,
     borderRadius: BorderRadius.circular(10),
-    bgContainerColor: AppColor.greyColor.withOpacity(0.1),
+    bgContainerColor: AppColor.greyColor,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uber/core/constant/App_Color.dart';
+import 'package:uber/core/resources/App_Size.dart';
+import 'package:uber/core/widgets/CustomContainer.dart';
 
 enum TextFieldBorderType { filled, outlined, underlined, none }
 
@@ -149,53 +151,59 @@ class AppTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      obscureText: obscureText,
-      obscuringCharacter: obscuringCharacter,
-      keyboardType: keyboardType,
-      inputFormatters: formatter,
-      controller: controller,
-      initialValue: initialValue,
-      onTapOutside: (_) => FocusScope.of(context).unfocus(),
-      validator: validator,
-      autofocus: autofocus,
-      readOnly: readOnly,
-      showCursor: showCursor,
-      autocorrect: autocorrect,
-      smartDashesType: smartDashesType,
-      maxLines: maxLines,
-      minLines: minLines,
-      expands: expands,
-      maxLength: maxLength,
-      // style: style ?? AppTextStyles.montserratButton,
-      cursorColor: AppColor.blueColor,
-      autovalidateMode: autoValidateMode,
-      decoration: InputDecoration(
-        prefixIconColor: AppColor.greyColor,
-        contentPadding: EdgeInsets.zero,
-        suffixIconColor: AppColor.greyColor,
-        filled: borderType == TextFieldBorderType.filled,
-        fillColor:
-            filledColor ??
-            (borderType == TextFieldBorderType.filled
-                ? AppColor.greyColor.withOpacity(0.1)
-                : null),
-        prefixIcon: prefix,
-        suffixIcon: suffix,
-        helperText: helperText,
-        hintText: hintText,
+    return CustomContainer(
+      height: appHeight(context) * 0.08,
+      width: appWidth(context),
+      borderRadius: BorderRadius.circular(10),
+      bgContainerColor: AppColor.greyColor,
+      child: TextFormField(
+        obscureText: obscureText,
+        obscuringCharacter: obscuringCharacter,
+        keyboardType: keyboardType,
+        inputFormatters: formatter,
+        controller: controller,
+        initialValue: initialValue,
+        onTapOutside: (_) => FocusScope.of(context).unfocus(),
+        validator: validator,
+        autofocus: autofocus,
+        readOnly: readOnly,
+        showCursor: showCursor,
+        autocorrect: autocorrect,
+        smartDashesType: smartDashesType,
+        maxLines: maxLines,
+        minLines: minLines,
+        expands: expands,
+        maxLength: maxLength,
+        // style: style ?? AppTextStyles.montserratButton,
+        cursorColor: AppColor.blueColor,
+        autovalidateMode: autoValidateMode,
+        decoration: InputDecoration(
+          prefixIconColor: AppColor.greyColor,
+          contentPadding: EdgeInsets.zero,
+          suffixIconColor: AppColor.greyColor,
+          filled: borderType == TextFieldBorderType.filled,
+          fillColor:
+              filledColor ??
+              (borderType == TextFieldBorderType.filled
+                  ? AppColor.greyColor.withOpacity(0.1)
+                  : null),
+          prefixIcon: prefix,
+          suffixIcon: suffix,
+          helperText: helperText,
+          hintText: hintText,
 
-        helperStyle: helperStyle,
-        // hintStyle:
-        //     hintStyle ??
-        //     AppTextStyles.montserratButton.copyWith(color: AppColors.grey400),
-        labelStyle: labelStyle,
-        labelText: labelText,
-        border: _getBorder(),
-        enabledBorder: _getBorder(),
-        focusedBorder: _getFocusedBorder(),
-        errorBorder: _getErrorBorder(),
-        focusedErrorBorder: _getErrorBorder(),
+          helperStyle: helperStyle,
+          // hintStyle:
+          //     hintStyle ??
+          //     AppTextStyles.montserratButton.copyWith(color: AppColors.grey400),
+          labelStyle: labelStyle,
+          labelText: labelText,
+          border: _getBorder(),
+          enabledBorder: _getBorder(),
+          focusedBorder: _getFocusedBorder(),
+          errorBorder: _getErrorBorder(),
+          focusedErrorBorder: _getErrorBorder(),
+        ),
       ),
     );
   }

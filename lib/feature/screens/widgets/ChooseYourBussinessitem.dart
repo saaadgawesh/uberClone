@@ -7,8 +7,8 @@ import 'package:uber/core/resources/sizedboxWidget.dart';
 import 'package:uber/core/widgets/CustomContainer.dart';
 import 'package:uber/core/widgets/defaultElevatedButton.dart';
 
-class ChooseYourBussinessWidget extends StatelessWidget {
-  const ChooseYourBussinessWidget({
+class ChooseYourBussinessitem extends StatelessWidget {
+  const ChooseYourBussinessitem({
     super.key,
     required this.backGroundColor,
     required this.title,
@@ -18,27 +18,29 @@ class ChooseYourBussinessWidget extends StatelessWidget {
     required this.text4,
     required this.textbutton,
     required this.bgButtonColor,
-    required this.icon,
-    required this.iconcolor,
-    required this.bgIconColor,
+    this.icon,
+    this.iconcolor,
+    this.bgIconColor,
     required this.onpressed,
+    this.widthElevatedButton,
   });
   final Color backGroundColor;
   final Color bgButtonColor;
-  final Color iconcolor;
-  final Color bgIconColor;
+  final Color? iconcolor;
+  final Color? bgIconColor;
   final String title;
   final String text1;
   final String text2;
   final String text3;
   final String text4;
   final String textbutton;
-  final IconData icon;
+  final IconData? icon;
+  final double? widthElevatedButton;
   final VoidCallback onpressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10, top: 20),
+      padding: const EdgeInsets.only(left: 10, top: 5),
       child: CustomContainer(
         padding: EdgeInsets.all(15),
         height: appHeight(context) * 0.37,
@@ -73,23 +75,25 @@ class ChooseYourBussinessWidget extends StatelessWidget {
                 ),
                 widthSizedbox(10),
 
-                CustomContainer(
-                  height: 50,
-                  width: 40,
-                  borderRadius: BorderRadius.circular(10),
-                  bgContainerColor: bgIconColor,
-                  child: customAppIcon(iconcolor, icon),
-                ),
+                if (icon != null)
+                  CustomContainer(
+                    height: 50,
+                    width: 40,
+                    borderRadius: BorderRadius.circular(10),
+                    bgContainerColor: bgIconColor!,
+                    child: customAppIcon(iconcolor!, icon!),
+                  ),
               ],
             ),
             heightSizedbox(10),
-            defaultElevatedButton(
-              textbutton: textbutton,
-              bgButtonColor: bgButtonColor,
-              onPressed: onpressed,
-              iconName: icon,
-              width: appWidth(context) * 0.2,
-            ),
+            if (icon != null)
+              defaultElevatedButton(
+                textbutton: textbutton,
+                bgButtonColor: bgButtonColor,
+                onPressed: onpressed,
+                width: widthElevatedButton!,
+                textcolor: AppColor.whiteColor,
+              ),
           ],
         ),
       ),

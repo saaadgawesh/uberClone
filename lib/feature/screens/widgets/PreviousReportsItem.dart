@@ -35,7 +35,7 @@ class PreviousReportsItem extends StatelessWidget {
       height: appHeight(context) * 0.255,
       width: appWidth(context) * 0.9,
       borderRadius: BorderRadius.circular(15),
-      bgContainerColor: AppColor.greyColor.withOpacity(0.3),
+      bgContainerColor: AppColor.greyColor,
       child: Column(
         children: [
           Row(
@@ -95,6 +95,7 @@ class PreviousReportsItem extends StatelessWidget {
                   bgButtonColor: AppColor.blueColor,
                   onPressed: viewbutton!,
                   width: width1,
+                  textcolor: AppColor.whiteColor,
                 ),
               defaultElevatedButton(
                 iconName: Icons.picture_as_pdf_sharp,
@@ -102,6 +103,7 @@ class PreviousReportsItem extends StatelessWidget {
                 bgButtonColor: AppColor.blueColor,
                 onPressed: () {},
                 width: width2,
+                textcolor: AppColor.whiteColor,
               ),
             ],
           ),

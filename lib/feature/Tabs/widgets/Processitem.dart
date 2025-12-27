@@ -6,8 +6,8 @@ import 'package:uber/core/resources/customAppIcon.dart';
 import 'package:uber/core/resources/customAppText.dart';
 import 'package:uber/core/widgets/CustomContainer.dart';
 
-class ProcessWidget extends StatelessWidget {
-  const ProcessWidget({
+class Processitem extends StatelessWidget {
+  const Processitem({
     super.key,
     required this.title,
     required this.description,
