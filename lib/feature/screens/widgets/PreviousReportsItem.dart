@@ -91,6 +91,7 @@ class PreviousReportsItem extends StatelessWidget {
               if (viewbutton != null)
                 defaultElevatedButton(
                   iconName: Icons.share,
+                  iconColor: AppColor.whiteColor,
                   textbutton: textbutton1,
                   bgButtonColor: AppColor.blueColor,
                   onPressed: viewbutton!,
@@ -103,6 +104,7 @@ class PreviousReportsItem extends StatelessWidget {
                 bgButtonColor: AppColor.blueColor,
                 onPressed: () {},
                 width: width2,
+                iconColor: AppColor.whiteColor,
                 textcolor: AppColor.whiteColor,
               ),
             ],

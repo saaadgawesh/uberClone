@@ -82,11 +82,12 @@ class Profile extends StatelessWidget {
 
               heightSizedbox(10),
               defaultElevatedButton(
-                textbutton: "textbutton",
+                textbutton: "AddYourAccount",
                 bgButtonColor: AppColor.blueColor,
                 onPressed: () {},
 
-                width: appWidth(context), textcolor: AppColor.whiteColor,
+                width: appWidth(context),
+                textcolor: AppColor.whiteColor,
               ),
             ],
           ),
