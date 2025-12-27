@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:uber/core/resources/App_Size.dart';
-import 'package:uber/core/resources/customAppIcon.dart';
 import 'package:uber/core/widgets/CustomContainer.dart';
 
 class CustomCounter extends StatelessWidget {
@@ -8,13 +7,13 @@ class CustomCounter extends StatelessWidget {
     super.key,
     required this.width,
     required this.bgColor,
-    required this.icon,
+    required this.widget,
     required this.iconcolor,
   });
   final double width;
   final Color bgColor;
   final Color iconcolor;
-  final IconData icon;
+  final Widget widget;
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
@@ -23,7 +22,7 @@ class CustomCounter extends StatelessWidget {
       width: width,
       borderRadius: BorderRadius.circular(10),
       bgContainerColor: bgColor,
-      child: customAppIcon(iconcolor, icon),
+      child: widget,
     );
   }
 }

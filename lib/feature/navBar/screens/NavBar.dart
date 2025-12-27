@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:uber/feature/Tabs/screens/Reports.dart';
 import 'package:uber/feature/Tabs/screens/home.dart';
-import 'package:uber/feature/Tabs/screens/menu.dart';
 import 'package:uber/feature/Tabs/screens/profile.dart';
 import 'package:uber/feature/Tabs/screens/requests.dart';
 import 'package:uber/feature/navBar/widgets/CustomButtomNavBar.dart';
@@ -14,7 +14,12 @@ class Navbar extends StatefulWidget {
 
 class _NavbarState extends State<Navbar> {
   int _currentIndex = 3;
-  List<Widget> tabs = [Profile(), Requests(), Menu(), Home()];
+  List<Widget> tabs = [
+    const Profile(),
+    const Requests(),
+    const Reports(),
+    const Home(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

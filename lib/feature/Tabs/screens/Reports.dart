@@ -6,8 +6,8 @@ import 'package:uber/core/widgets/App_TextField.dart';
 import 'package:uber/core/widgets/CustomCounter.dart';
 import 'package:uber/core/widgets/DefaultAppBar.dart';
 
-class Menu extends StatelessWidget {
-  const Menu({super.key});
+class Reports extends StatelessWidget {
+  const Reports({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,19 +69,23 @@ class Menu extends StatelessWidget {
                 CustomCounter(
                   width: 35,
                   bgColor: AppColor.whiteColor.withOpacity(0.2),
-                  icon: Icons.add,
+                  widget: Icon(Icons.add),
                   iconcolor: AppColor.blackColor,
                 ),
                 CustomCounter(
                   width: 200,
                   bgColor: AppColor.whiteColor.withOpacity(0.2),
-                  icon: Icons.add,
+                  widget: Text(
+                    '1',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
                   iconcolor: AppColor.blackColor,
                 ),
                 CustomCounter(
                   width: 35,
                   bgColor: AppColor.whiteColor.withOpacity(0.2),
-                  icon: Icons.remove,
+                  widget: Icon(Icons.remove),
                   iconcolor: AppColor.blackColor,
                 ),
               ],

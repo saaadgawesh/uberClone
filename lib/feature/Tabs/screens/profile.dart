@@ -85,7 +85,7 @@ class Profile extends StatelessWidget {
                 textbutton: "textbutton",
                 bgButtonColor: AppColor.blueColor,
                 onPressed: () {},
-                iconName: Icons.abc,
+
                 width: appWidth(context),
               ),
             ],
