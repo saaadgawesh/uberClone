@@ -7,7 +7,10 @@ class customAppText extends StatelessWidget {
     required this.text,
     required this.textColor,
     this.fontSize,
-    this.fontWeight, this.maxLines, this.overflow,
+    this.fontWeight,
+    this.maxLines,
+    this.overflow,
+    this.textalignment,
   });
   final String text;
   final Color textColor;
@@ -15,16 +18,19 @@ class customAppText extends StatelessWidget {
   final FontWeight? fontWeight;
   final int? maxLines;
   final TextOverflow? overflow;
+  final TextAlign? textalignment;
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,maxLines: maxLines,
-      textAlign: TextAlign.center,
+      text,
+      maxLines: maxLines,
+      textAlign: TextAlign.start,
       style: TextStyle(
         color: textColor,
         fontSize: fontSize,
         fontWeight: fontWeight,
-      ),overflow: overflow,
+      ),
+      overflow: overflow,
     );
   }
 }

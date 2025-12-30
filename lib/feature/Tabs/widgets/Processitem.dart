@@ -14,18 +14,20 @@ class Processitem extends StatelessWidget {
     required this.leadIcon,
     required this.actionIcon,
     required this.backgroundColor,
+    this.child,
   });
   final String title;
   final String description;
   final IconData leadIcon;
   final IconData actionIcon;
   final Color backgroundColor;
+  final Widget? child;
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
       padding: EdgeInsets.all(15),
-      height: 70,
-      width: appWidth(context) * 0.9,
+      height: appHeight(context) * 0.128,
+      width: appWidth(context) * 0.93,
       borderRadius: BorderRadius.circular(15),
       bgContainerColor: backgroundColor,
       child: Row(
@@ -35,7 +37,7 @@ class Processitem extends StatelessWidget {
             // ignore: deprecated_member_use
             backgroundColor: AppColor.greyColor.withOpacity(0.4),
             radius: 20,
-            child: customAppIcon(AppColor.whiteColor, leadIcon,20),
+            child: customAppIcon(AppColor.whiteColor, leadIcon, 20),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -45,14 +47,15 @@ class Processitem extends StatelessWidget {
               customAppText(text: description, textColor: AppColor.whiteColor),
             ],
           ),
-          CustomContainer(
-            actionIcon: actionIcon,
-            height: 65,
-            width: 50,
-            borderRadius: BorderRadius.circular(10),
-            bgContainerColor: AppColor.greyColor.withOpacity(0.4),
-            child: customAppIcon(AppColor.whiteColor, actionIcon,20),
-          ),
+          if (child != null)
+            CustomContainer(
+              actionIcon: actionIcon,
+              height: 65,
+              width: 50,
+              borderRadius: BorderRadius.circular(10),
+              bgContainerColor: AppColor.greyColor,
+              child: child!,
+            ),
         ],
       ),
     );

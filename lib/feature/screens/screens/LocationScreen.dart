@@ -72,8 +72,8 @@ class _LocationscreenState extends State<Locationscreen> {
           width: 40,
           height: 40,
           child:
-          // const Icon(Icons.location_pin, color: Colors.red, size: 40),
-          customAppIcon(AppColor.redColor, Icons.location_pin, 40)
+              // const Icon(Icons.location_pin, color: Colors.red, size: 40),
+              customAppIcon(AppColor.redColor, Icons.location_pin, 40),
         ),
       );
     });
@@ -153,11 +153,12 @@ class _LocationscreenState extends State<Locationscreen> {
                       },
                       icon: customAppIcon(
                         AppColor.blueColor,
-                        Icons.arrow_back_ios,20
+                        Icons.arrow_back_ios,
+                        20,
                       ),
                     ),
                     suffix: IconButton(
-                      icon: customAppIcon(AppColor.blueColor, Icons.search,20),
+                      icon: customAppIcon(AppColor.blueColor, Icons.search, 20),
                       onPressed: () {
                         final query = searchController.text.trim();
                         if (query.isEmpty) {

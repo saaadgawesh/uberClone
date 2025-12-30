@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uber/core/constant/App_Color.dart';
 import 'package:uber/core/resources/App_Size.dart';
 import 'package:uber/core/resources/customAppText.dart';
+import 'package:uber/feature/navBar/screens/NavBar.dart';
 import 'package:uber/feature/screens/widgets/ChooseYourBussinessitem.dart';
 
 class Chooseyourbissness extends StatelessWidget {
@@ -12,7 +13,7 @@ class Chooseyourbissness extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(
-          top: 20,
+          top: 50,
           bottom: 20,
           right: 20,
           left: 10,
@@ -45,7 +46,11 @@ class Chooseyourbissness extends StatelessWidget {
                 text4: "profesional support",
                 textbutton: "kaptin",
                 bgButtonColor: AppColor.blueColor,
-                onpressed: () {},
+                onpressed: () {
+                  Navigator.of(
+                    context,
+                  ).push(MaterialPageRoute(builder: (context) => Navbar()));
+                },
                 bgIconColor: AppColor.blueColor,
                 icon: Icons.abc,
                 iconcolor: AppColor.redColor,
@@ -60,7 +65,11 @@ class Chooseyourbissness extends StatelessWidget {
                 text4: "profesional support",
                 textbutton: "customer",
                 bgButtonColor: AppColor.blueColor,
-                onpressed: () {},
+                onpressed: () {
+                  Navigator.of(
+                    context,
+                  ).push(MaterialPageRoute(builder: (context) => Navbar()));
+                },
                 bgIconColor: AppColor.blueColor,
                 icon: Icons.abc,
                 iconcolor: AppColor.redColor,

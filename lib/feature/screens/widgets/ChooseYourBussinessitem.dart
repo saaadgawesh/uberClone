@@ -63,13 +63,17 @@ class ChooseYourBussinessitem extends StatelessWidget {
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                     ),
+                    heightSizedbox(8),
                     customAppText(
                       text: text1,
                       // ignore: deprecated_member_use
                       textColor: AppColor.blackColorwithopacity,
                     ),
+                    heightSizedbox(8),
                     customAppText(text: text2, textColor: AppColor.blackColor),
+                    heightSizedbox(8),
                     customAppText(text: text3, textColor: AppColor.blackColor),
+                    heightSizedbox(8),
                     customAppText(text: text4, textColor: AppColor.blackColor),
                   ],
                 ),
@@ -81,11 +85,11 @@ class ChooseYourBussinessitem extends StatelessWidget {
                     width: 40,
                     borderRadius: BorderRadius.circular(10),
                     bgContainerColor: bgIconColor!,
-                    child: customAppIcon(iconcolor!, icon!,20),
+                    child: customAppIcon(iconcolor!, icon!, 20),
                   ),
               ],
             ),
-            heightSizedbox(10),
+            Spacer(),
             if (widthElevatedButton != null)
               defaultElevatedButton(
                 textbutton: textbutton,

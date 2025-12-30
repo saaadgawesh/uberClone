@@ -3,10 +3,10 @@ import 'package:uber/core/constant/App_Color.dart';
 import 'package:uber/core/resources/App_Size.dart';
 import 'package:uber/core/resources/customAppText.dart';
 import 'package:uber/core/resources/sizedboxWidget.dart';
-import 'package:uber/core/widgets/App_TextField.dart';
 import 'package:uber/core/widgets/CustomCounter.dart';
 import 'package:uber/core/widgets/DefaultAppBar.dart';
 import 'package:uber/core/widgets/defaultElevatedButton.dart';
+import 'package:uber/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
 
 class Reports extends StatelessWidget {
   const Reports({super.key});
@@ -16,7 +16,7 @@ class Reports extends StatelessWidget {
     return Scaffold(
       appBar: DefaultAppBar(title: 'kashf Al rokab'),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -26,44 +26,15 @@ class Reports extends StatelessWidget {
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 250),
-              child: customAppText(
-                text: "text",
-                textColor: AppColor.blueColor,
-
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            AppTextField(
-              prefix: Icon(Icons.arrow_drop_down),
-              readOnly: true,
-              hintText: "choose city",
-            ),
+            Textfieldwithsectiontitle(text: 'from', hinttext: 'choose city'),
             heightSizedbox(10),
-            Padding(
-              padding: EdgeInsets.only(left: 250),
-              child: customAppText(
-                text: "text",
-                textColor: AppColor.blueColor,
-
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            AppTextField(
-              prefix: Icon(Icons.arrow_drop_down),
-              readOnly: true,
-              hintText: "choose city",
-            ),
+            Textfieldwithsectiontitle(text: 'to', hinttext: 'choose city'),
             heightSizedbox(10),
-            Padding(
-              padding: EdgeInsets.only(left: 170),
-              child: customAppText(
-                text: "custumer number",
-                textColor: AppColor.blueColor,
+            customAppText(
+              text: "custumer number",
+              textColor: AppColor.blueColor,
 
-                fontWeight: FontWeight.w500,
-              ),
+              fontWeight: FontWeight.w500,
             ),
             heightSizedbox(5),
             Row(
@@ -71,13 +42,13 @@ class Reports extends StatelessWidget {
               children: [
                 CustomCounter(
                   width: appWidth(context) * 0.1,
-                  bgColor: AppColor.whiteColor.withOpacity(0.2),
+                  bgColor: AppColor.whiteColorwithopacity,
                   widget: Icon(Icons.add),
                   iconcolor: AppColor.blackColor,
                 ),
                 CustomCounter(
                   width: appWidth(context) * 0.7,
-                  bgColor: AppColor.whiteColor.withOpacity(0.2),
+                  bgColor: AppColor.whiteColorwithopacity,
                   widget: Text(
                     '1',
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -87,20 +58,24 @@ class Reports extends StatelessWidget {
                 ),
                 CustomCounter(
                   width: appWidth(context) * 0.1,
-                  bgColor: AppColor.whiteColor.withOpacity(0.2),
+                  bgColor: AppColor.whiteColorwithopacity,
                   widget: Icon(Icons.remove),
                   iconcolor: AppColor.blackColor,
                 ),
               ],
             ),
             heightSizedbox(10),
-            defaultElevatedButton(
-              textbutton: "enter customer data",
-              bgButtonColor: AppColor.blueColor,
-              onPressed: () {},
-              width: appWidth(context) * 0.87, textcolor: AppColor.whiteColor,
-            ),
           ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: defaultElevatedButton(
+          textbutton: "enter customer data",
+          bgButtonColor: AppColor.blueColor,
+          onPressed: () {},
+          width: appWidth(context) * 0.87,
+          textcolor: AppColor.whiteColor,
         ),
       ),
     );

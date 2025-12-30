@@ -160,7 +160,7 @@ class AppTextField extends StatelessWidget {
       height: appHeight(context) * 0.08,
       width: appWidth(context),
       borderRadius: BorderRadius.circular(10),
-      bgContainerColor: AppColor.greyColor,
+      bgContainerColor: AppColor.transparent,
       child: TextFormField(
         cursorHeight: cursorHeight,
         cursorWidth: cursorWidth,

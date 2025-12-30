@@ -26,8 +26,8 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadiusGeometry.only(
-          bottomRight: Radius.circular(15),
-          bottomLeft: Radius.circular(15),
+          bottomRight: Radius.circular(20),
+          bottomLeft: Radius.circular(20),
         ),
       ),
       backgroundColor: const Color.fromARGB(255, 9, 76, 132),
@@ -42,7 +42,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
 
       actions: [
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.only(right: 15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -63,7 +63,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? null
           : GestureDetector(
               onTap: leadingonTap,
-              child: customAppIcon(AppColor.whiteColor, leadIconName!,20),
+              child: customAppIcon(AppColor.whiteColor, leadIconName!, 20),
             ),
     );
   }

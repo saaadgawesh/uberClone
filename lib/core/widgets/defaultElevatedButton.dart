@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uber/core/constant/App_Color.dart';
+import 'package:uber/core/resources/App_Size.dart';
 import 'package:uber/core/resources/customAppIcon.dart';
 import 'package:uber/core/resources/customAppText.dart';
 import 'package:uber/core/resources/sizedboxWidget.dart';
@@ -30,7 +31,7 @@ class defaultElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomContainer(
       padding: padding,
-      height: 35,
+      height: appHeight(context) * 0.07,
       width: width,
       borderRadius: BorderRadius.circular(15),
       bgContainerColor: bgButtonColor,
@@ -46,7 +47,7 @@ class defaultElevatedButton extends StatelessWidget {
             customAppText(text: textbutton, textColor: textcolor),
             widthSizedbox(5),
             if (iconName != null && iconColor != null)
-              customAppIcon(iconColor!, iconName!,20),
+              customAppIcon(iconColor!, iconName!, 20),
           ],
         ),
       ),
