@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uber/core/resources/App_Size.dart';
-import 'package:uber/core/widgets/CustomContainer.dart';
+import 'package:uberCloneCustomer/core/resources/App_Size.dart';
+import 'package:uberCloneCustomer/core/widgets/CustomContainer.dart';
 
 class CustomCounter extends StatelessWidget {
   const CustomCounter({

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:uber/core/constant/App_Color.dart';
-import 'package:uber/core/resources/customAppIcon.dart';
-import 'package:uber/core/resources/customAppText.dart';
-import 'package:uber/core/resources/sizedboxWidget.dart';
-import 'package:uber/core/widgets/CustomContainer.dart';
+import 'package:uberCloneCustomer/core/constant/App_Color.dart';
+import 'package:uberCloneCustomer/core/resources/customAppIcon.dart';
+import 'package:uberCloneCustomer/core/resources/customAppText.dart';
+import 'package:uberCloneCustomer/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneCustomer/core/widgets/CustomContainer.dart';
 
 // ignore: non_constant_identifier_names
 Widget CustomServiceWidget(BuildContext context) {
@@ -21,7 +21,7 @@ Widget CustomServiceWidget(BuildContext context) {
           width: 40,
           borderRadius: BorderRadius.circular(10),
           bgContainerColor: AppColor.blueColor,
-          child: customAppIcon(AppColor.whiteColor, Icons.alarm,20),
+          child: customAppIcon(AppColor.whiteColor, Icons.alarm, 20),
         ),
 
         heightSizedbox(8),

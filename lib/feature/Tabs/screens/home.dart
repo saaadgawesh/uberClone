@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:uber/core/constant/App_Color.dart';
-import 'package:uber/core/resources/customAppIcon.dart';
-import 'package:uber/core/resources/customAppText.dart';
-import 'package:uber/core/resources/sizedboxWidget.dart';
-import 'package:uber/core/widgets/CustomServiceWidget.dart';
-import 'package:uber/core/widgets/DefaultAppBar.dart';
-import 'package:uber/feature/Tabs/widgets/Processitem.dart';
+import 'package:uberCloneCustomer/core/constant/App_Color.dart';
+import 'package:uberCloneCustomer/core/resources/customAppIcon.dart';
+import 'package:uberCloneCustomer/core/resources/customAppText.dart';
+import 'package:uberCloneCustomer/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneCustomer/core/widgets/CustomServiceWidget.dart';
+import 'package:uberCloneCustomer/core/widgets/DefaultAppBar.dart';
+import 'package:uberCloneCustomer/feature/Tabs/widgets/Processitem.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});

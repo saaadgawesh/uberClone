@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:uber/core/constant/App_Color.dart';
-import 'package:uber/core/resources/App_Size.dart';
-import 'package:uber/core/resources/customAppIcon.dart';
-import 'package:uber/core/resources/customAppText.dart';
-import 'package:uber/core/resources/sizedboxWidget.dart';
-import 'package:uber/core/widgets/CustomContainer.dart';
+import 'package:uberCloneCustomer/core/constant/App_Color.dart';
+import 'package:uberCloneCustomer/core/resources/App_Size.dart';
+import 'package:uberCloneCustomer/core/resources/customAppIcon.dart';
+import 'package:uberCloneCustomer/core/resources/customAppText.dart';
+import 'package:uberCloneCustomer/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneCustomer/core/widgets/CustomContainer.dart';
 
 // ignore: camel_case_types
 class defaultElevatedButton extends StatelessWidget {

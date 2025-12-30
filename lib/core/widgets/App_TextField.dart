@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:uber/core/constant/App_Color.dart';
-import 'package:uber/core/resources/App_Size.dart';
-import 'package:uber/core/widgets/CustomContainer.dart';
+import 'package:uberCloneCustomer/core/constant/App_Color.dart';
+import 'package:uberCloneCustomer/core/resources/App_Size.dart';
+import 'package:uberCloneCustomer/core/widgets/CustomContainer.dart';
 
 enum TextFieldBorderType { filled, outlined, underlined, none }
 

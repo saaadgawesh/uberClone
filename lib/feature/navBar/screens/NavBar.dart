@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:uber/feature/Tabs/screens/Reports.dart';
-import 'package:uber/feature/Tabs/screens/home.dart';
-import 'package:uber/feature/Tabs/screens/profile.dart';
-import 'package:uber/feature/Tabs/screens/requests.dart';
-import 'package:uber/feature/navBar/widgets/CustomButtomNavBar.dart';
+import 'package:uberCloneCustomer/feature/Tabs/screens/Reports.dart';
+import 'package:uberCloneCustomer/feature/Tabs/screens/home.dart';
+import 'package:uberCloneCustomer/feature/Tabs/screens/profile.dart';
+import 'package:uberCloneCustomer/feature/Tabs/screens/requests.dart';
+import 'package:uberCloneCustomer/feature/navBar/widgets/CustomButtomNavBar.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});

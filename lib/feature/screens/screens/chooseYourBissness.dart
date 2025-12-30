@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:uber/core/constant/App_Color.dart';
-import 'package:uber/core/resources/App_Size.dart';
-import 'package:uber/core/resources/customAppText.dart';
-import 'package:uber/feature/navBar/screens/NavBar.dart';
-import 'package:uber/feature/screens/widgets/ChooseYourBussinessitem.dart';
+import 'package:uberCloneCustomer/core/constant/App_Color.dart';
+import 'package:uberCloneCustomer/core/resources/App_Size.dart';
+import 'package:uberCloneCustomer/core/resources/customAppText.dart';
+import 'package:uberCloneCustomer/feature/navBar/screens/NavBar.dart';
+import 'package:uberCloneCustomer/feature/screens/widgets/ChooseYourBussinessitem.dart';
 
 class Chooseyourbissness extends StatelessWidget {
   const Chooseyourbissness({super.key});

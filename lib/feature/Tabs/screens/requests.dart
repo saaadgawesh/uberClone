@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:uber/core/constant/App_Color.dart';
-import 'package:uber/core/resources/App_Size.dart';
-import 'package:uber/core/resources/customAppText.dart';
-import 'package:uber/core/resources/sizedboxWidget.dart';
-import 'package:uber/core/widgets/DefaultAppBar.dart';
-import 'package:uber/core/widgets/defaultElevatedButton.dart';
-import 'package:uber/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
+import 'package:uberCloneCustomer/core/constant/App_Color.dart';
+import 'package:uberCloneCustomer/core/resources/App_Size.dart';
+import 'package:uberCloneCustomer/core/resources/customAppText.dart';
+import 'package:uberCloneCustomer/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneCustomer/core/widgets/DefaultAppBar.dart';
+import 'package:uberCloneCustomer/core/widgets/defaultElevatedButton.dart';
+import 'package:uberCloneCustomer/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
 
 class Requests extends StatelessWidget {
   const Requests({super.key});

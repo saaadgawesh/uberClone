@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:uber/core/constant/App_Color.dart';
-import 'package:uber/core/resources/App_Size.dart';
-import 'package:uber/core/resources/customAppIcon.dart';
-import 'package:uber/core/resources/sizedboxWidget.dart';
-import 'package:uber/core/widgets/DefaultAppBar.dart';
-import 'package:uber/core/widgets/defaultElevatedButton.dart';
-import 'package:uber/feature/Tabs/widgets/Processitem.dart';
-import 'package:uber/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
+import 'package:uberCloneCustomer/core/constant/App_Color.dart';
+import 'package:uberCloneCustomer/core/resources/App_Size.dart';
+import 'package:uberCloneCustomer/core/resources/customAppIcon.dart';
+import 'package:uberCloneCustomer/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneCustomer/core/widgets/DefaultAppBar.dart';
+import 'package:uberCloneCustomer/core/widgets/defaultElevatedButton.dart';
+import 'package:uberCloneCustomer/feature/Tabs/widgets/Processitem.dart';
+import 'package:uberCloneCustomer/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -34,7 +34,10 @@ class Profile extends StatelessWidget {
               heightSizedbox(10),
               Textfieldwithsectiontitle(text: 'to', hinttext: 'choose city'),
               heightSizedbox(10),
-              Textfieldwithsectiontitle(text: 'tasneef', hinttext: 'choose city'),
+              Textfieldwithsectiontitle(
+                text: 'tasneef',
+                hinttext: 'choose city',
+              ),
               heightSizedbox(10),
               Textfieldwithsectiontitle(
                 text: 'type of transport',
