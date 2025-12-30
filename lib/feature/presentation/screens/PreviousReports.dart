@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uber/core/resources/App_Size.dart';
 import 'package:uber/core/resources/sizedboxWidget.dart';
 import 'package:uber/core/widgets/DefaultAppBar.dart';
-import 'package:uber/feature/screens/widgets/PreviousReportsItem.dart';
+import 'package:uber/feature/presentation/widgets/PreviousReportsItem.dart';
 
 class Previousreports extends StatelessWidget {
   const Previousreports({super.key});

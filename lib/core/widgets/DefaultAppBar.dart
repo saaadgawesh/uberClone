@@ -63,7 +63,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? null
           : GestureDetector(
               onTap: leadingonTap,
-              child: customAppIcon(AppColor.whiteColor, leadIconName!),
+              child: customAppIcon(AppColor.whiteColor, leadIconName!,20),
             ),
     );
   }

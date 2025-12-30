@@ -21,7 +21,7 @@ Widget CustomServiceWidget(BuildContext context) {
           width: 40,
           borderRadius: BorderRadius.circular(10),
           bgContainerColor: AppColor.blueColor,
-          child: customAppIcon(AppColor.whiteColor, Icons.alarm),
+          child: customAppIcon(AppColor.whiteColor, Icons.alarm,20),
         ),
 
         heightSizedbox(8),

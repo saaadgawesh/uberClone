@@ -1,8 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
     <application
         android:label="uber"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+ <!-- <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyAVy2nQF9s6AUX7wby1m28_z1Ug_UdYIBs"/> -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -18,8 +24,8 @@
                  to determine the Window background behind the Flutter UI. -->
             <meta-data
               android:name="io.flutter.embedding.android.NormalTheme"
-              android:resource="@style/NormalTheme"
-              />
+              android:resource="@style/NormalTheme"/>
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

@@ -38,7 +38,9 @@ class AppTextField extends StatelessWidget {
   final Color? borderColor;
   final double borderRadius;
   final double borderWidth;
-
+  final double? cursorHeight;
+  final double cursorWidth;
+  final Function(String)? onFieldSubmitted;
   const AppTextField({
     super.key,
     this.autofocus = false,
@@ -72,6 +74,9 @@ class AppTextField extends StatelessWidget {
     this.borderColor,
     this.borderRadius = 10,
     this.borderWidth = 1.5,
+    this.onFieldSubmitted,
+    this.cursorHeight,
+    this.cursorWidth = 1,
   });
 
   InputBorder _getBorder() {
@@ -157,6 +162,9 @@ class AppTextField extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       bgContainerColor: AppColor.greyColor,
       child: TextFormField(
+        cursorHeight: cursorHeight,
+        cursorWidth: cursorWidth,
+        onFieldSubmitted: onFieldSubmitted,
         obscureText: obscureText,
         obscuringCharacter: obscuringCharacter,
         keyboardType: keyboardType,

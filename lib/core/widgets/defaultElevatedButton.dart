@@ -46,7 +46,7 @@ class defaultElevatedButton extends StatelessWidget {
             customAppText(text: textbutton, textColor: textcolor),
             widthSizedbox(5),
             if (iconName != null && iconColor != null)
-              customAppIcon(iconColor!, iconName!),
+              customAppIcon(iconColor!, iconName!,20),
           ],
         ),
       ),

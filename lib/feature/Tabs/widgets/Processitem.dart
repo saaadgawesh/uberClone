@@ -35,7 +35,7 @@ class Processitem extends StatelessWidget {
             // ignore: deprecated_member_use
             backgroundColor: AppColor.greyColor.withOpacity(0.4),
             radius: 20,
-            child: customAppIcon(AppColor.whiteColor, leadIcon),
+            child: customAppIcon(AppColor.whiteColor, leadIcon,20),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -51,7 +51,7 @@ class Processitem extends StatelessWidget {
             width: 50,
             borderRadius: BorderRadius.circular(10),
             bgContainerColor: AppColor.greyColor.withOpacity(0.4),
-            child: customAppIcon(AppColor.whiteColor, actionIcon),
+            child: customAppIcon(AppColor.whiteColor, actionIcon,20),
           ),
         ],
       ),

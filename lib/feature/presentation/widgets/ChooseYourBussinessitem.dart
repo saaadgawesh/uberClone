@@ -48,14 +48,14 @@ class ChooseYourBussinessitem extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         bgContainerColor: backGroundColor,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+
                   children: [
                     customAppText(
                       text: title,
@@ -66,7 +66,7 @@ class ChooseYourBussinessitem extends StatelessWidget {
                     customAppText(
                       text: text1,
                       // ignore: deprecated_member_use
-                      textColor: AppColor.blackColor.withOpacity(0.4),
+                      textColor: AppColor.blackColorwithopacity,
                     ),
                     customAppText(text: text2, textColor: AppColor.blackColor),
                     customAppText(text: text3, textColor: AppColor.blackColor),
@@ -75,18 +75,18 @@ class ChooseYourBussinessitem extends StatelessWidget {
                 ),
                 widthSizedbox(10),
 
-                if (icon != null)
+                if (icon != null && iconcolor != null)
                   CustomContainer(
                     height: 50,
                     width: 40,
                     borderRadius: BorderRadius.circular(10),
                     bgContainerColor: bgIconColor!,
-                    child: customAppIcon(iconcolor!, icon!),
+                    child: customAppIcon(iconcolor!, icon!,20),
                   ),
               ],
             ),
             heightSizedbox(10),
-            if (icon != null)
+            if (widthElevatedButton != null)
               defaultElevatedButton(
                 textbutton: textbutton,
                 bgButtonColor: bgButtonColor,

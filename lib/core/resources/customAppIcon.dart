@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-  Widget customAppIcon(Color iconColor,IconData iconName ) {
-    return Icon(iconName, color: iconColor,size: 20,);
-  }
+Widget customAppIcon(Color iconColor, IconData iconName, double size) {
+  return Icon(iconName, color: iconColor, size: size);
+}
