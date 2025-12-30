@@ -14,8 +14,8 @@ import 'package:uber/core/widgets/App_TextField.dart';
 import 'package:uber/core/widgets/CustomContainer.dart';
 import 'package:uber/core/widgets/defaultElevatedButton.dart';
 import 'package:uber/core/widgets/showSnackbar.dart';
-import 'package:uber/feature/presentation/models/locationModel.dart';
-import 'package:uber/feature/presentation/widgets/Location_Manager.dart';
+import 'package:uber/feature/screens/models/locationModel.dart';
+import 'package:uber/feature/screens/widgets/Location_Manager.dart';
 
 class Locationscreen extends StatefulWidget {
   const Locationscreen({super.key});
