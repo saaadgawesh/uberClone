@@ -8,6 +8,6 @@ class AppColor {
   static Color blackColorwithopacity = AppColor.blackColor.withOpacity(0.3);
   static const Color redColor = Colors.red;
   static const Color greenColor = Colors.green;
-  static Color greyColor = Colors.grey.withOpacity(0.4);
+  static Color greyColor = Colors.grey.withOpacity(0.2);
   static const Color transparent = Colors.transparent;
 }

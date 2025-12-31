@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:uberCloneCustomer/core/constant/App_Color.dart';
-import 'package:uberCloneCustomer/core/resources/App_Size.dart';
-import 'package:uberCloneCustomer/core/resources/customAppText.dart';
-import 'package:uberCloneCustomer/core/resources/sizedboxWidget.dart';
-import 'package:uberCloneCustomer/core/widgets/DefaultAppBar.dart';
-import 'package:uberCloneCustomer/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneCustomer/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
+import 'package:uberCloneRider/core/constant/App_Color.dart';
+import 'package:uberCloneRider/core/resources/App_Size.dart';
+import 'package:uberCloneRider/core/resources/CustomAppText.dart';
+import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneRider/core/widgets/DefaultAppBar.dart';
+import 'package:uberCloneRider/core/widgets/defaultElevatedButton.dart';
+import 'package:uberCloneRider/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
 
 class Requests extends StatelessWidget {
   const Requests({super.key});
@@ -38,13 +38,13 @@ class Requests extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  customAppText(
+                  CustomAppText(
                     text: "350Eg",
                     textColor: AppColor.greenColor,
 
                     fontWeight: FontWeight.w500,
                   ),
-                  customAppText(
+                  CustomAppText(
                     text: "tripPrice",
                     textColor: AppColor.blueColor,
 
@@ -56,13 +56,13 @@ class Requests extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  customAppText(
+                  CustomAppText(
                     text: "time",
                     textColor: AppColor.blueColor,
 
                     fontWeight: FontWeight.w500,
                   ),
-                  customAppText(
+                  CustomAppText(
                     text: "date",
                     textColor: AppColor.blueColor,
 

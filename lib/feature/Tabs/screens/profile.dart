@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:uberCloneCustomer/core/constant/App_Color.dart';
-import 'package:uberCloneCustomer/core/resources/App_Size.dart';
-import 'package:uberCloneCustomer/core/resources/customAppIcon.dart';
-import 'package:uberCloneCustomer/core/resources/sizedboxWidget.dart';
-import 'package:uberCloneCustomer/core/widgets/DefaultAppBar.dart';
-import 'package:uberCloneCustomer/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneCustomer/feature/Tabs/widgets/Processitem.dart';
-import 'package:uberCloneCustomer/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
+import 'package:uberCloneRider/core/constant/App_Color.dart';
+import 'package:uberCloneRider/core/resources/App_Size.dart';
+import 'package:uberCloneRider/core/resources/customAppIcon.dart';
+import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneRider/core/widgets/DefaultAppBar.dart';
+import 'package:uberCloneRider/core/widgets/defaultElevatedButton.dart';
+import 'package:uberCloneRider/feature/Tabs/widgets/Processitem.dart';
+import 'package:uberCloneRider/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});

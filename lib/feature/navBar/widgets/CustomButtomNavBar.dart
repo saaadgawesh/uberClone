@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uberCloneCustomer/core/constant/App_Color.dart';
+import 'package:uberCloneRider/core/constant/App_Color.dart';
 
 class Custombuttomnavbar extends StatelessWidget {
   const Custombuttomnavbar({
@@ -35,9 +35,9 @@ class Custombuttomnavbar extends StatelessWidget {
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           BottomNavigationBarItem(
             icon: Icon(Icons.car_crash_sharp),
-            label: 'Requests',
+            label: 'RequestCar',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Reports'),
+          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'MyRequests'),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
         ],
       ),

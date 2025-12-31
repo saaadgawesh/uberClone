@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:uberCloneCustomer/core/constant/App_Color.dart';
-import 'package:uberCloneCustomer/core/resources/App_Size.dart';
-import 'package:uberCloneCustomer/core/resources/customAppText.dart';
-import 'package:uberCloneCustomer/core/resources/sizedboxWidget.dart';
-import 'package:uberCloneCustomer/core/widgets/CustomCounter.dart';
-import 'package:uberCloneCustomer/core/widgets/DefaultAppBar.dart';
-import 'package:uberCloneCustomer/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneCustomer/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
+import 'package:uberCloneRider/core/constant/App_Color.dart';
+import 'package:uberCloneRider/core/resources/App_Size.dart';
+import 'package:uberCloneRider/core/resources/CustomAppText.dart';
+import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneRider/core/widgets/CustomCounter.dart';
+import 'package:uberCloneRider/core/widgets/DefaultAppBar.dart';
+import 'package:uberCloneRider/core/widgets/defaultElevatedButton.dart';
+import 'package:uberCloneRider/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
 
 class Reports extends StatelessWidget {
   const Reports({super.key});
@@ -20,7 +20,7 @@ class Reports extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            customAppText(
+            CustomAppText(
               text: "text",
               textColor: AppColor.blueColor,
               fontSize: 18,
@@ -30,7 +30,7 @@ class Reports extends StatelessWidget {
             heightSizedbox(10),
             Textfieldwithsectiontitle(text: 'to', hinttext: 'choose city'),
             heightSizedbox(10),
-            customAppText(
+            CustomAppText(
               text: "custumer number",
               textColor: AppColor.blueColor,
 

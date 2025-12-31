@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
-import 'package:uberCloneCustomer/core/constant/App_Color.dart';
-import 'package:uberCloneCustomer/core/constant/api_Constant.dart';
-import 'package:uberCloneCustomer/core/resources/AppDivider.dart';
-import 'package:uberCloneCustomer/core/resources/App_Size.dart';
-import 'package:uberCloneCustomer/core/resources/customAppIcon.dart';
-import 'package:uberCloneCustomer/core/resources/customAppText.dart';
-import 'package:uberCloneCustomer/core/widgets/App_TextField.dart';
-import 'package:uberCloneCustomer/core/widgets/CustomContainer.dart';
-import 'package:uberCloneCustomer/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneCustomer/core/widgets/showSnackbar.dart';
-import 'package:uberCloneCustomer/feature/screens/models/locationModel.dart';
-import 'package:uberCloneCustomer/feature/screens/widgets/Location_Manager.dart';
+import 'package:uberCloneRider/core/constant/App_Color.dart';
+import 'package:uberCloneRider/core/constant/api_Constant.dart';
+import 'package:uberCloneRider/core/resources/AppDivider.dart';
+import 'package:uberCloneRider/core/resources/App_Size.dart';
+import 'package:uberCloneRider/core/resources/customAppIcon.dart';
+import 'package:uberCloneRider/core/resources/CustomAppText.dart';
+import 'package:uberCloneRider/core/widgets/App_TextField.dart';
+import 'package:uberCloneRider/core/widgets/CustomContainer.dart';
+import 'package:uberCloneRider/core/widgets/defaultElevatedButton.dart';
+import 'package:uberCloneRider/core/widgets/showSnackbar.dart';
+import 'package:uberCloneRider/feature/screens/models/locationModel.dart';
+import 'package:uberCloneRider/feature/screens/widgets/Location_Manager.dart';
 
 class Locationscreen extends StatefulWidget {
   const Locationscreen({super.key});
@@ -200,7 +200,7 @@ class _LocationscreenState extends State<Locationscreen> {
                           final place = searchResults[index];
                           return ListTile(
                             leading: const Icon(Icons.location_on_outlined),
-                            title: customAppText(
+                            title: CustomAppText(
                               text: place.name,
                               textColor: AppColor.blackColor,
                               maxLines: 2,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uberCloneCustomer/core/constant/App_Color.dart';
+import 'package:uberCloneRider/core/constant/App_Color.dart';
 
 class CustomContainer extends StatelessWidget {
   const CustomContainer({

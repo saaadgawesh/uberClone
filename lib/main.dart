@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uberCloneCustomer/App.dart';
+import 'package:uberCloneRider/App.dart';
 
 
 void main(){

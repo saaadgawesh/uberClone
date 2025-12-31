@@ -1,4 +1,4 @@
-name: uberCloneCustomer
+name: uberCloneRider
 description: "A new Flutter project."
 
 publish_to: "none"
@@ -17,6 +17,7 @@ dependencies:
   http: ^1.1.0
   flutter_map: ^8.2.2
   latlong2: ^0.9.1
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:

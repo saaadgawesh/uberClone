@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:uberCloneCustomer/core/constant/App_Color.dart';
-import 'package:uberCloneCustomer/core/resources/App_Size.dart';
-import 'package:uberCloneCustomer/core/resources/customAppIcon.dart';
-import 'package:uberCloneCustomer/core/resources/customAppText.dart';
-import 'package:uberCloneCustomer/core/resources/sizedboxWidget.dart';
-import 'package:uberCloneCustomer/core/widgets/CustomContainer.dart';
+import 'package:uberCloneRider/core/constant/App_Color.dart';
+import 'package:uberCloneRider/core/resources/App_Size.dart';
+import 'package:uberCloneRider/core/resources/customAppIcon.dart';
+import 'package:uberCloneRider/core/resources/CustomAppText.dart';
+import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneRider/core/widgets/CustomContainer.dart';
 
 // ignore: camel_case_types
 class defaultElevatedButton extends StatelessWidget {
@@ -44,7 +44,7 @@ class defaultElevatedButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            customAppText(text: textbutton, textColor: textcolor),
+            CustomAppText(text: textbutton, textColor: textcolor),
             widthSizedbox(5),
             if (iconName != null && iconColor != null)
               customAppIcon(iconColor!, iconName!, 20),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:uberCloneCustomer/core/resources/App_Size.dart';
-import 'package:uberCloneCustomer/core/resources/sizedboxWidget.dart';
-import 'package:uberCloneCustomer/core/widgets/DefaultAppBar.dart';
-import 'package:uberCloneCustomer/feature/screens/widgets/PreviousReportsItem.dart';
+import 'package:uberCloneRider/core/resources/App_Size.dart';
+import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneRider/core/widgets/DefaultAppBar.dart';
+import 'package:uberCloneRider/feature/screens/widgets/PreviousReportsItem.dart';
 
 class Previousreports extends StatelessWidget {
   const Previousreports({super.key});

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:uberCloneCustomer/core/constant/App_Color.dart';
-import 'package:uberCloneCustomer/core/resources/App_Size.dart';
-import 'package:uberCloneCustomer/core/resources/customAppIcon.dart';
-import 'package:uberCloneCustomer/core/resources/customAppText.dart';
-import 'package:uberCloneCustomer/core/resources/sizedboxWidget.dart';
-import 'package:uberCloneCustomer/core/widgets/CustomContainer.dart';
-import 'package:uberCloneCustomer/core/widgets/defaultElevatedButton.dart';
+import 'package:uberCloneRider/core/constant/App_Color.dart';
+import 'package:uberCloneRider/core/resources/App_Size.dart';
+import 'package:uberCloneRider/core/resources/customAppIcon.dart';
+import 'package:uberCloneRider/core/resources/CustomAppText.dart';
+import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneRider/core/widgets/CustomContainer.dart';
+import 'package:uberCloneRider/core/widgets/defaultElevatedButton.dart';
 
 class ChooseYourBussinessitem extends StatelessWidget {
   const ChooseYourBussinessitem({
@@ -57,24 +57,24 @@ class ChooseYourBussinessitem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
 
                   children: [
-                    customAppText(
+                    CustomAppText(
                       text: title,
                       textColor: AppColor.blackColor,
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                     ),
                     heightSizedbox(8),
-                    customAppText(
+                    CustomAppText(
                       text: text1,
                       // ignore: deprecated_member_use
                       textColor: AppColor.blackColorwithopacity,
                     ),
                     heightSizedbox(8),
-                    customAppText(text: text2, textColor: AppColor.blackColor),
+                    CustomAppText(text: text2, textColor: AppColor.blackColor),
                     heightSizedbox(8),
-                    customAppText(text: text3, textColor: AppColor.blackColor),
+                    CustomAppText(text: text3, textColor: AppColor.blackColor),
                     heightSizedbox(8),
-                    customAppText(text: text4, textColor: AppColor.blackColor),
+                    CustomAppText(text: text4, textColor: AppColor.blackColor),
                   ],
                 ),
                 widthSizedbox(10),

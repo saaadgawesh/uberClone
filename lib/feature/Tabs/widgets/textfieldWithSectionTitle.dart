@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:uberCloneCustomer/core/constant/App_Color.dart';
-import 'package:uberCloneCustomer/core/resources/customAppText.dart';
-import 'package:uberCloneCustomer/core/widgets/App_TextField.dart';
+import 'package:uberCloneRider/core/constant/App_Color.dart';
+import 'package:uberCloneRider/core/resources/CustomAppText.dart';
+import 'package:uberCloneRider/core/widgets/App_TextField.dart';
 
 class Textfieldwithsectiontitle extends StatelessWidget {
   const Textfieldwithsectiontitle({
@@ -16,10 +16,10 @@ class Textfieldwithsectiontitle extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        customAppText(
+        CustomAppText(
           text: text,
           textColor: AppColor.blueColor,
-          textalignment: TextAlign.end,
+
           fontWeight: FontWeight.w500,
         ),
         AppTextField(
