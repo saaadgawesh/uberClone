@@ -16,7 +16,7 @@ class Profile extends StatelessWidget {
     return Scaffold(
       appBar: DefaultAppBar(title: "profile"),
       body: Padding(
-        padding: const EdgeInsets.only(top: 15, right: 10, left: 10),
+        padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -24,7 +24,7 @@ class Profile extends StatelessWidget {
               Processitem(
                 title: "saadGawesh",
                 description: "flutter developer",
-                leadIcon: Icons.arrow_back,
+                leadIcon: Icons.edit,
                 actionIcon: Icons.group,
                 backgroundColor: AppColor.blueColor,
                 child: ClipRRect(
@@ -38,18 +38,21 @@ class Profile extends StatelessWidget {
                 ),
               ),
               heightSizedbox(10),
-              Textfieldwithsectiontitle(text: 'from', hinttext: 'choose city'),
-              heightSizedbox(10),
-              Textfieldwithsectiontitle(text: 'to', hinttext: 'choose city'),
+              Textfieldwithsectiontitle(text: 'Name', hinttext: 'saadGawesh'),
               heightSizedbox(10),
               Textfieldwithsectiontitle(
-                text: 'tasneef',
-                hinttext: 'choose city',
+                text: 'phoneNo',
+                hinttext: '01031214881',
               ),
               heightSizedbox(10),
               Textfieldwithsectiontitle(
-                text: 'type of transport',
-                hinttext: 'choose city',
+                text: 'Email',
+                hinttext: 'Saadgawesh@gmail.com',
+              ),
+              heightSizedbox(10),
+              Textfieldwithsectiontitle(
+                text: 'your job',
+                hinttext: 'flutter developer',
               ),
               heightSizedbox(10),
             ],
