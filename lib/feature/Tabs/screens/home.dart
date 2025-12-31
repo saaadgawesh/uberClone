@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:uber/core/constant/App_Color.dart';
-import 'package:uber/core/resources/customAppIcon.dart';
-import 'package:uber/core/resources/customAppText.dart';
-import 'package:uber/core/resources/sizedboxWidget.dart';
-import 'package:uber/core/widgets/CustomServiceWidget.dart';
-import 'package:uber/core/widgets/DefaultAppBar.dart';
-import 'package:uber/feature/Tabs/widgets/Processitem.dart';
+import 'package:uberCloneDriver/core/constant/App_Color.dart';
+import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
+import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
+import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneDriver/core/widgets/CustomServiceWidget.dart';
+import 'package:uberCloneDriver/core/widgets/DefaultAppBar.dart';
+import 'package:uberCloneDriver/feature/Tabs/screens/profile.dart';
+import 'package:uberCloneDriver/feature/Tabs/widgets/Processitem.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -17,7 +18,12 @@ class Home extends StatelessWidget {
         actiontitle: 'welcome',
         actionDesc: 'welcome',
         actionOntap: () {},
-        leadingonTap: () {},
+        leadingonTap: () {
+          Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (context) => Profile()));
+        },
+        leadIconName: Icons.person,
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 8, left: 15, right: 15),
@@ -25,35 +31,29 @@ class Home extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              customAppText(
-                text: "text",
+              CustomAppText(
+                text: "start your journey",
                 textColor: AppColor.blackColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
               ),
               Processitem(
-                title: "title",
-                description: "description",
+                title: "are you ready?",
+                description: "request your car and join with good trip",
                 leadIcon: Icons.arrow_back,
                 actionIcon: Icons.group,
                 backgroundColor: AppColor.blueColor,
-                child: customAppIcon(AppColor.whiteColor, Icons.car_crash, 40),
+                child: customAppIcon(AppColor.whiteColor, Icons.car_crash, 40,(){}),
               ),
               heightSizedbox(10),
+
               Processitem(
-                title: "title",
-                description: "description",
+                title: "are you ready?",
+                description: "request your car and join with good trip",
                 leadIcon: Icons.arrow_back,
                 actionIcon: Icons.group,
-                backgroundColor: const Color.fromARGB(255, 19, 181, 81),
-                child: customAppIcon(AppColor.whiteColor, Icons.car_crash, 40),
-              ),
-              heightSizedbox(10),
-              customAppText(
-                text: "text",
-                textColor: AppColor.blackColor,
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
+                backgroundColor: AppColor.greenColor,
+                child: customAppIcon(AppColor.whiteColor, Icons.car_crash, 40,(){}),
               ),
               heightSizedbox(10),
               GridView.builder(

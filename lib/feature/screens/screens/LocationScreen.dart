@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
-import 'package:uber/core/constant/App_Color.dart';
-import 'package:uber/core/constant/api_Constant.dart';
-import 'package:uber/core/resources/AppDivider.dart';
-import 'package:uber/core/resources/App_Size.dart';
-import 'package:uber/core/resources/customAppIcon.dart';
-import 'package:uber/core/resources/customAppText.dart';
-import 'package:uber/core/widgets/App_TextField.dart';
-import 'package:uber/core/widgets/CustomContainer.dart';
-import 'package:uber/core/widgets/defaultElevatedButton.dart';
-import 'package:uber/core/widgets/showSnackbar.dart';
-import 'package:uber/feature/screens/models/locationModel.dart';
-import 'package:uber/feature/screens/widgets/Location_Manager.dart';
+import 'package:uberCloneDriver/core/constant/App_Color.dart';
+import 'package:uberCloneDriver/core/constant/api_Constant.dart';
+import 'package:uberCloneDriver/core/resources/AppDivider.dart';
+import 'package:uberCloneDriver/core/resources/App_Size.dart';
+import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
+import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
+import 'package:uberCloneDriver/core/widgets/App_TextField.dart';
+import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
+import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
+import 'package:uberCloneDriver/core/widgets/showSnackbar.dart';
+import 'package:uberCloneDriver/feature/screens/models/locationModel.dart';
+import 'package:uberCloneDriver/feature/screens/widgets/Location_Manager.dart';
 
 class Locationscreen extends StatefulWidget {
   const Locationscreen({super.key});
@@ -73,7 +73,7 @@ class _LocationscreenState extends State<Locationscreen> {
           height: 40,
           child:
               // const Icon(Icons.location_pin, color: Colors.red, size: 40),
-              customAppIcon(AppColor.redColor, Icons.location_pin, 40),
+              customAppIcon(AppColor.redColor, Icons.location_pin, 40,(){}),
         ),
       );
     });
@@ -154,11 +154,11 @@ class _LocationscreenState extends State<Locationscreen> {
                       icon: customAppIcon(
                         AppColor.blueColor,
                         Icons.arrow_back_ios,
-                        20,
+                        20,(){}
                       ),
                     ),
                     suffix: IconButton(
-                      icon: customAppIcon(AppColor.blueColor, Icons.search, 20),
+                      icon: customAppIcon(AppColor.blueColor, Icons.search, 20,(){}),
                       onPressed: () {
                         final query = searchController.text.trim();
                         if (query.isEmpty) {
@@ -200,7 +200,7 @@ class _LocationscreenState extends State<Locationscreen> {
                           final place = searchResults[index];
                           return ListTile(
                             leading: const Icon(Icons.location_on_outlined),
-                            title: customAppText(
+                            title: CustomAppText(
                               text: place.name,
                               textColor: AppColor.blackColor,
                               maxLines: 2,

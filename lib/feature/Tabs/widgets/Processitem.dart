@@ -1,10 +1,11 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:uber/core/constant/App_Color.dart';
-import 'package:uber/core/resources/App_Size.dart';
-import 'package:uber/core/resources/customAppIcon.dart';
-import 'package:uber/core/resources/customAppText.dart';
-import 'package:uber/core/widgets/CustomContainer.dart';
+import 'package:uberCloneDriver/core/constant/App_Color.dart';
+import 'package:uberCloneDriver/core/resources/App_Size.dart';
+import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
+import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
+import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
 
 class Processitem extends StatelessWidget {
   const Processitem({
@@ -26,7 +27,7 @@ class Processitem extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomContainer(
       padding: EdgeInsets.all(15),
-      height: appHeight(context) * 0.128,
+      height: appHeight(context) * 0.19,
       width: appWidth(context) * 0.93,
       borderRadius: BorderRadius.circular(15),
       bgContainerColor: backgroundColor,
@@ -37,21 +38,33 @@ class Processitem extends StatelessWidget {
             // ignore: deprecated_member_use
             backgroundColor: AppColor.greyColor.withOpacity(0.4),
             radius: 20,
-            child: customAppIcon(AppColor.whiteColor, leadIcon, 20),
+            child: customAppIcon(AppColor.whiteColor, leadIcon, 20, () {}),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              customAppText(text: title, textColor: AppColor.whiteColor),
-              customAppText(text: description, textColor: AppColor.whiteColor),
-            ],
+          Container(
+            width: appWidth(context) * 0.5,
+            child: Column(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomAppText(text: title, textColor: AppColor.whiteColor),
+                    heightSizedbox(5),
+                    CustomAppText(
+                      text: description,
+                      textColor: AppColor.whiteColor,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
+          widthSizedbox(5),
           if (child != null)
             CustomContainer(
               actionIcon: actionIcon,
-              height: 65,
-              width: 50,
+              height: appHeight(context),
+              width: appWidth(context) * 0.15,
               borderRadius: BorderRadius.circular(10),
               bgContainerColor: AppColor.greyColor,
               child: child!,

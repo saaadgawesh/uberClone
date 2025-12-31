@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:uber/core/constant/App_Color.dart';
-import 'package:uber/core/resources/App_Size.dart';
-import 'package:uber/core/resources/customAppText.dart';
-import 'package:uber/core/resources/sizedboxWidget.dart';
-import 'package:uber/core/widgets/DefaultAppBar.dart';
-import 'package:uber/core/widgets/defaultElevatedButton.dart';
-import 'package:uber/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
+import 'package:uberCloneDriver/core/constant/App_Color.dart';
+import 'package:uberCloneDriver/core/resources/App_Size.dart';
+import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
+import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneDriver/core/widgets/DefaultAppBar.dart';
+import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
+import 'package:uberCloneDriver/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
 
 class Requests extends StatelessWidget {
   const Requests({super.key});
@@ -38,13 +38,13 @@ class Requests extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  customAppText(
+                  CustomAppText(
                     text: "350Eg",
                     textColor: AppColor.greenColor,
 
                     fontWeight: FontWeight.w500,
                   ),
-                  customAppText(
+                  CustomAppText(
                     text: "tripPrice",
                     textColor: AppColor.blueColor,
 
@@ -56,13 +56,13 @@ class Requests extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  customAppText(
+                  CustomAppText(
                     text: "time",
                     textColor: AppColor.blueColor,
 
                     fontWeight: FontWeight.w500,
                   ),
-                  customAppText(
+                  CustomAppText(
                     text: "date",
                     textColor: AppColor.blueColor,
 

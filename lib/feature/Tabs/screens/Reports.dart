@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:uber/core/constant/App_Color.dart';
-import 'package:uber/core/resources/App_Size.dart';
-import 'package:uber/core/resources/customAppText.dart';
-import 'package:uber/core/resources/sizedboxWidget.dart';
-import 'package:uber/core/widgets/CustomCounter.dart';
-import 'package:uber/core/widgets/DefaultAppBar.dart';
-import 'package:uber/core/widgets/defaultElevatedButton.dart';
-import 'package:uber/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
+import 'package:uberCloneDriver/core/constant/App_Color.dart';
+import 'package:uberCloneDriver/core/resources/App_Size.dart';
+import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
+import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneDriver/core/widgets/CustomCounter.dart';
+import 'package:uberCloneDriver/core/widgets/DefaultAppBar.dart';
+import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
+import 'package:uberCloneDriver/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
 
 class Reports extends StatelessWidget {
   const Reports({super.key});
@@ -20,7 +20,7 @@ class Reports extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            customAppText(
+            CustomAppText(
               text: "text",
               textColor: AppColor.blueColor,
               fontSize: 18,
@@ -30,7 +30,7 @@ class Reports extends StatelessWidget {
             heightSizedbox(10),
             Textfieldwithsectiontitle(text: 'to', hinttext: 'choose city'),
             heightSizedbox(10),
-            customAppText(
+            CustomAppText(
               text: "custumer number",
               textColor: AppColor.blueColor,
 

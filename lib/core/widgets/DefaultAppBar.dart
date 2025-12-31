@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:uber/core/constant/App_Color.dart';
-import 'package:uber/core/resources/customAppIcon.dart';
-import 'package:uber/core/resources/customAppText.dart';
+import 'package:uberCloneDriver/core/constant/App_Color.dart';
+import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
+import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   const DefaultAppBar({
@@ -32,7 +32,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       backgroundColor: const Color.fromARGB(255, 9, 76, 132),
       elevation: 0,
-      title: customAppText(
+      title: CustomAppText(
         text: title ?? '',
         textColor: AppColor.whiteColor,
         fontSize: 20,
@@ -46,12 +46,12 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              customAppText(
+              CustomAppText(
                 text: actiontitle ?? '',
                 textColor: AppColor.whiteColor,
                 fontWeight: FontWeight.w700,
               ),
-              customAppText(
+              CustomAppText(
                 text: actionDesc ?? '',
                 textColor: AppColor.whiteColor,
               ),
@@ -63,7 +63,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? null
           : GestureDetector(
               onTap: leadingonTap,
-              child: customAppIcon(AppColor.whiteColor, leadIconName!, 20),
+              child: customAppIcon(AppColor.whiteColor, leadIconName!, 20,(){}),
             ),
     );
   }

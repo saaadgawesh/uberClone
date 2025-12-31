@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uber/core/constant/App_Color.dart';
+import 'package:uberCloneDriver/core/constant/App_Color.dart';
 
 class Custombuttomnavbar extends StatelessWidget {
   const Custombuttomnavbar({

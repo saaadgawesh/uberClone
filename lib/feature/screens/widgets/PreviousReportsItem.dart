@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:uber/core/constant/App_Color.dart';
-import 'package:uber/core/resources/AppDivider.dart';
-import 'package:uber/core/resources/App_Size.dart';
-import 'package:uber/core/resources/customAppIcon.dart';
-import 'package:uber/core/resources/customAppText.dart';
-import 'package:uber/core/resources/sizedboxWidget.dart';
-import 'package:uber/core/widgets/CustomContainer.dart';
-import 'package:uber/core/widgets/defaultElevatedButton.dart';
+import 'package:uberCloneDriver/core/constant/App_Color.dart';
+import 'package:uberCloneDriver/core/resources/AppDivider.dart';
+import 'package:uberCloneDriver/core/resources/App_Size.dart';
+import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
+import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
+import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
+import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
 
 class PreviousReportsItem extends StatelessWidget {
   const PreviousReportsItem({
@@ -41,12 +41,12 @@ class PreviousReportsItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              customAppText(
+              CustomAppText(
                 text: tripNumber,
                 textColor: AppColor.blackColor,
                 fontWeight: FontWeight.bold,
               ),
-              customAppText(
+              CustomAppText(
                 text: "tripNumber",
                 textColor: AppColor.blueColor,
                 fontWeight: FontWeight.bold,
@@ -56,10 +56,10 @@ class PreviousReportsItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              customAppText(text: to, textColor: AppColor.blackColor),
-              customAppIcon(AppColor.blueColor, Icons.arrow_back, 20),
-              customAppText(text: from, textColor: AppColor.blackColor),
-              customAppIcon(AppColor.blueColor, Icons.location_on, 20),
+              CustomAppText(text: to, textColor: AppColor.blackColor),
+              customAppIcon(AppColor.blueColor, Icons.arrow_back, 20,(){}),
+              CustomAppText(text: from, textColor: AppColor.blackColor),
+              customAppIcon(AppColor.blueColor, Icons.location_on, 20,(){}),
             ],
           ),
           AppDivider(),
@@ -68,18 +68,18 @@ class PreviousReportsItem extends StatelessWidget {
               Row(
                 children: [
                   widthSizedbox(40),
-                  customAppText(
+                  CustomAppText(
                     text: "customer",
                     textColor: AppColor.blackColor,
                   ),
-                  customAppText(text: "1", textColor: AppColor.blackColor),
-                  customAppIcon(AppColor.blueColor, Icons.group, 20),
+                  CustomAppText(text: "1", textColor: AppColor.blackColor),
+                  customAppIcon(AppColor.blueColor, Icons.group, 20,(){}),
                   widthSizedbox(50),
-                  customAppText(
+                  CustomAppText(
                     text: "2025-11-8",
                     textColor: AppColor.blackColor,
                   ),
-                  customAppIcon(AppColor.blueColor, Icons.date_range, 20),
+                  customAppIcon(AppColor.blueColor, Icons.date_range, 20,(){}),
                 ],
               ),
             ],
