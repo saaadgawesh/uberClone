@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:uberCloneRider/core/constant/App_Color.dart';
 import 'package:uberCloneRider/core/resources/AppDivider.dart';
 import 'package:uberCloneRider/core/resources/App_Size.dart';
-import 'package:uberCloneRider/core/resources/customAppIcon.dart';
 import 'package:uberCloneRider/core/resources/CustomAppText.dart';
+import 'package:uberCloneRider/core/resources/customAppIcon.dart';
 import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneRider/core/widgets/CustomContainer.dart';
 import 'package:uberCloneRider/core/widgets/defaultElevatedButton.dart';
@@ -53,16 +53,31 @@ class PreviousReportsItem extends StatelessWidget {
               ),
             ],
           ),
+          heightSizedbox(5),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              CustomAppText(text: to, textColor: AppColor.blackColor),
-              customAppIcon(AppColor.blueColor, Icons.arrow_back, 20),
-              CustomAppText(text: from, textColor: AppColor.blackColor),
+              CustomAppText(
+                text: to,
+                textColor: AppColor.blackColor,
+                fontWeight: FontWeight.w600,
+              ),
+              widthSizedbox(5),
+              customAppIcon(AppColor.blueColor, Icons.arrow_back, 18),
+              widthSizedbox(5),
+              CustomAppText(
+                text: from,
+                textColor: AppColor.blackColor,
+                fontWeight: FontWeight.w600,
+              ),
+              widthSizedbox(5),
               customAppIcon(AppColor.blueColor, Icons.location_on, 20),
             ],
           ),
+          heightSizedbox(5),
           AppDivider(),
+          heightSizedbox(5),
           Row(
             children: [
               Row(

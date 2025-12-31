@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uberCloneRider/core/constant/App_Color.dart';
+import 'package:uberCloneRider/core/constant/assets.dart';
 import 'package:uberCloneRider/core/resources/App_Size.dart';
-import 'package:uberCloneRider/core/resources/customAppIcon.dart';
 import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneRider/core/widgets/DefaultAppBar.dart';
 import 'package:uberCloneRider/core/widgets/defaultElevatedButton.dart';
@@ -27,7 +27,15 @@ class Profile extends StatelessWidget {
                 leadIcon: Icons.arrow_back,
                 actionIcon: Icons.group,
                 backgroundColor: AppColor.blueColor,
-                child: customAppIcon(AppColor.whiteColor, Icons.car_crash, 40),
+                child: ClipRRect(
+                  borderRadius: BorderRadiusGeometry.circular(5),
+                  child: Image.asset(
+                    Assets.photo,
+                    width: appWidth(context),
+                    height: appHeight(context),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               heightSizedbox(10),
               Textfieldwithsectiontitle(text: 'from', hinttext: 'choose city'),

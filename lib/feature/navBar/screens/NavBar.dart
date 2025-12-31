@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uberCloneRider/feature/Tabs/screens/myRequests.dart';
 import 'package:uberCloneRider/feature/Tabs/screens/home.dart';
+import 'package:uberCloneRider/feature/Tabs/screens/myRequests.dart';
 import 'package:uberCloneRider/feature/Tabs/screens/profile.dart';
 import 'package:uberCloneRider/feature/Tabs/screens/requestCar.dart';
 import 'package:uberCloneRider/feature/navBar/widgets/CustomButtomNavBar.dart';
@@ -17,7 +17,7 @@ class _NavbarState extends State<Navbar> {
   List<Widget> tabs = [
     const Profile(),
     const Requests(),
-    const Reports(),
+    const Myrequests(),
     const Home(),
   ];
   @override

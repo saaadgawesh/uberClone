@@ -1,81 +1,55 @@
 import 'package:flutter/material.dart';
-import 'package:uberCloneRider/core/constant/App_Color.dart';
 import 'package:uberCloneRider/core/resources/App_Size.dart';
-import 'package:uberCloneRider/core/resources/CustomAppText.dart';
 import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
-import 'package:uberCloneRider/core/widgets/CustomCounter.dart';
 import 'package:uberCloneRider/core/widgets/DefaultAppBar.dart';
-import 'package:uberCloneRider/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneRider/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
+import 'package:uberCloneRider/feature/screens/widgets/PreviousReportsItem.dart';
 
-class Reports extends StatelessWidget {
-  const Reports({super.key});
+class Myrequests extends StatelessWidget {
+  const Myrequests({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar(title: 'kashf Al rokab'),
+      appBar: DefaultAppBar(title: 'prevoius reports'),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CustomAppText(
-              text: "text",
-              textColor: AppColor.blueColor,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-            Textfieldwithsectiontitle(text: 'from', hinttext: 'choose city'),
-            heightSizedbox(10),
-            Textfieldwithsectiontitle(text: 'to', hinttext: 'choose city'),
-            heightSizedbox(10),
-            CustomAppText(
-              text: "custumer number",
-              textColor: AppColor.blueColor,
-
-              fontWeight: FontWeight.w500,
-            ),
-            heightSizedbox(5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomCounter(
-                  width: appWidth(context) * 0.1,
-                  bgColor: AppColor.whiteColorwithopacity,
-                  widget: Icon(Icons.add),
-                  iconcolor: AppColor.blackColor,
-                ),
-                CustomCounter(
-                  width: appWidth(context) * 0.7,
-                  bgColor: AppColor.whiteColorwithopacity,
-                  widget: Text(
-                    '1',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
-                  ),
-                  iconcolor: AppColor.blackColor,
-                ),
-                CustomCounter(
-                  width: appWidth(context) * 0.1,
-                  bgColor: AppColor.whiteColorwithopacity,
-                  widget: Icon(Icons.remove),
-                  iconcolor: AppColor.blackColor,
-                ),
-              ],
-            ),
-            heightSizedbox(10),
-          ],
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: defaultElevatedButton(
-          textbutton: "enter customer data",
-          bgButtonColor: AppColor.blueColor,
-          onPressed: () {},
-          width: appWidth(context) * 0.87,
-          textcolor: AppColor.whiteColor,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              PreviousReportsItem(
+                viewbutton: () {},
+                width1: appWidth(context) * 0.43,
+                width2: appWidth(context) * 0.43,
+                tripNumber: '478',
+                to: 'cairo',
+                from: 'alex',
+                textbutton1: 'share',
+                textbutton2: 'open',
+              ),
+              heightSizedbox(10),
+              PreviousReportsItem(
+                viewbutton: () {},
+                width1: appWidth(context) * 0.43,
+                width2: appWidth(context) * 0.43,
+                tripNumber: '479',
+                to: 'sahrm',
+                from: 'kafr',
+                textbutton1: 'share',
+                textbutton2: 'open',
+              ),
+              heightSizedbox(10),
+              PreviousReportsItem(
+                width1: appWidth(context),
+                width2: appWidth(context) * 0.86,
+                tripNumber: '480',
+                to: 'asuit',
+                from: 'miniah',
+                textbutton1: '',
+                textbutton2: 'report download',
+              ),
+            ],
+          ),
         ),
       ),
     );
