@@ -42,10 +42,10 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
 
       actions: [
         Padding(
-          padding: const EdgeInsets.only(right: 15),
+          padding: const EdgeInsets.only(right: 12),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               CustomAppText(
                 text: actiontitle ?? '',
@@ -64,7 +64,10 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? null
           : GestureDetector(
               onTap: leadingonTap,
-              child: customAppIcon(AppColor.whiteColor, leadIconName!, 20),
+              child: customAppIcon(
+                iconName: leadIconName!,
+                iconColor: AppColor.whiteColor,
+              ),
             ),
     );
   }

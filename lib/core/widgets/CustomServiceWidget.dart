@@ -21,16 +21,14 @@ Widget CustomServiceWidget(BuildContext context) {
           width: 40,
           borderRadius: BorderRadius.circular(10),
           bgContainerColor: AppColor.blueColor,
-          child: customAppIcon(AppColor.whiteColor, Icons.alarm, 20),
+          child: customAppIcon(
+            iconName: Icons.alarm,
+            iconColor: AppColor.whiteColor,
+          ),
         ),
 
         heightSizedbox(8),
-        CustomAppText(
-          text: 'data',
-          textColor: AppColor.blackColor,
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
+        CustomAppText(text: 'data', fontSize: 16, fontWeight: FontWeight.bold),
         CustomAppText(text: 'data', textColor: AppColor.blackColorwithopacity),
       ],
     ),

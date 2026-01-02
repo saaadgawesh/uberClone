@@ -41,11 +41,7 @@ class PreviousReportsItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomAppText(
-                text: tripNumber,
-                textColor: AppColor.blackColor,
-                fontWeight: FontWeight.bold,
-              ),
+              CustomAppText(text: tripNumber, fontWeight: FontWeight.bold),
               CustomAppText(
                 text: "tripNumber",
                 textColor: AppColor.blueColor,
@@ -58,21 +54,13 @@ class PreviousReportsItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              CustomAppText(
-                text: to,
-                textColor: AppColor.blackColor,
-                fontWeight: FontWeight.w600,
-              ),
+              CustomAppText(text: to, fontWeight: FontWeight.w600),
               widthSizedbox(5),
-              customAppIcon(AppColor.blueColor, Icons.arrow_back, 18),
+              customAppIcon(iconName: Icons.arrow_back),
               widthSizedbox(5),
-              CustomAppText(
-                text: from,
-                textColor: AppColor.blackColor,
-                fontWeight: FontWeight.w600,
-              ),
+              CustomAppText(text: from, fontWeight: FontWeight.w600),
               widthSizedbox(5),
-              customAppIcon(AppColor.blueColor, Icons.location_on, 20),
+              customAppIcon(iconName: Icons.location_on),
             ],
           ),
           heightSizedbox(5),
@@ -83,18 +71,15 @@ class PreviousReportsItem extends StatelessWidget {
               Row(
                 children: [
                   widthSizedbox(40),
-                  CustomAppText(
-                    text: "customer",
-                    textColor: AppColor.blackColor,
-                  ),
-                  CustomAppText(text: "1", textColor: AppColor.blackColor),
-                  customAppIcon(AppColor.blueColor, Icons.group, 20),
+                  CustomAppText(text: "customer"),
+                  CustomAppText(text: "1"),
+                  customAppIcon(iconName: Icons.group),
                   widthSizedbox(50),
-                  CustomAppText(
-                    text: "2025-11-8",
-                    textColor: AppColor.blackColor,
+                  CustomAppText(text: "2025-11-8"),
+                  customAppIcon(
+                    iconName: Icons.date_range,
+                    iconColor: AppColor.whiteColor,
                   ),
-                  customAppIcon(AppColor.blueColor, Icons.date_range, 20),
                 ],
               ),
             ],

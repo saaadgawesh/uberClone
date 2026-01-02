@@ -32,7 +32,7 @@ class Home extends StatelessWidget {
             children: [
               CustomAppText(
                 text: "start your journey",
-                textColor: AppColor.blackColor,
+
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
               ),
@@ -42,7 +42,11 @@ class Home extends StatelessWidget {
                 leadIcon: Icons.arrow_back,
                 actionIcon: Icons.group,
                 backgroundColor: AppColor.blueColor,
-                child: customAppIcon(AppColor.whiteColor, Icons.car_crash, 40),
+                child: customAppIcon(
+                  iconName: Icons.car_crash,
+                  iconColor: AppColor.whiteColor,
+                  size: 40,
+                ),
               ),
 
               heightSizedbox(10),
@@ -64,7 +68,7 @@ class Home extends StatelessWidget {
 
               CustomAppText(
                 text: "alnashatat al akhitah",
-                textColor: AppColor.blackColor,
+
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
               ),
@@ -87,16 +91,11 @@ class Home extends StatelessWidget {
                           ),
                     CustomAppText(
                       text: "alnashatat al akhitah",
-                      textColor: AppColor.blackColor,
+
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
                     ),
-                    CustomAppText(
-                      text: "alnashatat al akhitah",
-                      textColor: AppColor.blackColor,
-
-                      fontSize: 16,
-                    ),
+                    CustomAppText(text: "alnashatat al akhitah", fontSize: 16),
                   ],
                 ),
               ),

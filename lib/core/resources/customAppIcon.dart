@@ -1,5 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:uberCloneRider/core/constant/App_Color.dart';
 
-Widget customAppIcon(Color iconColor, IconData iconName, double size) {
-  return Icon(iconName, color: iconColor, size: size);
+class customAppIcon extends StatelessWidget {
+  const customAppIcon({
+    super.key,
+    this.iconColor,
+    required this.iconName,
+    this.size,
+  });
+  final Color? iconColor;
+  final IconData iconName;
+  final double? size;
+  @override
+  Widget build(BuildContext context) {
+    return Icon(
+      iconName,
+      color: iconColor ?? AppColor.blueColor,
+      size: size ?? 20,
+    );
+  }
 }

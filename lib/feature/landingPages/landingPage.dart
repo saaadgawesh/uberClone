@@ -31,8 +31,9 @@ class _LandingpageState extends State<Landingpage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                if (currentIndex == 0)
-                  customAppIcon(AppColor.blueColor, Icons.language, 22,),
+                currentIndex == 0
+                    ? customAppIcon(iconName: Icons.language)
+                    : SizedBox(width: 20, height: 22),
                 _buildDotsIndicator(),
               ],
             ),
@@ -75,11 +76,10 @@ class _LandingpageState extends State<Landingpage> {
 
                       heightSizedbox(10),
 
-                      Center(
-                        child: CustomAppText(
-                          text: model.desc,
-                          textColor: AppColor.blackColorwithopacity,
-                        ),
+                      CustomAppText(
+                        textAlign: TextAlign.center,
+                        text: model.desc,
+                        textColor: AppColor.blackColorwithopacity,
                       ),
                     ],
                   ),
@@ -127,7 +127,7 @@ class _LandingpageState extends State<Landingpage> {
           decoration: BoxDecoration(
             color: currentIndex == index
                 ? AppColor.blueColor
-                : AppColor.blueColor.withOpacity(0.3),
+                : AppColor.blueColorwithopacity,
             borderRadius: BorderRadius.circular(10),
           ),
         ),

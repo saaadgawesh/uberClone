@@ -8,9 +8,13 @@ class Textfieldwithsectiontitle extends StatelessWidget {
     super.key,
     required this.text,
     required this.hinttext,
+    this.iconName,
+    this.onpressed,
   });
   final String text;
   final String hinttext;
+  final IconData? iconName;
+  final VoidCallback? onpressed;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,7 +27,7 @@ class Textfieldwithsectiontitle extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
         AppTextField(
-          prefix: Icon(Icons.arrow_drop_down),
+          prefix: GestureDetector(onTap: onpressed, child: Icon(iconName)),
           readOnly: true,
           hintText: hinttext,
         ),

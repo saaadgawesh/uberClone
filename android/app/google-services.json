@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "223137455700",
+    "project_id": "uberclonerider-5105a",
+    "storage_bucket": "uberclonerider-5105a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223137455700:android:3f91bfdf6ee6addd2317c1",
+        "android_client_info": {
+          "package_name": "com.example.uber"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEjuN1ZjXaToNRXWLzl88DAj3EV1ddsI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

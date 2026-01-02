@@ -6,6 +6,7 @@ import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneRider/core/widgets/DefaultAppBar.dart';
 import 'package:uberCloneRider/core/widgets/defaultElevatedButton.dart';
 import 'package:uberCloneRider/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
+import 'package:uberCloneRider/feature/screens/Location/Location_Screen/LocationScreen.dart';
 
 class Requests extends StatelessWidget {
   const Requests({super.key});
@@ -20,15 +21,23 @@ class Requests extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Textfieldwithsectiontitle(
+                onpressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Locationscreen()),
+                  );
+                },
+                iconName: Icons.location_on_outlined,
+                text: 'get location',
+                hinttext: 'get location',
+              ),
+              heightSizedbox(10),
               Textfieldwithsectiontitle(text: 'from', hinttext: 'choose city'),
               heightSizedbox(10),
               Textfieldwithsectiontitle(text: 'to', hinttext: 'choose city'),
               heightSizedbox(10),
-              Textfieldwithsectiontitle(
-                text: 'tasneef',
-                hinttext: 'choose city',
-              ),
-              heightSizedbox(10),
+
               Textfieldwithsectiontitle(
                 text: 'type of transport',
                 hinttext: 'choose city',

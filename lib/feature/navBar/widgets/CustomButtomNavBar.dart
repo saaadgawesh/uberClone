@@ -37,8 +37,14 @@ class Custombuttomnavbar extends StatelessWidget {
             icon: Icon(Icons.car_crash_sharp),
             label: 'RequestCar',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'MyRequests'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.alarm_sharp),
+            label: 'MyRequests',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.house_siding_sharp),
+            label: 'Home',
+          ),
         ],
       ),
     );

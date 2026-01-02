@@ -8,8 +8,8 @@ class CustomContainer extends StatelessWidget {
     required this.child,
     required this.height,
     required this.width,
-    required this.borderRadius,
-    required this.bgContainerColor,
+    this.borderRadius,
+    this.bgContainerColor,
     this.padding,
     this.borderwidth,
   });
@@ -19,8 +19,8 @@ class CustomContainer extends StatelessWidget {
   final double height;
   final double width;
   final double? borderwidth;
-  final Color bgContainerColor;
-  final BorderRadius borderRadius;
+  final Color? bgContainerColor;
+  final BorderRadius? borderRadius;
   final EdgeInsetsGeometry? padding;
 
   @override
@@ -35,7 +35,7 @@ class CustomContainer extends StatelessWidget {
             ? null
             : Border.all(width: borderwidth!, color: AppColor.greyColor),
         color: bgContainerColor,
-        borderRadius: borderRadius,
+        borderRadius: borderRadius ?? BorderRadius.circular(10),
       ),
       child: child,
     );

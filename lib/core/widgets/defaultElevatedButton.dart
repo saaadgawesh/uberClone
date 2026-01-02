@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:uberCloneRider/core/constant/App_Color.dart';
 import 'package:uberCloneRider/core/resources/App_Size.dart';
-import 'package:uberCloneRider/core/resources/customAppIcon.dart';
 import 'package:uberCloneRider/core/resources/CustomAppText.dart';
+import 'package:uberCloneRider/core/resources/customAppIcon.dart';
 import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneRider/core/widgets/CustomContainer.dart';
 
@@ -47,7 +47,7 @@ class defaultElevatedButton extends StatelessWidget {
             CustomAppText(text: textbutton, textColor: textcolor),
             widthSizedbox(5),
             if (iconName != null && iconColor != null)
-              customAppIcon(iconColor!, iconName!, 20),
+              customAppIcon(iconName: iconName!, iconColor: iconColor!),
           ],
         ),
       ),

@@ -5,5 +5,5 @@ Widget heightSizedbox(double height) {
 }
 
 Widget widthSizedbox(double width) {
-  return SizedBox(width: width);
+  return  SizedBox(width: width);
 }

@@ -33,11 +33,12 @@ class Processitem extends StatelessWidget {
       bgContainerColor: backgroundColor,
       child: Row(
         children: [
+
           CircleAvatar(
             // ignore: deprecated_member_use
             backgroundColor: AppColor.greyColor.withOpacity(0.4),
             radius: 20,
-            child: customAppIcon(AppColor.whiteColor, leadIcon, 20),
+            child:  customAppIcon(iconName: leadIcon,iconColor: AppColor.whiteColor,)
           ),
           Container(
             alignment: Alignment.bottomRight,

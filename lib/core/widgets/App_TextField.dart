@@ -186,7 +186,7 @@ class AppTextField extends StatelessWidget {
         cursorColor: AppColor.blueColor,
         autovalidateMode: autoValidateMode,
         decoration: InputDecoration(
-          prefixIconColor: AppColor.greyColor,
+          prefixIconColor: AppColor.blackColorwithopacity,
           contentPadding: EdgeInsets.zero,
           suffixIconColor: AppColor.greyColor,
           filled: borderType == TextFieldBorderType.filled,
