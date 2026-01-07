@@ -14,7 +14,7 @@ class Navbar extends StatefulWidget {
 
 class _NavbarState extends State<Navbar> {
   int _currentIndex = 3;
-  List<Widget> tabs = [
+final  List<Widget> _tabs = [
     const Profile(),
     const Requests(),
     const Myrequests(),
@@ -23,7 +23,7 @@ class _NavbarState extends State<Navbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: tabs[_currentIndex],
+      body: _tabs[_currentIndex],
       bottomNavigationBar: Custombuttomnavbar(
         onTap: (value) {
           setState(() {

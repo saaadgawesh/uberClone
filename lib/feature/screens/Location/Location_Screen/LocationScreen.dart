@@ -114,6 +114,7 @@ class _LocationscreenState extends State<Locationscreen> {
     final response = await http.get(url);
 
     if (response.statusCode != 200) {
+         if(! mounted)return;
       showSnackBar(context, "Failed to fetch route");
       return;
     }
@@ -153,6 +154,7 @@ class _LocationscreenState extends State<Locationscreen> {
       if (response.statusCode != 200) {
         debugPrint("Nominatim error: ${response.statusCode}");
         debugPrint(response.body);
+           if(! mounted)return;
         showSnackBar(context, "Location service unavailable");
         return;
       }
@@ -160,6 +162,7 @@ class _LocationscreenState extends State<Locationscreen> {
       final List data = jsonDecode(response.body);
 
       if (data.isEmpty) {
+           if(! mounted)return;
         showSnackBar(context, "Location not found");
         return;
       }
@@ -178,6 +181,7 @@ class _LocationscreenState extends State<Locationscreen> {
       await fetchRoute();
     } catch (e) {
       debugPrint("Search error: $e");
+      if(! mounted)return;
       showSnackBar(context, "Search failed");
     }
   }

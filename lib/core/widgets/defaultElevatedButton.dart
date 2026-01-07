@@ -17,6 +17,8 @@ class defaultElevatedButton extends StatelessWidget {
     required this.width,
     this.padding,
     this.iconColor,
+    this.height,
+    this.fontSize,
     required this.textcolor,
   });
   final String textbutton;
@@ -26,13 +28,16 @@ class defaultElevatedButton extends StatelessWidget {
   final VoidCallback onPressed;
   final IconData? iconName;
   final double width;
+  final double? height;
   final EdgeInsetsGeometry? padding;
+  final double? fontSize;
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
       padding: padding,
-      height: appHeight(context) * 0.07,
+      height: height ?? appHeight(context) * 0.07,
       width: width,
+
       borderRadius: BorderRadius.circular(15),
       bgContainerColor: bgButtonColor,
       child: ElevatedButton(
@@ -44,7 +49,12 @@ class defaultElevatedButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomAppText(text: textbutton, textColor: textcolor),
+            CustomAppText(
+              text: textbutton,
+              textColor: textcolor,
+              fontWeight: FontWeight.w500,
+              fontSize: fontSize ?? 18,
+            ),
             widthSizedbox(5),
             if (iconName != null && iconColor != null)
               customAppIcon(iconName: iconName!, iconColor: iconColor!),
