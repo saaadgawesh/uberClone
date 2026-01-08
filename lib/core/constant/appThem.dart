@@ -4,7 +4,7 @@ import 'package:uberCloneRider/core/constant/App_Color.dart';
 class Appthem {
   static ThemeData lighttheme = ThemeData(
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: AppColor.transparent,
+      backgroundColor: AppColors.transparent,
       elevation: 0,
     ),
   );

@@ -30,7 +30,7 @@ class CustomAppText extends StatelessWidget {
       softWrap: true,
       overflow: overflow ?? TextOverflow.visible,
       style: TextStyle(
-        color: textColor ?? AppColor.blackColor,
+        color: textColor ?? AppColors.blackColor,
         fontSize: fontSize ?? 14,
         fontWeight: fontWeight ?? FontWeight.normal,
       ),

@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 
-class AppColor {
+class AppColors {
+  const AppColors._();
   static const Color blueColor = Color.fromARGB(255, 9, 76, 132);
   static Color blueColorwithopacity = Color.fromARGB(
     255,
     9,
     76,
     132,
+    // ignore: deprecated_member_use
   ).withOpacity(0.3);
   static const Color whiteColor = Colors.white;
-  static Color whiteColorwithopacity = AppColor.whiteColor.withOpacity(0.2);
+  // ignore: deprecated_member_use
+  static Color whiteColorwithopacity = AppColors.whiteColor.withOpacity(0.2);
   static const Color blackColor = Colors.black;
-  static Color blackColorwithopacity = AppColor.blackColor.withOpacity(0.3);
+  // ignore: deprecated_member_use
+  static Color blackColorwithopacity = AppColors.blackColor.withOpacity(0.3);
   static const Color redColor = Colors.red;
   static const Color greenColor = Colors.green;
+  // ignore: deprecated_member_use
   static Color greyColor = Colors.grey.withOpacity(0.2);
   static const Color transparent = Colors.transparent;
-}
-//=========================================appcolor================================== */ */
-
-
-class AppColors {
-  const AppColors._();
 
   /// primary  Colors
   static const Color primary = Color(0xff145db8);

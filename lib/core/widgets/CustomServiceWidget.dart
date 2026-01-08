@@ -11,7 +11,7 @@ Widget CustomServiceWidget(BuildContext context) {
     height: 50,
     width: 50,
     borderRadius: BorderRadius.circular(10),
-    bgContainerColor: AppColor.greyColor.withOpacity(0.2),
+    bgContainerColor: AppColors.greyColor.withOpacity(0.2),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -20,16 +20,16 @@ Widget CustomServiceWidget(BuildContext context) {
           height: 40,
           width: 40,
           borderRadius: BorderRadius.circular(10),
-          bgContainerColor: AppColor.blueColor,
+          bgContainerColor: AppColors.blueColor,
           child: customAppIcon(
             iconName: Icons.alarm,
-            iconColor: AppColor.whiteColor,
+            iconColor: AppColors.whiteColor,
           ),
         ),
 
         heightSizedbox(8),
         CustomAppText(text: 'data', fontSize: 16, fontWeight: FontWeight.bold),
-        CustomAppText(text: 'data', textColor: AppColor.blackColorwithopacity),
+        CustomAppText(text: 'data', textColor: AppColors.blackColorwithopacity),
       ],
     ),
   );

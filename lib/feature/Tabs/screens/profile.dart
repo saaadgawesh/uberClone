@@ -26,16 +26,34 @@ class Profile extends StatelessWidget {
                 description: "flutter developer",
                 leadIcon: Icons.edit,
                 actionIcon: Icons.group,
-                backgroundColor: AppColor.blueColor,
-                child: ClipRRect(
-                  borderRadius: BorderRadiusGeometry.circular(5),
-                  child: Image.asset(
-                    Assets.photo,
-                    width: appWidth(context),
-                    height: appHeight(context),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                backgroundColor: AppColors.blueColor,
+                child:
+                    //  Stack(
+                    //   children: [
+                    //     CircleAvatar(
+                    //       radius: 55,
+                    //       backgroundImage: AssetImage(Assets.photo),
+                    //     ),
+                    //     Positioned(
+                    //       right: 0,
+                    //       bottom: 5,
+                    //       child: Image(
+                    //         image: AssetImage(Assets.homeImage),
+                    //         width: 18,
+                    //         height: 18,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    ClipOval(
+                      // borderRadius: BorderRadiusGeometry.circular(5),
+                      child: Image.asset(
+                        Assets.photo,
+                        width: appWidth(context),
+                        height: appHeight(context),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
               ),
               heightSizedbox(10),
               Textfieldwithsectiontitle(text: 'Name', hinttext: 'saadGawesh'),
@@ -63,10 +81,10 @@ class Profile extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: defaultElevatedButton(
           textbutton: "AddYourAccount",
-          bgButtonColor: AppColor.blueColor,
+          bgButtonColor: AppColors.blueColor,
           onPressed: () {},
           width: appWidth(context),
-          textcolor: AppColor.whiteColor,
+          textcolor: AppColors.whiteColor,
         ),
       ),
     );

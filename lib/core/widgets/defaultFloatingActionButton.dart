@@ -23,11 +23,11 @@ class defaultFloatingActionButton extends StatelessWidget {
       height: appHeight(context) * 0.097,
       width: appWidth(context) * 0.14,
       child: FloatingActionButton(
-        backgroundColor: backgroundColor ?? AppColor.blueColor,
+        backgroundColor: backgroundColor ?? AppColors.blueColor,
         onPressed: onpressed,
         child: Icon(
           iconName ?? Icons.my_location,
-          color: iconColor ?? AppColor.whiteColor,
+          color: iconColor ?? AppColors.whiteColor,
           size: size ?? 18,
         ),
       ),

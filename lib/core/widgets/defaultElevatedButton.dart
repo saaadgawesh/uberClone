@@ -42,7 +42,7 @@ class defaultElevatedButton extends StatelessWidget {
       bgContainerColor: bgButtonColor,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColor.transparent,
+          backgroundColor: AppColors.transparent,
           elevation: 0,
         ),
         onPressed: onPressed,
@@ -53,7 +53,7 @@ class defaultElevatedButton extends StatelessWidget {
               text: textbutton,
               textColor: textcolor,
               fontWeight: FontWeight.w500,
-              fontSize: fontSize ?? 18,
+              fontSize: fontSize ?? 16,
             ),
             widthSizedbox(5),
             if (iconName != null && iconColor != null)

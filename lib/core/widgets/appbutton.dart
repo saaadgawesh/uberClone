@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:uberCloneRider/core/apptextstyle.dart';
 import 'package:uberCloneRider/core/constant/App_Color.dart';
+import 'package:uberCloneRider/core/resources/AppTextStyles.dart';
 import 'package:uberCloneRider/core/widgets/AppClick.dart';
 
 class AppButton extends StatelessWidget {

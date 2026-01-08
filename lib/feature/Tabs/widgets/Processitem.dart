@@ -33,12 +33,14 @@ class Processitem extends StatelessWidget {
       bgContainerColor: backgroundColor,
       child: Row(
         children: [
-
           CircleAvatar(
             // ignore: deprecated_member_use
-            backgroundColor: AppColor.greyColor.withOpacity(0.4),
+            backgroundColor: AppColors.greyColor.withOpacity(0.4),
             radius: 20,
-            child:  customAppIcon(iconName: leadIcon,iconColor: AppColor.whiteColor,)
+            child: customAppIcon(
+              iconName: leadIcon,
+              iconColor: AppColors.whiteColor,
+            ),
           ),
           Container(
             alignment: Alignment.bottomRight,
@@ -47,12 +49,12 @@ class Processitem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomAppText(text: title, textColor: AppColor.whiteColor),
+                CustomAppText(text: title, textColor: AppColors.whiteColor),
                 heightSizedbox(5),
                 Flexible(
                   child: CustomAppText(
                     text: description,
-                    textColor: AppColor.whiteColor,
+                    textColor: AppColors.whiteColor,
                     overflow: TextOverflow.visible,
 
                     maxLines: 3,
@@ -61,14 +63,14 @@ class Processitem extends StatelessWidget {
               ],
             ),
           ),
-          widthSizedbox(5),
+          widthSizedbox(11),
           if (child != null)
             CustomContainer(
               actionIcon: actionIcon,
               height: appHeight(context),
-              width: appWidth(context) * 0.18,
+              width: appWidth(context) * 0.16,
               borderRadius: BorderRadius.circular(10),
-              bgContainerColor: AppColor.greyColor,
+              bgContainerColor: AppColors.greyColor,
               child: child!,
             ),
         ],

@@ -4,9 +4,9 @@ import 'package:uberCloneRider/core/resources/App_Size.dart';
 import 'package:uberCloneRider/core/resources/CustomAppText.dart';
 import 'package:uberCloneRider/core/resources/customAppIcon.dart';
 import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneRider/core/routing/routes.dart';
 import 'package:uberCloneRider/core/widgets/defaultElevatedButton.dart';
 import 'package:uberCloneRider/feature/landingPages/models/landingPageModel.dart';
-import 'package:uberCloneRider/feature/navBar/screens/NavBar.dart';
 
 class Landingpage extends StatefulWidget {
   const Landingpage({super.key});
@@ -70,7 +70,7 @@ class _LandingpageState extends State<Landingpage> {
                       CustomAppText(
                         text: model.text,
                         fontSize: 16,
-                        textColor: AppColor.blueColor,
+                        textColor: AppColors.blueColor,
                         fontWeight: FontWeight.w700,
                       ),
 
@@ -79,7 +79,7 @@ class _LandingpageState extends State<Landingpage> {
                       CustomAppText(
                         textAlign: TextAlign.center,
                         text: model.desc,
-                        textColor: AppColor.blackColorwithopacity,
+                        textColor: AppColors.blackColorwithopacity,
                       ),
                     ],
                   ),
@@ -94,8 +94,8 @@ class _LandingpageState extends State<Landingpage> {
         padding: const EdgeInsets.all(8.0),
         child: defaultElevatedButton(
           textbutton: landingmodels[currentIndex].buttonText,
-          bgButtonColor: AppColor.blueColor,
-          textcolor: AppColor.whiteColor,
+          bgButtonColor: AppColors.blueColor,
+          textcolor: AppColors.whiteColor,
           width: appWidth(context),
           onPressed: () {
             if (currentIndex < landingmodels.length - 1) {
@@ -104,9 +104,7 @@ class _LandingpageState extends State<Landingpage> {
                 curve: Curves.easeInOut,
               );
             } else {
-              Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (context) => Navbar()));
+              Navigator.of(context).pushNamed(Routes.login);
             }
           },
         ),
@@ -126,8 +124,8 @@ class _LandingpageState extends State<Landingpage> {
           width: currentIndex == index ? 20 : 8,
           decoration: BoxDecoration(
             color: currentIndex == index
-                ? AppColor.blueColor
-                : AppColor.blueColorwithopacity,
+                ? AppColors.blueColor
+                : AppColors.blueColorwithopacity,
             borderRadius: BorderRadius.circular(10),
           ),
         ),

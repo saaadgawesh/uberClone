@@ -33,7 +33,7 @@ class CustomContainer extends StatelessWidget {
       decoration: BoxDecoration(
         border: borderwidth == null
             ? null
-            : Border.all(width: borderwidth!, color: AppColor.greyColor),
+            : Border.all(width: borderwidth!, color: AppColors.greyColor),
         color: bgContainerColor,
         borderRadius: borderRadius ?? BorderRadius.circular(10),
       ),
