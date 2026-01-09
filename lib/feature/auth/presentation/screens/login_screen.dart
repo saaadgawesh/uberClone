@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uberCloneRider/core/resources/values_manager.dart';
 import 'package:uberCloneRider/core/routing/routes.dart';
 import 'package:uberCloneRider/core/widgets/loading_indicator.dart';
-import 'package:uberCloneRider/feature/auth/presentation/Cubit/Auth_Cubit.dart';
-import 'package:uberCloneRider/feature/auth/presentation/Cubit/Auth_State.dart';
-import 'package:uberCloneRider/feature/auth/presentation/widgets/BuildLoginForm.dart';
+import 'package:uberCloneRider/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
+import 'package:uberCloneRider/feature/Auth/presentation/Cubit/Auth_State.dart';
+import 'package:uberCloneRider/feature/Auth/presentation/widgets/BuildLoginForm.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

@@ -6,7 +6,7 @@ import 'package:uberCloneRider/core/resources/customAppIcon.dart';
 import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneRider/core/routing/routes.dart';
 import 'package:uberCloneRider/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneRider/feature/landingPages/models/landingPageModel.dart';
+import 'package:uberCloneRider/feature/LandingPages/models/landingPageModel.dart';
 
 class Landingpage extends StatefulWidget {
   const Landingpage({super.key});

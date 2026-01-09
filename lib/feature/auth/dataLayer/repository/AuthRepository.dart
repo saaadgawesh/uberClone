@@ -1,4 +1,4 @@
-import 'package:uberCloneRider/feature/auth/DomainLayer/userEntity/AuthEntity.dart';
+import 'package:uberCloneRider/feature/Auth/DomainLayer/userEntity/AuthEntity.dart';
 
 abstract class Authrepository {
   Future<UserEntity> login(String email, String password);

@@ -26,6 +26,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_animate: ^4.5.2
   flutter_bloc: ^9.1.1
+  equatable: ^2.0.8
   flutter_svg: ^2.2.3
   fluttertoast: ^9.0.0
 

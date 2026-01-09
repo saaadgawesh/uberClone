@@ -3,7 +3,7 @@ import 'package:uberCloneRider/feature/Tabs/screens/home.dart';
 import 'package:uberCloneRider/feature/Tabs/screens/myRequests.dart';
 import 'package:uberCloneRider/feature/Tabs/screens/profile.dart';
 import 'package:uberCloneRider/feature/Tabs/screens/requestCar.dart';
-import 'package:uberCloneRider/feature/navBar/widgets/CustomButtomNavBar.dart';
+import 'package:uberCloneRider/feature/NavBar/widgets/CustomButtomNavBar.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});

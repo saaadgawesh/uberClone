@@ -12,7 +12,7 @@ class TripSummarytitleSection extends StatelessWidget {
     return CustomContainer(
       padding: EdgeInsets.all(10),
       bgContainerColor: AppColors.blackColor,
-      height: appHeight(context) * 0.1,
+      height: appHeight(context) * 0.09,
       width: appWidth(context),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

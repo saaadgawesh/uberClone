@@ -1,5 +1,5 @@
 
-import 'package:uberCloneRider/feature/auth/DomainLayer/Repository/AuthRepository.dart';
+import 'package:uberCloneRider/feature/Auth/dataLayer/repository/AuthRepository.dart';
 
 class Logoutuser {
   final Authrepository _authrepository;

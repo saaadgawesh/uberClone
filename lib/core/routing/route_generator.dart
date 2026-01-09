@@ -3,10 +3,11 @@ import 'package:uberCloneRider/core/routing/routes.dart';
 import 'package:uberCloneRider/feature/Tabs/screens/home.dart';
 import 'package:uberCloneRider/feature/Tabs/screens/myRequests.dart';
 import 'package:uberCloneRider/feature/Tabs/screens/profile.dart';
-import 'package:uberCloneRider/feature/auth/presentation/screens/login_screen.dart';
-import 'package:uberCloneRider/feature/auth/presentation/screens/register_screen.dart';
-import 'package:uberCloneRider/feature/landingPages/screens/landingPage.dart';
-import 'package:uberCloneRider/feature/screens/TripSummaryScreen/screen/TripSummaryScreen.dart';
+import 'package:uberCloneRider/feature/TripSummary/presentation/screen/TripSummaryScreen.dart';
+import 'package:uberCloneRider/feature/Auth/presentation/screens/login_screen.dart';
+import 'package:uberCloneRider/feature/Auth/presentation/screens/register_screen.dart';
+import 'package:uberCloneRider/feature/LandingPages/screens/landingPage.dart';
+import 'package:uberCloneRider/feature/NavBar/screens/NavBar.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
@@ -26,6 +27,11 @@ class RouteGenerator {
           builder: (_) => const Home(),
           settings: settings,
         );
+      case Routes.navbar:
+        return MaterialPageRoute(
+          builder: (_) => const Navbar(),
+          settings: settings,
+        );
       case Routes.landingpage:
         return MaterialPageRoute(
           builder: (_) => const Landingpage(),
@@ -33,11 +39,11 @@ class RouteGenerator {
         );
       case Routes.profile:
         return MaterialPageRoute(builder: (_) => Profile(), settings: settings);
-      case Routes.tripSummary:
-        return MaterialPageRoute(
-          builder: (_) => TripSummaryScreen(),
-          settings: settings,
-        );
+      // case Routes.tripSummary:
+      //   return MaterialPageRoute(
+      //     builder: (_) => TripSummaryScreen(),
+      //     settings: settings,
+      //   );
       case Routes.myrequests:
         return MaterialPageRoute(builder: (_) => const Myrequests());
       default:
@@ -51,7 +57,11 @@ class RouteGenerator {
         appBar: AppBar(title: const Text('No Route Found'), centerTitle: true),
         body: Container(
           decoration: const BoxDecoration(color: Colors.red),
-          child: const Text('No Route Found'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [const Text('No Route Found')],
+          ),
         ),
       ),
     );

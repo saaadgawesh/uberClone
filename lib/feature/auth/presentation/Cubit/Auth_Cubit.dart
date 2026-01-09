@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uberCloneRider/feature/auth/DomainLayer/UserCases/LoginUser.dart';
-import 'package:uberCloneRider/feature/auth/DomainLayer/UserCases/RegisterUser.dart';
-import 'package:uberCloneRider/feature/auth/presentation/Cubit/Auth_State.dart';
+import 'package:uberCloneRider/feature/Auth/DomainLayer/UserCases/LoginUser.dart';
+import 'package:uberCloneRider/feature/Auth/DomainLayer/UserCases/RegisterUser.dart';
+import 'package:uberCloneRider/feature/Auth/presentation/Cubit/Auth_State.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final Registeruser _registeruser;

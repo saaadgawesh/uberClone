@@ -1,6 +1,6 @@
 
-import 'package:uberCloneRider/feature/auth/DomainLayer/userEntity/AuthEntity.dart';
-import 'package:uberCloneRider/feature/auth/DomainLayer/Repository/AuthRepository.dart';
+import 'package:uberCloneRider/feature/Auth/DomainLayer/userEntity/AuthEntity.dart';
+import 'package:uberCloneRider/feature/Auth/dataLayer/repository/AuthRepository.dart';
 
 class Registeruser {
   final Authrepository _authrepository;

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +10,7 @@ import 'package:uberCloneRider/core/routing/routes.dart';
 import 'package:uberCloneRider/core/utils/validator.dart';
 import 'package:uberCloneRider/core/widgets/App_TextField.dart';
 import 'package:uberCloneRider/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneRider/feature/auth/presentation/Cubit/Auth_Cubit.dart';
+import 'package:uberCloneRider/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
 
 class BuildLoginForm extends StatelessWidget {
   const BuildLoginForm({

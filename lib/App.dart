@@ -4,10 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uberCloneRider/core/constant/appThem.dart';
 import 'package:uberCloneRider/core/routing/route_generator.dart';
 import 'package:uberCloneRider/core/routing/routes.dart';
-import 'package:uberCloneRider/feature/auth/DomainLayer/Repository/Auth_Repository_impl.dart';
-import 'package:uberCloneRider/feature/auth/DomainLayer/UserCases/LoginUser.dart';
-import 'package:uberCloneRider/feature/auth/DomainLayer/UserCases/RegisterUser.dart';
-import 'package:uberCloneRider/feature/auth/presentation/Cubit/Auth_Cubit.dart';
+import 'package:uberCloneRider/feature/Auth/DomainLayer/Repositoryimpl/Auth_Repository_impl.dart';
+import 'package:uberCloneRider/feature/Auth/DomainLayer/UserCases/LoginUser.dart';
+import 'package:uberCloneRider/feature/Auth/DomainLayer/UserCases/RegisterUser.dart';
+import 'package:uberCloneRider/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -29,7 +29,7 @@ class App extends StatelessWidget {
           themeMode: ThemeMode.light,
           darkTheme: Appthem.lighttheme,
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: Routes.landingpage,
+          initialRoute: Routes.login,
         ),
       ),
     );

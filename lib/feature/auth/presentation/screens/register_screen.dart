@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uberCloneRider/core/resources/values_manager.dart';
 import 'package:uberCloneRider/core/widgets/error_indicator.dart';
-import 'package:uberCloneRider/feature/auth/presentation/Cubit/Auth_Cubit.dart';
-import 'package:uberCloneRider/feature/auth/presentation/Cubit/Auth_State.dart';
-import 'package:uberCloneRider/feature/auth/presentation/widgets/BuildRegisterForm.dart';
-import 'package:uberCloneRider/feature/navBar/screens/NavBar.dart';
+import 'package:uberCloneRider/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
+import 'package:uberCloneRider/feature/Auth/presentation/Cubit/Auth_State.dart';
+import 'package:uberCloneRider/feature/Auth/presentation/widgets/BuildRegisterForm.dart';
+import 'package:uberCloneRider/feature/NavBar/screens/NavBar.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

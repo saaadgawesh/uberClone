@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:uberCloneRider/feature/auth/DomainLayer/Repository/AuthRepository.dart';
-import 'package:uberCloneRider/feature/auth/DomainLayer/userEntity/AuthEntity.dart';
-import 'package:uberCloneRider/feature/auth/dataLayer/models/UserModel.dart';
+import 'package:uberCloneRider/feature/Auth/dataLayer/repository/AuthRepository.dart';
+import 'package:uberCloneRider/feature/Auth/DomainLayer/userEntity/AuthEntity.dart';
+import 'package:uberCloneRider/feature/Auth/dataLayer/models/UserModel.dart';
 
 class AuthRepositoryImpl implements Authrepository {
   final auth = FirebaseAuth.instance;
