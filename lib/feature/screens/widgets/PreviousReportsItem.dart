@@ -35,7 +35,7 @@ class PreviousReportsItem extends StatelessWidget {
       height: appHeight(context) * 0.255,
       width: appWidth(context) * 0.9,
       borderRadius: BorderRadius.circular(15),
-      bgContainerColor: AppColor.greyColor,
+      bgContainerColor: AppColors.greyColor,
       child: Column(
         children: [
           Row(
@@ -43,12 +43,12 @@ class PreviousReportsItem extends StatelessWidget {
             children: [
               CustomAppText(
                 text: tripNumber,
-                textColor: AppColor.blackColor,
+                textColor: AppColors.blackColor,
                 fontWeight: FontWeight.bold,
               ),
               CustomAppText(
                 text: "tripNumber",
-                textColor: AppColor.blueColor,
+                textColor: AppColors.blueColor,
                 fontWeight: FontWeight.bold,
               ),
             ],
@@ -56,10 +56,16 @@ class PreviousReportsItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              CustomAppText(text: to, textColor: AppColor.blackColor),
-              customAppIcon(AppColor.blueColor, Icons.arrow_back, 20,(){}),
-              CustomAppText(text: from, textColor: AppColor.blackColor),
-              customAppIcon(AppColor.blueColor, Icons.location_on, 20,(){}),
+              CustomAppText(text: to, textColor: AppColors.blackColor),
+              customAppIcon(
+                iconName: Icons.arrow_back,
+                iconColor: AppColors.blueColor,
+              ),
+              CustomAppText(text: from, textColor: AppColors.blackColor),
+              customAppIcon(
+                iconName: Icons.location_on,
+                iconColor: AppColors.blueColor,
+              ),
             ],
           ),
           AppDivider(),
@@ -70,16 +76,22 @@ class PreviousReportsItem extends StatelessWidget {
                   widthSizedbox(40),
                   CustomAppText(
                     text: "customer",
-                    textColor: AppColor.blackColor,
+                    textColor: AppColors.blackColor,
                   ),
-                  CustomAppText(text: "1", textColor: AppColor.blackColor),
-                  customAppIcon(AppColor.blueColor, Icons.group, 20,(){}),
+                  CustomAppText(text: "1", textColor: AppColors.blackColor),
+                  customAppIcon(
+                    iconName: Icons.group,
+                    iconColor: AppColors.blueColor,
+                  ),
                   widthSizedbox(50),
                   CustomAppText(
                     text: "2025-11-8",
-                    textColor: AppColor.blackColor,
+                    textColor: AppColors.blackColor,
                   ),
-                  customAppIcon(AppColor.blueColor, Icons.date_range, 20,(){}),
+                  customAppIcon(
+                    iconName: Icons.date_range,
+                    iconColor: AppColors.blueColor,
+                  ),
                 ],
               ),
             ],
@@ -91,21 +103,21 @@ class PreviousReportsItem extends StatelessWidget {
               if (viewbutton != null)
                 defaultElevatedButton(
                   iconName: Icons.share,
-                  iconColor: AppColor.whiteColor,
+                  iconColor: AppColors.whiteColor,
                   textbutton: textbutton1,
-                  bgButtonColor: AppColor.blueColor,
+                  bgButtonColor: AppColors.blueColor,
                   onPressed: viewbutton!,
                   width: width1,
-                  textcolor: AppColor.whiteColor,
+                  textcolor: AppColors.whiteColor,
                 ),
               defaultElevatedButton(
                 iconName: Icons.picture_as_pdf_sharp,
                 textbutton: textbutton2,
-                bgButtonColor: AppColor.blueColor,
+                bgButtonColor: AppColors.blueColor,
                 onPressed: () {},
                 width: width2,
-                iconColor: AppColor.whiteColor,
-                textcolor: AppColor.whiteColor,
+                iconColor: AppColors.whiteColor,
+                textcolor: AppColors.whiteColor,
               ),
             ],
           ),

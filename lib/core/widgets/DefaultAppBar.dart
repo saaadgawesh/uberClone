@@ -34,7 +34,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       title: CustomAppText(
         text: title ?? '',
-        textColor: AppColor.whiteColor,
+        textColor: AppColors.whiteColor,
         fontSize: 20,
         fontWeight: FontWeight.w600,
       ),
@@ -42,18 +42,19 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
 
       actions: [
         Padding(
-          padding: const EdgeInsets.only(right: 15),
+          padding: const EdgeInsets.only(right: 12),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               CustomAppText(
                 text: actiontitle ?? '',
-                textColor: AppColor.whiteColor,
+                textColor: AppColors.whiteColor,
                 fontWeight: FontWeight.w700,
               ),
               CustomAppText(
                 text: actionDesc ?? '',
-                textColor: AppColor.whiteColor,
+                textColor: AppColors.whiteColor,
               ),
             ],
           ),
@@ -63,7 +64,10 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? null
           : GestureDetector(
               onTap: leadingonTap,
-              child: customAppIcon(AppColor.whiteColor, leadIconName!, 20,(){}),
+              child: customAppIcon(
+                iconName: leadIconName!,
+                iconColor: AppColors.whiteColor,
+              ),
             ),
     );
   }

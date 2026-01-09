@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "223137455700",
+    "firebase_url": "https://uberclonerider-5105a-default-rtdb.firebaseio.com",
+    "project_id": "uberclonerider-5105a",
+    "storage_bucket": "uberclonerider-5105a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223137455700:android:3f91bfdf6ee6addd2317c1",
+        "android_client_info": {
+          "package_name": "com.example.uber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223137455700-vgan5mo8phh3ico9epsjsh5o8a9nuse0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEjuN1ZjXaToNRXWLzl88DAj3EV1ddsI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "223137455700-vgan5mo8phh3ico9epsjsh5o8a9nuse0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "223137455700-l9edo7curddcj42lojv2ips7omt39a6p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.uber"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

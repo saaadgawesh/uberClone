@@ -40,13 +40,13 @@ class Requests extends StatelessWidget {
                 children: [
                   CustomAppText(
                     text: "350Eg",
-                    textColor: AppColor.greenColor,
+                    textColor: AppColors.greenColor,
 
                     fontWeight: FontWeight.w500,
                   ),
                   CustomAppText(
                     text: "tripPrice",
-                    textColor: AppColor.blueColor,
+                    textColor: AppColors.blueColor,
 
                     fontWeight: FontWeight.w500,
                   ),
@@ -58,13 +58,13 @@ class Requests extends StatelessWidget {
                 children: [
                   CustomAppText(
                     text: "time",
-                    textColor: AppColor.blueColor,
+                    textColor: AppColors.blueColor,
 
                     fontWeight: FontWeight.w500,
                   ),
                   CustomAppText(
                     text: "date",
-                    textColor: AppColor.blueColor,
+                    textColor: AppColors.blueColor,
 
                     fontWeight: FontWeight.w500,
                   ),
@@ -75,21 +75,21 @@ class Requests extends StatelessWidget {
                 children: [
                   defaultElevatedButton(
                     textbutton: "PM 06:46",
-                    bgButtonColor: AppColor.greyColor,
+                    bgButtonColor: AppColors.greyColor,
                     onPressed: () {},
                     iconName: Icons.alarm,
-                    iconColor: AppColor.blackColorwithopacity,
+                    iconColor: AppColors.blackColorwithopacity,
                     width: appWidth(context) * 0.47,
-                    textcolor: AppColor.blackColorwithopacity,
+                    textcolor: AppColors.blackColorwithopacity,
                   ),
                   defaultElevatedButton(
                     textbutton: "25-11-16",
-                    bgButtonColor: AppColor.greyColor,
+                    bgButtonColor: AppColors.greyColor,
                     onPressed: () {},
                     iconName: Icons.date_range,
-                    iconColor: AppColor.blackColorwithopacity,
+                    iconColor: AppColors.blackColorwithopacity,
                     width: appWidth(context) * 0.47,
-                    textcolor: AppColor.blackColorwithopacity,
+                    textcolor: AppColors.blackColorwithopacity,
                   ),
                 ],
               ),
@@ -102,11 +102,11 @@ class Requests extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: defaultElevatedButton(
           textbutton: "request now",
-          bgButtonColor: AppColor.blueColor,
+          bgButtonColor: AppColors.blueColor,
           onPressed: () {},
 
           width: appWidth(context),
-          textcolor: AppColor.whiteColor,
+          textcolor: AppColors.whiteColor,
         ),
       ),
     );

@@ -25,9 +25,9 @@ class Profile extends StatelessWidget {
                 title: "saadGawesh",
                 description: "flutter developer",
                 leadIcon: Icons.edit,
-                
+
                 actionIcon: Icons.group,
-                backgroundColor: AppColor.blueColor,
+                backgroundColor: AppColors.blueColor,
                 child: ClipRRect(
                   borderRadius: BorderRadiusGeometry.circular(5),
                   child: Image.asset(
@@ -61,10 +61,10 @@ class Profile extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: defaultElevatedButton(
           textbutton: "AddYourAccount",
-          bgButtonColor: AppColor.blueColor,
+          bgButtonColor: AppColors.blueColor,
           onPressed: () {},
           width: appWidth(context),
-          textcolor: AppColor.whiteColor,
+          textcolor: AppColors.whiteColor,
         ),
       ),
     );

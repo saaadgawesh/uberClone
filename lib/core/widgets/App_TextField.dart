@@ -90,14 +90,14 @@ class AppTextField extends StatelessWidget {
         return OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
           borderSide: BorderSide(
-            color: borderColor ?? AppColor.blueColor,
+            color: borderColor ?? AppColors.blueColor,
             width: borderWidth,
           ),
         );
       case TextFieldBorderType.underlined:
         return UnderlineInputBorder(
           borderSide: BorderSide(
-            color: borderColor ?? AppColor.blueColor,
+            color: borderColor ?? AppColors.blueColor,
             width: borderWidth,
           ),
         );
@@ -117,14 +117,14 @@ class AppTextField extends StatelessWidget {
         return OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
           borderSide: BorderSide(
-            color: borderColor ?? AppColor.blueColor,
+            color: borderColor ?? AppColors.blueColor,
             width: borderWidth,
           ),
         );
       case TextFieldBorderType.underlined:
         return UnderlineInputBorder(
           borderSide: BorderSide(
-            color: borderColor ?? AppColor.blueColor,
+            color: borderColor ?? AppColors.blueColor,
             width: borderWidth,
           ),
         );
@@ -138,16 +138,16 @@ class AppTextField extends StatelessWidget {
       case TextFieldBorderType.filled:
         return OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: BorderSide(color: AppColor.redColor, width: borderWidth),
+          borderSide: BorderSide(color: AppColors.redColor, width: borderWidth),
         );
       case TextFieldBorderType.outlined:
         return OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: BorderSide(color: AppColor.redColor, width: borderWidth),
+          borderSide: BorderSide(color: AppColors.redColor, width: borderWidth),
         );
       case TextFieldBorderType.underlined:
         return UnderlineInputBorder(
-          borderSide: BorderSide(color: AppColor.redColor, width: borderWidth),
+          borderSide: BorderSide(color: AppColors.redColor, width: borderWidth),
         );
       case TextFieldBorderType.none:
         return InputBorder.none;
@@ -160,7 +160,7 @@ class AppTextField extends StatelessWidget {
       height: appHeight(context) * 0.08,
       width: appWidth(context),
       borderRadius: BorderRadius.circular(10),
-      bgContainerColor: AppColor.transparent,
+      bgContainerColor: AppColors.transparent,
       child: TextFormField(
         cursorHeight: cursorHeight,
         cursorWidth: cursorWidth,
@@ -183,17 +183,17 @@ class AppTextField extends StatelessWidget {
         expands: expands,
         maxLength: maxLength,
         // style: style ?? AppTextStyles.montserratButton,
-        cursorColor: AppColor.blueColor,
+        cursorColor: AppColors.blueColor,
         autovalidateMode: autoValidateMode,
         decoration: InputDecoration(
-          prefixIconColor: AppColor.greyColor,
+          prefixIconColor: AppColors.blackColorwithopacity,
           contentPadding: EdgeInsets.zero,
-          suffixIconColor: AppColor.greyColor,
+          suffixIconColor: AppColors.greyColor,
           filled: borderType == TextFieldBorderType.filled,
           fillColor:
               filledColor ??
               (borderType == TextFieldBorderType.filled
-                  ? AppColor.greyColor.withOpacity(0.1)
+                  ? AppColors.greyColor.withOpacity(0.1)
                   : null),
           prefixIcon: prefix,
           suffixIcon: suffix,
@@ -203,7 +203,7 @@ class AppTextField extends StatelessWidget {
           helperStyle: helperStyle,
           // hintStyle:
           //     hintStyle ??
-          //     AppTextStyles.montserratButton.copyWith(color: AppColors.grey400),
+          //     AppTextStyles.montserratButton.copyWith(color: AppColors .grey400),
           labelStyle: labelStyle,
           labelText: labelText,
           border: _getBorder(),

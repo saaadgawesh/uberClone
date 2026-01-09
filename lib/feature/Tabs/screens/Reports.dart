@@ -4,6 +4,7 @@ import 'package:uberCloneDriver/core/resources/App_Size.dart';
 import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
 import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneDriver/core/widgets/CustomCounter.dart';
+
 import 'package:uberCloneDriver/core/widgets/DefaultAppBar.dart';
 import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
 import 'package:uberCloneDriver/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
@@ -22,7 +23,7 @@ class Reports extends StatelessWidget {
           children: [
             CustomAppText(
               text: "text",
-              textColor: AppColor.blueColor,
+              textColor: AppColors.blueColor,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -32,7 +33,7 @@ class Reports extends StatelessWidget {
             heightSizedbox(10),
             CustomAppText(
               text: "custumer number",
-              textColor: AppColor.blueColor,
+              textColor: AppColors.blueColor,
 
               fontWeight: FontWeight.w500,
             ),
@@ -42,25 +43,25 @@ class Reports extends StatelessWidget {
               children: [
                 CustomCounter(
                   width: appWidth(context) * 0.1,
-                  bgColor: AppColor.whiteColorwithopacity,
+                  bgColor: AppColors.whiteColorwithopacity,
                   widget: Icon(Icons.add),
-                  iconcolor: AppColor.blackColor,
+                  iconcolor: AppColors.blackColor,
                 ),
                 CustomCounter(
                   width: appWidth(context) * 0.7,
-                  bgColor: AppColor.whiteColorwithopacity,
+                  bgColor: AppColors.whiteColorwithopacity,
                   widget: Text(
                     '1',
                     style: TextStyle(fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
-                  iconcolor: AppColor.blackColor,
+                  iconcolor: AppColors.blackColor,
                 ),
                 CustomCounter(
                   width: appWidth(context) * 0.1,
-                  bgColor: AppColor.whiteColorwithopacity,
+                  bgColor: AppColors.whiteColorwithopacity,
                   widget: Icon(Icons.remove),
-                  iconcolor: AppColor.blackColor,
+                  iconcolor: AppColors.blackColor,
                 ),
               ],
             ),
@@ -72,10 +73,10 @@ class Reports extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: defaultElevatedButton(
           textbutton: "enter customer data",
-          bgButtonColor: AppColor.blueColor,
+          bgButtonColor: AppColors.blueColor,
           onPressed: () {},
           width: appWidth(context) * 0.87,
-          textcolor: AppColor.whiteColor,
+          textcolor: AppColors.whiteColor,
         ),
       ),
     );

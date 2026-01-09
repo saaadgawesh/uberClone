@@ -33,7 +33,7 @@ class Home extends StatelessWidget {
             children: [
               CustomAppText(
                 text: "start your journey",
-                textColor: AppColor.blackColor,
+                textColor: AppColors.blackColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
               ),
@@ -42,8 +42,12 @@ class Home extends StatelessWidget {
                 description: "request your car and join with good trip",
                 leadIcon: Icons.arrow_back,
                 actionIcon: Icons.group,
-                backgroundColor: AppColor.blueColor,
-                child: customAppIcon(AppColor.whiteColor, Icons.car_crash, 40,(){}),
+                backgroundColor: AppColors.blueColor,
+                child: customAppIcon(
+                  iconName: Icons.car_crash,
+                  iconColor: AppColors.whiteColor,
+                  size: 40,
+                ),
               ),
               heightSizedbox(10),
 
@@ -52,8 +56,12 @@ class Home extends StatelessWidget {
                 description: "request your car and join with good trip",
                 leadIcon: Icons.arrow_back,
                 actionIcon: Icons.group,
-                backgroundColor: AppColor.greenColor,
-                child: customAppIcon(AppColor.whiteColor, Icons.car_crash, 40,(){}),
+                backgroundColor: AppColors.greenColor,
+                child: customAppIcon(
+                  iconName: Icons.car_crash,
+                  iconColor: AppColors.whiteColor,
+                  size: 40,
+                ),
               ),
               heightSizedbox(10),
               GridView.builder(

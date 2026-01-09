@@ -18,7 +18,7 @@ class Textfieldwithsectiontitle extends StatelessWidget {
       children: [
         CustomAppText(
           text: text,
-          textColor: AppColor.blueColor,
+          textColor: AppColors.blueColor,
 
           fontWeight: FontWeight.w500,
         ),
