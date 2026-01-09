@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:uberCloneRider/feature/Auth/dataLayer/repository/AuthRepository.dart';
 import 'package:uberCloneRider/feature/Auth/DomainLayer/userEntity/AuthEntity.dart';
 import 'package:uberCloneRider/feature/Auth/dataLayer/models/UserModel.dart';
+import 'package:uberCloneRider/feature/Auth/dataLayer/repository/AuthRepository.dart';
 
 class AuthRepositoryImpl implements Authrepository {
   final auth = FirebaseAuth.instance;
@@ -13,12 +13,12 @@ class AuthRepositoryImpl implements Authrepository {
   Future<UserEntity> login(String email, String password) async {
     try {
       final credential = await auth.signInWithEmailAndPassword(
-        email: "saa@g.com",
+        email: "sa@g.com",
         password: "12345678",
       );
 
       final doc = await firestore
-          .collection('users')
+          .collection('Rider')
           .doc(credential.user!.uid)
           .get();
 
@@ -58,7 +58,7 @@ class AuthRepositoryImpl implements Authrepository {
   ) async {
     try {
       final credential = await auth.createUserWithEmailAndPassword(
-        email: "saa@g.com",
+        email: "sa@g.com",
         password: "12345678",
       );
 
@@ -69,7 +69,7 @@ class AuthRepositoryImpl implements Authrepository {
       );
 
       await firestore
-          .collection('users')
+          .collection('Rider')
           .doc(userModel.id)
           .set(userModel.tojson());
 
