@@ -4,10 +4,9 @@ import 'package:uberCloneDriver/core/resources/App_Size.dart';
 import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
 import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneDriver/core/widgets/CustomCounter.dart';
-
 import 'package:uberCloneDriver/core/widgets/DefaultAppBar.dart';
 import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneDriver/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/textfieldWithSectionTitle.dart';
 
 class Reports extends StatelessWidget {
   const Reports({super.key});

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uberCloneDriver/core/extension/navigation.dart';
 import 'package:uberCloneDriver/core/resources/values_manager.dart';
+import 'package:uberCloneDriver/core/routing/routes.dart';
 import 'package:uberCloneDriver/core/widgets/error_indicator.dart';
 import 'package:uberCloneDriver/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
 import 'package:uberCloneDriver/feature/Auth/presentation/Cubit/Auth_State.dart';
 import 'package:uberCloneDriver/feature/Auth/presentation/widgets/BuildRegisterForm.dart';
-import 'package:uberCloneDriver/feature/NavBar/screens/NavBar.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -18,11 +19,14 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
+  final _nameController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _cardmodel = TextEditingController();
+  final _cardnumber = TextEditingController();
+  final _latController = TextEditingController();
+  final _lngController = TextEditingController();
   @override
   void dispose() {
     _emailController.dispose();
@@ -50,17 +54,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   if (state is SuccessAuthState) {
                     // تنفيذ الـ navigation بعد أول frame
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Navigator.pop(context); // يغلق أي Loading
+                      context.pop(); // يغلق أي Loading
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           backgroundColor: Colors.green,
                           content: Center(child: Text('Login successful!')),
                         ),
                       );
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (_) => const Navbar()),
-                      );
+
+                      context.pushReplacementNamed(Routes.navbar);
                     });
                   } else if (state is ErrorAuthState) {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -78,6 +80,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     passwordController: _passwordController,
                     isLoading: isLoading,
                     formKey: _formKey,
+                    cardmodel: _cardmodel,
+                    cardnumber: _cardnumber,
+                    latController: _latController,
+                    lngController: _lngController,
                   );
                 },
               ),

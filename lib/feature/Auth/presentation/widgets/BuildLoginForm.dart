@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uberCloneDriver/core/constant/App_Color.dart';
+import 'package:uberCloneDriver/core/extension/navigation.dart';
 import 'package:uberCloneDriver/core/resources/AppTextStyles.dart';
 import 'package:uberCloneDriver/core/resources/App_Size.dart';
 import 'package:uberCloneDriver/core/resources/font_manager.dart';
@@ -97,7 +98,7 @@ class BuildLoginForm extends StatelessWidget {
             ),
             SizedBox(width: Sizes.s8.w),
             GestureDetector(
-              onTap: () => Navigator.pushNamed(context, Routes.register),
+              onTap: () => context.pushNamed(Routes.register),
               child: Text(
                 'Create Account',
                 style: AppTextStyles.georgiaH3.copyWith(

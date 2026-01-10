@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:uberCloneDriver/core/routing/routes.dart';
 import 'package:uberCloneDriver/feature/Auth/presentation/screens/login_screen.dart';
 import 'package:uberCloneDriver/feature/Auth/presentation/screens/register_screen.dart';
-import 'package:uberCloneDriver/feature/NavBar/screens/NavBar.dart';
-import 'package:uberCloneDriver/feature/Tabs/screens/home.dart';
-import 'package:uberCloneDriver/feature/Tabs/screens/profile.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/home.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/profile.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/navBar/screens/NavBar.dart';
 import 'package:uberCloneDriver/feature/landingPages/landingPage.dart';
 
 class RouteGenerator {

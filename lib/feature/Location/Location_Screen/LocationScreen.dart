@@ -135,7 +135,6 @@ class _LocationscreenState extends State<Locationscreen> {
                     ],
                   ),
 
-                /// الوجهة
                 MarkerLayer(
                   markers: [
                     Marker(

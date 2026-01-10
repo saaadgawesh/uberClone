@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:uberCloneDriver/core/constant/App_Color.dart';
+import 'package:uberCloneDriver/core/extension/navigation.dart';
 import 'package:uberCloneDriver/core/resources/App_Size.dart';
 import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
 import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
 import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
+import 'package:uberCloneDriver/core/routing/routes.dart';
 import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
 import 'package:uberCloneDriver/feature/landingPages/models/landingPageModel.dart';
-import 'package:uberCloneDriver/feature/navBar/screens/NavBar.dart';
 
 class Landingpage extends StatefulWidget {
   const Landingpage({super.key});
@@ -104,9 +105,7 @@ class _LandingpageState extends State<Landingpage> {
                 curve: Curves.easeInOut,
               );
             } else {
-              Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (context) => Navbar()));
+              context.pushNamed(Routes.navbar);
             }
           },
         ),

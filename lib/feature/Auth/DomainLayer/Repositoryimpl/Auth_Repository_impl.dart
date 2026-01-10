@@ -1,106 +1,126 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:uberCloneDriver/feature/Auth/DomainLayer/userEntity/AuthEntity.dart';
-import 'package:uberCloneDriver/feature/Auth/dataLayer/models/UserModel.dart';
+import 'package:uberCloneDriver/feature/Auth/dataLayer/models/Usermodel.dart';
 import 'package:uberCloneDriver/feature/Auth/dataLayer/repository/AuthRepository.dart';
 
 class AuthRepositoryImpl implements Authrepository {
-  final auth = FirebaseAuth.instance;
-  final firestore = FirebaseFirestore.instance;
-  //*********************************************************** */
-  //**** login ********** */
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  // ================= LOGIN =================
   @override
   Future<UserEntity> login(String email, String password) async {
     try {
       final credential = await auth.signInWithEmailAndPassword(
-        email: "s@g.com",
-        password: "12345678",
+        email: email,
+        password: password,
       );
 
       final doc = await firestore
-          .collection('users')
+          .collection('Driver')
           .doc(credential.user!.uid)
           .get();
 
       if (!doc.exists) {
-        throw Exception('data not found');
-      } else {
-        final userModel = Usermodel.fromjson(doc.data()!);
-
-        return UserEntity(
-          id: userModel.id,
-          name: userModel.name,
-          email: userModel.email,
-        );
+        throw Exception('User data not found in Firestore');
       }
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'expired-action-code') {
-        throw Exception('expired-action-code');
-      } else if (e.code == 'invalid-email') {
-        throw Exception('invalid-email');
-      } else if (e.code == 'user-disabled') {
-        throw Exception('user-disabled');
-      } else {
-        throw Exception(e.message ?? 'unknown error');
-      }
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
 
-  //************************************************************** */
-  //***** register ******** */
-  @override
-  Future<UserEntity> register(
-    String email,
-    String password,
-    String name,
-  ) async {
-    try {
-      final credential = await auth.createUserWithEmailAndPassword(
-        email: "s@g.com",
-        password: "12345678",
-      );
-
-      final userModel = Usermodel(
-        id: credential.user!.uid,
-        name: name,
-        email: email,
-      );
-
-      await firestore
-          .collection('users')
-          .doc(userModel.id)
-          .set(userModel.tojson());
+      final userModel = Usermodel.fromjson(doc.data()!);
 
       return UserEntity(
         id: userModel.id,
         name: userModel.name,
         email: userModel.email,
+        phone: userModel.phone,
+        carModel: userModel.carModel,
+        carNumber: userModel.carNumber,
+        location: userModel.location,
       );
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
-        throw Exception('email-already-in-use');
-      } else if (e.code == 'invalid-email') {
-        throw Exception('invalid-email');
-      } else if (e.code == 'weak-password') {
-        throw Exception('weak-password');
-      } else {
-        throw Exception(e.message ?? 'unknown error');
+      switch (e.code) {
+        case 'invalid-email':
+          throw Exception('invalid-email');
+        case 'user-disabled':
+          throw Exception('user-disabled');
+        case 'user-not-found':
+          throw Exception('user-not-found');
+        case 'wrong-password':
+          throw Exception('wrong-password');
+        default:
+          throw Exception(e.message ?? 'login-failed');
       }
-    } catch (e) {
-      throw Exception(e);
     }
   }
 
-  //********************************************************* */
-  //***** logout *********** */
+  // ================= REGISTER =================
+  @override
+  Future<UserEntity> register(
+    String email,
+    String password,
+    String name,
+    int phone,
+    int carModel,
+    String carNumber,
+    GeoPoint location,
+  ) async {
+    try {
+      final credential = await auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      final uid = credential.user!.uid;
+
+      final userModel = Usermodel(
+        id: uid,
+        name: name,
+        email: email,
+        phone: phone,
+        carModel: carModel,
+        carNumber: carNumber,
+        location: location,
+      );
+
+      await firestore.collection('Driver').doc(uid).set({
+        "id": uid,
+        "name": name,
+        "email": email,
+        "phone": phone,
+        "carModel": carModel,
+        "carNumber": carNumber,
+        "location": location,
+        "status": "available",
+        "isOnline": true,
+        "updatedAt": FieldValue.serverTimestamp(),
+      });
+
+      return UserEntity(
+        id: userModel.id,
+        name: userModel.name,
+        email: userModel.email,
+        phone: userModel.phone,
+        carModel: userModel.carModel,
+        carNumber: userModel.carNumber,
+        location: userModel.location,
+      );
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'email-already-in-use':
+          throw Exception('email-already-in-use');
+        case 'invalid-email':
+          throw Exception('invalid-email');
+        case 'weak-password':
+          throw Exception('weak-password');
+        default:
+          throw Exception(e.message ?? 'register-failed');
+      }
+    }
+  }
+
+  // ================= LOGOUT =================
   @override
   Future<void> logout() async {
-    try {
-      await auth.signOut();
-    } catch (e) {
-      throw Exception(e);
-    }
+    await auth.signOut();
   }
 }

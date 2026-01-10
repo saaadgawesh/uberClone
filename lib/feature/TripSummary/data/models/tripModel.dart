@@ -1,0 +1,23 @@
+import 'package:latlong2/latlong.dart';
+
+class TripData {
+  final String id; // معرف الرحلة في Firestore
+  final LatLng startLocation;
+  final LatLng endLocation;
+  final String startAddress;
+  final String endAddress;
+  final double distanceKm;
+  final double durationMin;
+  final double price;
+
+  TripData({
+    required this.id,
+    required this.startLocation,
+    required this.endLocation,
+    required this.startAddress,
+    required this.endAddress,
+    required this.distanceKm,
+    required this.durationMin,
+    required this.price,
+  });
+}

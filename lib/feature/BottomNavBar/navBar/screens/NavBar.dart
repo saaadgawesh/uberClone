@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/feature/Tabs/screens/Reports.dart';
-import 'package:uberCloneDriver/feature/Tabs/screens/home.dart';
-import 'package:uberCloneDriver/feature/Tabs/screens/profile.dart';
-import 'package:uberCloneDriver/feature/Tabs/screens/requests.dart';
-import 'package:uberCloneDriver/feature/navBar/widgets/CustomButtomNavBar.dart';
+
+import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/Reports.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/home.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/profile.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/requests.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/navBar/widgets/CustomButtomNavBar.dart';
+
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
@@ -16,7 +18,7 @@ class _NavbarState extends State<Navbar> {
   int _currentIndex = 3;
   List<Widget> tabs = [
     const Profile(),
-    const Requests(),
+    const Requests(tripId: '',),
     const Reports(),
     const Home(),
   ];

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uberCloneDriver/core/constant/App_Color.dart';
 import 'package:uberCloneDriver/core/constant/assets.dart';
+import 'package:uberCloneDriver/core/extension/navigation.dart';
 import 'package:uberCloneDriver/core/resources/AppTextStyles.dart';
 import 'package:uberCloneDriver/core/widgets/appbutton.dart';
 import 'package:uberCloneDriver/core/widgets/spacing.dart';
@@ -60,7 +61,7 @@ void showCancelDialog(BuildContext context) {
               AppButton(
                 text: 'Yes, Cancel',
                 onPressed: () {
-                  Navigator.pop(context);
+                  context.pop();
                 },
                 color: Colors.black,
                 width: 245.w,

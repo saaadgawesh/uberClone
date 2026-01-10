@@ -5,8 +5,9 @@ import 'package:uberCloneDriver/core/resources/App_Size.dart';
 import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneDriver/core/widgets/DefaultAppBar.dart';
 import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneDriver/feature/Tabs/widgets/Processitem.dart';
-import 'package:uberCloneDriver/feature/Tabs/widgets/textfieldWithSectionTitle.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/Processitem.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/textfieldWithSectionTitle.dart';
+
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
