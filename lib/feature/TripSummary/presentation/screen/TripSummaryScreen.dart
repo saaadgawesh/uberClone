@@ -54,6 +54,7 @@ class TripSummaryScreen extends StatelessWidget {
           width: appWidth(context),
           textcolor: AppColors.whiteColor,
           onPressed: () async {
+           
             Navigator.pushReplacementNamed(
               context,
               Routes.SearchingForDriverScreen,

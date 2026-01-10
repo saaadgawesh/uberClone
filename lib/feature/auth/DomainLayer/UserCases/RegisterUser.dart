@@ -5,7 +5,7 @@ class Registeruser {
   final Authrepository _authrepository;
 
   Registeruser(this._authrepository);
-  Future<UserEntity?> call(String name, String email, String password) async {
+  Future<UserEntity> call(String name, String email, String password) async {
     return await _authrepository.register(email, password, name);
   }
 }

@@ -38,6 +38,8 @@ class _RequestcarState extends State<Requestcar> {
   /// addresses
   String? _currentAddress;
   String? _destinationAddress;
+  String? currentUserId;
+  String? selectedDriverId;
 
   /// route
   final List<LatLng> _route = [];
@@ -331,6 +333,9 @@ class _RequestcarState extends State<Requestcar> {
             }
 
             final tripPreview = TripData(
+              tripId: '', // هنملأه بعد شوية
+              riderId: "",
+              driverId: "",
               startLocation: _currentLocation!,
               endLocation: _destination!,
               startAddress: _currentAddress ?? "Unknown Location",
@@ -338,8 +343,9 @@ class _RequestcarState extends State<Requestcar> {
               distanceKm: tripdistancekm!,
               durationMin: tripdistancemin!,
               price: calculatePrice(),
+              status: 'pending',
+              createdAt: DateTime.now(),
             );
-
             Navigator.push(
               context,
               MaterialPageRoute(

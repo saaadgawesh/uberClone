@@ -7,7 +7,7 @@ import 'package:uberCloneRider/feature/NavBar/screens/NavBar.dart';
 import 'package:uberCloneRider/feature/Tabs/screens/home.dart';
 import 'package:uberCloneRider/feature/Tabs/screens/myRequests.dart';
 import 'package:uberCloneRider/feature/Tabs/screens/profile.dart';
-import 'package:uberCloneRider/feature/SearchingForDriverScreen/SearchingForDriverScreen.dart';
+import 'package:uberCloneRider/feature/SearchingForDriverScreen/screen/SearchingForDriverScreen.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {

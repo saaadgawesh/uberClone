@@ -15,7 +15,8 @@ import 'package:uberCloneRider/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
 
 // ignore: unused_element
 class BuildRegisterForm extends StatelessWidget {
-  const BuildRegisterForm({super.key,
+  const BuildRegisterForm({
+    super.key,
     required TextEditingController nameController,
     required TextEditingController phoneController,
     required TextEditingController emailController,
@@ -88,9 +89,9 @@ class BuildRegisterForm extends StatelessWidget {
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 context.read<AuthCubit>().register(
-                  _emailController.text,
-                  _passwordController.text,
-                  _nameController.text,
+                  _emailController.text.trim(),
+                  _passwordController.text.trim(),
+                  _nameController.text.trim(),
                 );
               }
             },
