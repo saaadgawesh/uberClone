@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:uberCloneRider/core/routing/routes.dart';
-import 'package:uberCloneRider/feature/Tabs/screens/home.dart';
-import 'package:uberCloneRider/feature/Tabs/screens/myRequests.dart';
-import 'package:uberCloneRider/feature/Tabs/screens/profile.dart';
-import 'package:uberCloneRider/feature/TripSummary/presentation/screen/TripSummaryScreen.dart';
 import 'package:uberCloneRider/feature/Auth/presentation/screens/login_screen.dart';
 import 'package:uberCloneRider/feature/Auth/presentation/screens/register_screen.dart';
 import 'package:uberCloneRider/feature/LandingPages/screens/landingPage.dart';
 import 'package:uberCloneRider/feature/NavBar/screens/NavBar.dart';
+import 'package:uberCloneRider/feature/Tabs/screens/home.dart';
+import 'package:uberCloneRider/feature/Tabs/screens/myRequests.dart';
+import 'package:uberCloneRider/feature/Tabs/screens/profile.dart';
+import 'package:uberCloneRider/feature/SearchingForDriverScreen/SearchingForDriverScreen.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
@@ -15,6 +15,11 @@ class RouteGenerator {
       case Routes.register:
         return MaterialPageRoute(
           builder: (_) => const RegisterScreen(),
+          settings: settings,
+        );
+      case Routes.SearchingForDriverScreen:
+        return MaterialPageRoute(
+          builder: (_) => const SearchingForDriverScreen(),
           settings: settings,
         );
       case Routes.login:

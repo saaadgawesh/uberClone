@@ -29,7 +29,7 @@ class App extends StatelessWidget {
           themeMode: ThemeMode.light,
           darkTheme: Appthem.lighttheme,
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: Routes.login,
+          initialRoute: Routes.navbar,
         ),
       ),
     );
