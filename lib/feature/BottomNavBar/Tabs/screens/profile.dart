@@ -8,14 +8,17 @@ import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
 import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/Processitem.dart';
 import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/textfieldWithSectionTitle.dart';
 
-
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar(title: "profile"),
+      appBar: DefaultAppBar(
+        title: "profile",
+        leadIconName: Icons.arrow_back_ios,
+        leadingonTap: () {},
+      ),
       body: Padding(
         padding: const EdgeInsets.only(top: 15, right: 10, left: 10),
         child: SingleChildScrollView(

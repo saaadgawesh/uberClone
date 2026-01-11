@@ -1,254 +1,142 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:uberCloneDriver/core/constant/App_Color.dart';
 import 'package:uberCloneDriver/core/resources/AppDivider.dart';
-import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
-import 'package:uberCloneDriver/feature/TripSummary/data/models/tripModel.dart';
-import 'package:uberCloneDriver/feature/TripSummary/presentation/screen/TripSummaryScreen.dart';
+import 'package:uberCloneDriver/core/resources/App_Size.dart';
+import 'package:uberCloneDriver/core/resources/customAppText.dart';
+import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
+import 'package:uberCloneDriver/core/widgets/DefaultAppBar.dart';
+import 'package:uberCloneDriver/core/widgets/spacing.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/DriverRepository.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/acceptTrip.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/rejectTrip.dart';
 
-class Requests extends StatefulWidget {
-  final String? tripId; // معرف الرحلة
-
-  const Requests({super.key, this.tripId});
-
-  @override
-  State<Requests> createState() => _RequestsState();
-}
-
-class _RequestsState extends State<Requests> {
-  late final MapController _mapController;
-
-  LatLng? _startLocation;
-  LatLng? _endLocation;
-  String? _startAddress;
-  String? _endAddress;
-  double? _distanceKm;
-  double? _durationMin;
-  double? _price;
-  final List<LatLng> _route = [];
-
-  final double baseFare = 10;
-  final double pricePerKm = 5;
-  final double pricePerMin = 1;
-
-  @override
-  void initState() {
-    super.initState();
-    _mapController = MapController();
-  }
-
-  List<LatLng> decodePolyline(String encoded) {
-    final points = PolylinePoints.decodePolyline(encoded);
-    return points.map((e) => LatLng(e.latitude, e.longitude)).toList();
-  }
-
-  double calculatePrice(double distance, double duration) {
-    final price = baseFare + (distance * pricePerKm) + (duration * pricePerMin);
-    return price.clamp(20, 500);
-  }
-
-  Future<void> updateRoute(String polyline) async {
-    final decoded = decodePolyline(polyline);
-    setState(() {
-      _route
-        ..clear()
-        ..addAll(decoded);
-    });
-    if (_startLocation != null) _mapController.move(_startLocation!, 13);
-  }
+class Requests extends StatelessWidget {
+  final DriverRepository driverRepo = DriverRepository();
 
   @override
   Widget build(BuildContext context) {
-    // التأكد من وجود tripId
-    if (widget.tripId == null || widget.tripId!.isEmpty) {
-      return Scaffold(
-        body: Center(
-          child: Text(
-            "Trip ID غير موجود",
-            style: TextStyle(fontSize: 18, color: Colors.red),
-          ),
-        ),
-      );
-    }
+    return Scaffold(
+      appBar: DefaultAppBar(
+        title: 'طلباتك',
+        leadIconName: Icons.arrow_back_ios,
+        leadingonTap: () {},
+      ),
+      body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+        stream: driverRepo.getDriverTrips(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
 
-    return StreamBuilder<DocumentSnapshot>(
-      stream: FirebaseFirestore.instance
-          .collection("Trips")
-          .doc(widget.tripId!)
-          .snapshots(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          );
-        }
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return Center(child: Text('لا توجد طلبات جديدة'));
+          }
 
-        if (!snapshot.hasData || !snapshot.data!.exists) {
-          return Scaffold(
-            body: Center(
-              child: Text(
-                "لا توجد بيانات للرحلة",
-                style: TextStyle(fontSize: 18, color: Colors.grey),
-              ),
-            ),
-          );
-        }
+          final trips = snapshot.data!.docs;
 
-        final data = snapshot.data!.data() as Map<String, dynamic>;
-
-        // ===== استلام البيانات من Firestore =====
-        final startLat = (data['startLocation']['lat'] as num).toDouble();
-        final startLng = (data['startLocation']['lng'] as num).toDouble();
-        final endLat = (data['endLocation']['lat'] as num).toDouble();
-        final endLng = (data['endLocation']['lng'] as num).toDouble();
-        final distance = (data['distanceKm'] as num).toDouble();
-        final duration = (data['durationMin'] as num).toDouble();
-        final polyline = data['polyline'] ?? "";
-
-        _startLocation = LatLng(startLat, startLng);
-        _endLocation = LatLng(endLat, endLng);
-        _startAddress = data['startAddress'] ?? "Unknown";
-        _endAddress = data['endAddress'] ?? "Unknown";
-        _distanceKm = distance;
-        _durationMin = duration;
-        _price = calculatePrice(distance, duration);
-
-        if (polyline.isNotEmpty) {
-          updateRoute(polyline);
-        }
-
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text("Trip Details"),
-            backgroundColor: AppColors.blueColor,
-          ),
-          body: Stack(
-            children: [
-              FlutterMap(
-                mapController: _mapController,
-                options: MapOptions(
-                  initialCenter:
-                      _startLocation ?? const LatLng(30.0444, 31.2357),
-                  initialZoom: 13,
-                ),
-                children: [
-                  TileLayer(
-                    urlTemplate:
-                        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                  ),
-                  if (_startLocation != null)
-                    MarkerLayer(
-                      markers: [
-                        Marker(
-                          point: _startLocation!,
-                          width: 35,
-                          height: 35,
-                          child: customAppIcon(
-                            iconName: Icons.my_location,
-                            iconColor: AppColors.greenColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  if (_endLocation != null)
-                    MarkerLayer(
-                      markers: [
-                        Marker(
-                          point: _endLocation!,
-                          width: 35,
-                          height: 35,
-                          child: customAppIcon(
-                            iconName: Icons.location_pin,
-                            iconColor: AppColors.redColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  if (_route.isNotEmpty)
-                    PolylineLayer(
-                      polylines: [
-                        Polyline(
-                          points: _route,
-                          strokeWidth: 5,
-                          color: AppColors.redColor,
-                        ),
-                      ],
-                    ),
-                ],
-              ),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(16),
-                    ),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 8,
-                        offset: Offset(0, -2),
-                      ),
-                    ],
-                  ),
+          return ListView.builder(
+            itemCount: trips.length,
+            itemBuilder: (context, index) {
+              final trip = trips[index].data();
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CustomContainer(
+                  padding: EdgeInsets.all(10),
+                  height: appHeight(context) * 0.3249,
+                  width: appWidth(context),
+                  bgContainerColor: AppColors.blueColor,
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("From: $_startAddress"),
-                      AppDivider(),
-                      Text("To: $_endAddress"),
-                      AppDivider(),
-                      Text("Distance: ${_distanceKm?.toStringAsFixed(2)} km"),
-                      AppDivider(),
-                      Text("Duration: ${_durationMin?.toStringAsFixed(0)} min"),
-                      AppDivider(),
-                      Text("Price: \$${_price?.toStringAsFixed(2)}"),
-                      AppDivider(),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            if (_startLocation != null &&
-                                _endLocation != null) {
-                              final tripPreview = TripData(
-                                id: widget.tripId!,
-
-                                startLocation: _startLocation!,
-                                endLocation: _endLocation!,
-                                startAddress: _startAddress!,
-                                endAddress: _endAddress!,
-                                distanceKm: _distanceKm!,
-                                durationMin: _durationMin!,
-                                price: _price!,
-                              );
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) =>
-                                      TripSummaryScreen(tripData: tripPreview),
-                                ),
-                              );
-                            }
-                          },
-                          child: const Text("View Trip Summary"),
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomAppText(
+                                text: 'price: ${' السعر: ${trip['price']}'}',
+                                textColor: AppColors.whiteColor,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      VSpace(15),
+                      AppDivider(color: AppColors.whiteColor),
+                      VSpace(10),
+                      CustomAppText(
+                        text:
+                            'location: ${' ${trip['fromLat']}, ${trip['fromLng']}'}',
+                        textColor: AppColors.whiteColor,
+                      ),
+                      VSpace(10),
+                      CustomAppText(
+                        text: 'to: ${' ${trip['toLat']}, ${trip['toLng']}'}',
+                        textColor: AppColors.whiteColor,
+                      ),
+                      VSpace(15),
+                      AppDivider(color: AppColors.whiteColor),
+                      VSpace(10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              acceptTrip(trips[index].id);
+                            },
+                            child: CustomContainer(
+                              bgContainerColor: AppColors.greenColor,
+                              height: appHeight(context) * 0.07,
+                              width: appWidth(context) * 0.4,
+                              child: CustomAppText(
+                                text: "accepted",
+                                textColor: AppColors.whiteColor,
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              rejectTrip(trips[index].id);
+                            },
+                            child: CustomContainer(
+                              bgContainerColor: AppColors.redColor,
+                              height: appHeight(context) * 0.07,
+                              width: appWidth(context) * 0.4,
+                              child: CustomAppText(
+                                text: "rejected",
+                                textColor: AppColors.whiteColor,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
-              ),
-            ],
-          ),
-        );
-      },
+              );
+
+              // Card(
+              //   margin: EdgeInsets.all(8),
+              //   child: ListTile(
+              //     title: Text(),
+              //     subtitle: Text(
+              //      ,
+              //     ),
+              //     trailing: ElevatedButton(
+              //       child: Text(),
+              //       onPressed: () {
+              //         // هنا يتم قبول الرحلة
+              //
+              //       },
+              //     ),
+              //   ),
+              // );
+            },
+          );
+        },
+      ),
     );
   }
 }

@@ -57,12 +57,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       context.pop(); // يغلق أي Loading
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
+                        behavior: SnackBarBehavior.floating,
                           backgroundColor: Colors.green,
-                          content: Center(child: Text('Login successful!')),
+                          content: Center(child: Text('Register successful!')),
                         ),
                       );
 
-                      context.pushReplacementNamed(Routes.navbar);
+                      context.pushReplacementNamed(Routes.login);
                     });
                   } else if (state is ErrorAuthState) {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -80,10 +81,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     passwordController: _passwordController,
                     isLoading: isLoading,
                     formKey: _formKey,
-                    cardmodel: _cardmodel,
-                    cardnumber: _cardnumber,
-                    latController: _latController,
-                    lngController: _lngController,
+                    cardmodelcontroller: _cardmodel,
+                    carnumbercontroller: _cardnumber,
                   );
                 },
               ),

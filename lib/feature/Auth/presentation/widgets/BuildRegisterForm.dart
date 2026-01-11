@@ -14,9 +14,10 @@ import 'package:uberCloneDriver/core/utils/validator.dart';
 import 'package:uberCloneDriver/core/widgets/App_TextField.dart';
 import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
 import 'package:uberCloneDriver/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
+import 'package:uberCloneDriver/feature/Location/Location_Controller/Location_Manager.dart';
 
 // ignore: unused_element
-class BuildRegisterForm extends StatelessWidget {
+class BuildRegisterForm extends StatefulWidget {
   const BuildRegisterForm({
     super.key,
     required TextEditingController nameController,
@@ -26,10 +27,8 @@ class BuildRegisterForm extends StatelessWidget {
 
     required this.isLoading,
     required GlobalKey<FormState> formKey,
-    required this.cardmodel,
-    required this.cardnumber,
-    required this.latController,
-    required this.lngController,
+    required this.cardmodelcontroller,
+    required this.carnumbercontroller,
   }) : _nameController = nameController,
        _phoneController = phoneController,
        _emailController = emailController,
@@ -40,26 +39,31 @@ class BuildRegisterForm extends StatelessWidget {
   final TextEditingController _phoneController;
   final TextEditingController _emailController;
   final TextEditingController _passwordController;
-  final TextEditingController cardmodel;
-  final TextEditingController cardnumber;
-  final TextEditingController latController;
-  final TextEditingController lngController;
+  final TextEditingController cardmodelcontroller;
+  final TextEditingController carnumbercontroller;
+
   final bool isLoading;
   final GlobalKey<FormState> _formKey;
 
+  @override
+  State<BuildRegisterForm> createState() => _BuildRegisterFormState();
+}
+
+class _BuildRegisterFormState extends State<BuildRegisterForm> {
+  GeoPoint? currentLocation;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(height: Sizes.s100.h),
+        SizedBox(height: Sizes.s20.h),
         AppTextField(
           filledColor: AppColors.whiteColor,
           hintText: 'Enter your full name',
           labelText: 'Full Name',
           keyboardType: TextInputType.name,
           validator: Validator.validateFullName,
-          controller: _nameController,
+          controller: widget._nameController,
         ),
         SizedBox(height: Sizes.s18.h),
 
@@ -69,7 +73,7 @@ class BuildRegisterForm extends StatelessWidget {
           labelText: 'Mobile Number',
           validator: Validator.validatePhoneNumber,
           keyboardType: TextInputType.phone,
-          controller: _phoneController,
+          controller: widget._phoneController,
         ),
         SizedBox(height: Sizes.s18.h),
         AppTextField(
@@ -78,7 +82,25 @@ class BuildRegisterForm extends StatelessWidget {
           labelText: 'E-mail Address',
           // validator: Validator.validateEmail,
           keyboardType: TextInputType.emailAddress,
-          controller: _emailController,
+          controller: widget._emailController,
+        ),
+        SizedBox(height: Sizes.s18.h),
+        AppTextField(
+          hintText: 'Enter your car model',
+          filledColor: AppColors.whiteColor,
+          labelText: 'car model',
+          // validator: Validator.validateEmail,
+          // keyboardType: TextInputType.emailAddress,
+          controller: widget.cardmodelcontroller,
+        ),
+        SizedBox(height: Sizes.s18.h),
+        AppTextField(
+          hintText: 'Enter your car Number',
+          filledColor: AppColors.whiteColor,
+          labelText: 'car Number',
+          // validator: Validator.validateEmail,
+          keyboardType: TextInputType.emailAddress,
+          controller: widget.carnumbercontroller,
         ),
         SizedBox(height: Sizes.s18.h),
         AppTextField(
@@ -88,28 +110,70 @@ class BuildRegisterForm extends StatelessWidget {
           validator: Validator.validatePassword,
           obscureText: true,
           keyboardType: TextInputType.text,
-          controller: _passwordController,
+          controller: widget._passwordController,
         ),
         SizedBox(height: Sizes.s50.h),
+        defaultElevatedButton(
+          onPressed: () async {
+            final locationManager = LocationManager();
+
+            final locationData = await locationManager.getUserLocation();
+            if (locationData != null) {
+              final geoPoint = GeoPoint(
+                locationData.latitude!,
+                locationData.longitude!,
+              );
+              setState(() {
+                currentLocation = geoPoint; // متغير في StatefulWidget
+              });
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: AppColors.greenColor,
+                  content: Text("Location fetched!"),
+                ),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  behavior: SnackBarBehavior.floating,
+                  content: Text("Permission denied or service disabled"),
+                ),
+              );
+            }
+          },
+          textbutton: 'get current location',
+          bgButtonColor: AppColors.blueColor,
+          width: appWidth(context),
+          textcolor: AppColors.whiteColor,
+        ),
+        SizedBox(height: Sizes.s20.h),
         SizedBox(
           height: Sizes.s60.h,
           width: MediaQuery.of(context).size.width,
           child: defaultElevatedButton(
-            textbutton: isLoading ? 'Loading...' : 'Register',
+            textbutton: widget.isLoading ? 'Loading...' : 'Register',
             bgButtonColor: AppColors.blueColor,
             onPressed: () {
-              if (_formKey.currentState!.validate()) {
+              if (widget._formKey.currentState!.validate()) {
+                if (currentLocation == null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: AppColors.error,
+                      content: Text("Please get your current location first"),
+                    ),
+                  );
+                  return;
+                }
+
                 context.read<AuthCubit>().register(
-                  _emailController.text.trim(),
-                  _passwordController.text.trim(),
-                  _nameController.text.trim(),
-                  int.parse(_phoneController.text.trim()),
-                  int.parse(cardmodel.text.trim()),
-                  cardnumber.text.trim(),
-                  GeoPoint(
-                    double.parse(latController.text),
-                    double.parse(lngController.text),
-                  ),
+                  widget._emailController.text.trim(),
+                  widget._passwordController.text.trim(),
+                  widget._nameController.text.trim(),
+                  int.parse(widget._phoneController.text.trim()),
+                  int.parse(widget.cardmodelcontroller.text.trim()),
+                  widget.carnumbercontroller.text.trim(),
+                  currentLocation!, // استخدم المتغير مباشرة
                 );
               }
             },

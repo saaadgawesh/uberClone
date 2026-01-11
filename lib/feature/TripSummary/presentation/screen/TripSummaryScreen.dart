@@ -11,7 +11,6 @@ import 'package:uberCloneDriver/feature/TripSummary/presentation/screen/Searchin
 import 'package:uberCloneDriver/feature/TripSummary/presentation/widgets/TripSummaryDetalis.dart';
 import 'package:uberCloneDriver/feature/TripSummary/presentation/widgets/Trip_Summary_titleSection.dart';
 
-
 class TripSummaryScreen extends StatelessWidget {
   final TripData tripData;
 

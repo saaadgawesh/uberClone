@@ -14,7 +14,11 @@ class Reports extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar(title: 'kashf Al rokab'),
+      appBar: DefaultAppBar(
+        title: 'kashf Al rokab',
+        leadIconName: Icons.arrow_back_ios,
+        leadingonTap: () {},
+      ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
