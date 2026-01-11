@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
@@ -334,7 +335,7 @@ class _RequestcarState extends State<Requestcar> {
 
             final tripPreview = TripData(
               tripId: '', // هنملأه بعد شوية
-              riderId: "",
+              riderId: FirebaseAuth.instance.currentUser!.uid,
               driverId: "",
               startLocation: _currentLocation!,
               endLocation: _destination!,

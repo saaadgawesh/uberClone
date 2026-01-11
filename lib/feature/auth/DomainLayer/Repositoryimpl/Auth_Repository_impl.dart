@@ -13,8 +13,8 @@ class AuthRepositoryImpl implements Authrepository {
   Future<UserEntity> login(String email, String password) async {
     try {
       final credential = await auth.signInWithEmailAndPassword(
-        email: email.toString().trim(),
-        password: password.trim(),
+        email: "s@g.com",
+        password: "12345678",
       );
 
       final doc = await firestore
@@ -58,8 +58,8 @@ class AuthRepositoryImpl implements Authrepository {
   ) async {
     try {
       final credential = await auth.createUserWithEmailAndPassword(
-        email: email.toString().trim(),
-        password: password.trim(),
+        email: "s@g.com",
+        password: "12345678",
       );
 
       final userModel = Usermodel(

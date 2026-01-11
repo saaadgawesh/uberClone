@@ -32,34 +32,6 @@ class _SearchingForDriverScreenState extends State<SearchingForDriverScreen> {
   bool isLoading = true;
   List<QueryDocumentSnapshot> drivers = [];
 
-  // /// ================= CREATE TRIP =================
-  // Future<String> createTrip(TripData tripData, String selectedDriverId) async {
-  //   final tripRef = FirebaseFirestore.instance.collection('trips').doc();
-
-  //   await tripRef.set({
-  //     "riderId":
-  //         "USER_ID", // هنا ممكن تحط FirebaseAuth.instance.currentUser!.uid
-  //     "driverId": selectedDriverId,
-  //     "startLocation": {
-  //       "lat": tripData.startLocation.latitude,
-  //       "lng": tripData.startLocation.longitude,
-  //     },
-  //     "endLocation": {
-  //       "lat": tripData.endLocation.latitude,
-  //       "lng": tripData.endLocation.longitude,
-  //     },
-  //     "startAddress": tripData.startAddress,
-  //     "endAddress": tripData.endAddress,
-  //     "distanceKm": tripData.distanceKm,
-  //     "durationMin": tripData.durationMin,
-  //     "price": tripData.price,
-  //     "status": "searching",
-  //     "createdAt": FieldValue.serverTimestamp(),
-  //   });
-
-  //   return tripRef.id;
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -143,7 +115,7 @@ class _SearchingForDriverScreenState extends State<SearchingForDriverScreen> {
                             ),
                             GestureDetector(
                               onTap: () async {
-                                final repo=TripRepository();
+                                final repo = TripRepository();
                                 final tripData =
                                     ModalRoute.of(context)!.settings.arguments
                                         as TripData;
@@ -158,8 +130,13 @@ class _SearchingForDriverScreenState extends State<SearchingForDriverScreen> {
                                   return;
                                 }
 
-                                await repo.selectDriver(tripData, selectedDriverId!);
-// createTrip();
+                                await repo.selectDriver(
+                                  tripData,
+                                  selectedDriverId!,
+                                );
+                                print(
+                                  "=====================================${driverId}",
+                                );
                                 context.pushNamed(Routes.navbar);
                               },
                               child: CircleAvatar(
