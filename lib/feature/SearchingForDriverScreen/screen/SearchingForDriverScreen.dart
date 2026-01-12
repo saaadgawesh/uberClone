@@ -22,12 +22,6 @@ class SearchingForDriverScreen extends StatefulWidget {
 }
 
 class _SearchingForDriverScreenState extends State<SearchingForDriverScreen> {
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // استقبال tripData من ModalRoute
-  }
-
   String? selectedDriverId; // السواق المختار
   bool isLoading = true;
   List<QueryDocumentSnapshot> drivers = [];
@@ -134,9 +128,7 @@ class _SearchingForDriverScreenState extends State<SearchingForDriverScreen> {
                                   tripData,
                                   selectedDriverId!,
                                 );
-                                print(
-                                  "=====================================${driverId}",
-                                );
+
                                 context.pushNamed(Routes.navbar);
                               },
                               child: CircleAvatar(
