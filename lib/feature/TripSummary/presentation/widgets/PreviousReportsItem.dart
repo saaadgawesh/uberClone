@@ -4,11 +4,9 @@ import 'package:uberCloneDriver/core/resources/AppDivider.dart';
 import 'package:uberCloneDriver/core/resources/App_Size.dart';
 import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
 import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
-import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
 import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
-
-
+import 'package:uberCloneDriver/core/widgets/spacing.dart';
 
 class PreviousReportsItem extends StatelessWidget {
   const PreviousReportsItem({
@@ -51,32 +49,32 @@ class PreviousReportsItem extends StatelessWidget {
               ),
             ],
           ),
-          heightSizedbox(5),
+          VSpace(5),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               CustomAppText(text: to, fontWeight: FontWeight.w600),
-              widthSizedbox(5),
+              HSpace(5),
               customAppIcon(iconName: Icons.arrow_back),
-              widthSizedbox(5),
+              HSpace(5),
               CustomAppText(text: from, fontWeight: FontWeight.w600),
-              widthSizedbox(5),
+              HSpace(5),
               customAppIcon(iconName: Icons.location_on),
             ],
           ),
-          heightSizedbox(5),
+          VSpace(5),
           AppDivider(),
-          heightSizedbox(5),
+          VSpace(5),
           Row(
             children: [
               Row(
                 children: [
-                  widthSizedbox(40),
+                  HSpace(40),
                   CustomAppText(text: "customer"),
                   CustomAppText(text: "1"),
                   customAppIcon(iconName: Icons.group),
-                  widthSizedbox(50),
+                  HSpace(50),
                   CustomAppText(text: "2025-11-8"),
                   customAppIcon(
                     iconName: Icons.date_range,
@@ -86,7 +84,7 @@ class PreviousReportsItem extends StatelessWidget {
               ),
             ],
           ),
-          heightSizedbox(5),
+          VSpace(5),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

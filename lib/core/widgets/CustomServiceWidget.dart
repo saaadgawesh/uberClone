@@ -4,6 +4,7 @@ import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
 import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
 import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
+import 'package:uberCloneDriver/core/widgets/spacing.dart';
 
 // ignore: non_constant_identifier_names
 Widget CustomServiceWidget(BuildContext context) {
@@ -27,7 +28,7 @@ Widget CustomServiceWidget(BuildContext context) {
           ),
         ),
 
-        heightSizedbox(8),
+        VSpace(8),
         CustomAppText(text: 'data', fontSize: 16, fontWeight: FontWeight.bold),
         CustomAppText(text: 'data', textColor: AppColors.blackColorwithopacity),
       ],

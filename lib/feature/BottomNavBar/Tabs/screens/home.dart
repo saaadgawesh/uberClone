@@ -3,10 +3,10 @@ import 'package:uberCloneDriver/core/constant/App_Color.dart';
 import 'package:uberCloneDriver/core/extension/navigation.dart';
 import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
 import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
-import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneDriver/core/routing/routes.dart';
 import 'package:uberCloneDriver/core/widgets/CustomServiceWidget.dart';
 import 'package:uberCloneDriver/core/widgets/DefaultAppBar.dart';
+import 'package:uberCloneDriver/core/widgets/spacing.dart';
 import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/Processitem.dart';
 
 class Home extends StatelessWidget {
@@ -48,7 +48,7 @@ class Home extends StatelessWidget {
                   size: 40,
                 ),
               ),
-              heightSizedbox(10),
+                     VSpace(10),
 
               Processitem(
                 title: "are you ready?",
@@ -62,7 +62,7 @@ class Home extends StatelessWidget {
                   size: 40,
                 ),
               ),
-              heightSizedbox(10),
+                     VSpace(10),
               GridView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
@@ -77,7 +77,7 @@ class Home extends StatelessWidget {
                   return CustomServiceWidget(context);
                 },
               ),
-              heightSizedbox(10),
+                     VSpace(10),
             ],
           ),
         ),

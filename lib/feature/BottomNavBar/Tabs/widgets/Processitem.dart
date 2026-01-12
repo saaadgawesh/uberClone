@@ -4,8 +4,8 @@ import 'package:uberCloneDriver/core/constant/App_Color.dart';
 import 'package:uberCloneDriver/core/resources/App_Size.dart';
 import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
 import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
-import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
+import 'package:uberCloneDriver/core/widgets/spacing.dart';
 
 class Processitem extends StatelessWidget {
   const Processitem({
@@ -43,7 +43,7 @@ class Processitem extends StatelessWidget {
               iconColor: AppColors.whiteColor,
             ),
           ),
-          Container(
+          SizedBox(
             width: appWidth(context) * 0.5,
             child: Column(
               children: [
@@ -52,7 +52,7 @@ class Processitem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomAppText(text: title, textColor: AppColors.whiteColor),
-                    heightSizedbox(5),
+                    VSpace(5),
                     CustomAppText(
                       text: description,
                       textColor: AppColors.whiteColor,
@@ -62,7 +62,7 @@ class Processitem extends StatelessWidget {
               ],
             ),
           ),
-          widthSizedbox(5),
+          HSpace(5),
           if (child != null)
             CustomContainer(
               actionIcon: actionIcon,

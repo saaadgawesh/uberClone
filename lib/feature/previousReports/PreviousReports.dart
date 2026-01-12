@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uberCloneDriver/core/resources/App_Size.dart';
-import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneDriver/core/widgets/DefaultAppBar.dart';
+import 'package:uberCloneDriver/core/widgets/spacing.dart';
 import 'package:uberCloneDriver/feature/previousReports/PreviousReportsItem.dart';
 
 class Previousreports extends StatelessWidget {
@@ -27,7 +27,7 @@ class Previousreports extends StatelessWidget {
                 textbutton1: 'share',
                 textbutton2: 'open',
               ),
-              heightSizedbox(10),
+                     VSpace(10),
               PreviousReportsItem(
                 viewbutton: () {},
                 width1: appWidth(context) * 0.43,
@@ -38,7 +38,7 @@ class Previousreports extends StatelessWidget {
                 textbutton1: 'share',
                 textbutton2: 'open',
               ),
-              heightSizedbox(10),
+                     VSpace(10),
               PreviousReportsItem(
                 width1: appWidth(context),
                 width2: appWidth(context) * 0.86,

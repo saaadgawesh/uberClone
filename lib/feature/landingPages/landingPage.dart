@@ -4,9 +4,9 @@ import 'package:uberCloneDriver/core/extension/navigation.dart';
 import 'package:uberCloneDriver/core/resources/App_Size.dart';
 import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
 import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
-import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneDriver/core/routing/routes.dart';
 import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
+import 'package:uberCloneDriver/core/widgets/spacing.dart';
 import 'package:uberCloneDriver/feature/landingPages/models/landingPageModel.dart';
 
 class Landingpage extends StatefulWidget {
@@ -58,7 +58,7 @@ class _LandingpageState extends State<Landingpage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(model.image),
-                      heightSizedbox(20),
+                             VSpace(20),
 
                       CustomAppText(
                         text: model.title,
@@ -66,7 +66,7 @@ class _LandingpageState extends State<Landingpage> {
                         fontWeight: FontWeight.w700,
                       ),
 
-                      heightSizedbox(10),
+                             VSpace(10),
 
                       CustomAppText(
                         text: model.text,
@@ -75,7 +75,7 @@ class _LandingpageState extends State<Landingpage> {
                         fontWeight: FontWeight.w700,
                       ),
 
-                      heightSizedbox(10),
+                             VSpace(10),
 
                       CustomAppText(
                         textAlign: TextAlign.center,

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:uberCloneDriver/core/constant/App_Color.dart';
 import 'package:uberCloneDriver/core/resources/App_Size.dart';
 import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
-import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneDriver/core/widgets/CustomCounter.dart';
 import 'package:uberCloneDriver/core/widgets/DefaultAppBar.dart';
 import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
+import 'package:uberCloneDriver/core/widgets/spacing.dart';
 import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/textfieldWithSectionTitle.dart';
 
 class Reports extends StatelessWidget {
@@ -31,16 +31,16 @@ class Reports extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             Textfieldwithsectiontitle(text: 'from', hinttext: 'choose city'),
-            heightSizedbox(10),
+                   VSpace(10),
             Textfieldwithsectiontitle(text: 'to', hinttext: 'choose city'),
-            heightSizedbox(10),
+                   VSpace(10),
             CustomAppText(
               text: "custumer number",
               textColor: AppColors.blueColor,
 
               fontWeight: FontWeight.w500,
             ),
-            heightSizedbox(5),
+                   VSpace(5),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -68,7 +68,7 @@ class Reports extends StatelessWidget {
                 ),
               ],
             ),
-            heightSizedbox(10),
+                   VSpace(10),
           ],
         ),
       ),

@@ -9,6 +9,7 @@ import 'package:uberCloneDriver/core/widgets/DefaultAppBar.dart';
 import 'package:uberCloneDriver/core/widgets/spacing.dart';
 import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/DriverRepository.dart';
 import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/acceptTrip.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/openMaps.dart';
 import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/rejectTrip.dart';
 
 class Requests extends StatelessWidget {
@@ -39,6 +40,12 @@ class Requests extends StatelessWidget {
             itemCount: trips.length,
             itemBuilder: (context, index) {
               final trip = trips[index].data();
+
+              final double fromLat = (trip['fromLat'] as num).toDouble();
+              final double fromLng = (trip['fromLng'] as num).toDouble();
+              final double toLat = (trip['toLat'] as num).toDouble();
+              final double toLng = (trip['toLng'] as num).toDouble();
+
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CustomContainer(
@@ -66,16 +73,21 @@ class Requests extends StatelessWidget {
                       VSpace(15),
                       AppDivider(color: AppColors.whiteColor),
                       VSpace(10),
-                      CustomAppText(
-                        text:
-                            'location: ${' ${trip['fromLat']}, ${trip['fromLng']}'}',
-                        textColor: AppColors.whiteColor,
+
+                      InkWell(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            Icon(Icons.location_on, color: Colors.red),
+                            SizedBox(width: 8),
+                            CustomAppText(
+                              text: "Open Route in Maps",
+                              textColor: AppColors.whiteColor,
+                            ),
+                          ],
+                        ),
                       ),
-                      VSpace(10),
-                      CustomAppText(
-                        text: 'to: ${' ${trip['toLat']}, ${trip['toLng']}'}',
-                        textColor: AppColors.whiteColor,
-                      ),
+
                       VSpace(15),
                       AppDivider(color: AppColors.whiteColor),
                       VSpace(10),
@@ -85,13 +97,19 @@ class Requests extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               acceptTrip(trips[index].id);
+                              openRouteInGoogleMaps(
+                                fromLat: fromLat,
+                                fromLng: fromLng,
+                                toLat: toLat,
+                                toLng: toLng,
+                              );
                             },
                             child: CustomContainer(
                               bgContainerColor: AppColors.greenColor,
                               height: appHeight(context) * 0.07,
                               width: appWidth(context) * 0.4,
                               child: CustomAppText(
-                                text: "accepted",
+                                text: "Accepted",
                                 textColor: AppColors.whiteColor,
                               ),
                             ),
@@ -105,7 +123,7 @@ class Requests extends StatelessWidget {
                               height: appHeight(context) * 0.07,
                               width: appWidth(context) * 0.4,
                               child: CustomAppText(
-                                text: "rejected",
+                                text: "Rejected",
                                 textColor: AppColors.whiteColor,
                               ),
                             ),
@@ -116,23 +134,6 @@ class Requests extends StatelessWidget {
                   ),
                 ),
               );
-
-              // Card(
-              //   margin: EdgeInsets.all(8),
-              //   child: ListTile(
-              //     title: Text(),
-              //     subtitle: Text(
-              //      ,
-              //     ),
-              //     trailing: ElevatedButton(
-              //       child: Text(),
-              //       onPressed: () {
-              //         // هنا يتم قبول الرحلة
-              //
-              //       },
-              //     ),
-              //   ),
-              // );
             },
           );
         },

@@ -3,8 +3,8 @@ import 'package:uberCloneDriver/core/constant/App_Color.dart';
 import 'package:uberCloneDriver/core/resources/App_Size.dart';
 import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
 import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
-import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
+import 'package:uberCloneDriver/core/widgets/spacing.dart';
 
 // ignore: camel_case_types
 class defaultElevatedButton extends StatelessWidget {
@@ -55,7 +55,7 @@ class defaultElevatedButton extends StatelessWidget {
               fontWeight: FontWeight.w500,
               fontSize: fontSize ?? 16,
             ),
-            widthSizedbox(5),
+            HSpace(5),
             if (iconName != null && iconColor != null)
               customAppIcon(iconName: iconName!, iconColor: iconColor!),
           ],

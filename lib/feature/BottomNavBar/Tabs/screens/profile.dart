@@ -1,21 +1,29 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:uberCloneDriver/core/constant/App_Color.dart';
 import 'package:uberCloneDriver/core/constant/assets.dart';
 import 'package:uberCloneDriver/core/resources/App_Size.dart';
-import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneDriver/core/widgets/DefaultAppBar.dart';
 import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
+import 'package:uberCloneDriver/core/widgets/spacing.dart';
 import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/Processitem.dart';
 import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/textfieldWithSectionTitle.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   const Profile({super.key});
 
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DefaultAppBar(
         title: "profile",
+
         leadIconName: Icons.arrow_back_ios,
         leadingonTap: () {},
       ),
@@ -42,33 +50,83 @@ class Profile extends StatelessWidget {
                   ),
                 ),
               ),
-              heightSizedbox(10),
-              Textfieldwithsectiontitle(text: 'from', hinttext: 'choose city'),
-              heightSizedbox(10),
-              Textfieldwithsectiontitle(text: 'to', hinttext: 'choose city'),
-              heightSizedbox(10),
+
+                     VSpace(10),
               Textfieldwithsectiontitle(
                 text: 'tasneef',
                 hinttext: 'choose city',
               ),
-              heightSizedbox(10),
+                     VSpace(10),
               Textfieldwithsectiontitle(
                 text: 'type of transport',
                 hinttext: 'choose city',
               ),
-              heightSizedbox(10),
+                     VSpace(10),
+              defaultElevatedButton(
+                textbutton: "End Trip",
+                bgButtonColor: AppColors.blueColor,
+                onPressed: () async {
+                  final currentUser = FirebaseAuth.instance.currentUser;
+                  if (currentUser == null) return;
+
+                  final driverDoc = FirebaseFirestore.instance
+                      .collection('Driver')
+                      .doc(currentUser.uid);
+
+                  try {
+                    // تحديث حالة السائق إلى available
+                    await driverDoc.update({'status': 'available'});
+
+                    // اختياري: رسالة للمستخدم
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        behavior: SnackBarBehavior.floating,
+                        backgroundColor: AppColors.greenColor,
+                        content: Text("Trip ended. You are now available!"),
+                      ),
+                    );
+                  } catch (e) {
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text("Error: $e")));
+                  }
+                },
+                width: appWidth(context),
+                textcolor: AppColors.whiteColor,
+              ),
+              VSpace(10),
+              defaultElevatedButton(
+                textbutton: "Unavailable",
+                bgButtonColor: AppColors.error,
+                onPressed: () async {
+                  final currentUser = FirebaseAuth.instance.currentUser;
+                  if (currentUser == null) return;
+
+                  final driverDoc = FirebaseFirestore.instance
+                      .collection('Driver')
+                      .doc(currentUser.uid);
+
+                  try {
+                    await driverDoc.update({'status': 'busy'});
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        behavior: SnackBarBehavior.floating,
+                        backgroundColor: AppColors.error,
+                        content: Text("You are now unavailable for new trips."),
+                      ),
+                    );
+                  } catch (e) {
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text("Error: $e")));
+                  }
+                },
+                width: appWidth(context),
+                textcolor: AppColors.whiteColor,
+              ),
+              VSpace(10),
             ],
           ),
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: defaultElevatedButton(
-          textbutton: "AddYourAccount",
-          bgButtonColor: AppColors.blueColor,
-          onPressed: () {},
-          width: appWidth(context),
-          textcolor: AppColors.whiteColor,
         ),
       ),
     );

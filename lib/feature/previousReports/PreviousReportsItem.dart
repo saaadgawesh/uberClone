@@ -4,9 +4,9 @@ import 'package:uberCloneDriver/core/resources/AppDivider.dart';
 import 'package:uberCloneDriver/core/resources/App_Size.dart';
 import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
 import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
-import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
 import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
 import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
+import 'package:uberCloneDriver/core/widgets/spacing.dart';
 
 class PreviousReportsItem extends StatelessWidget {
   const PreviousReportsItem({
@@ -73,7 +73,7 @@ class PreviousReportsItem extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  widthSizedbox(40),
+                  HSpace(40),
                   CustomAppText(
                     text: "customer",
                     textColor: AppColors.blackColor,
@@ -83,7 +83,7 @@ class PreviousReportsItem extends StatelessWidget {
                     iconName: Icons.group,
                     iconColor: AppColors.blueColor,
                   ),
-                  widthSizedbox(50),
+                  HSpace(50),
                   CustomAppText(
                     text: "2025-11-8",
                     textColor: AppColors.blackColor,
@@ -96,7 +96,7 @@ class PreviousReportsItem extends StatelessWidget {
               ),
             ],
           ),
-          heightSizedbox(5),
+          VSpace(5),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
