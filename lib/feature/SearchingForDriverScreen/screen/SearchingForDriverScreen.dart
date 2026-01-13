@@ -1,17 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:uberCloneRider/core/constant/App_Color.dart';
-import 'package:uberCloneRider/core/constant/assets.dart';
-import 'package:uberCloneRider/core/extension/navigation.dart';
-import 'package:uberCloneRider/core/resources/AppDivider.dart';
-import 'package:uberCloneRider/core/resources/App_Size.dart';
-import 'package:uberCloneRider/core/resources/customAppText.dart';
-import 'package:uberCloneRider/core/routing/routes.dart';
-import 'package:uberCloneRider/core/widgets/CustomContainer.dart';
-import 'package:uberCloneRider/core/widgets/DefaultAppBar.dart';
-import 'package:uberCloneRider/core/widgets/spacing.dart';
-import 'package:uberCloneRider/feature/TripSummary/TripRepository.dart';
-import 'package:uberCloneRider/feature/TripSummary/data/models/tripModel.dart';
+
+import '../../../core/App_Imports/app_imports.dart';
 
 class SearchingForDriverScreen extends StatefulWidget {
   const SearchingForDriverScreen({super.key});
@@ -115,7 +103,9 @@ class _SearchingForDriverScreenState extends State<SearchingForDriverScreen> {
                                         as TripData;
                                 if (selectedDriverId == null) {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
+                                    SnackBar(
+                                      behavior: SnackBarBehavior.floating,
+                                      backgroundColor: AppColors.error,
                                       content: Text(
                                         "Please select a driver first",
                                       ),

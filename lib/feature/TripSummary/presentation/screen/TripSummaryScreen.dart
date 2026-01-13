@@ -1,14 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneRider/core/constant/App_Color.dart';
-import 'package:uberCloneRider/core/constant/assets.dart';
-import 'package:uberCloneRider/core/resources/App_Size.dart';
-import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
-import 'package:uberCloneRider/core/routing/routes.dart';
-import 'package:uberCloneRider/core/widgets/DefaultAppBar.dart';
-import 'package:uberCloneRider/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneRider/feature/TripSummary/data/models/tripModel.dart';
-import 'package:uberCloneRider/feature/TripSummary/presentation/widgets/TripSummaryDetalis.dart';
-import 'package:uberCloneRider/feature/TripSummary/presentation/widgets/Trip_Summary_titleSection.dart';
+import 'package:uberCloneRider/core/App_Imports/app_imports.dart';
+
+
+
 
 class TripSummaryScreen extends StatelessWidget {
   final TripData tripData;
@@ -54,7 +47,7 @@ class TripSummaryScreen extends StatelessWidget {
           width: appWidth(context),
           textcolor: AppColors.whiteColor,
           onPressed: () async {
-           
+
             Navigator.pushReplacementNamed(
               context,
               Routes.SearchingForDriverScreen,

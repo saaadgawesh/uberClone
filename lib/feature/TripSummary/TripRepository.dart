@@ -1,6 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:uberCloneRider/feature/TripSummary/data/models/tripModel.dart';
+
+import '../../../core/App_Imports/app_imports.dart';
 
 class TripRepository {
   Future<String> selectDriver(TripData tripData, String driverId) async {

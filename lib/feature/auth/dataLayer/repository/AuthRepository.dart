@@ -2,6 +2,11 @@ import 'package:uberCloneRider/feature/Auth/DomainLayer/userEntity/AuthEntity.da
 
 abstract class Authrepository {
   Future<UserEntity> login(String email, String password);
-  Future<UserEntity> register(String email, String password, String name);
+  Future<UserEntity> register(
+    String email,
+    String password,
+    String name,
+    int phone,
+  );
   Future<void> logout();
 }

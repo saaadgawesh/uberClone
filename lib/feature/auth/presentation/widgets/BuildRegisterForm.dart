@@ -1,8 +1,10 @@
 // ignore: camel_case_types
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uberCloneRider/core/constant/App_Color.dart';
+import 'package:uberCloneRider/core/extension/navigation.dart';
 import 'package:uberCloneRider/core/resources/AppTextStyles.dart';
 import 'package:uberCloneRider/core/resources/App_Size.dart';
 import 'package:uberCloneRider/core/resources/font_manager.dart';
@@ -11,16 +13,18 @@ import 'package:uberCloneRider/core/routing/routes.dart';
 import 'package:uberCloneRider/core/utils/validator.dart';
 import 'package:uberCloneRider/core/widgets/App_TextField.dart';
 import 'package:uberCloneRider/core/widgets/defaultElevatedButton.dart';
+import 'package:uberCloneRider/core/widgets/spacing.dart';
 import 'package:uberCloneRider/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
 
 // ignore: unused_element
-class BuildRegisterForm extends StatelessWidget {
+class BuildRegisterForm extends StatefulWidget {
   const BuildRegisterForm({
     super.key,
     required TextEditingController nameController,
     required TextEditingController phoneController,
     required TextEditingController emailController,
     required TextEditingController passwordController,
+
     required this.isLoading,
     required GlobalKey<FormState> formKey,
   }) : _nameController = nameController,
@@ -33,22 +37,30 @@ class BuildRegisterForm extends StatelessWidget {
   final TextEditingController _phoneController;
   final TextEditingController _emailController;
   final TextEditingController _passwordController;
+
   final bool isLoading;
   final GlobalKey<FormState> _formKey;
 
   @override
+  State<BuildRegisterForm> createState() => _BuildRegisterFormState();
+}
+
+class _BuildRegisterFormState extends State<BuildRegisterForm> {
+  GeoPoint? currentLocation;
+  @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(height: Sizes.s100.h),
+        VSpace(100.h),
         AppTextField(
           filledColor: AppColors.whiteColor,
           hintText: 'Enter your full name',
           labelText: 'Full Name',
           keyboardType: TextInputType.name,
           validator: Validator.validateFullName,
-          controller: _nameController,
+          controller: widget._nameController,
         ),
         SizedBox(height: Sizes.s18.h),
 
@@ -58,7 +70,7 @@ class BuildRegisterForm extends StatelessWidget {
           labelText: 'Mobile Number',
           validator: Validator.validatePhoneNumber,
           keyboardType: TextInputType.phone,
-          controller: _phoneController,
+          controller: widget._phoneController,
         ),
         SizedBox(height: Sizes.s18.h),
         AppTextField(
@@ -67,9 +79,10 @@ class BuildRegisterForm extends StatelessWidget {
           labelText: 'E-mail Address',
           // validator: Validator.validateEmail,
           keyboardType: TextInputType.emailAddress,
-          controller: _emailController,
+          controller: widget._emailController,
         ),
         SizedBox(height: Sizes.s18.h),
+
         AppTextField(
           hintText: 'Enter your password',
           filledColor: AppColors.whiteColor,
@@ -77,23 +90,23 @@ class BuildRegisterForm extends StatelessWidget {
           validator: Validator.validatePassword,
           obscureText: true,
           keyboardType: TextInputType.text,
-          controller: _passwordController,
+          controller: widget._passwordController,
         ),
-        SizedBox(height: Sizes.s50.h),
+
+        SizedBox(height: Sizes.s20.h),
         SizedBox(
           height: Sizes.s60.h,
           width: MediaQuery.of(context).size.width,
           child: defaultElevatedButton(
-            textbutton: isLoading ? 'Loading...' : 'Register',
+            textbutton: widget.isLoading ? 'Loading...' : 'Register',
             bgButtonColor: AppColors.blueColor,
             onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                context.read<AuthCubit>().register(
-                  _emailController.text.trim(),
-                  _passwordController.text.trim(),
-                  _nameController.text.trim(),
-                );
-              }
+              context.read<AuthCubit>().register(
+                widget._emailController.text.trim(),
+                widget._passwordController.text.trim(),
+                widget._nameController.text.trim(),
+                int.parse(widget._phoneController.text.trim()),
+              );
             },
             textcolor: AppColors.whiteColor,
             width: appWidth(context),
@@ -111,7 +124,7 @@ class BuildRegisterForm extends StatelessWidget {
             ),
             SizedBox(width: Sizes.s8.w),
             GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(Routes.login),
+              onTap: () => context.pushNamed(Routes.login),
               child: Text(
                 'Login',
                 style: AppTextStyles.georgiaH3.copyWith(fontSize: FontSize.s16),

@@ -9,10 +9,15 @@ class AuthCubit extends Cubit<AuthState> {
 
   AuthCubit(this._registeruser, this._loginuser) : super(InitialAuthState());
 
-  Future<void> register(String name, String email, String password) async {
+  Future<void> register(
+    String email,
+    String password,
+    String name,
+    int phone,
+  ) async {
     emit(LoadingAuthState());
     try {
-      await _registeruser(name, email, password);
+      await _registeruser(email, password, name, phone);
       emit(SuccessAuthState());
     } catch (e) {
       emit(ErrorAuthState(e.toString()));

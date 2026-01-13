@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneRider/core/constant/App_Color.dart';
-import 'package:uberCloneRider/core/resources/CustomAppText.dart';
-import 'package:uberCloneRider/core/resources/customAppIcon.dart';
-import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
-import 'package:uberCloneRider/core/widgets/CustomServiceWidget.dart';
-import 'package:uberCloneRider/core/widgets/DefaultAppBar.dart';
-import 'package:uberCloneRider/feature/Tabs/widgets/Processitem.dart';
+import '../../../core/App_Imports/app_imports.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});

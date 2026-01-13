@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uberCloneRider/core/extension/navigation.dart';
 import 'package:uberCloneRider/core/resources/values_manager.dart';
 import 'package:uberCloneRider/core/routing/routes.dart';
 import 'package:uberCloneRider/core/widgets/error_indicator.dart';
@@ -18,10 +19,10 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   void dispose() {
@@ -50,7 +51,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   if (state is SuccessAuthState) {
                     // تنفيذ الـ navigation بعد أول frame
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Navigator.pop(context); // يغلق أي Loading
+                      context.pop(); // يغلق أي Loading
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           behavior: SnackBarBehavior.floating,
@@ -58,7 +59,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           content: Center(child: Text('Register successful!')),
                         ),
                       );
-                      Navigator.pushReplacementNamed(context, Routes.login);
+
+                      context.pushReplacementNamed(Routes.login);
                     });
                   } else if (state is ErrorAuthState) {
                     WidgetsBinding.instance.addPostFrameCallback((_) {

@@ -1,13 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneRider/core/routing/routes.dart';
-import 'package:uberCloneRider/feature/Auth/presentation/screens/login_screen.dart';
-import 'package:uberCloneRider/feature/Auth/presentation/screens/register_screen.dart';
-import 'package:uberCloneRider/feature/LandingPages/screens/landingPage.dart';
-import 'package:uberCloneRider/feature/NavBar/screens/NavBar.dart';
-import 'package:uberCloneRider/feature/Tabs/screens/home.dart';
-import 'package:uberCloneRider/feature/Tabs/screens/myRequests.dart';
-import 'package:uberCloneRider/feature/Tabs/screens/profile.dart';
-import 'package:uberCloneRider/feature/SearchingForDriverScreen/screen/SearchingForDriverScreen.dart';
+import '../../../core/App_Imports/app_imports.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {

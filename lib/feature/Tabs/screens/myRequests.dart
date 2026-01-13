@@ -1,56 +1,122 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneRider/core/resources/App_Size.dart';
-import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
-import 'package:uberCloneRider/core/widgets/DefaultAppBar.dart';
-import 'package:uberCloneRider/feature/TripSummary/presentation/widgets/PreviousReportsItem.dart';
+import '../../../core/App_Imports/app_imports.dart';
 
 class Myrequests extends StatelessWidget {
   const Myrequests({super.key});
 
+  String get currentRiderId => FirebaseAuth.instance.currentUser!.uid;
+
+  Stream<QuerySnapshot> acceptedTripsStream() {
+    return FirebaseFirestore.instance
+        .collection('trips')
+        .where('riderId', isEqualTo: currentRiderId)
+        .where('status', isEqualTo: 'accepted')
+        .snapshots();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar(title: 'prevoius reports'),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              PreviousReportsItem(
-                viewbutton: () {},
-                width1: appWidth(context) * 0.43,
-                width2: appWidth(context) * 0.43,
-                tripNumber: '478',
-                to: 'cairo',
-                from: 'alex',
-                textbutton1: 'share',
-                textbutton2: 'open',
-              ),
-              heightSizedbox(10),
-              PreviousReportsItem(
-                viewbutton: () {},
-                width1: appWidth(context) * 0.43,
-                width2: appWidth(context) * 0.43,
-                tripNumber: '479',
-                to: 'sahrm',
-                from: 'kafr',
-                textbutton1: 'share',
-                textbutton2: 'open',
-              ),
-              heightSizedbox(10),
-              PreviousReportsItem(
-                width1: appWidth(context),
-                width2: appWidth(context) * 0.86,
-                tripNumber: '480',
-                to: 'asuit',
-                from: 'miniah',
-                textbutton1: '',
-                textbutton2: 'report download',
-              ),
-            ],
-          ),
-        ),
+      appBar: DefaultAppBar(title: 'الرحلات المقبولة'),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: acceptedTripsStream(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (snapshot.hasError) {
+            return const Center(child: Text('حدث خطأ أثناء تحميل البيانات'));
+          }
+
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return const Center(child: Text('لا توجد رحلات مقبولة حالياً'));
+          }
+
+          final trips = snapshot.data!.docs;
+
+          return ListView.builder(
+            itemCount: trips.length,
+            itemBuilder: (context, index) {
+              final trip = trips[index].data() as Map<String, dynamic>;
+
+              final double fromLat = (trip['fromLat'] as num).toDouble();
+              final double fromLng = (trip['fromLng'] as num).toDouble();
+              final double toLat = (trip['toLat'] as num).toDouble();
+              final double toLng = (trip['toLng'] as num).toDouble();
+
+              final double price = (trip['price'] as num).toDouble();
+              final String tripId = trip['tripId'];
+              final String riderId = trip['riderId'];
+              // final String driverId = trip['driverId'];
+
+              return Card(
+                color: AppColors.blueColor,
+                margin: const EdgeInsets.all(12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      MyRequestItem('رقم الرحلة', tripId),
+                      MyRequestItem('السعر', '$price جنيه'),
+                      MyRequestItem('من', '$fromLat , $fromLng'),
+                      MyRequestItem('إلى', '$toLat , $toLng'),
+                      MyRequestItem('الحالة', trip['status']),
+                      const SizedBox(height: 10),
+
+                      Row(
+                        children: [
+                          Expanded(
+                            child: defaultElevatedButton(
+                              onPressed: () {
+                                openRouteInGoogleMaps(
+                                  fromLat: fromLat,
+                                  fromLng: fromLng,
+                                  toLat: toLat,
+                                  toLng: toLng,
+                                );
+                              },
+                              textbutton: 'عرض الرحلة',
+                              bgButtonColor: AppColors.whiteColor,
+                              width: appWidth(context),
+                              textcolor: AppColors.blackColor,
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 10),
+
+                      Row(
+                        children: [
+                          Expanded(
+                            child: defaultElevatedButton(
+                              onPressed: () async {
+                                await payForTrip(
+                                  tripId: tripId,
+                                  riderId: riderId,
+
+                                  amount: price,
+                                );
+                              },
+                              textbutton: 'دفع ${price.toInt()} جنيه',
+                              bgButtonColor: Colors.green,
+                              width: appWidth(context),
+                              textcolor: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }

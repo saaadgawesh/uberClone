@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uberCloneRider/core/extension/navigation.dart';
 import 'package:uberCloneRider/core/resources/values_manager.dart';
 import 'package:uberCloneRider/core/routing/routes.dart';
 import 'package:uberCloneRider/core/widgets/loading_indicator.dart';
@@ -32,13 +33,13 @@ class _LoginScreenState extends State<LoginScreen> {
               child: BlocListener<AuthCubit, AuthState>(
                 listener: (context, state) {
                   if (state is SuccessAuthState) {
-                    Navigator.pushReplacementNamed(context, Routes.navbar);
+                    context.pushReplacementNamed(Routes.navbar);
                   }
 
                   if (state is ErrorAuthState) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text("=====================error"),
+                        content: Text(state.e.toString()),
                         backgroundColor: Colors.red,
                       ),
                     );
@@ -46,11 +47,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 child: BlocBuilder<AuthCubit, AuthState>(
                   builder: (context, state) {
+                    final isLoading = state is LoadingAuthState;
                     if (state is LoadingAuthState) {
                       return const LoadingIndicator();
                     }
 
                     return BuildLoginForm(
+                      isLoading: isLoading,
                       emailController: _emailController,
                       passwordController: _passwordController,
                       formKey: _formKey,

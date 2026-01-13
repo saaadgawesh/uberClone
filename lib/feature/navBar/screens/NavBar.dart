@@ -1,10 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneRider/feature/Tabs/screens/home.dart';
-import 'package:uberCloneRider/feature/Tabs/screens/myRequests.dart';
-import 'package:uberCloneRider/feature/Tabs/screens/profile.dart';
-import 'package:uberCloneRider/feature/Tabs/screens/requestCar.dart';
-import 'package:uberCloneRider/feature/NavBar/widgets/CustomButtomNavBar.dart';
 
+import '../../../core/App_Imports/app_imports.dart';
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
 
@@ -16,8 +11,8 @@ class _NavbarState extends State<Navbar> {
   int _currentIndex = 3;
   final List<Widget> _tabs = [
     const Profile(),
-    const Requestcar(),
-    const Myrequests(),
+     Requestcar(),
+     Myrequests(),
     const Home(),
   ];
   @override

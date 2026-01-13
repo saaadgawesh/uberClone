@@ -1,11 +1,4 @@
-// ignore: file_names
-import 'package:flutter/material.dart';
-import 'package:uberCloneRider/core/constant/App_Color.dart';
-import 'package:uberCloneRider/core/resources/App_Size.dart';
-import 'package:uberCloneRider/core/resources/CustomAppText.dart';
-import 'package:uberCloneRider/core/resources/customAppIcon.dart';
-import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
-import 'package:uberCloneRider/core/widgets/CustomContainer.dart';
+import '../../../core/App_Imports/app_imports.dart';
 
 class Processitem extends StatelessWidget {
   const Processitem({

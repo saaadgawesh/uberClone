@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uberCloneRider/core/constant/App_Color.dart';
+import 'package:uberCloneRider/core/extension/navigation.dart';
 import 'package:uberCloneRider/core/resources/AppTextStyles.dart';
 import 'package:uberCloneRider/core/resources/App_Size.dart';
 import 'package:uberCloneRider/core/resources/font_manager.dart';
@@ -15,6 +16,7 @@ import 'package:uberCloneRider/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
 class BuildLoginForm extends StatelessWidget {
   const BuildLoginForm({
     super.key,
+    required this.isLoading,
     required TextEditingController emailController,
     required TextEditingController passwordController,
     required GlobalKey<FormState> formKey,
@@ -25,6 +27,7 @@ class BuildLoginForm extends StatelessWidget {
   final TextEditingController _emailController;
   final TextEditingController _passwordController;
   final GlobalKey<FormState> _formKey;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +100,7 @@ class BuildLoginForm extends StatelessWidget {
             ),
             SizedBox(width: Sizes.s8.w),
             GestureDetector(
-              onTap: () => Navigator.pushNamed(context, Routes.register),
+              onTap: () => context.pushNamed(Routes.register),
               child: Text(
                 'Create Account',
                 style: AppTextStyles.georgiaH3.copyWith(
