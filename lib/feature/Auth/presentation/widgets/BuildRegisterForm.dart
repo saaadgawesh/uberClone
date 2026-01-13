@@ -171,9 +171,6 @@ class _BuildRegisterFormState extends State<BuildRegisterForm> {
                   widget._passwordController.text.trim(),
                   widget._nameController.text.trim(),
                   int.parse(widget._phoneController.text.trim()),
-                  int.parse(widget.cardmodelcontroller.text.trim()),
-                  widget.carnumbercontroller.text.trim(),
-                  currentLocation!, // استخدم المتغير مباشرة
                 );
               }
             },

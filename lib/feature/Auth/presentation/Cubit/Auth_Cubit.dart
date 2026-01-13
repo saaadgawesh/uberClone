@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uberCloneDriver/feature/Auth/DomainLayer/UserCases/LoginUser.dart';
 import 'package:uberCloneDriver/feature/Auth/DomainLayer/UserCases/RegisterUser.dart';
@@ -15,21 +14,10 @@ class AuthCubit extends Cubit<AuthState> {
     String password,
     String name,
     int phone,
-    int carModel,
-    String carNumber,
-    GeoPoint location,
   ) async {
     emit(LoadingAuthState());
     try {
-      await _registeruser(
-        email,
-        password,
-        name,
-        phone,
-        carModel,
-        carNumber,
-        location,
-      );
+      await _registeruser(email, password, name, phone);
       emit(SuccessAuthState());
     } catch (e) {
       emit(ErrorAuthState(e.toString()));

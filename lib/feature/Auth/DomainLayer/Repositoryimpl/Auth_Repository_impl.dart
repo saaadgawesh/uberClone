@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:uberCloneDriver/feature/Auth/DomainLayer/userEntity/AuthEntity.dart';
 import 'package:uberCloneDriver/feature/Auth/dataLayer/models/Usermodel.dart';
 import 'package:uberCloneDriver/feature/Auth/dataLayer/repository/AuthRepository.dart';
-import 'package:uberCloneDriver/feature/Location/Location_Controller/Location_Manager.dart';
 
 class AuthRepositoryImpl implements Authrepository {
   final FirebaseAuth auth = FirebaseAuth.instance;
@@ -16,9 +15,6 @@ class AuthRepositoryImpl implements Authrepository {
     String password,
     String name,
     int phone,
-    int carModel,
-    String carNumber,
-    GeoPoint location,
   ) async {
     try {
       final credential = await auth.createUserWithEmailAndPassword(
@@ -33,39 +29,22 @@ class AuthRepositoryImpl implements Authrepository {
         name: name,
         email: email,
         phone: phone,
-        carModel: carModel,
-        carNumber: carNumber,
-        location: location,
       );
-      final locationmanager = LocationManager();
-      final locationdata = await locationmanager.getUserLocation();
-      if (locationdata != null) {
-        final geoPoint = GeoPoint(
-          locationdata.latitude!,
-          locationdata.longitude!,
-        );
-        await firestore.collection('Driver').doc(uid).set({
-          "id": uid,
-          "name": name,
-          "email": email,
-          "phone": phone,
-          "carModel": carModel,
-          "carNumber": carNumber,
-          "location": geoPoint,
-          "status": "available",
-          "isOnline": true,
-          "updatedAt": FieldValue.serverTimestamp(),
-        });
-      }
+
+      await firestore.collection('Admin').doc(uid).set({
+        "id": uid,
+        "name": name,
+        "email": email,
+        "phone": phone,
+
+        "updatedAt": FieldValue.serverTimestamp(),
+      });
 
       return UserEntity(
         id: userModel.id,
         name: userModel.name,
         email: userModel.email,
         phone: userModel.phone,
-        carModel: userModel.carModel,
-        carNumber: userModel.carNumber,
-        location: userModel.location,
       );
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
@@ -91,7 +70,7 @@ class AuthRepositoryImpl implements Authrepository {
       );
 
       final doc = await firestore
-          .collection('Driver')
+          .collection('Admin')
           .doc(credential.user!.uid)
           .get();
 
@@ -106,9 +85,6 @@ class AuthRepositoryImpl implements Authrepository {
         name: userModel.name,
         email: userModel.email,
         phone: userModel.phone,
-        carModel: userModel.carModel,
-        carNumber: userModel.carNumber,
-        location: userModel.location,
       );
     } on FirebaseAuthException catch (e) {
       switch (e.code) {

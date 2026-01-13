@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uberCloneDriver/feature/Auth/DomainLayer/userEntity/AuthEntity.dart';
 
 abstract class Authrepository {
@@ -8,9 +7,6 @@ abstract class Authrepository {
     String password,
     String name,
     int phone,
-    int carModel,
-    String carNumber,
-    GeoPoint location,
   );
   Future<void> logout();
 }
