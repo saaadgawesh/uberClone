@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/extension/navigation.dart';
-import 'package:uberCloneDriver/core/resources/App_Size.dart';
-import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
-
+import '../../core/App_Imports/app_imports.dart';
 class ErrorIndicator extends StatelessWidget {
   final String message;
 

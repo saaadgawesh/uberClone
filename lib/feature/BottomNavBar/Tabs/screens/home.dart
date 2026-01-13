@@ -1,14 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/extension/navigation.dart';
-import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
-import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
-import 'package:uberCloneDriver/core/routing/routes.dart';
-import 'package:uberCloneDriver/core/widgets/CustomServiceWidget.dart';
-import 'package:uberCloneDriver/core/widgets/DefaultAppBar.dart';
-import 'package:uberCloneDriver/core/widgets/spacing.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/Processitem.dart';
-
+import '../../../../core/App_Imports/app_imports.dart';
 class Home extends StatelessWidget {
   const Home({super.key});
 

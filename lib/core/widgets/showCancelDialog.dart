@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/constant/assets.dart';
-import 'package:uberCloneDriver/core/extension/navigation.dart';
-import 'package:uberCloneDriver/core/resources/AppTextStyles.dart';
-import 'package:uberCloneDriver/core/widgets/appbutton.dart';
-import 'package:uberCloneDriver/core/widgets/spacing.dart';
-
+import '../../core/App_Imports/app_imports.dart';
 void showCancelDialog(BuildContext context) {
   showDialog(
     context: context,

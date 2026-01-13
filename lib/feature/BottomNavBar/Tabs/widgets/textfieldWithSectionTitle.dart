@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
-import 'package:uberCloneDriver/core/widgets/App_TextField.dart';
+import '../../../../core/App_Imports/app_imports.dart';
 
 class Textfieldwithsectiontitle extends StatelessWidget {
   const Textfieldwithsectiontitle({

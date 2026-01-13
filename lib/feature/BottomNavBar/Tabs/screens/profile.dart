@@ -1,15 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/constant/assets.dart';
-import 'package:uberCloneDriver/core/resources/App_Size.dart';
-import 'package:uberCloneDriver/core/widgets/DefaultAppBar.dart';
-import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneDriver/core/widgets/spacing.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/Processitem.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/textfieldWithSectionTitle.dart';
-
+import '../../../../core/App_Imports/app_imports.dart';
 class Profile extends StatefulWidget {
   const Profile({super.key});
 

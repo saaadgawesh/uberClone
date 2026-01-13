@@ -1,10 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/resources/App_Size.dart';
-import 'package:uberCloneDriver/core/widgets/DefaultAppBar.dart';
-import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
-
+import '../../../../core/App_Imports/app_imports.dart';
 
 class SearchingForDriverScreen extends StatelessWidget {
   final String tripId;

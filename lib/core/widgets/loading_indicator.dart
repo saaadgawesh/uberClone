@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
+import '../../core/App_Imports/app_imports.dart';
 
 class LoadingIndicator extends StatelessWidget {
   const LoadingIndicator();

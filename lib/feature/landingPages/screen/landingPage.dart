@@ -1,14 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/extension/navigation.dart';
-import 'package:uberCloneDriver/core/resources/App_Size.dart';
-import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
-import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
-import 'package:uberCloneDriver/core/routing/routes.dart';
-import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneDriver/core/widgets/spacing.dart';
-import 'package:uberCloneDriver/feature/landingPages/models/landingPageModel.dart';
-
+import '../../../core/App_Imports/app_imports.dart';
 class Landingpage extends StatefulWidget {
   const Landingpage({super.key});
 

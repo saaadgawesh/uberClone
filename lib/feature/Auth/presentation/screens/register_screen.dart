@@ -1,14 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:uberCloneDriver/core/extension/navigation.dart';
-import 'package:uberCloneDriver/core/resources/values_manager.dart';
-import 'package:uberCloneDriver/core/routing/routes.dart';
-import 'package:uberCloneDriver/core/widgets/error_indicator.dart';
-import 'package:uberCloneDriver/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
-import 'package:uberCloneDriver/feature/Auth/presentation/Cubit/Auth_State.dart';
-import 'package:uberCloneDriver/feature/Auth/presentation/widgets/BuildRegisterForm.dart';
-
+import '../../../../core/App_Imports/app_imports.dart';
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 

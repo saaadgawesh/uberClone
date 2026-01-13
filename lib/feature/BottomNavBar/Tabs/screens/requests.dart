@@ -1,20 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/resources/AppDivider.dart';
-import 'package:uberCloneDriver/core/resources/App_Size.dart';
-import 'package:uberCloneDriver/core/resources/customAppText.dart';
-import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
-import 'package:uberCloneDriver/core/widgets/DefaultAppBar.dart';
-import 'package:uberCloneDriver/core/widgets/spacing.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/DriverRepository.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/acceptTrip.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/openMaps.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/rejectTrip.dart';
-
+import '../../../../core/App_Imports/app_imports.dart';
 class Requests extends StatelessWidget {
   final DriverRepository driverRepo = DriverRepository();
-
+  Requests({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,11 +27,6 @@ class Requests extends StatelessWidget {
             itemCount: trips.length,
             itemBuilder: (context, index) {
               final trip = trips[index].data();
-
-              final double fromLat = (trip['fromLat'] as num).toDouble();
-              final double fromLng = (trip['fromLng'] as num).toDouble();
-              final double toLat = (trip['toLat'] as num).toDouble();
-              final double toLng = (trip['toLng'] as num).toDouble();
 
               return Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -97,12 +79,8 @@ class Requests extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               acceptTrip(trips[index].id);
-                              openRouteInGoogleMaps(
-                                fromLat: fromLat,
-                                fromLng: fromLng,
-                                toLat: toLat,
-                                toLng: toLng,
-                              );
+
+                              context.pushNamed(Routes.TripsPage);
                             },
                             child: CustomContainer(
                               bgContainerColor: AppColors.greenColor,

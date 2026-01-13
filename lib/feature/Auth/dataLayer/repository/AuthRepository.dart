@@ -1,6 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:uberCloneDriver/feature/Auth/DomainLayer/userEntity/AuthEntity.dart';
-
+import '../../../../core/App_Imports/app_imports.dart';
 abstract class Authrepository {
   Future<UserEntity> login(String email, String password);
   Future<UserEntity> register(
