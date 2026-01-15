@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneRider/core/constant/App_Color.dart';
-
+import '../../../core/App_Imports/app_imports.dart';
 class Custombuttomnavbar extends StatelessWidget {
   const Custombuttomnavbar({
     super.key,
@@ -11,6 +9,9 @@ class Custombuttomnavbar extends StatelessWidget {
   final int currentIndex;
   @override
   Widget build(BuildContext context) {
+     Color bgcolor = Provider.of<Settingprovider>(context).isDark
+        ? AppColors.blackColor
+        : AppColors.blueColor;
     return ClipRRect(
       borderRadius: BorderRadiusGeometry.only(
         topRight: Radius.circular(15),
@@ -27,7 +28,7 @@ class Custombuttomnavbar extends StatelessWidget {
         unselectedItemColor: AppColors.whiteColor.withOpacity(0.5),
         selectedIconTheme: IconThemeData(size: 22),
         unselectedIconTheme: IconThemeData(size: 20),
-        backgroundColor: AppColors.blueColor,
+        backgroundColor: bgcolor,
         currentIndex: currentIndex,
         onTap: onTap,
         type: BottomNavigationBarType.fixed,

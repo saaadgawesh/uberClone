@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneRider/core/constant/App_Color.dart';
-import 'package:uberCloneRider/core/resources/CustomAppText.dart';
-import 'package:uberCloneRider/core/resources/customAppIcon.dart';
+import 'package:uberCloneRider/core/App_Imports/app_imports.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   const DefaultAppBar({
@@ -30,7 +27,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
           bottomLeft: Radius.circular(20),
         ),
       ),
-      backgroundColor: const Color.fromARGB(255, 9, 76, 132),
+      backgroundColor: context.bgColor,
       elevation: 0,
       title: CustomAppText(
         text: title ?? '',

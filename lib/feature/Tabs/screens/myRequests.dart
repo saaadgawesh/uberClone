@@ -50,7 +50,7 @@ class Myrequests extends StatelessWidget {
               // final String driverId = trip['driverId'];
 
               return Card(
-                color: AppColors.blueColor,
+                color: context.bgColor,
                 margin: const EdgeInsets.all(12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),

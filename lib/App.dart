@@ -1,5 +1,5 @@
-
 import 'package:uberCloneRider/core/App_Imports/app_imports.dart';
+
 class App extends StatelessWidget {
   const App({super.key});
 
@@ -15,12 +15,15 @@ class App extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           debugShowCheckedModeBanner: false,
           theme: Appthem.lighttheme,
-          themeMode: ThemeMode.light,
+          themeMode: context.settingProvider.themeMode,
           darkTheme: Appthem.lighttheme,
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: Routes.login,
+          initialRoute: Routes.landingpage,
+          locale: Locale(context.settingProvider.languauge),
         ),
       ),
     );

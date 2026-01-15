@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneRider/core/constant/App_Color.dart';
-import 'package:uberCloneRider/core/resources/App_Size.dart';
-import 'package:uberCloneRider/core/widgets/CustomContainer.dart';
+import 'package:uberCloneRider/core/App_Imports/app_imports.dart';
 
 class defaultFloatingActionButton extends StatelessWidget {
   const defaultFloatingActionButton({
@@ -23,7 +20,7 @@ class defaultFloatingActionButton extends StatelessWidget {
       height: appHeight(context) * 0.097,
       width: appWidth(context) * 0.14,
       child: FloatingActionButton(
-        backgroundColor: backgroundColor ?? AppColors.blueColor,
+        backgroundColor: context.bgColor,
         onPressed: onpressed,
         child: Icon(
           iconName ?? Icons.my_location,

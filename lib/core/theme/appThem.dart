@@ -8,4 +8,10 @@ class Appthem {
       elevation: 0,
     ),
   );
+  static ThemeData darktheme = ThemeData(
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColors.transparent,
+      elevation: 0,
+    ),
+  );
 }

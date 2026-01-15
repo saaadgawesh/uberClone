@@ -1,13 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneRider/core/constant/App_Color.dart';
-import 'package:uberCloneRider/core/resources/App_Size.dart';
-import 'package:uberCloneRider/core/resources/CustomAppText.dart';
-import 'package:uberCloneRider/core/resources/customAppIcon.dart';
-import 'package:uberCloneRider/core/resources/sizedboxWidget.dart';
-import 'package:uberCloneRider/core/routing/routes.dart';
-import 'package:uberCloneRider/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneRider/feature/LandingPages/models/landingPageModel.dart';
-
+import '../../../core/App_Imports/app_imports.dart';
 class Landingpage extends StatefulWidget {
   const Landingpage({super.key});
 
@@ -26,14 +17,50 @@ class _LandingpageState extends State<Landingpage> {
         crossAxisAlignment: CrossAxisAlignment.end,
 
         children: [
+          VSpace(20),
           Padding(
-            padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
+            padding: const EdgeInsets.only(left: 15, right: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 currentIndex == 0
-                    ? customAppIcon(iconName: Icons.language)
-                    : SizedBox(width: 20, height: 22),
+                    ? DropdownButtonHideUnderline(
+                        child: SizedBox(
+                          width: 65.w,
+                          child: DropdownButtonFormField<String>(
+                            icon: Icon(
+                              Icons.arrow_drop_down_circle_outlined,
+                              color: context.bgColor,
+                            ),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                            ),
+                            value: context.settingProvider.languauge,
+                            items: [
+                              DropdownMenuItem(
+                                value: "en",
+                                child: CustomAppText(
+                                  text: "En",
+                                  fontWeight: FontWeight.bold,
+                                  textColor: context.bgColor,
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: "ar",
+                                child: CustomAppText(
+                                  text: "Ar",
+                                  fontWeight: FontWeight.bold,
+                                  textColor: context.bgColor,
+                                ),
+                              ),
+                            ],
+                            onChanged: (String? value) {
+                              context.settingProvider.chanelanguage(value!);
+                            },
+                          ),
+                        ),
+                      )
+                    : SizedBox(height: 50),
                 _buildDotsIndicator(),
               ],
             ),
@@ -104,7 +131,7 @@ class _LandingpageState extends State<Landingpage> {
                 curve: Curves.easeInOut,
               );
             } else {
-              Navigator.of(context).pushNamed(Routes.login);
+              Navigator.of(context).pushNamed(Routes.navbar);
             }
           },
         ),

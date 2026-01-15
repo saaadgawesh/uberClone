@@ -6,8 +6,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   Bloc.observer = AppBlocObserver();
-    if (kDebugMode) {
+  if (kDebugMode) {
     FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
   }
-  runApp(App());
+  runApp(
+    ChangeNotifierProvider(
+      create: (BuildContext context) => Settingprovider(),
+      child: App(),
+    ),
+  );
 }

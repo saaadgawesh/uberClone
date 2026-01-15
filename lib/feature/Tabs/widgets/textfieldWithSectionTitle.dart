@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneRider/core/constant/App_Color.dart';
-import 'package:uberCloneRider/core/resources/CustomAppText.dart';
-import 'package:uberCloneRider/core/widgets/App_TextField.dart';
+import 'package:uberCloneRider/core/App_Imports/app_imports.dart';
 
 class Textfieldwithsectiontitle extends StatelessWidget {
   const Textfieldwithsectiontitle({
@@ -22,7 +19,7 @@ class Textfieldwithsectiontitle extends StatelessWidget {
       children: [
         CustomAppText(
           text: text,
-          textColor: AppColors.blueColor,
+          textColor: context.bgColor,
 
           fontWeight: FontWeight.w500,
         ),

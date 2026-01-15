@@ -23,7 +23,7 @@ class Processitem extends StatelessWidget {
       height: appHeight(context) * 0.16,
       width: appWidth(context) * 0.93,
       borderRadius: BorderRadius.circular(15),
-      bgContainerColor: backgroundColor,
+      bgContainerColor: context.bgColor,
       child: Row(
         children: [
           CircleAvatar(
