@@ -95,10 +95,10 @@ class Myrequests extends StatelessWidget {
                           Expanded(
                             child: defaultElevatedButton(
                               onPressed: () async {
-                                await payForTrip(
+                                final paymobManager = Paymentmanager();
+                                await paymobManager.payForTripWithPaymob(
                                   tripId: tripId,
                                   riderId: riderId,
-
                                   amount: price,
                                 );
                               },

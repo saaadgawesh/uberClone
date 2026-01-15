@@ -4,6 +4,7 @@
 export 'dart:convert';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
+export 'package:dio/dio.dart';
 // ================== Firebase ==================
 export 'package:firebase_auth/firebase_auth.dart';
 export 'package:firebase_core/firebase_core.dart';
@@ -54,14 +55,16 @@ export 'package:uberCloneRider/feature/Tabs/screens/Myrequests.dart';
 export 'package:uberCloneRider/feature/Tabs/screens/home.dart';
 export 'package:uberCloneRider/feature/Tabs/screens/profile.dart';
 export 'package:uberCloneRider/feature/Tabs/screens/requestCar.dart';
-export 'package:uberCloneRider/feature/Tabs/widgets/payForTrip.dart';
 export 'package:uberCloneRider/feature/Tabs/widgets/MyRequestItem.dart';
 export 'package:uberCloneRider/feature/Tabs/widgets/Processitem.dart';
 export 'package:uberCloneRider/feature/Tabs/widgets/openRouteInGoogleMaps.dart';
+export 'package:uberCloneRider/feature/payment/payForTrip.dart';
 export 'package:uberCloneRider/feature/TripSummary/TripRepository.dart';
 export 'package:uberCloneRider/feature/TripSummary/data/models/tripModel.dart';
 export 'package:uberCloneRider/feature/TripSummary/presentation/screen/TripSummaryScreen.dart';
 export 'package:uberCloneRider/feature/TripSummary/presentation/widgets/PreviousReportsItem.dart';
 export 'package:uberCloneRider/feature/TripSummary/presentation/widgets/TripSummaryDetalis.dart';
 export 'package:uberCloneRider/feature/TripSummary/presentation/widgets/Trip_Summary_titleSection.dart';
+export 'package:uberCloneRider/core/constant/apiConstant.dart';
 export 'package:uberCloneRider/firebase_options.dart';
+export 'package:url_launcher/url_launcher.dart';
