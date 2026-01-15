@@ -1,10 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/resources/App_Size.dart';
-import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
-import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
-import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
-import 'package:uberCloneDriver/core/widgets/spacing.dart';
+import '../Imports/app_imports.dart';
 
 // ignore: camel_case_types
 class defaultElevatedButton extends StatelessWidget {
@@ -33,13 +27,16 @@ class defaultElevatedButton extends StatelessWidget {
   final double? fontSize;
   @override
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     return CustomContainer(
       padding: padding,
       height: height ?? appHeight(context) * 0.07,
       width: width,
 
       borderRadius: BorderRadius.circular(15),
-      bgContainerColor: bgButtonColor,
+      bgContainerColor: settingsProvider.isdark
+          ? AppColors.blackColorwithopacity
+          : AppColors.blueColor,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.transparent,

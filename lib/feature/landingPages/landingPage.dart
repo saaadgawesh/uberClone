@@ -1,13 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/extension/navigation.dart';
-import 'package:uberCloneDriver/core/resources/App_Size.dart';
-import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
-import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
-import 'package:uberCloneDriver/core/routing/routes.dart';
-import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneDriver/core/widgets/spacing.dart';
-import 'package:uberCloneDriver/feature/landingPages/models/landingPageModel.dart';
+import '../../core/Imports/app_imports.dart';
 
 class Landingpage extends StatefulWidget {
   const Landingpage({super.key});
@@ -22,6 +13,7 @@ class _LandingpageState extends State<Landingpage> {
 
   @override
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -33,8 +25,8 @@ class _LandingpageState extends State<Landingpage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 currentIndex == 0
-                    ? customAppIcon(iconName: Icons.language)
-                    : SizedBox(width: 20, height: 22),
+                    ? customdropdownButton(settingsProvider: settingsProvider)
+                    : SizedBox(height: 65.h),
                 _buildDotsIndicator(),
               ],
             ),
@@ -58,7 +50,7 @@ class _LandingpageState extends State<Landingpage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(model.image),
-                             VSpace(20),
+                      VSpace(20),
 
                       CustomAppText(
                         text: model.title,
@@ -66,16 +58,18 @@ class _LandingpageState extends State<Landingpage> {
                         fontWeight: FontWeight.w700,
                       ),
 
-                             VSpace(10),
+                      VSpace(10),
 
                       CustomAppText(
                         text: model.text,
                         fontSize: 16,
-                        textColor: AppColors.blueColor,
+                        textColor: settingsProvider.isdark
+                            ? AppColors.blackColorwithopacity
+                            : AppColors.blueColor,
                         fontWeight: FontWeight.w700,
                       ),
 
-                             VSpace(10),
+                      VSpace(10),
 
                       CustomAppText(
                         textAlign: TextAlign.center,

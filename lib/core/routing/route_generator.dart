@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/routing/routes.dart';
-import 'package:uberCloneDriver/feature/Auth/presentation/screens/login_screen.dart';
-import 'package:uberCloneDriver/feature/Auth/presentation/screens/register_screen.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/home.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/profile.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/navBar/screens/NavBar.dart';
-import 'package:uberCloneDriver/feature/landingPages/landingPage.dart';
-
+import '../Imports/app_imports.dart';
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -37,13 +29,7 @@ class RouteGenerator {
         );
       case Routes.profile:
         return MaterialPageRoute(builder: (_) => Profile(), settings: settings);
-      // case Routes.tripSummary:
-      //   return MaterialPageRoute(
-      //     builder: (_) => TripSummaryScreen(),
-      //     settings: settings,
-      //   );
-      //   case Routes.myrequests:
-      //     return MaterialPageRoute(builder: (_) => const myre());
+
       default:
         return _undefinedRoute();
     }

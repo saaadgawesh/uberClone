@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/resources/App_Size.dart';
-import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
-
+import '../Imports/app_imports.dart';
 enum TextFieldBorderType { filled, outlined, underlined, none }
 
 class AppTextField extends StatelessWidget {

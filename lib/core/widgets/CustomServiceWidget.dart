@@ -1,13 +1,26 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
-import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
-import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
-import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
-import 'package:uberCloneDriver/core/widgets/spacing.dart';
+import "../Imports/app_imports.dart";
 
 // ignore: non_constant_identifier_names
-Widget CustomServiceWidget(BuildContext context) {
+Widget CustomServiceWidget(BuildContext context, int index) {
+  List<String> titles = [
+    "المحفظه",
+    "رحلاتي",
+    "الرحلات السابقه",
+    "الباقات والعروض",
+  ];
+  List<String> desc = [
+    "اداره المدفوعات",
+    "اداره وتتبع الرحلات",
+    "عرض كشوفات الركاب ",
+    "عرض واداره الباقات",
+  ];
+  List<IconData> icons = [
+    Icons.wallet,
+    Icons.alarm,
+    Icons.menu,
+    Icons.accessibility_new_sharp,
+  ];
+  SettingsProvider settingsProvider = Provider.of(context);
   return CustomContainer(
     height: 50,
     width: 50,
@@ -21,16 +34,26 @@ Widget CustomServiceWidget(BuildContext context) {
           height: 40,
           width: 40,
           borderRadius: BorderRadius.circular(10),
-          bgContainerColor: AppColors.blueColor,
+          bgContainerColor: settingsProvider.isdark
+              ? AppColors.blackColorwithopacity
+              : AppColors.blueColor,
           child: customAppIcon(
-            iconName: Icons.alarm,
+            iconName: icons[index],
             iconColor: AppColors.whiteColor,
           ),
         ),
 
         VSpace(8),
-        CustomAppText(text: 'data', fontSize: 16, fontWeight: FontWeight.bold),
-        CustomAppText(text: 'data', textColor: AppColors.blackColorwithopacity),
+        CustomAppText(
+          text: titles[index],
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+        CustomAppText(
+          text: desc[index],
+          textColor: AppColors.blackColorwithopacity,
+          textAlign: TextAlign.center,
+        ),
       ],
     ),
   );

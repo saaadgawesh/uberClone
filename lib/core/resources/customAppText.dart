@@ -25,12 +25,12 @@ class CustomAppText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      textAlign: textAlign ?? TextAlign.end,
+      textAlign: textAlign ?? TextAlign.start,
       maxLines: maxLines,
       softWrap: true,
       overflow: overflow ?? TextOverflow.visible,
       style: TextStyle(
-        color: textColor ?? AppColors .blackColor,
+        color: textColor ?? AppColors.blackColor,
         fontSize: fontSize ?? 14,
         fontWeight: fontWeight ?? FontWeight.normal,
       ),

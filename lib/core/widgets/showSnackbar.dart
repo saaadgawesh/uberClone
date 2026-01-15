@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/resources/customAppText.dart';
+import "../Imports/app_imports.dart";
 
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
   BuildContext context,
@@ -9,11 +7,11 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
   return ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       behavior: SnackBarBehavior.floating,
-      backgroundColor: AppColors .redColor,
+      backgroundColor: AppColors.redColor,
       content: CustomAppText(
         text: title,
         textAlign: TextAlign.center,
-        textColor: AppColors .whiteColor,
+        textColor: AppColors.whiteColor,
         fontWeight: FontWeight.bold,
         fontSize: 16,
       ),

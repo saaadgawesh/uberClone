@@ -1,11 +1,4 @@
-// ignore: file_names
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/resources/App_Size.dart';
-import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
-import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
-import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
-import 'package:uberCloneDriver/core/widgets/spacing.dart';
+import 'package:uberCloneDriver/core/Imports/app_imports.dart';
 
 class Processitem extends StatelessWidget {
   const Processitem({
@@ -25,43 +18,18 @@ class Processitem extends StatelessWidget {
   final Widget? child;
   @override
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     return CustomContainer(
       padding: EdgeInsets.all(15),
-      height: appHeight(context) * 0.19,
+      height: appHeight(context) * 0.2,
       width: appWidth(context) * 0.93,
       borderRadius: BorderRadius.circular(15),
-      bgContainerColor: backgroundColor,
+      bgContainerColor: settingsProvider.isdark
+          ? AppColors.blackColorwithopacity
+          : AppColors.blueColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          CircleAvatar(
-            // ignore: deprecated_member_use
-            backgroundColor: AppColors.greyColor.withOpacity(0.4),
-            radius: 20,
-            child: customAppIcon(
-              iconName: leadIcon,
-              iconColor: AppColors.whiteColor,
-            ),
-          ),
-          SizedBox(
-            width: appWidth(context) * 0.5,
-            child: Column(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomAppText(text: title, textColor: AppColors.whiteColor),
-                    VSpace(5),
-                    CustomAppText(
-                      text: description,
-                      textColor: AppColors.whiteColor,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
           HSpace(5),
           if (child != null)
             CustomContainer(
@@ -72,6 +40,32 @@ class Processitem extends StatelessWidget {
               bgContainerColor: AppColors.greyColor,
               child: child!,
             ),
+
+          SizedBox(
+            width: appWidth(context) * 0.5,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomAppText(text: title, textColor: AppColors.whiteColor),
+                VSpace(5),
+                CustomAppText(
+                  text: description,
+                  textColor: AppColors.whiteColor,
+                ),
+              ],
+            ),
+          ),
+
+          CircleAvatar(
+            // ignore: deprecated_member_use
+            backgroundColor: AppColors.greyColor.withOpacity(0.4),
+            radius: 20,
+            child: customAppIcon(
+              iconName: leadIcon,
+              iconColor: AppColors.whiteColor,
+            ),
+          ),
         ],
       ),
     );

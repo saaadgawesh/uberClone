@@ -14,7 +14,6 @@ import 'package:uberCloneDriver/core/utils/validator.dart';
 import 'package:uberCloneDriver/core/widgets/App_TextField.dart';
 import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
 import 'package:uberCloneDriver/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
-import 'package:uberCloneDriver/feature/Location/Location_Controller/Location_Manager.dart';
 
 // ignore: unused_element
 class BuildRegisterForm extends StatefulWidget {
@@ -27,8 +26,6 @@ class BuildRegisterForm extends StatefulWidget {
 
     required this.isLoading,
     required GlobalKey<FormState> formKey,
-    required this.cardmodelcontroller,
-    required this.carnumbercontroller,
   }) : _nameController = nameController,
        _phoneController = phoneController,
        _emailController = emailController,
@@ -39,8 +36,6 @@ class BuildRegisterForm extends StatefulWidget {
   final TextEditingController _phoneController;
   final TextEditingController _emailController;
   final TextEditingController _passwordController;
-  final TextEditingController cardmodelcontroller;
-  final TextEditingController carnumbercontroller;
 
   final bool isLoading;
   final GlobalKey<FormState> _formKey;
@@ -54,6 +49,7 @@ class _BuildRegisterFormState extends State<BuildRegisterForm> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(height: Sizes.s20.h),
@@ -85,24 +81,7 @@ class _BuildRegisterFormState extends State<BuildRegisterForm> {
           controller: widget._emailController,
         ),
         SizedBox(height: Sizes.s18.h),
-        AppTextField(
-          hintText: 'Enter your car model',
-          filledColor: AppColors.whiteColor,
-          labelText: 'car model',
-          // validator: Validator.validateEmail,
-          // keyboardType: TextInputType.emailAddress,
-          controller: widget.cardmodelcontroller,
-        ),
-        SizedBox(height: Sizes.s18.h),
-        AppTextField(
-          hintText: 'Enter your car Number',
-          filledColor: AppColors.whiteColor,
-          labelText: 'car Number',
-          // validator: Validator.validateEmail,
-          keyboardType: TextInputType.emailAddress,
-          controller: widget.carnumbercontroller,
-        ),
-        SizedBox(height: Sizes.s18.h),
+
         AppTextField(
           hintText: 'Enter your password',
           filledColor: AppColors.whiteColor,
@@ -112,40 +91,7 @@ class _BuildRegisterFormState extends State<BuildRegisterForm> {
           keyboardType: TextInputType.text,
           controller: widget._passwordController,
         ),
-        SizedBox(height: Sizes.s50.h),
-        defaultElevatedButton(
-          onPressed: () async {
-            final locationManager = LocationManager();
 
-            final locationData = await locationManager.getUserLocation();
-            if (locationData != null) {
-              final geoPoint = GeoPoint(
-                locationData.latitude!,
-                locationData.longitude!,
-              );
-              setState(() {
-                currentLocation = geoPoint; // متغير في StatefulWidget
-              });
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  backgroundColor: AppColors.greenColor,
-                  content: Text("Location fetched!"),
-                ),
-              );
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  behavior: SnackBarBehavior.floating,
-                  content: Text("Permission denied or service disabled"),
-                ),
-              );
-            }
-          },
-          textbutton: 'get current location',
-          bgButtonColor: AppColors.blueColor,
-          width: appWidth(context),
-          textcolor: AppColors.whiteColor,
-        ),
         SizedBox(height: Sizes.s20.h),
         SizedBox(
           height: Sizes.s60.h,
@@ -154,25 +100,12 @@ class _BuildRegisterFormState extends State<BuildRegisterForm> {
             textbutton: widget.isLoading ? 'Loading...' : 'Register',
             bgButtonColor: AppColors.blueColor,
             onPressed: () {
-              if (widget._formKey.currentState!.validate()) {
-                if (currentLocation == null) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      behavior: SnackBarBehavior.floating,
-                      backgroundColor: AppColors.error,
-                      content: Text("Please get your current location first"),
-                    ),
-                  );
-                  return;
-                }
-
-                context.read<AuthCubit>().register(
-                  widget._emailController.text.trim(),
-                  widget._passwordController.text.trim(),
-                  widget._nameController.text.trim(),
-                  int.parse(widget._phoneController.text.trim()),
-                );
-              }
+              context.read<AuthCubit>().register(
+                widget._emailController.text.trim(),
+                widget._passwordController.text.trim(),
+                widget._nameController.text.trim(),
+                int.parse(widget._phoneController.text.trim()),
+              );
             },
             textcolor: AppColors.whiteColor,
             width: appWidth(context),

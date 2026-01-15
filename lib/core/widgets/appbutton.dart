@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/resources/AppTextStyles.dart';
-import 'package:uberCloneDriver/core/widgets/AppClick.dart';
+import '../Imports/app_imports.dart';
 
 class AppButton extends StatelessWidget {
   final String text;
@@ -26,7 +22,7 @@ class AppButton extends StatelessWidget {
     this.borderColor = Colors.transparent,
     this.padding,
     this.icon,
-    this.color = AppColors .primary,
+    this.color = AppColors.primary,
     this.height = 48,
     this.width = double.infinity,
     this.borderRadius = 7,
@@ -50,7 +46,7 @@ class AppButton extends StatelessWidget {
     borderRadius: borderRadius ?? 7,
     width: width ?? double.infinity,
     height: height ?? 48,
-    color: color ?? AppColors .primary,
+    color: color ?? AppColors.primary,
     icon: icon,
   );
 

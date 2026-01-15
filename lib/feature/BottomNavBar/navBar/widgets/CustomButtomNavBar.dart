@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
+import 'package:uberCloneDriver/core/Imports/app_imports.dart';
+import 'package:uberCloneDriver/l10n/app_localizations.dart';
 
 class Custombuttomnavbar extends StatelessWidget {
   const Custombuttomnavbar({
@@ -11,6 +11,11 @@ class Custombuttomnavbar extends StatelessWidget {
   final int currentIndex;
   @override
   Widget build(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    Color bgcolor = Provider.of<SettingsProvider>(context).isdark
+        ? AppColors.blackColorwithopacity
+        : AppColors.blueColor;
+
     return ClipRRect(
       borderRadius: BorderRadiusGeometry.only(
         topRight: Radius.circular(15),
@@ -27,18 +32,28 @@ class Custombuttomnavbar extends StatelessWidget {
         unselectedItemColor: AppColors.whiteColor.withOpacity(0.5),
         selectedIconTheme: IconThemeData(size: 22),
         unselectedIconTheme: IconThemeData(size: 20),
-        backgroundColor: AppColors.blueColor,
+        backgroundColor: bgcolor,
         currentIndex: currentIndex,
         onTap: onTap,
         type: BottomNavigationBarType.fixed,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: appLocalizations.home,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.menu),
+            label: appLocalizations.reports,
+          ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.car_crash_sharp),
-            label: 'Requests',
+            label: appLocalizations.requests,
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Reports'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: appLocalizations.profile,
+          ),
         ],
       ),
     );

@@ -1,19 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:uberCloneDriver/core/constant/appThem.dart';
-import 'package:uberCloneDriver/core/routing/route_generator.dart';
-import 'package:uberCloneDriver/core/routing/routes.dart';
-import 'package:uberCloneDriver/feature/Auth/DomainLayer/Repositoryimpl/Auth_Repository_impl.dart';
-import 'package:uberCloneDriver/feature/Auth/DomainLayer/UserCases/LoginUser.dart';
-import 'package:uberCloneDriver/feature/Auth/DomainLayer/UserCases/RegisterUser.dart';
-import 'package:uberCloneDriver/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
+import 'package:uberCloneDriver/l10n/app_localizations.dart';
+
+import 'core/Imports/app_imports.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     final authrepo = AuthRepositoryImpl();
     final registeruser = Registeruser(authrepo);
     final loginuser = Loginuser(authrepo);
@@ -24,12 +18,15 @@ class App extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           debugShowCheckedModeBanner: false,
           theme: Appthem.lighttheme,
-          themeMode: ThemeMode.light,
-          darkTheme: Appthem.lighttheme,
+          themeMode: settingsProvider.thememode,
+          darkTheme: Appthem.darktheme,
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: Routes.login,
+          initialRoute: Routes.landingpage,
+          locale: Locale(settingsProvider.language),
         ),
       ),
     );

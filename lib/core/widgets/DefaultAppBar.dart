@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
-import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
+import 'package:uberCloneDriver/core/Imports/app_imports.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   const DefaultAppBar({
@@ -23,52 +20,64 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(56);
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadiusGeometry.only(
-          bottomRight: Radius.circular(20),
-          bottomLeft: Radius.circular(20),
-        ),
-      ),
-      backgroundColor: const Color.fromARGB(255, 9, 76, 132),
-      elevation: 0,
-      title: CustomAppText(
-        text: title ?? '',
-        textColor: AppColors.whiteColor,
-        fontSize: 20,
-        fontWeight: FontWeight.w600,
-      ),
-      centerTitle: true,
+    Color bgcolor = Provider.of<SettingsProvider>(context).isdark
+        ? AppColors.blackColorwithopacity
+        : AppColors.blueColor;
+    return Localizations.override(
+      context: context,
+      locale: const Locale('en'),
 
-      actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 12),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              CustomAppText(
-                text: actiontitle ?? '',
-                textColor: AppColors.whiteColor,
-                fontWeight: FontWeight.w700,
-              ),
-              CustomAppText(
-                text: actionDesc ?? '',
-                textColor: AppColors.whiteColor,
-              ),
-            ],
-          ),
-        ),
-      ],
-      leading: leadIconName == null
-          ? null
-          : GestureDetector(
-              onTap: leadingonTap,
-              child: customAppIcon(
-                iconName: leadIconName!,
-                iconColor: AppColors.whiteColor,
+      child: Builder(
+        builder: (context) {
+          return AppBar(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadiusGeometry.only(
+                bottomRight: Radius.circular(20),
+                bottomLeft: Radius.circular(20),
               ),
             ),
+            backgroundColor: bgcolor,
+            elevation: 0,
+            title: CustomAppText(
+              text: title ?? '',
+              textColor: AppColors.whiteColor,
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+            ),
+            centerTitle: true,
+
+            actions: [
+              Padding(
+                padding: const EdgeInsetsDirectional.only(end: 12),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    CustomAppText(
+                      text: actiontitle ?? '',
+                      textColor: AppColors.whiteColor,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    CustomAppText(
+                      text: actionDesc ?? '',
+                      textColor: AppColors.whiteColor,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            leading: leadIconName == null
+                ? null
+                : GestureDetector(
+                    onTap: leadingonTap,
+                    child: customAppIcon(
+                      iconName: leadIconName!,
+                      iconColor: AppColors.whiteColor,
+                    ),
+                  ),
+          );
+        },
+      ),
     );
   }
 }

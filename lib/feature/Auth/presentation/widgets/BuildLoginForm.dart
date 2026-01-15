@@ -16,6 +16,7 @@ import 'package:uberCloneDriver/feature/Auth/presentation/Cubit/Auth_Cubit.dart'
 class BuildLoginForm extends StatelessWidget {
   const BuildLoginForm({
     super.key,
+    required this.isLoading,
     required TextEditingController emailController,
     required TextEditingController passwordController,
     required GlobalKey<FormState> formKey,
@@ -26,6 +27,7 @@ class BuildLoginForm extends StatelessWidget {
   final TextEditingController _emailController;
   final TextEditingController _passwordController;
   final GlobalKey<FormState> _formKey;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {

@@ -1,13 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/resources/AppDivider.dart';
-import 'package:uberCloneDriver/core/resources/App_Size.dart';
-import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
-import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
-import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
-import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneDriver/core/widgets/spacing.dart';
-
+import '../../core/Imports/app_imports.dart';
 class PreviousReportsItem extends StatelessWidget {
   const PreviousReportsItem({
     super.key,

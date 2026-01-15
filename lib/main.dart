@@ -1,14 +1,14 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uberCloneDriver/App.dart';
-import 'package:uberCloneDriver/core/statmanagment/bloc_observer.dart';
-import 'package:uberCloneDriver/firebase_options.dart';
+import 'core/Imports/app_imports.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   Bloc.observer = AppBlocObserver();
-  runApp(App());
+  runApp(
+    ChangeNotifierProvider(
+      create: (BuildContext context) => SettingsProvider(),
+      child: App(),
+    ),
+  );
 }

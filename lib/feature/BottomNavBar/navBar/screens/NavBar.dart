@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/Reports.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/home.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/profile.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/requests.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/navBar/widgets/CustomButtomNavBar.dart';
+import '../../../../core/Imports/app_imports.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
@@ -13,12 +8,12 @@ class Navbar extends StatefulWidget {
 }
 
 class _NavbarState extends State<Navbar> {
-  int _currentIndex = 3;
+  int _currentIndex = 0;
   List<Widget> tabs = [
-    const Profile(),
-    Requests(),
-    const Reports(),
     const Home(),
+    const Reports(),
+    Requests(),
+    const Profile(),
   ];
   @override
   Widget build(BuildContext context) {
