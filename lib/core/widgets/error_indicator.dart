@@ -1,4 +1,8 @@
-import '../../core/App_Imports/app_imports.dart';
+import 'package:flutter/material.dart';
+import 'package:uberCloneDriver/core/constant/App_Color.dart';
+import 'package:uberCloneDriver/core/resources/App_Size.dart';
+import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
+
 class ErrorIndicator extends StatelessWidget {
   final String message;
 
@@ -12,7 +16,7 @@ class ErrorIndicator extends StatelessWidget {
         textbutton: message,
         bgButtonColor: AppColors.error,
         onPressed: () {
-          context.pop();
+          Navigator.pop(context);
         },
         width: appWidth(context),
         textcolor: AppColors.whiteColor,

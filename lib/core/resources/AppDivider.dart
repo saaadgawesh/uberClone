@@ -11,7 +11,7 @@ class AppDivider extends StatelessWidget {
     return Divider(
       indent: indent ?? 20,
       endIndent: endindent ?? 20,
-      color: color ?? AppColors .blueColor,
+      color: color ?? AppColors.blueColor,
       height: 0.1,
     );
   }

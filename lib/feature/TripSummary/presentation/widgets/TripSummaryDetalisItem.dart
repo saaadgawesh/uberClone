@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
+import 'package:uberCloneDriver/core/resources/customAppText.dart';
 
 class TripSummaryDetalisItem extends StatelessWidget {
   const TripSummaryDetalisItem({

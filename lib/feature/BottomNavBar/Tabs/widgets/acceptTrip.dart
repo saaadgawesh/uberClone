@@ -1,20 +1,26 @@
+import "../../../../core/App_Imports/app_imports.dart";
 
-  import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+/// قبول الرحلة
+Future<void> acceptTrip(String tripId) async {
+  final driverId = FirebaseAuth.instance.currentUser!.uid;
+  final tripRef = FirebaseFirestore.instance.collection('trips').doc(tripId);
 
-/// دالة قبول الرحلة
-  void acceptTrip(String tripId) async {
-    final tripDoc = FirebaseFirestore.instance.collection('trips').doc(tripId);
-    final driverDoc = FirebaseFirestore.instance
-        .collection('Driver')
-        .doc(FirebaseAuth.instance.currentUser!.uid);
+  // 1️⃣ تحديث حالة الرحلة
+  await tripRef.update({'status': 'accepted', 'driverId': driverId});
 
-    // تحديث حالة الرحلة والسائق
-    await FirebaseFirestore.instance.runTransaction((transaction) async {
-      final tripSnapshot = await transaction.get(tripDoc);
-      if (!tripSnapshot.exists) throw Exception('Trip not found');
+  // 2️⃣ تحديث حالة السائق
+  await FirebaseFirestore.instance.collection('Driver').doc(driverId).update({
+    'status': 'busy',
+  });
 
-      transaction.update(tripDoc, {'status': 'accepted'});
-      transaction.update(driverDoc, {'status': 'busy'});
-    });
-  }
+  // 3️⃣ إشعار الراكب محليًا (إذا كان عنده NotificationService)
+  final tripSnap = await tripRef.get();
+  final riderName = tripSnap['riderName'] ?? 'راكب جديد';
+  final tripType = 'trip_accepted';
+
+  NotificationService().showNotification(
+    title: '✅ تم قبول الرحلة',
+    body: '$riderName، السائق وافق على رحلتك',
+    payload: tripId,
+  );
+}

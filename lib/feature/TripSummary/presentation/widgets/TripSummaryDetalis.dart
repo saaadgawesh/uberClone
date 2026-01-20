@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:uberCloneDriver/core/constant/App_Color.dart';
 import 'package:uberCloneDriver/core/resources/AppDivider.dart';
 import 'package:uberCloneDriver/core/resources/App_Size.dart';
-import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
+import 'package:uberCloneDriver/core/resources/customAppText.dart';
 import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
 import 'package:uberCloneDriver/feature/TripSummary/data/models/tripModel.dart';
 import 'package:uberCloneDriver/feature/TripSummary/presentation/widgets/TripSummaryDetalisItem.dart';
 
 class TripSummaryDetalis extends StatelessWidget {
-  const TripSummaryDetalis({super.key, required this.tripData});
+  const TripSummaryDetalis({super.key, required this.tripmodel});
 
-  final TripData tripData;
+  final Tripmodel tripmodel;
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +28,15 @@ class TripSummaryDetalis extends StatelessWidget {
             children: [
               TripSummaryDetalisItem(
                 distancetext: 'km',
-                title: tripData.distanceKm.toStringAsFixed(2),
+                title: tripmodel.distanceKm.toStringAsFixed(2),
               ),
               TripSummaryDetalisItem(
                 distancetext: 'min',
-                title: tripData.durationMin.toStringAsFixed(1),
+                title: tripmodel.durationMin.toStringAsFixed(1),
               ),
               TripSummaryDetalisItem(
                 distancetext: 'EGP',
-                title: tripData.price.toStringAsFixed(2),
+                title: tripmodel.price.toStringAsFixed(2),
               ),
             ],
           ),
@@ -52,7 +52,7 @@ class TripSummaryDetalis extends StatelessWidget {
           ),
           Expanded(
             child: Text(
-              tripData.startAddress,
+              tripmodel.startAddress,
               style: const TextStyle(color: Colors.white),
             ),
           ),
@@ -66,7 +66,7 @@ class TripSummaryDetalis extends StatelessWidget {
           ),
           Expanded(
             child: Text(
-              tripData.endAddress,
+              tripmodel.endAddress,
               style: const TextStyle(color: Colors.white),
             ),
           ),

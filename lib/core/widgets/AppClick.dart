@@ -1,5 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
-import '../../core/App_Imports/app_imports.dart';
 class AppClick extends StatefulWidget {
   final Widget child;
   final GestureTapCallback? onTap;

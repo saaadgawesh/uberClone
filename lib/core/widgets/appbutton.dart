@@ -1,4 +1,8 @@
-import '../../core/App_Imports/app_imports.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uberCloneDriver/core/constant/App_Color.dart';
+import 'package:uberCloneDriver/core/resources/AppTextStyles.dart';
+import 'package:uberCloneDriver/core/widgets/AppClick.dart';
 
 class AppButton extends StatelessWidget {
   final String text;

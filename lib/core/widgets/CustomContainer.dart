@@ -5,25 +5,23 @@ class CustomContainer extends StatelessWidget {
   const CustomContainer({
     super.key,
     this.actionIcon,
-
+    required this.child,
     required this.height,
     required this.width,
     this.borderRadius,
     this.bgContainerColor,
     this.padding,
     this.borderwidth,
-    required this.child,
   });
 
   final IconData? actionIcon;
-
+  final Widget child;
   final double height;
   final double width;
   final double? borderwidth;
   final Color? bgContainerColor;
   final BorderRadius? borderRadius;
   final EdgeInsetsGeometry? padding;
-  final Widget child;
 
   @override
   Widget build(BuildContext context) {

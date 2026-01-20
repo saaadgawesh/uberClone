@@ -1,41 +1,9 @@
-import '../../../../core/App_Imports/app_imports.dart';
+import 'package:uberCloneDriver/core/App_Imports/app_imports.dart';
+
 class TripSummaryScreen extends StatelessWidget {
-  final TripData tripData;
+  final Tripmodel tripmodel;
 
-  const TripSummaryScreen({super.key, required this.tripData});
-
-  // ================= CREATE TRIP =================
-  Future<String> createTrip() async {
-    final tripRef = FirebaseFirestore.instance.collection('trips').doc();
-
-    await tripRef.set({
-      "riderId": "USER_ID",
-      "driverId": null,
-
-      // للسواق
-      "startLocation": {
-        "lat": tripData.startLocation.latitude,
-        "lng": tripData.startLocation.longitude,
-      },
-      "endLocation": {
-        "lat": tripData.endLocation.latitude,
-        "lng": tripData.endLocation.longitude,
-      },
-
-      // للراكب
-      "startAddress": tripData.startAddress,
-      "endAddress": tripData.endAddress,
-
-      "distanceKm": tripData.distanceKm,
-      "durationMin": tripData.durationMin,
-      "price": tripData.price,
-
-      "status": "searching",
-      "createdAt": FieldValue.serverTimestamp(),
-    });
-
-    return tripRef.id;
-  }
+  const TripSummaryScreen({super.key, required this.tripmodel});
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +26,12 @@ class TripSummaryScreen extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-                   VSpace(5),
+            VSpace(5),
             const TripSummarytitleSection(),
-                   VSpace(5),
+            VSpace(5),
 
             /// 👇 مصدر البيانات واحد
-            TripSummaryDetalis(tripData: tripData),
+            TripSummaryDetalis(tripmodel: tripmodel),
           ],
         ),
       ),
@@ -76,16 +44,11 @@ class TripSummaryScreen extends StatelessWidget {
           width: appWidth(context),
           textcolor: AppColors.whiteColor,
           onPressed: () async {
-            final tripId = await createTrip();
+            // Navigator.pushReplacementNamed(
+            //   context,
 
-            // الانتقال لشاشة انتظار السائق بعد إنشاء الرحلة
-            // ignore: use_build_context_synchronously
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (_) => SearchingForDriverScreen(tripId: tripId),
-              ),
-            );
+            //   arguments: tripmodel,
+            // );
           },
         ),
       ),

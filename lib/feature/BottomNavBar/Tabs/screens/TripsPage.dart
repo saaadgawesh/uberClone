@@ -1,20 +1,36 @@
 import '../../../../core/App_Imports/app_imports.dart';
 
-class TripsPage extends StatelessWidget {
+class TripsPage extends StatefulWidget {
   const TripsPage({super.key});
 
-  String get currentDriverId => FirebaseAuth.instance.currentUser!.uid;
+  @override
+  State<TripsPage> createState() => _TripsPageState();
+}
+
+class _TripsPageState extends State<TripsPage> {
+  String? driverId;
+
+  @override
+  void initState() {
+    super.initState();
+    driverId = FirebaseAuth.instance.currentUser?.uid;
+  }
 
   Stream<QuerySnapshot> acceptedTripsStream() {
+    if (driverId == null) return const Stream.empty();
     return FirebaseFirestore.instance
         .collection('trips')
-        .where('driverId', isEqualTo: currentDriverId)
+        .where('driverId', isEqualTo: driverId)
         .where('status', isEqualTo: 'accepted')
         .snapshots();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (driverId == null) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
+
     return Scaffold(
       appBar: DefaultAppBar(title: 'الرحلات المقبولة'),
       body: StreamBuilder<QuerySnapshot>(
@@ -23,11 +39,9 @@ class TripsPage extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           }
-
           if (snapshot.hasError) {
-            return const Center(child: Text('حدث خطأ أثناء تحميل البيانات'));
+            return Center(child: Text('حدث خطأ: ${snapshot.error}'));
           }
-
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return const Center(child: Text('لا توجد رحلات مقبولة حالياً'));
           }
@@ -37,14 +51,10 @@ class TripsPage extends StatelessWidget {
           return ListView.builder(
             itemCount: trips.length,
             itemBuilder: (context, index) {
-              final trip = trips[index].data() as Map<String, dynamic>;
-              final double fromLat = (trip['fromLat'] as num).toDouble();
-              final double fromLng = (trip['fromLng'] as num).toDouble();
-              final double toLat = (trip['toLat'] as num).toDouble();
-              final double toLng = (trip['toLng'] as num).toDouble();
+              final trip = trips[index].data()! as Map<String, dynamic>;
 
               return Card(
-                color: AppColors.blueColor,
+                color: context.bgColor,
                 margin: const EdgeInsets.all(12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -54,32 +64,37 @@ class TripsPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _row('رقم الرحلة', trip['tripId']),
-                      _row('السعر', '${trip['price']} جنيه'),
-                      _row('من', '${trip['fromLat']}, ${trip['fromLng']}'),
-                      _row('إلى', '${trip['toLat']}, ${trip['toLng']}'),
-                      _row('الحالة', trip['status']),
+                      Text(
+                        'رقم الرحلة: ${trip['tripId']}',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      Text(
+                        'السعر: ${trip['price']} جنيه',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      Text(
+                        'من: ${trip['fromLat']}, ${trip['fromLng']}',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      Text(
+                        'إلى: ${trip['toLat']}, ${trip['toLng']}',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      Text(
+                        'الحالة: ${trip['status']}',
+                        style: const TextStyle(color: Colors.white),
+                      ),
                       const SizedBox(height: 10),
-
-                      Row(
-                        children: [
-                          Expanded(
-                            child: defaultElevatedButton(
-                              onPressed: () {
-                                openRouteInGoogleMaps(
-                                  fromLat: fromLat,
-                                  fromLng: fromLng,
-                                  toLat: toLat,
-                                  toLng: toLng,
-                                );
-                              },
-                              textbutton: 'عرض الرحلة',
-                              bgButtonColor: AppColors.whiteColor,
-                              width: appWidth(context),
-                              textcolor: AppColors.blackColor,
-                            ),
-                          ),
-                        ],
+                      ElevatedButton(
+                        onPressed: () {
+                          openRouteInGoogleMaps(
+                            fromLat: (trip['fromLat'] as num).toDouble(),
+                            fromLng: (trip['fromLng'] as num).toDouble(),
+                            toLat: (trip['toLat'] as num).toDouble(),
+                            toLng: (trip['toLng'] as num).toDouble(),
+                          );
+                        },
+                        child: const Text('عرض الرحلة'),
                       ),
                     ],
                   ),
@@ -88,26 +103,6 @@ class TripsPage extends StatelessWidget {
             },
           );
         },
-      ),
-    );
-  }
-
-  Widget _row(String title, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        children: [
-          Expanded(
-            child: CustomAppText(text: value, textColor: AppColors.whiteColor),
-          ),
-          Text(
-            ':$title ',
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: AppColors.whiteColor,
-            ),
-          ),
-        ],
       ),
     );
   }

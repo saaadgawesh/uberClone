@@ -1,10 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/resources/CustomAppText.dart';
-import 'package:uberCloneDriver/core/resources/customAppIcon.dart';
-import 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
-import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
-import 'package:uberCloneDriver/core/widgets/spacing.dart';
+import 'package:uberCloneDriver/core/App_Imports/app_imports.dart';
 
 // ignore: non_constant_identifier_names
 Widget CustomServiceWidget(BuildContext context) {
@@ -21,14 +15,14 @@ Widget CustomServiceWidget(BuildContext context) {
           height: 40,
           width: 40,
           borderRadius: BorderRadius.circular(10),
-          bgContainerColor: AppColors.blueColor,
+          bgContainerColor: context.bgColor,
           child: customAppIcon(
             iconName: Icons.alarm,
             iconColor: AppColors.whiteColor,
           ),
         ),
 
-        VSpace(8),
+        heightSizedbox(8),
         CustomAppText(text: 'data', fontSize: 16, fontWeight: FontWeight.bold),
         CustomAppText(text: 'data', textColor: AppColors.blackColorwithopacity),
       ],

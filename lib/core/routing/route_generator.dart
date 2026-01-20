@@ -1,4 +1,9 @@
-import '../../core/App_Imports/app_imports.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/home.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/profile.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/navBar/screens/NavBar.dart';
+import 'package:uberCloneDriver/feature/landingPages/screen/landingPage.dart';
+
+import '../../../core/App_Imports/app_imports.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
@@ -8,6 +13,11 @@ class RouteGenerator {
           builder: (_) => const RegisterScreen(),
           settings: settings,
         );
+      // case Routes.SearchingForDriverScreen:
+      //   return MaterialPageRoute(
+      //     builder: (_) => const sear(),
+      //     settings: settings,
+      //   );
       case Routes.login:
         return MaterialPageRoute(
           builder: (_) => const LoginScreen(),
@@ -28,11 +38,6 @@ class RouteGenerator {
           builder: (_) => const Landingpage(),
           settings: settings,
         );
-      case Routes.TripsPage:
-        return MaterialPageRoute(
-          builder: (_) => const TripsPage(),
-          settings: settings,
-        );
       case Routes.profile:
         return MaterialPageRoute(builder: (_) => Profile(), settings: settings);
       // case Routes.tripSummary:
@@ -40,8 +45,8 @@ class RouteGenerator {
       //     builder: (_) => TripSummaryScreen(),
       //     settings: settings,
       //   );
-      //   case Routes.myrequests:
-      //     return MaterialPageRoute(builder: (_) => const myre());
+      // case Routes.myrequests:
+      //   return MaterialPageRoute(builder: (_) => const Myrequests());
       default:
         return _undefinedRoute();
     }

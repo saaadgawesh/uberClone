@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
+import 'package:uberCloneDriver/core/App_Imports/app_imports.dart';
 
 class Custombuttomnavbar extends StatelessWidget {
   const Custombuttomnavbar({
@@ -27,7 +26,7 @@ class Custombuttomnavbar extends StatelessWidget {
         unselectedItemColor: AppColors.whiteColor.withOpacity(0.5),
         selectedIconTheme: IconThemeData(size: 22),
         unselectedIconTheme: IconThemeData(size: 20),
-        backgroundColor: AppColors.blueColor,
+        backgroundColor: context.bgColor,
         currentIndex: currentIndex,
         onTap: onTap,
         type: BottomNavigationBarType.fixed,
@@ -37,7 +36,7 @@ class Custombuttomnavbar extends StatelessWidget {
             icon: Icon(Icons.car_crash_sharp),
             label: 'Requests',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Reports'),
+          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'TripsPage'),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
         ],
       ),

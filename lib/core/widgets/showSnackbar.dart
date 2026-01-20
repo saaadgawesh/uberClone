@@ -1,4 +1,6 @@
-import "../../core/App_Imports/app_imports.dart";
+import 'package:flutter/material.dart';
+import 'package:uberCloneDriver/core/constant/App_Color.dart';
+import 'package:uberCloneDriver/core/resources/customAppText.dart';
 
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
   BuildContext context,

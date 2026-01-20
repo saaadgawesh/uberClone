@@ -8,5 +8,6 @@ class Routes {
   static const String home = '/home';
   static const String myrequests = '/myrequests';
   static const String requestcar = '/requestcar';
-  static const String TripsPage = '/TripsPage';
+  static const String SearchingForDriverScreen = '/SearchingForDriverScreen';
+  static const String trippages = '/trippages';
 }
