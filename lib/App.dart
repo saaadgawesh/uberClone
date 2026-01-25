@@ -1,4 +1,4 @@
-import 'package:uberCloneDriver/l10n/app_localizations.dart';
+import 'package:uberCloneDriver/core/widgets/getStartScreen.dart';
 
 import 'core/Imports/app_imports.dart';
 
@@ -7,6 +7,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
     SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     final authrepo = AuthRepositoryImpl();
     final registeruser = Registeruser(authrepo);
@@ -22,11 +23,12 @@ class App extends StatelessWidget {
           supportedLocales: AppLocalizations.supportedLocales,
           debugShowCheckedModeBanner: false,
           theme: Appthem.lighttheme,
-          themeMode: settingsProvider.thememode,
+          themeMode: settingsProvider.themeMode,
           darkTheme: Appthem.darktheme,
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: Routes.landingpage,
-          locale: Locale(settingsProvider.language),
+          initialRoute: user == null ? Routes.login : Routes.navbar,
+          locale: Locale(settingsProvider.languauge),
+          home: getStartScreen(),
         ),
       ),
     );

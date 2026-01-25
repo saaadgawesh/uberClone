@@ -15,8 +15,8 @@ class customAppIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Icon(
       iconName,
-      color: iconColor ?? AppColors .blueColor,
-      size: size ?? 20,
+      color: iconColor ?? AppColors .whiteColor,
+      size: size ?? 18,
     );
   }
 }

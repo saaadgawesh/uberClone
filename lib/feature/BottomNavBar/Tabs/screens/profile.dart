@@ -1,3 +1,6 @@
+import 'package:uberCloneDriver/core/extension/ThemeColorsExtension.dart';
+import 'package:uberCloneDriver/core/extension/settingproviderExtension.dart';
+
 import '../../../../core/Imports/app_imports.dart';
 
 class Profile extends StatefulWidget {
@@ -9,43 +12,137 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   @override
-  Widget build(BuildContext context) {
-    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
-    return Scaffold(
-      appBar: DefaultAppBar(
-        title: "الملف الشخصي",
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<SettingsProvider>().loadUserName();
+    });
+    super.initState();
+  }
 
-        leadIconName: Icons.arrow_back_ios,
-        leadingonTap: () {},
-      ),
+  @override
+  Widget build(BuildContext context) {
+    final settingsProvider = context.watch<SettingsProvider>();
+    final applocalization = AppLocalizations.of(context)!;
+    return Scaffold(
+      appBar: DefaultAppBar(title: applocalization.profile),
       body: Padding(
-        padding: const EdgeInsets.only(top: 15, right: 10, left: 10),
+        padding: const EdgeInsetsDirectional.only(start: 10, end: 10, top: 10),
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Processitem(
-                title: "سعد جاويش",
-                description: "مطور تطبيقات الموبايل",
-                leadIcon: Icons.edit,
+              CustomContainer(
+                bgContainerColor: context.bgColor,
+                height: appHeight(context) * 0.1,
+                width: appWidth(context),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.symmetric(
+                    horizontal: 10,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomAppText(
+                        text: settingsProvider.isLoading
+                            ? "...loading"
+                            : settingsProvider.userName ??
+                                  applocalization.welcomeCustomer,
 
-                actionIcon: Icons.group,
-                backgroundColor: settingsProvider.isdark
-                    ? AppColors.blackColorwithopacity
-                    : AppColors.blueColor,
-                child: ClipRRect(
-                  borderRadius: BorderRadiusGeometry.circular(5),
-                  child: Image.asset(
-                    Assets.photo,
-                    width: appWidth(context),
-                    height: appHeight(context),
-                    fit: BoxFit.cover,
+                        fontWeight: FontWeight.bold,
+                        textColor: AppColors.whiteColor,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            WidgetsBinding.instance.addPostFrameCallback((_) {
+                              ShowEditNameDialog(context);
+                            });
+                          });
+                        },
+                        child: customAppIcon(iconName: Icons.edit),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              customdropdownButton(settingsProvider: settingsProvider),
+              VSpace(5),
+              CustomContainer(
+                bgContainerColor: context.bgColor,
+                height: appHeight(context) * 0.1,
+                width: appWidth(context),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.symmetric(
+                    horizontal: 10,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomAppText(
+                        text: settingsProvider.languauge == "en"
+                            ? "Choose Language"
+                            : "اختيار اللغه",
+                        fontWeight: FontWeight.bold,
+                        textColor: AppColors.whiteColor,
+                      ),
+                      Customdropdownbutton(),
+                    ],
+                  ),
+                ),
+              ),
+              VSpace(5),
+              CustomContainer(
+                bgContainerColor: context.bgColor,
+                height: appHeight(context) * 0.1,
+                width: appWidth(context),
+
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.only(start: 10),
+                      child: CustomAppText(
+                        text: settingsProvider.isDark
+                            ? applocalization.darkmode
+                            : applocalization.lightmode,
+                        fontWeight: FontWeight.bold,
+                        textColor: AppColors.whiteColor,
+                      ),
+                    ),
+                    Transform.scale(
+                      scale: 0.7,
+                      child: Switch(
+                        thumbColor: WidgetStateProperty.all(context.bgColor),
+                        trackColor: WidgetStateProperty.all(
+                          AppColors.whiteColor,
+                        ),
+                        value: context.settingProvider.isDark,
+                        onChanged: (bool value) {
+                          settingsProvider.changeTheme(
+                            value ? ThemeMode.dark : ThemeMode.light,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: defaultElevatedButton(
+          textbutton: applocalization.logout,
+
+          bgButtonColor: context.bgColor,
+          onPressed: () {
+            context.read<AuthCubit>().logout();
+            context.pushNamed(Routes.login);
+          },
+
+          textcolor: AppColors.whiteColor,
+          width: appWidth(context),
         ),
       ),
     );

@@ -1,13 +1,13 @@
-import '../../core/Imports/app_imports.dart';
+import '../../../core/Imports/app_imports.dart';
 
-class Landingpage extends StatefulWidget {
-  const Landingpage({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<Landingpage> createState() => _LandingpageState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _LandingpageState extends State<Landingpage> {
+class _SplashScreenState extends State<SplashScreen> {
   int currentIndex = 0;
   final PageController _pageController = PageController();
 
@@ -25,7 +25,7 @@ class _LandingpageState extends State<Landingpage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 currentIndex == 0
-                    ? customdropdownButton(settingsProvider: settingsProvider)
+                    ? Customdropdownbutton()
                     : SizedBox(height: 65.h),
                 _buildDotsIndicator(),
               ],
@@ -63,8 +63,8 @@ class _LandingpageState extends State<Landingpage> {
                       CustomAppText(
                         text: model.text,
                         fontSize: 16,
-                        textColor: settingsProvider.isdark
-                            ? AppColors.blackColorwithopacity
+                        textColor: settingsProvider.isDark
+                            ? AppColors.blackColor
                             : AppColors.blueColor,
                         fontWeight: FontWeight.w700,
                       ),
@@ -74,7 +74,7 @@ class _LandingpageState extends State<Landingpage> {
                       CustomAppText(
                         textAlign: TextAlign.center,
                         text: model.desc,
-                        textColor: AppColors.blackColorwithopacity,
+                        textColor: AppColors.blackColor,
                       ),
                     ],
                   ),

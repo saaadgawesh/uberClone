@@ -1,53 +1,45 @@
-import '../Imports/app_imports.dart';
 
-// ignore: camel_case_types
-class customdropdownButton extends StatelessWidget {
-  const customdropdownButton({super.key, required this.settingsProvider});
+import 'package:uberCloneDriver/core/extension/ThemeColorsExtension.dart';
+import 'package:uberCloneDriver/core/extension/settingproviderExtension.dart';
 
-  final SettingsProvider settingsProvider;
+import '../../core/Imports/app_imports.dart';
+
+class Customdropdownbutton extends StatelessWidget {
+  const Customdropdownbutton({super.key, });
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: SizedBox(
-        width: 70.w,
+        width: 110.w,
         child: DropdownButtonFormField<String>(
-          decoration: InputDecoration(border: InputBorder.none),
-          // ignore: deprecated_member_use
-          value: settingsProvider.language,
-          borderRadius: BorderRadius.circular(15),
+          dropdownColor: context.bgColor,
           icon: Icon(
-            Icons.arrow_drop_down,
-            color: settingsProvider.isdark
-                ? AppColors.blackColorwithopacity
-                : AppColors.blueColor,
-            size: 30,
+            Icons.arrow_drop_down_circle_outlined,
+            color: AppColors.whiteColor,
           ),
-
+          decoration: InputDecoration(border: InputBorder.none),
+          value: context.settingProvider.languauge,
           items: [
             DropdownMenuItem(
               value: "en",
               child: CustomAppText(
-                text: "En",
-                textColor: settingsProvider.isdark
-                    ? AppColors.blackColorwithopacity
-                    : AppColors.blueColor,
+                text: "English",
                 fontWeight: FontWeight.bold,
+                textColor: AppColors.whiteColor,
               ),
             ),
             DropdownMenuItem(
               value: "ar",
               child: CustomAppText(
-                text: "Ar",
-                textColor: settingsProvider.isdark
-                    ? AppColors.blackColorwithopacity
-                    : AppColors.blueColor,
+                text: "العربيه",
                 fontWeight: FontWeight.bold,
+                textColor: AppColors.whiteColor,
               ),
             ),
           ],
           onChanged: (String? value) {
-            settingsProvider.changelanguage(value!);
+            context.settingProvider.changeLanguage(value!);
           },
         ),
       ),

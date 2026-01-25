@@ -98,6 +98,54 @@ abstract class AppLocalizations {
     Locale('en'),
   ];
 
+  /// No description provided for @myboket.
+  ///
+  /// In en, this message translates to:
+  /// **'My Bocket'**
+  String get myboket;
+
+  /// No description provided for @mytrip.
+  ///
+  /// In en, this message translates to:
+  /// **'My Trips'**
+  String get mytrip;
+
+  /// No description provided for @thelastTrips.
+  ///
+  /// In en, this message translates to:
+  /// **' The Last Trips'**
+  String get thelastTrips;
+
+  /// No description provided for @offers.
+  ///
+  /// In en, this message translates to:
+  /// **'Offers '**
+  String get offers;
+
+  /// No description provided for @paidManaged.
+  ///
+  /// In en, this message translates to:
+  /// **' paidManaged'**
+  String get paidManaged;
+
+  /// No description provided for @tripsFollow.
+  ///
+  /// In en, this message translates to:
+  /// **'  tripsFollow'**
+  String get tripsFollow;
+
+  /// No description provided for @riders.
+  ///
+  /// In en, this message translates to:
+  /// **'  riders '**
+  String get riders;
+
+  /// No description provided for @offersmanage.
+  ///
+  /// In en, this message translates to:
+  /// **' offersmanage '**
+  String get offersmanage;
+
   /// No description provided for @home.
   ///
   /// In en, this message translates to:
@@ -110,17 +158,161 @@ abstract class AppLocalizations {
   /// **'Reports'**
   String get reports;
 
+  /// No description provided for @welcom.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome'**
+  String get welcom;
+
+  /// No description provided for @welcomeCustomer.
+  ///
+  /// In en, this message translates to:
+  /// **'welcome Guest'**
+  String get welcomeCustomer;
+
+  /// No description provided for @startyourjourney.
+  ///
+  /// In en, this message translates to:
+  /// **'start your journey'**
+  String get startyourjourney;
+
+  /// No description provided for @areyouready.
+  ///
+  /// In en, this message translates to:
+  /// **'are you ready?'**
+  String get areyouready;
+
+  /// No description provided for @subtitle1.
+  ///
+  /// In en, this message translates to:
+  /// **'request your car'**
+  String get subtitle1;
+
+  /// No description provided for @subtitle2.
+  ///
+  /// In en, this message translates to:
+  /// **'and join with good trip'**
+  String get subtitle2;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile '**
+  String get profile;
+
+  /// No description provided for @darkmode.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode '**
+  String get darkmode;
+
+  /// No description provided for @lightmode.
+  ///
+  /// In en, this message translates to:
+  /// **'Light Mode '**
+  String get lightmode;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login '**
+  String get login;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout '**
+  String get logout;
+
+  /// No description provided for @welcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Back '**
+  String get welcomeBack;
+
+  /// No description provided for @pleasesigninwithyourmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please sign in with your mail '**
+  String get pleasesigninwithyourmail;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Account '**
+  String get createAccount;
+
+  /// No description provided for @donotHaveAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t Have An A ccount '**
+  String get donotHaveAnAccount;
+
+  /// No description provided for @questionMark.
+  ///
+  /// In en, this message translates to:
+  /// **'  ?  '**
+  String get questionMark;
+
+  /// No description provided for @enteryouremail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get enteryouremail;
+
+  /// No description provided for @enteryourpassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get enteryourpassword;
+
+  /// No description provided for @tripsPage.
+  ///
+  /// In en, this message translates to:
+  /// **'TripsPage'**
+  String get tripsPage;
+
   /// No description provided for @requests.
   ///
   /// In en, this message translates to:
   /// **'Requests'**
   String get requests;
 
-  /// No description provided for @profile.
+  /// No description provided for @enternewname.
   ///
   /// In en, this message translates to:
-  /// **'Profile'**
-  String get profile;
+  /// **'enter your new name'**
+  String get enternewname;
+
+  /// No description provided for @editname.
+  ///
+  /// In en, this message translates to:
+  /// **' edit name'**
+  String get editname;
+
+  /// No description provided for @canceled.
+  ///
+  /// In en, this message translates to:
+  /// **'cancel'**
+  String get canceled;
+
+  /// No description provided for @saved.
+  ///
+  /// In en, this message translates to:
+  /// **'save'**
+  String get saved;
 }
 
 class _AppLocalizationsDelegate

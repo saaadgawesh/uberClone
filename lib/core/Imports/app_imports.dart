@@ -1,15 +1,21 @@
 export 'dart:convert';
 
+//===============================firease==================================
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:firebase_auth/firebase_auth.dart';
 export 'package:firebase_core/firebase_core.dart';
+//===============================flutter==================================
+export 'package:flutter/material.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter/services.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:flutter_localizations/flutter_localizations.dart';
 export 'package:flutter_map/flutter_map.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
+//===============================provider==================================
 export 'package:provider/provider.dart';
+//===============================uberCloneDriver==================================
+
 export 'package:uberCloneDriver/App.dart';
 export 'package:uberCloneDriver/core/constant/App_Color.dart';
 export 'package:uberCloneDriver/core/constant/assets.dart';
@@ -19,14 +25,17 @@ export 'package:uberCloneDriver/core/resources/AppTextStyles.dart';
 export 'package:uberCloneDriver/core/resources/App_Size.dart';
 export 'package:uberCloneDriver/core/resources/CustomAppText.dart';
 export 'package:uberCloneDriver/core/resources/customAppIcon.dart';
+export 'package:uberCloneDriver/core/resources/font_manager.dart';
 export 'package:uberCloneDriver/core/resources/sizedboxWidget.dart';
 export 'package:uberCloneDriver/core/resources/values_manager.dart';
 export 'package:uberCloneDriver/core/routing/route_generator.dart';
 export 'package:uberCloneDriver/core/routing/routes.dart';
-export 'package:uberCloneDriver/core/statmanagment/Provider/settings_provider.dart';
+export 'package:uberCloneDriver/core/statmanagment/Provider/settingProvider.dart';
 export 'package:uberCloneDriver/core/statmanagment/bloc/bloc_observer.dart';
 export 'package:uberCloneDriver/core/theme/appThem.dart';
+export 'package:uberCloneDriver/core/utils/validator.dart';
 export 'package:uberCloneDriver/core/widgets/AppClick.dart';
+export 'package:uberCloneDriver/core/widgets/App_TextField.dart';
 export 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
 export 'package:uberCloneDriver/core/widgets/CustomCounter.dart';
 export 'package:uberCloneDriver/core/widgets/CustomServiceWidget.dart';
@@ -36,6 +45,7 @@ export 'package:uberCloneDriver/core/widgets/customdropdownButton.dart';
 export 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
 export 'package:uberCloneDriver/core/widgets/error_indicator.dart';
 export 'package:uberCloneDriver/core/widgets/loading_indicator.dart';
+export 'package:uberCloneDriver/core/widgets/showEditNameDialog.dart';
 export 'package:uberCloneDriver/core/widgets/spacing.dart';
 export 'package:uberCloneDriver/feature/Auth/DomainLayer/Repositoryimpl/Auth_Repository_impl.dart';
 export 'package:uberCloneDriver/feature/Auth/DomainLayer/UserCases/LoginUser.dart';
@@ -59,10 +69,11 @@ export 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/textfieldWithS
 export 'package:uberCloneDriver/feature/BottomNavBar/navBar/screens/NavBar.dart';
 export 'package:uberCloneDriver/feature/BottomNavBar/navBar/widgets/CustomButtomNavBar.dart';
 export 'package:uberCloneDriver/feature/Location/Location_Controller/Location_Manager.dart';
+export 'package:uberCloneDriver/feature/SplashScreen/models/landingPageModel.dart';
+export 'package:uberCloneDriver/feature/SplashScreen/presentation/SplashScreen.dart';
 export 'package:uberCloneDriver/feature/TripSummary/data/models/tripModel.dart';
 export 'package:uberCloneDriver/feature/TripSummary/presentation/screen/SearchingForDriverScreen.dart';
 export 'package:uberCloneDriver/feature/TripSummary/presentation/widgets/TripSummaryDetalis.dart';
 export 'package:uberCloneDriver/feature/TripSummary/presentation/widgets/Trip_Summary_titleSection.dart';
-export 'package:uberCloneDriver/feature/landingPages/landingPage.dart';
-export 'package:uberCloneDriver/feature/landingPages/models/landingPageModel.dart';
 export 'package:uberCloneDriver/firebase_options.dart';
+export 'package:uberCloneDriver/l10n/AppLocalizations/app_localizations.dart';

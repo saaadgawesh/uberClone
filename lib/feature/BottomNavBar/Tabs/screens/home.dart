@@ -29,7 +29,7 @@ class Home extends StatelessWidget {
               ),
               Processitem(
                 title: "كشف الركاب",
-                description: "انشاء كشف جديد للركاب",
+               
                 leadIcon: Icons.arrow_forward,
                 actionIcon: Icons.group,
                 backgroundColor: AppColors.blueColor,
@@ -37,22 +37,9 @@ class Home extends StatelessWidget {
                   iconName: Icons.car_crash,
                   iconColor: AppColors.whiteColor,
                   size: 40,
-                ),
+                ), subtitle1: '', subtitle2: '',
               ),
-              VSpace(10),
 
-              Processitem(
-                title: "استقبال الطلبات",
-                description: "قبول طلبات المسافرين الجديده",
-                leadIcon: Icons.arrow_forward,
-                actionIcon: Icons.group,
-                backgroundColor: AppColors.greenColor,
-                child: customAppIcon(
-                  iconName: Icons.car_crash,
-                  iconColor: AppColors.whiteColor,
-                  size: 40,
-                ),
-              ),
               VSpace(10),
               CustomAppText(
                 text: "الخدمات",

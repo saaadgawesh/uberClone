@@ -24,7 +24,7 @@ class RouteGenerator {
         );
       case Routes.landingpage:
         return MaterialPageRoute(
-          builder: (_) => const Landingpage(),
+          builder: (_) => const SplashScreen(),
           settings: settings,
         );
       case Routes.profile:

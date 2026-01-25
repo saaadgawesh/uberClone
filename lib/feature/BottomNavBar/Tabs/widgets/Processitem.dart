@@ -1,36 +1,37 @@
-import 'package:uberCloneDriver/core/Imports/app_imports.dart';
+// ignore: file_names
+import 'package:uberCloneDriver/core/extension/ThemeColorsExtension.dart';
+
+import '../../../../core/Imports/app_imports.dart';
 
 class Processitem extends StatelessWidget {
   const Processitem({
     super.key,
     required this.title,
-    required this.description,
+    required this.subtitle1,
+    required this.subtitle2,
     required this.leadIcon,
     required this.actionIcon,
     required this.backgroundColor,
     this.child,
   });
   final String title;
-  final String description;
+  final String subtitle1;
+  final String subtitle2;
   final IconData leadIcon;
   final IconData actionIcon;
   final Color backgroundColor;
   final Widget? child;
   @override
   Widget build(BuildContext context) {
-    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     return CustomContainer(
       padding: EdgeInsets.all(15),
       height: appHeight(context) * 0.2,
       width: appWidth(context) * 0.93,
       borderRadius: BorderRadius.circular(15),
-      bgContainerColor: settingsProvider.isdark
-          ? AppColors.blackColorwithopacity
-          : AppColors.blueColor,
+      bgContainerColor: context.bgColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          HSpace(5),
           if (child != null)
             CustomContainer(
               actionIcon: actionIcon,
@@ -44,19 +45,32 @@ class Processitem extends StatelessWidget {
           SizedBox(
             width: appWidth(context) * 0.5,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomAppText(text: title, textColor: AppColors.whiteColor),
-                VSpace(5),
-                CustomAppText(
-                  text: description,
-                  textColor: AppColors.whiteColor,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomAppText(
+                      text: title,
+                      textColor: AppColors.whiteColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    VSpace(5),
+                    CustomAppText(
+                      text: subtitle1,
+                      textColor: AppColors.whiteColor,
+                    ),
+                    CustomAppText(
+                      text: subtitle2,
+                      textColor: AppColors.whiteColor,
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
 
+          HSpace(5),
           CircleAvatar(
             // ignore: deprecated_member_use
             backgroundColor: AppColors.greyColor.withOpacity(0.4),

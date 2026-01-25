@@ -1,5 +1,4 @@
 import 'package:uberCloneDriver/core/Imports/app_imports.dart';
-import 'package:uberCloneDriver/l10n/app_localizations.dart';
 
 class Custombuttomnavbar extends StatelessWidget {
   const Custombuttomnavbar({
@@ -12,8 +11,8 @@ class Custombuttomnavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
-    Color bgcolor = Provider.of<SettingsProvider>(context).isdark
-        ? AppColors.blackColorwithopacity
+    Color bgcolor = Provider.of<SettingsProvider>(context).isDark
+        ? AppColors.blackColor
         : AppColors.blueColor;
 
     return ClipRRect(

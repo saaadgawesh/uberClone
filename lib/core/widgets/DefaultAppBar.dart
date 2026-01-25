@@ -20,8 +20,8 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(56);
   @override
   Widget build(BuildContext context) {
-    Color bgcolor = Provider.of<SettingsProvider>(context).isdark
-        ? AppColors.blackColorwithopacity
+    Color bgcolor = Provider.of<SettingsProvider>(context).isDark
+        ? AppColors.blackColor
         : AppColors.blueColor;
     return Localizations.override(
       context: context,

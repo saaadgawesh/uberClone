@@ -1,4 +1,5 @@
 import '../Imports/app_imports.dart';
+
 enum TextFieldBorderType { filled, outlined, underlined, none }
 
 class AppTextField extends StatelessWidget {
@@ -35,6 +36,7 @@ class AppTextField extends StatelessWidget {
   final double borderWidth;
   final double? cursorHeight;
   final double cursorWidth;
+  final Function(String)? onChange;
   final Function(String)? onFieldSubmitted;
   const AppTextField({
     super.key,
@@ -43,6 +45,7 @@ class AppTextField extends StatelessWidget {
     this.readOnly = false,
     this.smartDashesType,
     this.filledColor,
+    this.onChange,
     this.helperText,
     this.autoValidateMode = AutovalidateMode.onUserInteraction,
     this.hintText,
@@ -157,6 +160,7 @@ class AppTextField extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       bgContainerColor: AppColors.transparent,
       child: TextFormField(
+        onChanged: onChange,
         cursorHeight: cursorHeight,
         cursorWidth: cursorWidth,
         onFieldSubmitted: onFieldSubmitted,
@@ -181,7 +185,7 @@ class AppTextField extends StatelessWidget {
         cursorColor: AppColors.blueColor,
         autovalidateMode: autoValidateMode,
         decoration: InputDecoration(
-          prefixIconColor: AppColors.blackColorwithopacity,
+          prefixIconColor: AppColors.blackColor,
           contentPadding: EdgeInsets.zero,
           suffixIconColor: AppColors.greyColor,
           filled: borderType == TextFieldBorderType.filled,

@@ -1,18 +1,19 @@
-import "../Imports/app_imports.dart";
+import "../../core/Imports/app_imports.dart";
 
 // ignore: non_constant_identifier_names
 Widget CustomServiceWidget(BuildContext context, int index) {
+  final applocalization = AppLocalizations.of(context)!;
   List<String> titles = [
-    "المحفظه",
-    "رحلاتي",
-    "الرحلات السابقه",
-    "الباقات والعروض",
+    applocalization.myboket,
+    applocalization.mytrip,
+    applocalization.thelastTrips,
+    applocalization.offers,
   ];
   List<String> desc = [
-    "اداره المدفوعات",
-    "اداره وتتبع الرحلات",
-    "عرض كشوفات الركاب ",
-    "عرض واداره الباقات",
+    applocalization.paidManaged,
+    applocalization.tripsFollow,
+    applocalization.riders,
+    applocalization.offersmanage,
   ];
   List<IconData> icons = [
     Icons.wallet,
@@ -34,8 +35,8 @@ Widget CustomServiceWidget(BuildContext context, int index) {
           height: 40,
           width: 40,
           borderRadius: BorderRadius.circular(10),
-          bgContainerColor: settingsProvider.isdark
-              ? AppColors.blackColorwithopacity
+          bgContainerColor: settingsProvider.isDark
+              ? AppColors.blackColor
               : AppColors.blueColor,
           child: customAppIcon(
             iconName: icons[index],
@@ -46,12 +47,17 @@ Widget CustomServiceWidget(BuildContext context, int index) {
         VSpace(8),
         CustomAppText(
           text: titles[index],
+          textColor: settingsProvider.isDark
+              ? AppColors.blackColor
+              : AppColors.blueColor,
           fontSize: 16,
           fontWeight: FontWeight.bold,
         ),
         CustomAppText(
           text: desc[index],
-          textColor: AppColors.blackColorwithopacity,
+          textColor: settingsProvider.isDark
+              ? AppColors.blackColor
+              : AppColors.blueColorwithopacity,
           textAlign: TextAlign.center,
         ),
       ],

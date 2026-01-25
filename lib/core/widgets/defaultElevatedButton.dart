@@ -34,8 +34,8 @@ class defaultElevatedButton extends StatelessWidget {
       width: width,
 
       borderRadius: BorderRadius.circular(15),
-      bgContainerColor: settingsProvider.isdark
-          ? AppColors.blackColorwithopacity
+      bgContainerColor: settingsProvider.isDark
+          ? AppColors.blackColor
           : AppColors.blueColor,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(

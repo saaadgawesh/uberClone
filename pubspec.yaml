@@ -1,16 +1,19 @@
+#name of project
 name: uberCloneDriver
+#description of project
 description: "A new Flutter project."
-
+#publish_to of project
 publish_to: "none"
-
+#version of project
 version: 1.0.0+1
-
+#environment of project
 environment:
   sdk: ^3.10.4
-
+#dependencies of project
 dependencies:
   flutter:
     sdk: flutter
+  #name of project
   cupertino_icons: ^1.0.8
   location: ^8.0.1
   http: ^1.1.0
@@ -31,16 +34,17 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.20.2
-
+  shared_preferences: ^2.5.4
+#dev_dependencies of project
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
-
+#flutter of project
 flutter:
   uses-material-design: true
   generate: true
-
+  #assets of project
   assets:
     - assets/images/
     - assets/icons/

@@ -9,12 +9,7 @@ class Navbar extends StatefulWidget {
 
 class _NavbarState extends State<Navbar> {
   int _currentIndex = 0;
-  List<Widget> tabs = [
-    const Home(),
-    const Reports(),
-    Requests(),
-    const Profile(),
-  ];
+  List<Widget> tabs = [const Home(), const Reports(), Requests(), Profile()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

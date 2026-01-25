@@ -1,19 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/extension/navigation.dart';
-import 'package:uberCloneDriver/core/resources/AppTextStyles.dart';
-import 'package:uberCloneDriver/core/resources/App_Size.dart';
-import 'package:uberCloneDriver/core/resources/font_manager.dart';
-import 'package:uberCloneDriver/core/resources/values_manager.dart';
-import 'package:uberCloneDriver/core/routing/routes.dart';
-import 'package:uberCloneDriver/core/utils/validator.dart';
-import 'package:uberCloneDriver/core/widgets/App_TextField.dart';
-import 'package:uberCloneDriver/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneDriver/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
+import 'package:uberCloneDriver/core/extension/ThemeColorsExtension.dart';
+import 'package:uberCloneDriver/feature/Auth/presentation/widgets/validate_item.dart';
 
-class BuildLoginForm extends StatelessWidget {
+import '../../../../core/Imports/app_imports.dart';
+
+class BuildLoginForm extends StatefulWidget {
   const BuildLoginForm({
     super.key,
     required this.isLoading,
@@ -30,28 +20,40 @@ class BuildLoginForm extends StatelessWidget {
   final bool isLoading;
 
   @override
+  State<BuildLoginForm> createState() => _BuildLoginFormState();
+}
+
+class _BuildLoginFormState extends State<BuildLoginForm> {
+  String password = '';
+  bool get length => password.length >= 8;
+  bool get uperCase => password.contains(RegExp(r'[A-Z]'));
+  bool get lowerCase => password.contains(RegExp(r'[a-z]'));
+  bool get number => password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>0-9]'));
+
+  bool isobsecured = true;
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: Sizes.s100.h),
+        VSpace(Sizes.s100.h),
 
         Text(
           'Welcome Back',
           style: AppTextStyles.georgiaH3.copyWith(fontSize: FontSize.s24),
         ),
 
-        SizedBox(height: Sizes.s8.h),
+        VSpace(Sizes.s8.h),
 
         Text(
           'Please sign in with your mail',
           style: AppTextStyles.georgiaH3.copyWith(fontSize: FontSize.s16),
         ),
 
-        SizedBox(height: Sizes.s50.h),
+        VSpace(Sizes.s50.h),
 
         AppTextField(
-          controller: _emailController,
+          controller: widget._emailController,
           labelText: 'Email',
           hintText: 'enter your email',
           keyboardType: TextInputType.emailAddress,
@@ -59,37 +61,67 @@ class BuildLoginForm extends StatelessWidget {
           filledColor: AppColors.whiteColor,
         ),
 
-        SizedBox(height: Sizes.s28.h),
+        VSpace(Sizes.s28.h),
 
         AppTextField(
-          controller: _passwordController,
+          suffix: IconButton(
+            onPressed: () {
+              setState(() {
+                isobsecured = !isobsecured;
+              });
+            },
+            icon: isobsecured
+                ? customAppIcon(
+                    iconColor: AppColors.blackColor,
+                    iconName: Icons.visibility_off,
+                  )
+                : customAppIcon(
+                    iconName: Icons.visibility,
+                    iconColor: AppColors.grey,
+                  ),
+          ),
+          obscureText: isobsecured,
+          controller: widget._passwordController,
           labelText: 'Password',
           hintText: 'enter your password',
-          obscureText: true,
+          // obscureText: true,
           keyboardType: TextInputType.text,
           validator: Validator.validatePassword,
           filledColor: AppColors.whiteColor,
+          onChange: (value) {
+            setState(() {
+              password = value;
+            });
+          },
         ),
 
-        SizedBox(height: Sizes.s60.h),
+        VSpace(15),
+        validateItem(isvalid: length, text: '8 characters Minimum'),
+        VSpace(5),
+        validateItem(isvalid: uperCase, text: 'At least 1 uppercase letter'),
+        VSpace(5),
+        validateItem(isvalid: lowerCase, text: 'At least 1 lowercase letter'),
+        VSpace(5),
+        validateItem(isvalid: number, text: 'One special character and number'),
+        VSpace(Sizes.s60.h),
         Center(
           child: defaultElevatedButton(
             textbutton: 'Login',
             textcolor: AppColors.whiteColor,
-            bgButtonColor: AppColors.blueColor,
+            bgButtonColor: context.bgColor,
             width: appWidth(context),
             onPressed: () {
-              if (_formKey.currentState!.validate()) {
+              if (widget._formKey.currentState!.validate()) {
                 context.read<AuthCubit>().login(
-                  _emailController.text.trim(),
-                  _passwordController.text.trim(),
+                  widget._emailController.text.trim(),
+                  widget._passwordController.text.trim(),
                 );
               }
             },
           ),
         ),
 
-        SizedBox(height: Sizes.s10.h),
+        VSpace(Sizes.s10.h),
 
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -98,7 +130,7 @@ class BuildLoginForm extends StatelessWidget {
               'Don’t have an account?',
               style: AppTextStyles.georgiaH3.copyWith(fontSize: FontSize.s16),
             ),
-            SizedBox(width: Sizes.s8.w),
+            HSpace(Sizes.s8.w),
             GestureDetector(
               onTap: () => context.pushNamed(Routes.register),
               child: Text(
