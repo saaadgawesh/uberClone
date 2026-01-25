@@ -1,5 +1,3 @@
-
-
 import 'package:http/http.dart' as http;
 
 import '../../../../core/App_Imports/app_imports.dart';
@@ -184,7 +182,12 @@ class _RequestsState extends State<Requests> {
           }
 
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text('لا توجد طلبات جديدة'));
+            return Center(
+              child: CustomAppText(
+                text: 'لا توجد طلبات جديدة',
+                textColor: context.bgColor,
+              ),
+            );
           }
 
           trips = snapshot.data!.docs;

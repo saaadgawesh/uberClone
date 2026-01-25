@@ -25,7 +25,7 @@ class CustomAppText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      textAlign: textAlign ?? TextAlign.end,
+      textAlign: textAlign ?? TextAlign.start,
       maxLines: maxLines,
       softWrap: true,
       overflow: overflow ?? TextOverflow.visible,

@@ -1,17 +1,19 @@
+
 import '../../../core/App_Imports/app_imports.dart';
-class Landingpage extends StatefulWidget {
-  const Landingpage({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<Landingpage> createState() => _LandingpageState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _LandingpageState extends State<Landingpage> {
+class _SplashScreenState extends State<SplashScreen> {
   int currentIndex = 0;
   final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -23,8 +25,8 @@ class _LandingpageState extends State<Landingpage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 currentIndex == 0
-                    ? customAppIcon(iconName: Icons.language)
-                    : SizedBox(width: 20, height: 22),
+                    ? Customdropdownbutton()
+                    : SizedBox(height: 65.h),
                 _buildDotsIndicator(),
               ],
             ),
@@ -48,7 +50,7 @@ class _LandingpageState extends State<Landingpage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(model.image),
-                             VSpace(20),
+                      VSpace(20),
 
                       CustomAppText(
                         text: model.title,
@@ -56,21 +58,23 @@ class _LandingpageState extends State<Landingpage> {
                         fontWeight: FontWeight.w700,
                       ),
 
-                             VSpace(10),
+                      VSpace(10),
 
                       CustomAppText(
                         text: model.text,
                         fontSize: 16,
-                        textColor: AppColors.blueColor,
+                        textColor: settingsProvider.isDark
+                            ? AppColors.blackColor
+                            : AppColors.blueColor,
                         fontWeight: FontWeight.w700,
                       ),
 
-                             VSpace(10),
+                      VSpace(10),
 
                       CustomAppText(
                         textAlign: TextAlign.center,
                         text: model.desc,
-                        textColor: AppColors.blackColorwithopacity,
+                        textColor: AppColors.blackColor,
                       ),
                     ],
                   ),

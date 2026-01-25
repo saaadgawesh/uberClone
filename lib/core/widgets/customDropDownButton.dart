@@ -1,17 +1,18 @@
 import '../App_Imports/app_imports.dart';
 
-class customDropDownButton extends StatelessWidget {
-  const customDropDownButton({super.key});
+class Customdropdownbutton extends StatelessWidget {
+  const Customdropdownbutton({super.key});
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: SizedBox(
-        width: 65.w,
+        width: 110.w,
         child: DropdownButtonFormField<String>(
+          dropdownColor: context.bgColor,
           icon: Icon(
             Icons.arrow_drop_down_circle_outlined,
-            color: context.bgColor,
+            color: AppColors.whiteColor,
           ),
           decoration: InputDecoration(border: InputBorder.none),
           value: context.settingProvider.languauge,
@@ -19,22 +20,22 @@ class customDropDownButton extends StatelessWidget {
             DropdownMenuItem(
               value: "en",
               child: CustomAppText(
-                text: "En",
+                text: "English",
                 fontWeight: FontWeight.bold,
-                textColor: context.bgColor,
+                textColor: AppColors.whiteColor,
               ),
             ),
             DropdownMenuItem(
               value: "ar",
               child: CustomAppText(
-                text: "Ar",
+                text: "العربيه",
                 fontWeight: FontWeight.bold,
-                textColor: context.bgColor,
+                textColor: AppColors.whiteColor,
               ),
             ),
           ],
           onChanged: (String? value) {
-            context.settingProvider.chanelanguage(value!);
+            context.settingProvider.changeLanguage(value!);
           },
         ),
       ),

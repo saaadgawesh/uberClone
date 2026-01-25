@@ -20,7 +20,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(56);
   @override
   Widget build(BuildContext context) {
-    final setting = context.watch<Settingprovider>();
+    final setting = context.watch<SettingsProvider>();
     return Localizations.override(
       context: context,
       locale: Locale("en"),

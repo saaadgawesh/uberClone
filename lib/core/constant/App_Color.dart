@@ -12,7 +12,7 @@ class AppColors {
   ).withOpacity(0.3);
   static const Color whiteColor = Colors.white;
   // ignore: deprecated_member_use
-  static Color whiteColorwithopacity = AppColors.whiteColor.withOpacity(0.2);
+  static Color whiteColorwithopacity = AppColors.whiteColor.withOpacity(0.5);
   static const Color blackColor = Colors.black;
   // ignore: deprecated_member_use
   static Color blackColorwithopacity = AppColors.blackColor.withOpacity(0.3);

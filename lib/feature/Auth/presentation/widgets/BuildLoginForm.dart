@@ -1,5 +1,5 @@
-
 import '../../../../core/App_Imports/app_imports.dart';
+
 class BuildLoginForm extends StatelessWidget {
   const BuildLoginForm({
     super.key,
@@ -16,20 +16,21 @@ class BuildLoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final applocalization = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: Sizes.s100.h),
 
         Text(
-          'Welcome Back',
+          applocalization.welcomeBack,
           style: AppTextStyles.georgiaH3.copyWith(fontSize: FontSize.s24),
         ),
 
         SizedBox(height: Sizes.s8.h),
 
         Text(
-          'Please sign in with your mail',
+          applocalization.pleasesigninwithyourmail,
           style: AppTextStyles.georgiaH3.copyWith(fontSize: FontSize.s16),
         ),
 
@@ -37,10 +38,10 @@ class BuildLoginForm extends StatelessWidget {
 
         AppTextField(
           controller: _emailController,
-          labelText: 'Email',
-          hintText: 'enter your email',
+          labelText: applocalization.email,
+          hintText: applocalization.enteryouremail,
           keyboardType: TextInputType.emailAddress,
-          validator: Validator.validateEmail,
+          validator: (val) => Validator.validateEmail(val, context),
           filledColor: AppColors.whiteColor,
         ),
 
@@ -48,20 +49,20 @@ class BuildLoginForm extends StatelessWidget {
 
         AppTextField(
           controller: _passwordController,
-          labelText: 'Password',
-          hintText: 'enter your password',
+          labelText: applocalization.password,
+          hintText: applocalization.enteryourpassword,
           obscureText: true,
           keyboardType: TextInputType.text,
-          validator: Validator.validatePassword,
+          validator: (val) => Validator.validatePassword(val, context),
           filledColor: AppColors.whiteColor,
         ),
 
         SizedBox(height: Sizes.s60.h),
         Center(
           child: defaultElevatedButton(
-            textbutton: 'Login',
+            textbutton: applocalization.login,
             textcolor: AppColors.whiteColor,
-            bgButtonColor: AppColors.blueColor,
+            bgButtonColor: context.bgColor,
             width: appWidth(context),
             onPressed: () {
               if (_formKey.currentState!.validate()) {
@@ -80,14 +81,18 @@ class BuildLoginForm extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Don’t have an account?',
+              applocalization.donotHaveAnAccount,
+              style: AppTextStyles.georgiaH3.copyWith(fontSize: FontSize.s16),
+            ),
+            Text(
+              applocalization.questionMark,
               style: AppTextStyles.georgiaH3.copyWith(fontSize: FontSize.s16),
             ),
             SizedBox(width: Sizes.s8.w),
             GestureDetector(
               onTap: () => context.pushNamed(Routes.register),
               child: Text(
-                'Create Account',
+                applocalization.createAccount,
                 style: AppTextStyles.georgiaH3.copyWith(
                   fontSize: FontSize.s16,
                   color: AppColors.blueColor,

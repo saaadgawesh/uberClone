@@ -1,5 +1,5 @@
-
 import '../../../../core/App_Imports/app_imports.dart';
+
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
@@ -16,8 +16,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _passwordController = TextEditingController();
   final _cardmodel = TextEditingController();
   final _cardnumber = TextEditingController();
-  final _latController = TextEditingController();
-  final _lngController = TextEditingController();
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -29,6 +28,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final applocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -47,10 +47,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       context.pop(); // يغلق أي Loading
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                        behavior: SnackBarBehavior.floating,
+                        SnackBar(
+                          behavior: SnackBarBehavior.floating,
                           backgroundColor: Colors.green,
-                          content: Center(child: Text('Register successful!')),
+                          content: Center(
+                            child: Text(applocalizations.registerSuccessful),
+                          ),
                         ),
                       );
 

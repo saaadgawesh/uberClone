@@ -1,5 +1,5 @@
-
 import '../../../../core/App_Imports/app_imports.dart';
+
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
 
@@ -10,10 +10,11 @@ class Navbar extends StatefulWidget {
 class _NavbarState extends State<Navbar> {
   int _currentIndex = 3;
   List<Widget> tabs = [
-    const Profile(),
-    Requests(),
-    const TripsPage(),
     const Home(),
+
+    const TripsPage(),
+    Requests(),
+    const Profile(),
   ];
   @override
   Widget build(BuildContext context) {

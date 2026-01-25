@@ -1,7 +1,4 @@
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/home.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/profile.dart';
-import 'package:uberCloneDriver/feature/BottomNavBar/navBar/screens/NavBar.dart';
-import 'package:uberCloneDriver/feature/landingPages/screen/landingPage.dart';
+
 
 import '../../../core/App_Imports/app_imports.dart';
 
@@ -33,9 +30,9 @@ class RouteGenerator {
           builder: (_) => const Navbar(),
           settings: settings,
         );
-      case Routes.landingpage:
+      case Routes.SplashScreen:
         return MaterialPageRoute(
-          builder: (_) => const Landingpage(),
+          builder: (_) => const SplashScreen(),
           settings: settings,
         );
       case Routes.profile:

@@ -1,15 +1,31 @@
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/Processitem.dart';
-
 import '../../../../core/App_Imports/app_imports.dart';
-class Home extends StatelessWidget {
+
+class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<SettingsProvider>().loadUserName();
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final applocalization = AppLocalizations.of(context)!;
+    SettingsProvider settingsProvider = Provider.of(context);
     return Scaffold(
       appBar: DefaultAppBar(
-        actiontitle: 'welcome',
-        actionDesc: 'welcome',
+        actiontitle: applocalization.welcom,
+        actionDesc: settingsProvider.isLoading
+            ? "...loading"
+            : settingsProvider.userName ?? applocalization.welcomeCustomer,
         actionOntap: () {},
         leadingonTap: () {
           context.pushNamed(Routes.profile);
@@ -17,44 +33,35 @@ class Home extends StatelessWidget {
         leadIconName: Icons.person,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 8, left: 15, right: 15),
+        padding: EdgeInsetsGeometry.directional(start: 10, top: 8, end: 10),
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomAppText(
-                text: "start your journey",
-                textColor: AppColors.blackColor,
+                text: applocalization.startyourjourney,
+                textColor: settingsProvider.isDark
+                    ? AppColors.blackColor
+                    : AppColors.blueColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
               ),
               Processitem(
-                title: "are you ready?",
-                description: "request your car and join with good trip",
-                leadIcon: Icons.arrow_back,
+                title: applocalization.areyouready,
+
+                leadIcon: Icons.arrow_forward,
                 actionIcon: Icons.group,
                 backgroundColor: AppColors.blueColor,
+                subtitle1: applocalization.subtitle1,
+                subtitle2: applocalization.subtitle2,
                 child: customAppIcon(
                   iconName: Icons.car_crash,
                   iconColor: AppColors.whiteColor,
                   size: 40,
                 ),
               ),
-                     VSpace(10),
 
-              Processitem(
-                title: "are you ready?",
-                description: "request your car and join with good trip",
-                leadIcon: Icons.arrow_back,
-                actionIcon: Icons.group,
-                backgroundColor: AppColors.greenColor,
-                child: customAppIcon(
-                  iconName: Icons.car_crash,
-                  iconColor: AppColors.whiteColor,
-                  size: 40,
-                ),
-              ),
-                     VSpace(10),
+              VSpace(10),
               GridView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
@@ -66,10 +73,10 @@ class Home extends StatelessWidget {
                 ),
                 itemCount: 4,
                 itemBuilder: (BuildContext context, int index) {
-                  return CustomServiceWidget(context);
+                  return CustomServiceWidget(context, index);
                 },
               ),
-                     VSpace(10),
+              VSpace(10),
             ],
           ),
         ),

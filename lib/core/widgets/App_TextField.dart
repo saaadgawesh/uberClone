@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:uberCloneDriver/core/constant/App_Color.dart';
-import 'package:uberCloneDriver/core/resources/App_Size.dart';
-import 'package:uberCloneDriver/core/widgets/CustomContainer.dart';
+import 'package:uberCloneDriver/core/App_Imports/app_imports.dart';
 
 enum TextFieldBorderType { filled, outlined, underlined, none }
 
@@ -41,6 +38,7 @@ class AppTextField extends StatelessWidget {
   final double? cursorHeight;
   final double cursorWidth;
   final Function(String)? onFieldSubmitted;
+  final Function(String)? onChange;
   const AppTextField({
     super.key,
     this.autofocus = false,
@@ -48,6 +46,7 @@ class AppTextField extends StatelessWidget {
     this.readOnly = false,
     this.smartDashesType,
     this.filledColor,
+    this.onChange,
     this.helperText,
     this.autoValidateMode = AutovalidateMode.onUserInteraction,
     this.hintText,
@@ -162,6 +161,7 @@ class AppTextField extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       bgContainerColor: AppColors.transparent,
       child: TextFormField(
+        onChanged: onChange,
         cursorHeight: cursorHeight,
         cursorWidth: cursorWidth,
         onFieldSubmitted: onFieldSubmitted,
@@ -199,11 +199,7 @@ class AppTextField extends StatelessWidget {
           suffixIcon: suffix,
           helperText: helperText,
           hintText: hintText,
-
           helperStyle: helperStyle,
-          // hintStyle:
-          //     hintStyle ??
-          //     AppTextStyles.montserratButton.copyWith(color: AppColors.grey400),
           labelStyle: labelStyle,
           labelText: labelText,
           border: _getBorder(),
@@ -211,6 +207,7 @@ class AppTextField extends StatelessWidget {
           focusedBorder: _getFocusedBorder(),
           errorBorder: _getErrorBorder(),
           focusedErrorBorder: _getErrorBorder(),
+          errorStyle: TextStyle(height: 0.001.h),
         ),
       ),
     );

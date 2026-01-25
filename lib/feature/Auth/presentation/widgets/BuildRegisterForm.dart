@@ -37,68 +37,71 @@ class BuildRegisterForm extends StatefulWidget {
 
 class _BuildRegisterFormState extends State<BuildRegisterForm> {
   GeoPoint? currentLocation;
+
   @override
   Widget build(BuildContext context) {
+    final applocalizations = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(height: Sizes.s20.h),
         AppTextField(
           filledColor: AppColors.whiteColor,
-          hintText: 'Enter your full name',
-          labelText: 'Full Name',
+          hintText: applocalizations.enteryourfullname,
+          labelText: applocalizations.fullName,
           keyboardType: TextInputType.name,
-          validator: Validator.validateFullName,
+          validator: (val) => Validator.validateFullName(val, context),
           controller: widget._nameController,
         ),
         SizedBox(height: Sizes.s18.h),
 
         AppTextField(
-          hintText: 'Enter your mobile number',
+          hintText:applocalizations.enteryourmobilenumber,
           filledColor: AppColors.whiteColor,
-          labelText: 'Mobile Number',
-          validator: Validator.validatePhoneNumber,
+          labelText: applocalizations.mobileNumber,
+          validator: (val) => Validator.validatePhoneNumber(val, context),
           keyboardType: TextInputType.phone,
           controller: widget._phoneController,
         ),
         SizedBox(height: Sizes.s18.h),
         AppTextField(
-          hintText: 'Enter your email address',
+          hintText: applocalizations.enteryouremail,
           filledColor: AppColors.whiteColor,
-          labelText: 'E-mail Address',
+          labelText: applocalizations.email,
           // validator: Validator.validateEmail,
           keyboardType: TextInputType.emailAddress,
           controller: widget._emailController,
         ),
         SizedBox(height: Sizes.s18.h),
         AppTextField(
-          hintText: 'Enter your car model',
+          hintText: applocalizations.enteryourcarmodel,
           filledColor: AppColors.whiteColor,
-          labelText: 'car model',
+          labelText: applocalizations.carModel,
           // validator: Validator.validateEmail,
           // keyboardType: TextInputType.emailAddress,
           controller: widget.cardmodelcontroller,
         ),
         SizedBox(height: Sizes.s18.h),
         AppTextField(
-          hintText: 'Enter your car Number',
+          hintText: applocalizations.enteryourcarNumber,
           filledColor: AppColors.whiteColor,
-          labelText: 'car Number',
+          labelText: applocalizations.carNumber,
           // validator: Validator.validateEmail,
           keyboardType: TextInputType.emailAddress,
           controller: widget.carnumbercontroller,
         ),
         SizedBox(height: Sizes.s18.h),
         AppTextField(
-          hintText: 'Enter your password',
+          hintText: applocalizations.enteryourpassword,
           filledColor: AppColors.whiteColor,
-          labelText: 'Password',
-          validator: Validator.validatePassword,
+          labelText: applocalizations.password,
+          validator: (val) => Validator.validatePassword(val, context),
+
           obscureText: true,
           keyboardType: TextInputType.text,
           controller: widget._passwordController,
         ),
-        SizedBox(height: Sizes.s50.h),
+        SizedBox(height: Sizes.s20.h),
         defaultElevatedButton(
           onPressed: () async {
             final locationManager = LocationManager();
@@ -114,8 +117,12 @@ class _BuildRegisterFormState extends State<BuildRegisterForm> {
               });
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
+                  behavior: SnackBarBehavior.floating,
                   backgroundColor: AppColors.greenColor,
-                  content: Text("Location fetched!"),
+                  content: CustomAppText(
+                    text: applocalizations.locationfetched,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               );
             } else {
@@ -127,18 +134,20 @@ class _BuildRegisterFormState extends State<BuildRegisterForm> {
               );
             }
           },
-          textbutton: 'get current location',
-          bgButtonColor: AppColors.blueColor,
+          textbutton: applocalizations.getCurrentLocation,
+          bgButtonColor: context.bgColor,
           width: appWidth(context),
           textcolor: AppColors.whiteColor,
         ),
-        SizedBox(height: Sizes.s20.h),
+        SizedBox(height: Sizes.s10.h),
         SizedBox(
           height: Sizes.s60.h,
           width: MediaQuery.of(context).size.width,
           child: defaultElevatedButton(
-            textbutton: widget.isLoading ? 'Loading...' : 'Register',
-            bgButtonColor: AppColors.blueColor,
+            textbutton: widget.isLoading
+                ? applocalizations.loading
+                : applocalizations.register,
+            bgButtonColor: context.bgColor,
             onPressed: () {
               if (widget._formKey.currentState!.validate()) {
                 if (currentLocation == null) {
@@ -146,7 +155,9 @@ class _BuildRegisterFormState extends State<BuildRegisterForm> {
                     SnackBar(
                       behavior: SnackBarBehavior.floating,
                       backgroundColor: AppColors.error,
-                      content: Text("Please get your current location first"),
+                      content: Text(
+                        applocalizations.pleasegetyourcurrentlocationfirst,
+                      ),
                     ),
                   );
                   return;
@@ -167,22 +178,25 @@ class _BuildRegisterFormState extends State<BuildRegisterForm> {
             width: appWidth(context),
           ),
         ),
-        SizedBox(height: 30.h),
+        SizedBox(height: 10.h),
 
         /// 🔹 Login redirect
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Already have an account?',
+              applocalizations.alreadyhaveanaccount,
               style: AppTextStyles.georgiaH3.copyWith(fontSize: FontSize.s16),
             ),
             SizedBox(width: Sizes.s8.w),
             GestureDetector(
               onTap: () => context.pushNamed(Routes.login),
               child: Text(
-                'Login',
-                style: AppTextStyles.georgiaH3.copyWith(fontSize: FontSize.s16),
+                applocalizations.login,
+                style: AppTextStyles.georgiaH3.copyWith(
+                  fontSize: FontSize.s16,
+                  color: AppColors.blueColor,
+                ),
               ),
             ),
           ],

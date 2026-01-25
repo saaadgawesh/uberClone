@@ -1,5 +1,6 @@
 import 'package:uberCloneDriver/core/App_Imports/app_imports.dart';
 
+
 class Custombuttomnavbar extends StatelessWidget {
   const Custombuttomnavbar({
     super.key,
@@ -10,6 +11,7 @@ class Custombuttomnavbar extends StatelessWidget {
   final int currentIndex;
   @override
   Widget build(BuildContext context) {
+    final applocalization = AppLocalizations.of(context)!;
     return ClipRRect(
       borderRadius: BorderRadiusGeometry.only(
         topRight: Radius.circular(15),
@@ -31,13 +33,25 @@ class Custombuttomnavbar extends StatelessWidget {
         onTap: onTap,
         type: BottomNavigationBarType.fixed,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: applocalization.home,
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.menu),
+            label: applocalization.tripsPage,
+          ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.car_crash_sharp),
-            label: 'Requests',
+            label: applocalization.requests,
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'TripsPage'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: applocalization.profile,
+          ),
         ],
       ),
     );

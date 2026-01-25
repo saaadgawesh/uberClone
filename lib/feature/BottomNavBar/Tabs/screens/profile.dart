@@ -9,8 +9,16 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<SettingsProvider>().loadUserName();
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final setting = context.watch<Settingprovider>();
+    final settingsProvider = context.watch<SettingsProvider>();
     final applocalization = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: DefaultAppBar(title: applocalization.profile),
@@ -20,62 +28,100 @@ class _ProfileState extends State<Profile> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Processitem(
-                title: "saadGawesh",
-                description: "flutter developer",
-                leadIcon: Icons.edit,
-                actionIcon: Icons.group,
-                backgroundColor: context.bgColor,
-                child: ClipOval(
-                  child: Image.asset(
-                    Assets.photo,
-                    width: appWidth(context),
-                    height: appHeight(context),
-                    fit: BoxFit.cover,
+              CustomContainer(
+                bgContainerColor: context.bgColor,
+                height: appHeight(context) * 0.1,
+                width: appWidth(context),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.symmetric(
+                    horizontal: 10,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomAppText(
+                        text: settingsProvider.isLoading
+                            ? "...loading"
+                            : settingsProvider.userName ??
+                                  applocalization.welcomeCustomer,
+
+                        fontWeight: FontWeight.bold,
+                        textColor: AppColors.whiteColor,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            WidgetsBinding.instance.addPostFrameCallback((_) {
+                              ShowEditNameDialog(context);
+                            });
+                          });
+                        },
+                        child: customAppIcon(iconName: Icons.edit),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              VSpace(10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CustomAppText(
-                    text: setting.languauge == "en" ? "English" : "العربيه",
-                    fontWeight: FontWeight.bold,
-                    textColor: setting.islight
-                        ? AppColors.blueColor
-                        : AppColors.blackColor,
+              VSpace(5),
+              CustomContainer(
+                bgContainerColor: context.bgColor,
+                height: appHeight(context) * 0.1,
+                width: appWidth(context),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.symmetric(
+                    horizontal: 10,
                   ),
-                  customDropDownButton(),
-                ],
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomAppText(
+                        text: settingsProvider.languauge == "en"
+                            ? "Choose Language"
+                            : "اختيار اللغه",
+                        fontWeight: FontWeight.bold,
+                        textColor: AppColors.whiteColor,
+                      ),
+                      Customdropdownbutton(),
+                    ],
+                  ),
+                ),
               ),
+              VSpace(5),
+              CustomContainer(
+                bgContainerColor: context.bgColor,
+                height: appHeight(context) * 0.1,
+                width: appWidth(context),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CustomAppText(
-                    text: setting.isDark
-                        ? applocalization.darkmode
-                        : applocalization.lightmode,
-                    fontWeight: FontWeight.bold,
-                    textColor: setting.islight
-                        ? AppColors.blueColor
-                        : AppColors.blackColor,
-                  ),
-                  Transform.scale(
-                    scale: 0.7,
-                    child: Switch(
-                      thumbColor: WidgetStateProperty.all(AppColors.whiteColor),
-                      trackColor: WidgetStateProperty.all(AppColors.blackColor),
-                      value: context.settingProvider.isDark,
-                      onChanged: (bool value) {
-                        setting.changetheme(
-                          value ? ThemeMode.dark : ThemeMode.light,
-                        );
-                      },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.only(start: 10),
+                      child: CustomAppText(
+                        text: settingsProvider.isDark
+                            ? applocalization.darkmode
+                            : applocalization.lightmode,
+                        fontWeight: FontWeight.bold,
+                        textColor: AppColors.whiteColor,
+                      ),
                     ),
-                  ),
-                ],
+                    Transform.scale(
+                      scale: 0.7,
+                      child: Switch(
+                        thumbColor: WidgetStateProperty.all(context.bgColor),
+                        trackColor: WidgetStateProperty.all(
+                          AppColors.whiteColor,
+                        ),
+                        value: context.settingProvider.isDark,
+                        onChanged: (bool value) {
+                          settingsProvider.changeTheme(
+                            value ? ThemeMode.dark : ThemeMode.light,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -84,7 +130,8 @@ class _ProfileState extends State<Profile> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
         child: defaultElevatedButton(
-          textbutton: 'logout',
+          textbutton: applocalization.logout,
+
           bgButtonColor: context.bgColor,
           onPressed: () {
             context.read<AuthCubit>().logout();

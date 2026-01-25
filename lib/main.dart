@@ -5,7 +5,9 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   Bloc.observer = AppBlocObserver();
-  runApp(
-    ChangeNotifierProvider(create: (_) => Settingprovider(), child: App()),
-  );
+  // تحميل إعدادات SharedPreferences
+  final settingsProvider = SettingsProvider();
+  await settingsProvider.loadSettings();
+
+  runApp(ChangeNotifierProvider.value(value: settingsProvider, child: App()));
 }

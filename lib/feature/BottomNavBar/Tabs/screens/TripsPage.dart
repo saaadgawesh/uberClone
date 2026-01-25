@@ -43,7 +43,12 @@ class _TripsPageState extends State<TripsPage> {
             return Center(child: Text('حدث خطأ: ${snapshot.error}'));
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text('لا توجد رحلات مقبولة حالياً'));
+            return Center(
+              child: CustomAppText(
+                text: 'لا توجد رحلات مقبولة حالياً',
+                textColor: context.bgColor,
+              ),
+            );
           }
 
           final trips = snapshot.data!.docs;
