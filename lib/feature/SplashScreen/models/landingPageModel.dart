@@ -1,4 +1,4 @@
-import 'package:uberCloneRider/core/constant/assets.dart';
+import '../../../core/App_Imports/app_imports.dart';
 
 class Landingpagemodel {
   final String image;

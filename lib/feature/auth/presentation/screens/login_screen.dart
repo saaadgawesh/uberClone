@@ -1,14 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:uberCloneRider/core/extension/navigation.dart';
-import 'package:uberCloneRider/core/resources/values_manager.dart';
-import 'package:uberCloneRider/core/routing/routes.dart';
-import 'package:uberCloneRider/core/widgets/loading_indicator.dart';
-import 'package:uberCloneRider/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
-import 'package:uberCloneRider/feature/Auth/presentation/Cubit/Auth_State.dart';
-import 'package:uberCloneRider/feature/Auth/presentation/widgets/BuildLoginForm.dart';
-
+import '../../../../core/App_Imports/app_imports.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -47,13 +37,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 child: BlocBuilder<AuthCubit, AuthState>(
                   builder: (context, state) {
-                    final isLoading = state is LoadingAuthState;
+                      final isLoading = state is LoadingAuthState;
                     if (state is LoadingAuthState) {
+
                       return const LoadingIndicator();
                     }
 
                     return BuildLoginForm(
-                      isLoading: isLoading,
+                        isLoading: isLoading,
                       emailController: _emailController,
                       passwordController: _passwordController,
                       formKey: _formKey,

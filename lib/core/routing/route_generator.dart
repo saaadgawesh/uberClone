@@ -1,3 +1,5 @@
+import 'package:uberCloneRider/feature/SplashScreen/presentation/SplashScreen.dart';
+
 import '../../../core/App_Imports/app_imports.dart';
 
 class RouteGenerator {
@@ -28,9 +30,9 @@ class RouteGenerator {
           builder: (_) => const Navbar(),
           settings: settings,
         );
-      case Routes.landingpage:
+      case Routes.splashScreen:
         return MaterialPageRoute(
-          builder: (_) => const Landingpage(),
+          builder: (_) => const SplashScreen(),
           settings: settings,
         );
       case Routes.profile:

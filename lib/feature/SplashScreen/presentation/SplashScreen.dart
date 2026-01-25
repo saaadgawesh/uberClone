@@ -1,66 +1,32 @@
+
 import '../../../core/App_Imports/app_imports.dart';
-class Landingpage extends StatefulWidget {
-  const Landingpage({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<Landingpage> createState() => _LandingpageState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _LandingpageState extends State<Landingpage> {
+class _SplashScreenState extends State<SplashScreen> {
   int currentIndex = 0;
   final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
 
         children: [
-          VSpace(20),
           Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15),
+            padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 currentIndex == 0
-                    ? DropdownButtonHideUnderline(
-                        child: SizedBox(
-                          width: 65.w,
-                          child: DropdownButtonFormField<String>(
-                            icon: Icon(
-                              Icons.arrow_drop_down_circle_outlined,
-                              color: context.bgColor,
-                            ),
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                            ),
-                            value: context.settingProvider.languauge,
-                            items: [
-                              DropdownMenuItem(
-                                value: "en",
-                                child: CustomAppText(
-                                  text: "En",
-                                  fontWeight: FontWeight.bold,
-                                  textColor: context.bgColor,
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: "ar",
-                                child: CustomAppText(
-                                  text: "Ar",
-                                  fontWeight: FontWeight.bold,
-                                  textColor: context.bgColor,
-                                ),
-                              ),
-                            ],
-                            onChanged: (String? value) {
-                              context.settingProvider.chanelanguage(value!);
-                            },
-                          ),
-                        ),
-                      )
-                    : SizedBox(height: 50),
+                    ? Customdropdownbutton()
+                    : SizedBox(height: 65.h),
                 _buildDotsIndicator(),
               ],
             ),
@@ -84,7 +50,7 @@ class _LandingpageState extends State<Landingpage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(model.image),
-                      heightSizedbox(20),
+                      VSpace(20),
 
                       CustomAppText(
                         text: model.title,
@@ -92,21 +58,23 @@ class _LandingpageState extends State<Landingpage> {
                         fontWeight: FontWeight.w700,
                       ),
 
-                      heightSizedbox(10),
+                      VSpace(10),
 
                       CustomAppText(
                         text: model.text,
                         fontSize: 16,
-                        textColor: AppColors.blueColor,
+                        textColor: settingsProvider.isDark
+                            ? AppColors.blackColor
+                            : AppColors.blueColor,
                         fontWeight: FontWeight.w700,
                       ),
 
-                      heightSizedbox(10),
+                      VSpace(10),
 
                       CustomAppText(
                         textAlign: TextAlign.center,
                         text: model.desc,
-                        textColor: AppColors.blackColorwithopacity,
+                        textColor: AppColors.blackColor,
                       ),
                     ],
                   ),
@@ -131,7 +99,7 @@ class _LandingpageState extends State<Landingpage> {
                 curve: Curves.easeInOut,
               );
             } else {
-              Navigator.of(context).pushNamed(Routes.navbar);
+              context.pushNamed(Routes.navbar);
             }
           },
         ),

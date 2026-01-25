@@ -1,42 +1,39 @@
 plugins {
     id("com.android.application")
-    // START: FlutterFire Configuration
-    id("com.google.gms.google-services")
-    // END: FlutterFire Configuration
+    id("com.google.gms.google-services") // مهم جدًا للـ location + firebase
     id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
-//uber
+
 android {
     namespace = "com.example.uber"
     compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
+    defaultConfig {
+        applicationId = "com.example.uber"
+        minSdk = 24
+        targetSdk = 36
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+
+        // ✅ MultiDex
+        multiDexEnabled = true
+    }
+
     compileOptions {
+        // ✅ Desugaring
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
-    }
-
-    defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.uber"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = 24
-        targetSdk = 36
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        jvmTarget = "17"
     }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
         }
     }
@@ -45,3 +42,111 @@ android {
 flutter {
     source = "../.."
 }
+
+dependencies {
+    implementation("androidx.multidex:multidex:2.0.1")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+}
+//=============================default buid gradle================================
+// plugins {
+//     id("com.android.application")
+//     // START: FlutterFire Configuration
+//     id("com.google.gms.google-services")
+//     // END: FlutterFire Configuration
+//     id("kotlin-android")
+//     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+//     id("dev.flutter.flutter-gradle-plugin")
+// }
+// //uber
+// android {
+//     namespace = "com.example.uber"
+//     compileSdk = 36
+//     ndkVersion = flutter.ndkVersion
+
+//     compileOptions {
+//         sourceCompatibility = JavaVersion.VERSION_17
+//         targetCompatibility = JavaVersion.VERSION_17
+//     }
+
+//     kotlinOptions {
+//         jvmTarget = JavaVersion.VERSION_17.toString()
+//     }
+
+//     defaultConfig {
+//         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+//         applicationId = "com.example.uber"
+//         // You can update the following values to match your application needs.
+//         // For more information, see: https://flutter.dev/to/review-gradle-config.
+//         minSdk = 24
+//         targetSdk = 36
+//         versionCode = flutter.versionCode
+//         versionName = flutter.versionName
+//     }
+
+//     buildTypes {
+//         release {
+//             // TODO: Add your own signing config for the release build.
+//             // Signing with the debug keys for now, so `flutter run --release` works.
+//             signingConfig = signingConfigs.getByName("debug")
+//         }
+//     }
+// }
+
+// flutter {
+//     source = "../.."
+//  }
+
+ //===============================flutter local notification================================
+// plugins {
+//     id("com.android.application")
+//     id("com.google.gms.google-services") // FlutterFire
+//     id("kotlin-android")
+//     id("dev.flutter.flutter-gradle-plugin")
+// }
+
+// android {
+//     namespace = "com.example.uber"
+//     compileSdk = 36
+//     ndkVersion = flutter.ndkVersion
+
+//     defaultConfig {
+//         applicationId = "com.example.uber"
+//         minSdk = 24
+//         targetSdk = 36
+//         versionCode = flutter.versionCode
+//         versionName = flutter.versionName
+
+//         // ✅ تفعيل MultiDex
+//         multiDexEnabled = true
+//     }
+
+//     compileOptions {
+//         // ✅ تفعيل Core Library Desugaring
+//         isCoreLibraryDesugaringEnabled = true
+//         sourceCompatibility = JavaVersion.VERSION_17
+//         targetCompatibility = JavaVersion.VERSION_17
+//     }
+
+//     // ✅ Kotlin JVM Toolchain
+//     kotlin {
+//         jvmToolchain(17)
+//     }
+
+//     buildTypes {
+//         release {
+//             signingConfig = signingConfigs.getByName("debug")
+//         }
+//     }
+// }
+
+// flutter {
+//     source = "../.."
+// }
+
+// dependencies {
+//     // ✅ MultiDex library
+//     implementation("androidx.multidex:multidex:2.0.1")
+
+//     // ✅ Core Library Desugaring
+//     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+// }

@@ -1,0 +1,76 @@
+{
+
+  "myboket":  "المحفظه",
+  "selectDestinationfirst":  "اختيار جهه وصول اولا",
+  "confirmLocation":  "تاكيد الموقع",
+  "searchdestination":  "ابحث عن جهه وصول",
+  "tripSummary":  "ملخص الرحله",
+  "createTrip": "انشاء رحله",
+  "distance": "المسافه",
+  "duration": "المده",
+  "price": "السعر",
+  "end": "الي: ",
+  "start": "من: ",
+  "km": "كم",
+  "min": "دقيقه",
+    "eGP": "جنيه",
+  "searchingforDriver": "ابحث عن الكابتن",
+  "name":"الاسم",
+  "carModel":"موديل السياره",
+  "pleaseselectadriverfirst":"من فضلك ابحث عن كابتن اولا",
+  "ok": "اختيار",
+  "location": "الموقع",
+  "carNumber":"رقم السياره",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "mytrip":  "رحلاتي",
+  "thelastTrips":  "الرحلات السابقه",
+    "myrequests": "طلباتي",
+  "requestcar": "طلب سياره",
+  "offers":  "الباقات والعروض",
+  "paidManaged":  "اداره المدفوعات",
+  "tripsFollow":  "اداره وتتبع الرحلات",
+  "riders":  "عرض كشوفات الركاب ",
+  "offersmanage":  "عرض واداره الباقات",
+  "home":"الرئيسيه",
+  "welcom":"مرحبا بك",
+  "welcomeCustomer":"مرحبا بك عزيزي الزائر",
+  "startyourjourney":"ابدا رحلتك معنا الان",
+  "areyouready":"هل انت جاهز ؟",
+  "subtitle1":"اطلب سيارتك الان",
+  "subtitle2":"واستمتع برحله جيده",
+  "profile":"الملف الشخصي",
+  "darkmode":"الوضع الداكن",
+  "lightmode":"الوضع الفاتح",
+  "email":"البريد الالكتروني",
+  "password":"الرقم السري",
+  "login":"تسجيل الدخول ",
+  "logout":"تسجيل الخروج ",
+  "welcomeBack":"مرحبا بعودتك ",
+  "pleasesigninwithyourmail":"من فضلك سجل الدخول الي حسابك  ",
+  "createAccount":"انشئ حساب ",
+  "donotHaveAnAccount":"اذا كنت لا تمتلك حساب ",
+  "questionMark":"  ؟   ",
+  "enteryouremail":"ادخل البريد الالكتروني الخاص بك",
+  "enteryourpassword":"ادحل الرقم السرى",
+  "tripsPage":"الرحلات",
+  "enternewname": "ادخل الاسم الجديد",
+  "editname":"تعديل الاسم",
+  "canceled":"إلغاء",
+  "saved":"حفظ",
+  "requests":"الطلبات"
+}

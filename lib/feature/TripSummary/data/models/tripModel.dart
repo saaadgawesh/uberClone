@@ -1,25 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:latlong2/latlong.dart';
 
-class TripData {
+class Tripmodel {
   final String tripId;
   final String riderId;
+  final String riderName;
   final String driverId;
-
   final LatLng startLocation;
   final LatLng endLocation;
-
   final String startAddress;
   final String endAddress;
-
   final double durationMin;
   final double price;
   final double distanceKm;
-
   final String status;
   final DateTime createdAt;
 
-  TripData({
+  Tripmodel({
     required this.tripId,
     required this.riderId,
     required this.driverId,
@@ -32,6 +29,7 @@ class TripData {
     required this.distanceKm,
     required this.status,
     required this.createdAt,
+    required this.riderName,
   });
 
   /// 🔁 تحويل إلى Map للتخزين في Firestore
@@ -39,9 +37,16 @@ class TripData {
     return {
       'tripId': tripId,
       'riderId': riderId,
+      'riderName': riderName,
       'driverId': driverId,
-      'startLocation': startLocation,
-      'endLocation': endLocation,
+      'startLocation': {
+        'lat': startLocation.latitude,
+        'lng': startLocation.longitude,
+      },
+      'endLocation': {
+        'lat': endLocation.latitude,
+        'lng': endLocation.longitude,
+      },
       'startAddress': startAddress,
       'endAddress': endAddress,
       'durationMin': durationMin,
@@ -53,19 +58,26 @@ class TripData {
   }
 
   /// 🔁 إنشاء Object من Firestore
-  factory TripData.fromMap(Map<String, dynamic> map) {
-    return TripData(
+  factory Tripmodel.fromMap(Map<String, dynamic> map) {
+    return Tripmodel(
       tripId: map['tripId'] ?? '',
       riderId: map['riderId'] ?? '',
+      riderName: map['riderName'] ?? '',
       driverId: map['driverId'] ?? '',
-      startLocation: map['startLocation'] ?? '',
-      endLocation: map['endLocation'] ?? '',
+      startLocation: LatLng(
+        (map['startLocation']['lat'] as num?)?.toDouble() ?? 0.0,
+        (map['startLocation']['lng'] as num?)?.toDouble() ?? 0.0,
+      ),
+      endLocation: LatLng(
+        (map['endLocation']['lat'] as num?)?.toDouble() ?? 0.0,
+        (map['endLocation']['lng'] as num?)?.toDouble() ?? 0.0,
+      ),
       startAddress: map['startAddress'] ?? '',
       endAddress: map['endAddress'] ?? '',
       durationMin: (map['durationMin'] as num?)?.toDouble() ?? 0.0,
       price: (map['price'] as num?)?.toDouble() ?? 0.0,
       distanceKm: (map['distanceKm'] as num?)?.toDouble() ?? 0.0,
-      status: map['status'] ?? 'pending',
+      status: map['status'] ?? 'requested',
       createdAt: (map['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
     );
   }

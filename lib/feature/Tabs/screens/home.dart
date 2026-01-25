@@ -5,10 +5,14 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appLocalizations = AppLocalizations.of(context)!;
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     return Scaffold(
       appBar: DefaultAppBar(
-        actiontitle: 'welcome mazen',
-        actionDesc: 'where you want going to?',
+        actiontitle: appLocalizations.welcom,
+        actionDesc: settingsProvider.isLoading
+            ? "...loading"
+            : settingsProvider.userName ?? appLocalizations.welcomeCustomer,
         actionOntap: () {},
         leadingonTap: () {},
         leadIconName: Icons.person,
@@ -17,20 +21,22 @@ class Home extends StatelessWidget {
         padding: const EdgeInsets.only(top: 8, left: 15, right: 15),
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomAppText(
-                text: "start your journey",
-
+                text: appLocalizations.startyourjourney,
+                textColor: context.bgColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
               ),
               Processitem(
-                title: "are you ready?",
-                description: "request your car and join with good trip",
-                leadIcon: Icons.arrow_back,
+                title: appLocalizations.areyouready,
+
+                leadIcon: Icons.arrow_forward,
                 actionIcon: Icons.group,
                 backgroundColor: AppColors.blueColor,
+                subtitle1: appLocalizations.subtitle1,
+                subtitle2: appLocalizations.subtitle2,
                 child: customAppIcon(
                   iconName: Icons.car_crash,
                   iconColor: AppColors.whiteColor,
@@ -50,7 +56,7 @@ class Home extends StatelessWidget {
                 ),
                 itemCount: 4,
                 itemBuilder: (BuildContext context, int index) {
-                  return CustomServiceWidget(context);
+                  return CustomServiceWidget(context, index);
                 },
               ),
               heightSizedbox(10),

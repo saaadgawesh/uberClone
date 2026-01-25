@@ -1,4 +1,5 @@
 import '../../../core/App_Imports/app_imports.dart';
+
 class Custombuttomnavbar extends StatelessWidget {
   const Custombuttomnavbar({
     super.key,
@@ -9,7 +10,8 @@ class Custombuttomnavbar extends StatelessWidget {
   final int currentIndex;
   @override
   Widget build(BuildContext context) {
-     Color bgcolor = Provider.of<Settingprovider>(context).isDark
+    final applocalization = AppLocalizations.of(context)!;
+    Color bgcolor = Provider.of<SettingsProvider>(context).isDark
         ? AppColors.blackColor
         : AppColors.blueColor;
     return ClipRRect(
@@ -33,18 +35,23 @@ class Custombuttomnavbar extends StatelessWidget {
         onTap: onTap,
         type: BottomNavigationBarType.fixed,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.car_crash_sharp),
-            label: 'RequestCar',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.alarm_sharp),
-            label: 'MyRequests',
-          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.house_siding_sharp),
-            label: 'Home',
+            label: applocalization.home,
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.alarm_sharp),
+            label: applocalization.myrequests,
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.car_crash_sharp),
+            label: applocalization.requestcar,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: applocalization.profile,
           ),
         ],
       ),

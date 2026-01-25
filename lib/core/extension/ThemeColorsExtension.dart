@@ -1,11 +1,9 @@
-import '../App_Imports/app_imports.dart';
+import '../../core/App_Imports/app_imports.dart';
 
 extension ThemeColorsExtension on BuildContext {
   Color get bgColor {
-    final settingProvider = Provider.of<Settingprovider>(this, listen: false);
+    final settingProvider = Provider.of<SettingsProvider>(this);
 
-    return settingProvider.isDark
-        ? AppColors.blackColor
-        : AppColors.blueColor;
+    return settingProvider.isDark ? AppColors.blackColor : AppColors.blueColor;
   }
 }

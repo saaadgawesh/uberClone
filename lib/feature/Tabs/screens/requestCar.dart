@@ -105,6 +105,7 @@ class _RequestcarState extends State<Requestcar> {
     setState(() => isLoading = true);
 
     final locationData = await locationManager.getUserLocation();
+
     if (!mounted) return;
 
     if (locationData == null) {
@@ -191,11 +192,12 @@ class _RequestcarState extends State<Requestcar> {
   // ================= UI =================
   @override
   Widget build(BuildContext context) {
+    final applocalization = AppLocalizations.of(context)!;
     return Scaffold(
       body: Stack(
         children: [
           isLoading
-              ? const Center(child: CircularProgressIndicator())
+              ? Center(child: CircularProgressIndicator(color: context.bgColor))
               : FlutterMap(
                   mapController: _mapController,
                   options: MapOptions(
@@ -246,15 +248,25 @@ class _RequestcarState extends State<Requestcar> {
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: AppTextField(
+
+                keyboardType: TextInputType.text,
                 controller: _locationController,
-                hintText: "Search destination",
+                hintText: applocalization.searchdestination,
+                
+
                 onFieldSubmitted: searchPlaces,
                 prefix: IconButton(
-                  icon: customAppIcon(iconName: Icons.arrow_back_ios),
+                  icon: customAppIcon(
+                    iconName: Icons.arrow_back_ios,
+                    iconColor: context.bgColor,
+                  ),
                   onPressed: () => Navigator.pop(context),
                 ),
                 suffix: IconButton(
-                  icon: customAppIcon(iconName: Icons.search),
+                  icon: customAppIcon(
+                    iconName: Icons.search,
+                    iconColor: context.bgColor,
+                  ),
                   onPressed: () => searchPlaces(_locationController.text),
                 ),
               ),
@@ -309,7 +321,7 @@ class _RequestcarState extends State<Requestcar> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8),
         child: defaultElevatedButton(
-          textbutton: "Confirm Location",
+          textbutton: applocalization.confirmLocation,
           bgButtonColor: context.bgColor,
           width: appWidth(context) * 0.9,
           textcolor: AppColors.whiteColor,
@@ -318,11 +330,11 @@ class _RequestcarState extends State<Requestcar> {
                 _destination == null ||
                 tripdistancekm == null ||
                 tripdistancemin == null) {
-              showSnackBar(context, "Select destination first");
+              showSnackBar(context, applocalization.selectDestinationfirst);
               return;
             }
 
-            final tripPreview = TripData(
+            final tripPreview = Tripmodel(
               tripId: '', // هنملأه بعد شوية
               riderId: FirebaseAuth.instance.currentUser!.uid,
               driverId: "",
@@ -335,11 +347,12 @@ class _RequestcarState extends State<Requestcar> {
               price: calculatePrice(),
               status: 'pending',
               createdAt: DateTime.now(),
+              riderName: "",
             );
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) => TripSummaryScreen(tripData: tripPreview),
+                builder: (_) => TripSummaryScreen(tripmodel: tripPreview),
               ),
             );
           },

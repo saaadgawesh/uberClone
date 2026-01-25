@@ -1,22 +1,4 @@
-// ignore: camel_case_types
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:uberCloneRider/core/constant/App_Color.dart';
-import 'package:uberCloneRider/core/extension/navigation.dart';
-import 'package:uberCloneRider/core/resources/AppTextStyles.dart';
-import 'package:uberCloneRider/core/resources/App_Size.dart';
-import 'package:uberCloneRider/core/resources/font_manager.dart';
-import 'package:uberCloneRider/core/resources/values_manager.dart';
-import 'package:uberCloneRider/core/routing/routes.dart';
-import 'package:uberCloneRider/core/utils/validator.dart';
-import 'package:uberCloneRider/core/widgets/App_TextField.dart';
-import 'package:uberCloneRider/core/widgets/defaultElevatedButton.dart';
-import 'package:uberCloneRider/core/widgets/spacing.dart';
-import 'package:uberCloneRider/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
-
-// ignore: unused_element
+import"../../../../core/App_Imports/app_imports.dart";
 class BuildRegisterForm extends StatefulWidget {
   const BuildRegisterForm({
     super.key,
@@ -53,7 +35,7 @@ class _BuildRegisterFormState extends State<BuildRegisterForm> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        VSpace(100.h),
+        SizedBox(height: Sizes.s20.h),
         AppTextField(
           filledColor: AppColors.whiteColor,
           hintText: 'Enter your full name',

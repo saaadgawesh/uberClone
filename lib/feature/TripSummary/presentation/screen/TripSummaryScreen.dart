@@ -1,18 +1,16 @@
 import 'package:uberCloneRider/core/App_Imports/app_imports.dart';
 
-
-
-
 class TripSummaryScreen extends StatelessWidget {
-  final TripData tripData;
+  final Tripmodel tripmodel;
 
-  const TripSummaryScreen({super.key, required this.tripData});
+  const TripSummaryScreen({super.key, required this.tripmodel});
 
   @override
   Widget build(BuildContext context) {
+    final applocalization=AppLocalizations.of(context)!;
     return Scaffold(
       appBar: DefaultAppBar(
-        title: "Trip Summary",
+        title: applocalization.tripSummary,
         leadIconName: Icons.arrow_back_ios,
         leadingonTap: () => Navigator.pop(context),
       ),
@@ -34,7 +32,7 @@ class TripSummaryScreen extends StatelessWidget {
             heightSizedbox(5),
 
             /// 👇 مصدر البيانات واحد
-            TripSummaryDetalis(tripData: tripData),
+            TripSummaryDetalis(tripmodel: tripmodel),
           ],
         ),
       ),
@@ -42,16 +40,15 @@ class TripSummaryScreen extends StatelessWidget {
         padding: const EdgeInsets.all(5.0),
         child: defaultElevatedButton(
           height: appHeight(context) * 0.09,
-          textbutton: 'Create Trip',
-          bgButtonColor: AppColors.blueColor,
+          textbutton: applocalization.createTrip,
+          bgButtonColor: context.bgColor,
           width: appWidth(context),
           textcolor: AppColors.whiteColor,
           onPressed: () async {
-
             Navigator.pushReplacementNamed(
               context,
               Routes.SearchingForDriverScreen,
-              arguments: tripData,
+              arguments: tripmodel,
             );
           },
         ),

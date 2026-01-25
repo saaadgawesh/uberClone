@@ -1,4 +1,3 @@
-
 import '../../../core/App_Imports/app_imports.dart';
 
 class SearchingForDriverScreen extends StatefulWidget {
@@ -10,15 +9,16 @@ class SearchingForDriverScreen extends StatefulWidget {
 }
 
 class _SearchingForDriverScreenState extends State<SearchingForDriverScreen> {
-  String? selectedDriverId; // السواق المختار
+  String? selectedDriverId;
   bool isLoading = true;
   List<QueryDocumentSnapshot> drivers = [];
 
   @override
   Widget build(BuildContext context) {
+    final applocalization = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: DefaultAppBar(
-        title: "Searching for Driver",
+        title: applocalization.searchingforDriver,
         leadIconName: Icons.arrow_back_ios,
         leadingonTap: () => Navigator.pop(context),
       ),
@@ -40,7 +40,7 @@ class _SearchingForDriverScreenState extends State<SearchingForDriverScreen> {
           }
 
           if (drivers.isEmpty && !isLoading) {
-            return const Center(child: Text("No drivers available"));
+            return Center(child: Text(applocalization.nodriversavailable));
           }
 
           return ListView.builder(
@@ -49,28 +49,30 @@ class _SearchingForDriverScreenState extends State<SearchingForDriverScreen> {
               final driver = drivers[index];
               final driverId = driver.id;
 
+              final bool isSelected = selectedDriverId == driverId;
+
               return GestureDetector(
                 onTap: () {
                   setState(() {
-                    selectedDriverId = driverId; // اختيار السواق
+                    selectedDriverId = driverId;
                   });
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CustomContainer(
-                    padding: EdgeInsets.all(10),
-                    height: appHeight(context) * 0.26,
+                    padding: const EdgeInsets.all(10),
+                    height: appHeight(context) * 0.31,
                     width: appWidth(context),
-                    bgContainerColor: selectedDriverId == driverId
-                        ? Colors.blue.withOpacity(0.7)
-                        : AppColors.blueColor,
+                    bgContainerColor: isSelected
+                        ? context.bgColor.withOpacity(0.6)
+                        : context.bgColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CircleAvatar(
+                            const CircleAvatar(
                               backgroundImage: AssetImage(Assets.homeImage),
                               backgroundColor: AppColors.whiteColor,
                               radius: 35,
@@ -80,60 +82,70 @@ class _SearchingForDriverScreenState extends State<SearchingForDriverScreen> {
                               children: [
                                 CustomAppText(
                                   text:
-                                      'Name: ${driver['name']?.toString() ?? 'Unknown'}',
+                                      '${applocalization.name}: ${driver['name']?.toString() ?? 'Unknown'}',
                                   textColor: AppColors.whiteColor,
                                 ),
                                 CustomAppText(
                                   text:
-                                      'Car Model: ${driver['carModel']?.toString() ?? 'Unknown'}',
+                                      '${applocalization.carModel}: ${driver['carModel']?.toString() ?? 'Unknown'}',
                                   textColor: AppColors.whiteColor,
                                 ),
                                 CustomAppText(
                                   text:
-                                      'Car Number: ${driver['carNumber']?.toString() ?? 'Unknown'}',
+                                      '${applocalization.carNumber}: ${driver['carNumber']?.toString() ?? 'Unknown'}',
                                   textColor: AppColors.whiteColor,
                                 ),
                               ],
                             ),
                             GestureDetector(
                               onTap: () async {
-                                final repo = TripRepository();
-                                final tripData =
-                                    ModalRoute.of(context)!.settings.arguments
-                                        as TripData;
                                 if (selectedDriverId == null) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      behavior: SnackBarBehavior.floating,
-                                      backgroundColor: AppColors.error,
                                       content: Text(
-                                        "Please select a driver first",
+                                        applocalization
+                                            .pleaseselectadriverfirst,
                                       ),
                                     ),
                                   );
                                   return;
                                 }
 
-                                await repo.selectDriver(
-                                  tripData,
-                                  selectedDriverId!,
-                                );
+                                final tripData =
+                                    ModalRoute.of(context)!.settings.arguments
+                                        as Tripmodel;
 
-                                context.pushNamed(Routes.navbar);
+                                final repo = TripRepository();
+
+                                try {
+                                  await repo.selectDriver(
+                                    tripData,
+                                    selectedDriverId!,
+                                  );
+
+                                  context.pushNamed(Routes.navbar);
+                                } catch (e) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text(e.toString())),
+                                  );
+                                }
                               },
                               child: CircleAvatar(
                                 backgroundColor: AppColors.whiteColor,
-                                child: CustomAppText(text: "OK"),
+                                child: CustomAppText(
+                                  text: applocalization.ok,
+                                  textColor: context.bgColor,
+                                ),
                               ),
                             ),
                           ],
                         ),
-                        VSpace(15),
-                        AppDivider(color: AppColors.whiteColor),
-                        VSpace(10),
+                        const SizedBox(height: 15),
+                        const Divider(color: Colors.white),
+                        const SizedBox(height: 10),
                         CustomAppText(
                           text:
-                              'Location: ${driver['location']?.toString() ?? 'Unknown'}',
+                              '${applocalization.location}: ${driver['location']?.toString() ?? 'Unknown'}',
                           textColor: AppColors.whiteColor,
                         ),
                       ],

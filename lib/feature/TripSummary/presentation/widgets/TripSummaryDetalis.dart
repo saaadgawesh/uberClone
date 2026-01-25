@@ -1,22 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneRider/core/constant/App_Color.dart';
-import 'package:uberCloneRider/core/resources/AppDivider.dart';
-import 'package:uberCloneRider/core/resources/App_Size.dart';
-import 'package:uberCloneRider/core/resources/customAppText.dart';
-import 'package:uberCloneRider/core/widgets/CustomContainer.dart';
-import 'package:uberCloneRider/feature/TripSummary/data/models/tripModel.dart';
-import 'package:uberCloneRider/feature/TripSummary/presentation/widgets/TripSummaryDetalisItem.dart';
+import 'package:uberCloneRider/core/App_Imports/app_imports.dart';
 
 class TripSummaryDetalis extends StatelessWidget {
-  const TripSummaryDetalis({super.key, required this.tripData});
+  const TripSummaryDetalis({super.key, required this.tripmodel});
 
-  final TripData tripData;
+  final Tripmodel tripmodel;
 
   @override
   Widget build(BuildContext context) {
+    final applocalization = AppLocalizations.of(context)!;
     return CustomContainer(
       padding: const EdgeInsets.all(10),
-      bgContainerColor: AppColors.blueColor,
+      bgContainerColor: context.bgColor,
       height: appHeight(context) * 0.33,
       width: appWidth(context),
       child: Column(
@@ -27,16 +21,16 @@ class TripSummaryDetalis extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TripSummaryDetalisItem(
-                distancetext: 'km',
-                title: tripData.distanceKm.toStringAsFixed(2),
+                distancetext: applocalization.km,
+                title: tripmodel.distanceKm.toStringAsFixed(2),
               ),
               TripSummaryDetalisItem(
-                distancetext: 'min',
-                title: tripData.durationMin.toStringAsFixed(1),
+                distancetext: applocalization.min,
+                title: tripmodel.durationMin.toStringAsFixed(1),
               ),
               TripSummaryDetalisItem(
-                distancetext: 'EGP',
-                title: tripData.price.toStringAsFixed(2),
+                distancetext: applocalization.eGP,
+                title: tripmodel.price.toStringAsFixed(2),
               ),
             ],
           ),
@@ -46,13 +40,13 @@ class TripSummaryDetalis extends StatelessWidget {
           const SizedBox(height: 8),
 
           CustomAppText(
-            text: "Start: ",
+            text: applocalization.start,
             textColor: AppColors.whiteColor,
             fontWeight: FontWeight.w500,
           ),
           Expanded(
             child: Text(
-              tripData.startAddress,
+              tripmodel.startAddress,
               style: const TextStyle(color: Colors.white),
             ),
           ),
@@ -60,13 +54,13 @@ class TripSummaryDetalis extends StatelessWidget {
           AppDivider(color: AppColors.whiteColor),
           const SizedBox(height: 2),
           CustomAppText(
-            text: "End: ",
+            text: applocalization.end,
             textColor: AppColors.whiteColor,
             fontWeight: FontWeight.w500,
           ),
           Expanded(
             child: Text(
-              tripData.endAddress,
+              tripmodel.endAddress,
               style: const TextStyle(color: Colors.white),
             ),
           ),

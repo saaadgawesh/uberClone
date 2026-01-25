@@ -1,10 +1,26 @@
-import 'package:uberCloneRider/core/App_Imports/app_imports.dart';
+import 'core/App_Imports/app_imports.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
 
   @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  @override
+  void initState() {
+    NotificationService().init();
+    NotificationService().setUserRole(UserRole.rider);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    final settingsProvider = Provider.of<SettingsProvider>(context);
+
     final authrepo = AuthRepositoryImpl();
     final registeruser = Registeruser(authrepo);
     final loginuser = Loginuser(authrepo);
@@ -17,13 +33,16 @@ class App extends StatelessWidget {
         child: MaterialApp(
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
+          navigatorKey: navigatorKey,
           debugShowCheckedModeBanner: false,
           theme: Appthem.lighttheme,
-          themeMode: context.settingProvider.themeMode,
+          themeMode: ThemeMode.light,
           darkTheme: Appthem.lighttheme,
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: Routes.landingpage,
-          locale: Locale(context.settingProvider.languauge),
+          initialRoute: currentUser == null
+              ? Routes.splashScreen
+              : Routes.navbar,
+          locale: Locale(settingsProvider.languauge),
         ),
       ),
     );

@@ -1,14 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:uberCloneRider/core/extension/navigation.dart';
-import 'package:uberCloneRider/core/resources/values_manager.dart';
-import 'package:uberCloneRider/core/routing/routes.dart';
-import 'package:uberCloneRider/core/widgets/error_indicator.dart';
-import 'package:uberCloneRider/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
-import 'package:uberCloneRider/feature/Auth/presentation/Cubit/Auth_State.dart';
-import 'package:uberCloneRider/feature/Auth/presentation/widgets/BuildRegisterForm.dart';
-
+import '../../../../core/App_Imports/app_imports.dart';
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
@@ -54,7 +44,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       context.pop(); // يغلق أي Loading
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          behavior: SnackBarBehavior.floating,
+                        behavior: SnackBarBehavior.floating,
                           backgroundColor: Colors.green,
                           content: Center(child: Text('Register successful!')),
                         ),
@@ -78,6 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     passwordController: _passwordController,
                     isLoading: isLoading,
                     formKey: _formKey,
+
                   );
                 },
               ),

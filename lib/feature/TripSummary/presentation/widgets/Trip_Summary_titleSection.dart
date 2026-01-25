@@ -1,34 +1,31 @@
-import 'package:flutter/material.dart';
-import 'package:uberCloneRider/core/constant/App_Color.dart';
-import 'package:uberCloneRider/core/resources/App_Size.dart';
-import 'package:uberCloneRider/core/resources/customAppText.dart';
-import 'package:uberCloneRider/core/widgets/CustomContainer.dart';
+import 'package:uberCloneRider/core/App_Imports/app_imports.dart';
 
 class TripSummarytitleSection extends StatelessWidget {
   const TripSummarytitleSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final applocalization=AppLocalizations.of(context)!;
     return CustomContainer(
       padding: EdgeInsets.all(10),
-      bgContainerColor: AppColors.blackColor,
+      bgContainerColor: context.bgColor,
       height: appHeight(context) * 0.09,
       width: appWidth(context),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CustomAppText(
-            text: "Distance",
+            text:applocalization.distance ,
             textColor: AppColors.whiteColor,
             fontWeight: FontWeight.w600,
           ),
           CustomAppText(
-            text: "Duration",
+            text: applocalization.duration,
             textColor: AppColors.whiteColor,
             fontWeight: FontWeight.w600,
           ),
           CustomAppText(
-            text: "Price",
+            text:applocalization.price,
             textColor: AppColors.whiteColor,
             fontWeight: FontWeight.w600,
           ),

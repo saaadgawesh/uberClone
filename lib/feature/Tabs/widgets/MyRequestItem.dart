@@ -1,21 +1,26 @@
 import 'package:uberCloneRider/core/App_Imports/app_imports.dart';
 
-Widget MyRequestItem(String title, String value) {
+Widget MyRequestItem(String title, String value, BuildContext context) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 4),
-    child: Row(
-      children: [
-        Text(
-          '$title: ',
-          style: const TextStyle(
+    child: CustomContainer(
+      padding: EdgeInsetsDirectional.only(start: 10, end: 10),
+      bgContainerColor: AppColors.error,
+      height: appHeight(context) * 0.07,
+      width: appWidth(context),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CustomAppText(
+            textColor: AppColors.whiteColor,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            text: '$title: ',
           ),
-        ),
-        Expanded(
-          child: Text(value, style: const TextStyle(color: Colors.white)),
-        ),
-      ],
+          Expanded(
+            child: CustomAppText(textColor: AppColors.whiteColor, text: value),
+          ),
+        ],
+      ),
     ),
   );
 }
