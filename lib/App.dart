@@ -1,3 +1,5 @@
+import 'package:uberCloneRider/core/widgets/getstartScreen.dart';
+
 import 'core/App_Imports/app_imports.dart';
 
 class App extends StatefulWidget {
@@ -9,12 +11,12 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-  @override
-  void initState() {
-    NotificationService().init();
-    NotificationService().setUserRole(UserRole.rider);
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   NotificationService().init();
+  //   NotificationService().setUserRole(UserRole.rider);
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,7 @@ class _AppState extends State<App> {
               ? Routes.splashScreen
               : Routes.navbar,
           locale: Locale(settingsProvider.languauge),
+          home: getStartScreen(),
         ),
       ),
     );

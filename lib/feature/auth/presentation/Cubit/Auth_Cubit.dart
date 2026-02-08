@@ -31,6 +31,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  void customSetState() => emit(CustomSetState());
   Future<void> logout() async {
     emit(LoadingAuthState());
 

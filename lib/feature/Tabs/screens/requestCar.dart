@@ -1,6 +1,8 @@
+import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
+import 'package:uberCloneRider/core/widgets/AppscaffoldMessanger.dart';
 
 import '../../../core/App_Imports/app_imports.dart';
 
@@ -141,7 +143,7 @@ class _RequestcarState extends State<Requestcar> {
     if (!mounted) return;
 
     if (response.statusCode != 200) {
-      showSnackBar(context, "Failed to fetch route");
+      AppScaffoldMessanger(context, "Failed to fetch route");
       return;
     }
 
@@ -252,7 +254,7 @@ class _RequestcarState extends State<Requestcar> {
                 keyboardType: TextInputType.text,
                 controller: _locationController,
                 hintText: applocalization.searchdestination,
-                
+
 
                 onFieldSubmitted: searchPlaces,
                 prefix: IconButton(
@@ -260,7 +262,7 @@ class _RequestcarState extends State<Requestcar> {
                     iconName: Icons.arrow_back_ios,
                     iconColor: context.bgColor,
                   ),
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () => context.pop(),
                 ),
                 suffix: IconButton(
                   icon: customAppIcon(
@@ -330,7 +332,7 @@ class _RequestcarState extends State<Requestcar> {
                 _destination == null ||
                 tripdistancekm == null ||
                 tripdistancemin == null) {
-              showSnackBar(context, applocalization.selectDestinationfirst);
+              AppScaffoldMessanger(context, applocalization.selectDestinationfirst);
               return;
             }
 

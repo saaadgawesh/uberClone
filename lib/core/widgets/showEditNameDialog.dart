@@ -31,7 +31,7 @@ ShowEditNameDialog(BuildContext context) {
         actions: [
           ElevatedButton(
             // style: ElevatedButton.styleFrom(backgroundColor: ),
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
             child: CustomAppText(
               text: applocalization.canceled,
               textColor: context.bgColor,

@@ -4,12 +4,14 @@ enum UserRole { rider, driver }
 
 class NotificationService {
   static final NotificationService _instance = NotificationService._internal();
+
   factory NotificationService() => _instance;
+
   NotificationService._internal();
 
   final FlutterLocalNotificationsPlugin _local =
       FlutterLocalNotificationsPlugin();
-//
+
   bool _initialized = false;
 
   UserRole currentRole = UserRole.rider; // قيمة افتراضية
@@ -34,22 +36,22 @@ class NotificationService {
       onDidReceiveNotificationResponse: (details) {
         final tripId = details.payload;
         if (tripId != null) {
-          _handleNavigation(tripId);
+          handleNavigation(tripId);
         }
       },
     );
 
-    FirebaseMessaging.onMessage.listen(_handleForegroundFCM);
+    FirebaseMessaging.onMessage.listen(handleForegroundFCM);
 
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
       final tripId = message.data['tripId'] ?? '';
-      _handleNavigation(tripId);
+      handleNavigation(tripId);
     });
 
     final message = await FirebaseMessaging.instance.getInitialMessage();
     if (message != null) {
       final tripId = message.data['tripId'] ?? '';
-      _handleNavigation(tripId);
+      handleNavigation(tripId);
     }
 
     _initialized = true;
@@ -58,7 +60,7 @@ class NotificationService {
   /// ----------------------------------------
   /// FOREGROUND FCM
   /// ----------------------------------------
-  void _handleForegroundFCM(RemoteMessage message) {
+  void handleForegroundFCM(RemoteMessage message) {
     final data = message.data;
     final type = data['type'] ?? '';
     final tripId = data['tripId'] ?? '';
@@ -87,7 +89,7 @@ class NotificationService {
         break;
     }
 
-    _showNotification(title: title, body: body, payload: tripId);
+    showNotification(title: title, body: body, payload: tripId);
   }
 
   /// ----------------------------------------
@@ -108,7 +110,7 @@ class NotificationService {
   }
 
   /// ----------------------------------------
-  /// FIRESTORE LISTENER
+  /// FIRESTORE LISTENER (Driver)
   /// ----------------------------------------
   void listenToDriverTrips(String driverId) {
     FirebaseFirestore.instance
@@ -121,7 +123,7 @@ class NotificationService {
               final trip = change.doc.data();
               if (trip != null) {
                 final riderName = trip['riderName'] ?? 'راكب جديد';
-                _showNotification(
+                showNotification(
                   title: '🚗 رحلة جديدة',
                   body: '$riderName بحاجة لمشوار',
                   payload: change.doc.id,
@@ -133,9 +135,9 @@ class NotificationService {
   }
 
   /// ----------------------------------------
-  /// SHOW LOCAL
+  /// SHOW LOCAL NOTIFICATION
   /// ----------------------------------------
-  Future<void> _showNotification({
+  Future<void> showNotification({
     required String title,
     required String body,
     String? payload,
@@ -162,13 +164,16 @@ class NotificationService {
   /// ----------------------------------------
   /// NAVIGATION
   /// ----------------------------------------
-  void _handleNavigation(String tripId) {
+  void handleNavigation(String tripId) {
     if (tripId.isEmpty) return;
 
     print('Navigate to trip page: $tripId');
 
     // حسب الدور:
-    // if (currentRole == UserRole.driver) { ... }
-    // else { ... }
+    // if (currentRole == UserRole.driver) {
+    //   Navigator.push(...)
+    // } else {
+    //   Navigator.push(...)
+    // }
   }
 }

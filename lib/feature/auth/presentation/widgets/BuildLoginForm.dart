@@ -1,5 +1,3 @@
-
-
 import '../../../../core/App_Imports/app_imports.dart';
 
 class BuildLoginForm extends StatefulWidget {
@@ -32,20 +30,22 @@ class _BuildLoginFormState extends State<BuildLoginForm> {
   bool isobsecured = true;
   @override
   Widget build(BuildContext context) {
+    final applocalization = AppLocalizations.of(context)!;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         VSpace(Sizes.s100.h),
 
         Text(
-          'Welcome Back',
+          applocalization.welcomeBack,
           style: AppTextStyles.georgiaH3.copyWith(fontSize: FontSize.s24),
         ),
 
         VSpace(Sizes.s8.h),
 
         Text(
-          'Please sign in with your mail',
+          applocalization.pleasesigninwithyourmail,
           style: AppTextStyles.georgiaH3.copyWith(fontSize: FontSize.s16),
         ),
 
@@ -53,8 +53,8 @@ class _BuildLoginFormState extends State<BuildLoginForm> {
 
         AppTextField(
           controller: widget._emailController,
-          labelText: 'Email',
-          hintText: 'enter your email',
+          labelText: applocalization.email,
+          hintText: applocalization.enteryouremail,
           keyboardType: TextInputType.emailAddress,
           validator: Validator.validateEmail,
           filledColor: AppColors.whiteColor,
@@ -81,8 +81,8 @@ class _BuildLoginFormState extends State<BuildLoginForm> {
           ),
           obscureText: isobsecured,
           controller: widget._passwordController,
-          labelText: 'Password',
-          hintText: 'enter your password',
+          labelText: applocalization.password,
+          hintText: applocalization.enteryourpassword,
           // obscureText: true,
           keyboardType: TextInputType.text,
           validator: Validator.validatePassword,
@@ -95,17 +95,26 @@ class _BuildLoginFormState extends State<BuildLoginForm> {
         ),
 
         VSpace(15),
-        validateItem(isvalid: length, text: '8 characters Minimum'),
+        validateItem(isvalid: length, text: applocalization.charactersMinimum),
         VSpace(5),
-        validateItem(isvalid: uperCase, text: 'At least 1 uppercase letter'),
+        validateItem(
+          isvalid: uperCase,
+          text: applocalization.atleast1uppercaseletter,
+        ),
         VSpace(5),
-        validateItem(isvalid: lowerCase, text: 'At least 1 lowercase letter'),
+        validateItem(
+          isvalid: lowerCase,
+          text: applocalization.atleast1lowercaseletter,
+        ),
         VSpace(5),
-        validateItem(isvalid: number, text: 'One special character and number'),
+        validateItem(
+          isvalid: number,
+          text: applocalization.onespecialcharacterandnumber,
+        ),
         VSpace(Sizes.s60.h),
         Center(
           child: defaultElevatedButton(
-            textbutton: 'Login',
+            textbutton: applocalization.login,
             textcolor: AppColors.whiteColor,
             bgButtonColor: context.bgColor,
             width: appWidth(context),
@@ -126,14 +135,14 @@ class _BuildLoginFormState extends State<BuildLoginForm> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Don’t have an account?',
+              applocalization.donotHaveAnAccount,
               style: AppTextStyles.georgiaH3.copyWith(fontSize: FontSize.s16),
             ),
             HSpace(Sizes.s8.w),
             GestureDetector(
               onTap: () => context.pushNamed(Routes.register),
               child: Text(
-                'Create Account',
+                applocalization.createAccount,
                 style: AppTextStyles.georgiaH3.copyWith(
                   fontSize: FontSize.s16,
                   color: AppColors.blueColor,

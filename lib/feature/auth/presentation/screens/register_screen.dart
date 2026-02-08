@@ -1,4 +1,7 @@
+import 'package:uberCloneRider/core/widgets/AppscaffoldMessanger.dart';
+
 import '../../../../core/App_Imports/app_imports.dart';
+
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
@@ -25,6 +28,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final applocalization = AppLocalizations.of(context)!;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -42,14 +46,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     // تنفيذ الـ navigation بعد أول frame
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       context.pop(); // يغلق أي Loading
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                        behavior: SnackBarBehavior.floating,
-                          backgroundColor: Colors.green,
-                          content: Center(child: Text('Register successful!')),
-                        ),
-                      );
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   SnackBar(
+                      //     behavior: SnackBarBehavior.floating,
+                      //     backgroundColor: Colors.green,
+                      //     content: Center(
+                      //       child: Text(applocalization.registerSuccessful),
+                      //     ),
+                      //   ),
+                      // );
+                      AppScaffoldMessanger(
+                        context,
+                        applocalization.registerSuccessful,
 
+                      );
                       context.pushReplacementNamed(Routes.login);
                     });
                   } else if (state is ErrorAuthState) {
@@ -68,7 +78,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     passwordController: _passwordController,
                     isLoading: isLoading,
                     formKey: _formKey,
-
                   );
                 },
               ),

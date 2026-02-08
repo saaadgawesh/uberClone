@@ -1,4 +1,7 @@
-import 'package:uberCloneRider/feature/SplashScreen/presentation/SplashScreen.dart';
+import 'package:uberCloneRider/feature/Tabs/widgets/myTrips.dart';
+import 'package:uberCloneRider/feature/Tabs/widgets/offers.dart';
+import 'package:uberCloneRider/feature/Tabs/widgets/thelastTrips.dart';
+import 'package:uberCloneRider/feature/Tabs/widgets/walletPage.dart';
 
 import '../../../core/App_Imports/app_imports.dart';
 
@@ -10,9 +13,29 @@ class RouteGenerator {
           builder: (_) => const RegisterScreen(),
           settings: settings,
         );
-      case Routes.SearchingForDriverScreen:
+      case Routes.thelastTrips:
+        return MaterialPageRoute(
+          builder: (_) => const thelastTrips(),
+          settings: settings,
+        );
+      case Routes.mytrip:
+        return MaterialPageRoute(
+          builder: (_) => const myTrips(),
+          settings: settings,
+        );
+      case Routes.offers:
+        return MaterialPageRoute(
+          builder: (_) => const offers(),
+          settings: settings,
+        );
+      case Routes.searchingForDriverScreen:
         return MaterialPageRoute(
           builder: (_) => const SearchingForDriverScreen(),
+          settings: settings,
+        );
+      case Routes.walletpage:
+        return MaterialPageRoute(
+          builder: (_) => const Walletpage(),
           settings: settings,
         );
       case Routes.login:
@@ -35,6 +58,11 @@ class RouteGenerator {
           builder: (_) => const SplashScreen(),
           settings: settings,
         );
+      case Routes.paymentmethods:
+        return MaterialPageRoute(
+          builder: (_) => const PaymentMethod(),
+          settings: settings,
+        );
       case Routes.profile:
         return MaterialPageRoute(builder: (_) => Profile(), settings: settings);
       // case Routes.tripSummary:
@@ -43,7 +71,7 @@ class RouteGenerator {
       //     settings: settings,
       //   );
       case Routes.myrequests:
-        return MaterialPageRoute(builder: (_) => const Myrequests());
+        return MaterialPageRoute(builder: (_) => const MyRequests());
       default:
         return _undefinedRoute();
     }

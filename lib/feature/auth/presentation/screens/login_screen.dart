@@ -1,4 +1,7 @@
+import 'package:uberCloneRider/core/widgets/AppscaffoldMessanger.dart';
+
 import '../../../../core/App_Imports/app_imports.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -27,24 +30,28 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
 
                   if (state is ErrorAuthState) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.e.toString()),
-                        backgroundColor: Colors.red,
-                      ),
+                    // ScaffoldMessenger.of(context).showSnackBar(
+                    //   SnackBar(
+                    //     content: Text(state.e.toString()),
+                    //     backgroundColor: Colors.red,
+                    //   ),
+                    // );
+                    AppScaffoldMessanger(
+                      context,
+                      state.e.toString(),
+                
                     );
                   }
                 },
                 child: BlocBuilder<AuthCubit, AuthState>(
                   builder: (context, state) {
-                      final isLoading = state is LoadingAuthState;
+                    final isLoading = state is LoadingAuthState;
                     if (state is LoadingAuthState) {
-
                       return const LoadingIndicator();
                     }
 
                     return BuildLoginForm(
-                        isLoading: isLoading,
+                      isLoading: isLoading,
                       emailController: _emailController,
                       passwordController: _passwordController,
                       formKey: _formKey,

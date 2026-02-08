@@ -10,17 +10,14 @@ class validateItem extends StatelessWidget {
     return Row(
       children: [
         isvalid
-            ? customAppIcon(
-                iconName: Icons.circle,
-                iconColor: AppColors.blackColor,
-              )
+            ? customAppIcon(iconName: Icons.circle, iconColor: context.bgColor)
             : customAppIcon(
                 iconName: Icons.circle_outlined,
                 iconColor: AppColors.grey,
               ),
         HSpace(5),
         CustomAppText(
-          textColor: isvalid ? AppColors.blackColor : AppColors.grey,
+          textColor: isvalid ? context.bgColor : AppColors.grey,
           text: text,
         ),
       ],

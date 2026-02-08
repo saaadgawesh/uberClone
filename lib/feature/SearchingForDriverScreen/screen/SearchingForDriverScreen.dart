@@ -1,3 +1,5 @@
+import 'package:uberCloneRider/core/widgets/AppscaffoldMessanger.dart';
+
 import '../../../core/App_Imports/app_imports.dart';
 
 class SearchingForDriverScreen extends StatefulWidget {
@@ -20,7 +22,7 @@ class _SearchingForDriverScreenState extends State<SearchingForDriverScreen> {
       appBar: DefaultAppBar(
         title: applocalization.searchingforDriver,
         leadIconName: Icons.arrow_back_ios,
-        leadingonTap: () => Navigator.pop(context),
+        leadingonTap: () => context.pop(),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
@@ -100,13 +102,18 @@ class _SearchingForDriverScreenState extends State<SearchingForDriverScreen> {
                             GestureDetector(
                               onTap: () async {
                                 if (selectedDriverId == null) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        applocalization
-                                            .pleaseselectadriverfirst,
-                                      ),
-                                    ),
+                                  // ScaffoldMessenger.of(context).showSnackBar(
+                                  //   SnackBar(
+                                  //     content: Text(
+                                  //       applocalization
+                                  //           .pleaseselectadriverfirst,
+                                  //     ),
+                                  //   ),
+                                  // );
+                                  AppScaffoldMessanger(
+                                    context,
+                                    applocalization.pleaseselectadriverfirst,
+
                                   );
                                   return;
                                 }
@@ -125,8 +132,13 @@ class _SearchingForDriverScreenState extends State<SearchingForDriverScreen> {
 
                                   context.pushNamed(Routes.navbar);
                                 } catch (e) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text(e.toString())),
+                                  // ScaffoldMessenger.of(context).showSnackBar(
+                                  //   SnackBar(content: Text(e.toString())),
+                                  // );
+                                  AppScaffoldMessanger(
+                                    context,
+                                    e.toString(),
+
                                   );
                                 }
                               },

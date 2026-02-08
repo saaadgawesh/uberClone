@@ -11,7 +11,7 @@ class _NavbarState extends State<Navbar> {
   int _currentIndex = 3;
   final List<Widget> _tabs = [
     const Home(),
-    Myrequests(),
+    MyRequests(),
     Requestcar(),
     const Profile(),
   ];

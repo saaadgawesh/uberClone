@@ -7,7 +7,7 @@ class TripSummaryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final applocalization=AppLocalizations.of(context)!;
+    final applocalization = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: DefaultAppBar(
         title: applocalization.tripSummary,
@@ -45,9 +45,9 @@ class TripSummaryScreen extends StatelessWidget {
           width: appWidth(context),
           textcolor: AppColors.whiteColor,
           onPressed: () async {
-            Navigator.pushReplacementNamed(
-              context,
-              Routes.SearchingForDriverScreen,
+            context.pushReplacementNamed(
+             
+              Routes.searchingForDriverScreen,
               arguments: tripmodel,
             );
           },

@@ -1,26 +1,65 @@
+// import 'package:equatable/equatable.dart';
+
+// abstract class AuthState extends Equatable {}
+
+// class InitialAuthState extends AuthState {
+//   @override
+//   List<Object?> get props => [];
+// }
+
+// class customSetstate extends AuthState {
+//   @override
+//   List<Object?> get props => throw customSetstate();
+// }
+
+// class LoadingAuthState extends AuthState {
+//   @override
+//   List<Object?> get props => [];
+// }
+
+// class SuccessAuthState extends AuthState {
+//   @override
+//   List<Object?> get props => [];
+// }
+
+// class ErrorAuthState extends AuthState {
+//   final String e;
+
+//   ErrorAuthState(this.e);
+
+//   @override
+//   List<Object?> get props => [e];
+// }import 'package:equatable/equatable.dart';
+
 import 'package:equatable/equatable.dart';
 
-abstract class AuthState extends Equatable {}
+abstract class AuthState extends Equatable {
+  const AuthState();
 
-class InitialAuthState extends AuthState {
   @override
   List<Object?> get props => [];
+}
+
+class InitialAuthState extends AuthState {
+  const InitialAuthState();
+}
+
+class CustomSetState extends AuthState {
+  const CustomSetState();
 }
 
 class LoadingAuthState extends AuthState {
-  @override
-  List<Object?> get props => [];
+  const LoadingAuthState();
 }
 
 class SuccessAuthState extends AuthState {
-  @override
-  List<Object?> get props => [];
+  const SuccessAuthState();
 }
 
 class ErrorAuthState extends AuthState {
   final String e;
 
-  ErrorAuthState(this.e);
+  const ErrorAuthState(this.e);
 
   @override
   List<Object?> get props => [e];

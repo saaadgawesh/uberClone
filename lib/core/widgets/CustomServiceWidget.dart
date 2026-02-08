@@ -22,45 +22,66 @@ Widget CustomServiceWidget(BuildContext context, int index) {
     Icons.accessibility_new_sharp,
   ];
   SettingsProvider settingsProvider = Provider.of(context);
-  return CustomContainer(
-    height: 50,
-    width: 50,
-    borderRadius: BorderRadius.circular(10),
-    bgContainerColor: AppColors.greyColor.withOpacity(0.2),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        CustomContainer(
-          height: 40,
-          width: 40,
+  return BlocBuilder<AuthCubit, AuthState>(
+    builder: (context, state) {
+      return GestureDetector(
+        onTap: () {
+          if (index == 0) {
+            context.pushNamed(Routes.walletpage);
+            context.read<AuthCubit>().customSetState();
+          } else if (index == 1) {
+            context.pushNamed(Routes.mytrip);
+            context.read<AuthCubit>().customSetState();
+          } else if (index == 2) {
+            context.pushNamed(Routes.thelastTrips);
+            context.read<AuthCubit>().customSetState();
+          } else if (index == 3) {
+            context.pushNamed(Routes.offers);
+            context.read<AuthCubit>().customSetState();
+          }
+        },
+        child: CustomContainer(
+          height: 50,
+          width: 50,
           borderRadius: BorderRadius.circular(10),
-          bgContainerColor: settingsProvider.isDark
-              ? AppColors.blackColorwithopacity
-              : AppColors.blueColor,
-          child: customAppIcon(
-            iconName: icons[index],
-            iconColor: AppColors.whiteColor,
+          bgContainerColor: AppColors.greyColor.withOpacity(0.2),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CustomContainer(
+                height: 40,
+                width: 40,
+                borderRadius: BorderRadius.circular(10),
+                bgContainerColor: settingsProvider.isDark
+                    ? AppColors.blackColorwithopacity
+                    : AppColors.blueColor,
+                child: customAppIcon(
+                  iconName: icons[index],
+                  iconColor: AppColors.whiteColor,
+                ),
+              ),
+
+              VSpace(8),
+              CustomAppText(
+                text: titles[index],
+                textColor: settingsProvider.isDark
+                    ? AppColors.blackColor
+                    : AppColors.blueColor,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+              CustomAppText(
+                text: desc[index],
+                textColor: settingsProvider.isDark
+                    ? AppColors.blackColorwithopacity
+                    : AppColors.blueColorwithopacity,
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
         ),
-
-        VSpace(8),
-        CustomAppText(
-          text: titles[index],
-          textColor: settingsProvider.isDark
-              ? AppColors.blackColor
-              : AppColors.blueColor,
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
-        CustomAppText(
-          text: desc[index],
-          textColor: settingsProvider.isDark
-              ? AppColors.blackColorwithopacity
-              : AppColors.blueColorwithopacity,
-          textAlign: TextAlign.center,
-        ),
-      ],
-    ),
+      );
+    },
   );
 }

@@ -1,5 +1,21 @@
 {
-  "myboket": "My Bocket",
+
+  "registerSuccessful": "Register successful!",
+  "register": "Register",
+  "loading": "Loading...",
+  "getCurrentLocation": " get current location",
+  "pleasegetyourcurrentlocationfirst": "Please get your current location first",
+  "alreadyhaveanaccount": " Already have an account?",
+  "locationfetched": "Location fetched!",
+  "thisfieldisrequired": "this field is required",
+  "enternumbersonly": "enter numbers only",
+  "entervaluemustequal11digit": "enter value must equal 11 digit",
+  "enteryourfullname": "Enter your full name",
+  "fullName": "Full Name",
+  "enteryourmobilenumber": "Enter your mobile number",
+  "mobileNumber": "Mobile Number",
+  "enteryourcarmodel": "Enter Your Car Model",
+  "enteryourcarNumber": "Enter your car Number",
   "selectDestinationfirst":  "Select Destination first",
   "confirmLocation":  "Confirm Location",
   "searchdestination":  "Search destination",
@@ -9,6 +25,10 @@
   "duration": "Duration",
   "price": "Price",
   "end": "End: ",
+  "charactersMinimum": "8 characters Minimum ",
+  "atleast1uppercaseletter": "At least 1 uppercase letter",
+  "atleast1lowercaseletter": "At least 1 lowercase letter",
+  "onespecialcharacterandnumber": "One special character and number",
   "start": "Start: ",
   "km": "km",
   "min": "min",
@@ -21,8 +41,6 @@
   "carModel":"Car Model",
   "carNumber":"Car Number",
   "pleaseselectadriverfirst":"Please select a driver first",
-
-
   "myrequests": "MyRequests",
   "requestcar": "Requestcar",
   "mytrip": "My Trips",
@@ -58,5 +76,6 @@
   "enternewname": "enter your new name",
   "editname": " edit name",
   "canceled": "cancel",
-  "saved": "save"
+  "saved": "save",
+  "myboket": "myboket"
 }

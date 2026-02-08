@@ -213,6 +213,7 @@ class AppTextField extends StatelessWidget {
           focusedBorder: _getFocusedBorder(),
           errorBorder: _getErrorBorder(),
           focusedErrorBorder: _getErrorBorder(),
+          errorStyle: TextStyle(height: 0.01.h),
         ),
       ),
     );
