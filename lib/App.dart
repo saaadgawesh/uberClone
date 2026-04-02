@@ -12,8 +12,9 @@ class App extends StatelessWidget {
     final authrepo = AuthRepositoryImpl();
     final registeruser = Registeruser(authrepo);
     final loginuser = Loginuser(authrepo);
+    final logoutuser = Logoutuser(authrepo);
     return BlocProvider(
-      create: (context) => AuthCubit(registeruser, loginuser),
+      create: (context) => AuthCubit(registeruser, loginuser, logoutuser),
       child: ScreenUtilInit(
         designSize: const Size(430, 932),
         minTextAdapt: true,

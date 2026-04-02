@@ -10,7 +10,6 @@ class Custombuttomnavbar extends StatelessWidget {
   final int currentIndex;
   @override
   Widget build(BuildContext context) {
-    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     Color bgcolor = Provider.of<SettingsProvider>(context).isDark
         ? AppColors.blackColor
         : AppColors.blueColor;
@@ -38,20 +37,24 @@ class Custombuttomnavbar extends StatelessWidget {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: appLocalizations.home,
+            label: 'الرئيسية',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.menu),
-            label: appLocalizations.reports,
+            icon: Icon(Icons.alt_route),
+            label: 'الرحلات',
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.car_crash_sharp),
-            label: appLocalizations.requests,
+            icon: Icon(Icons.notifications_none_outlined),
+            label: 'الإشعارات',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.groups_outlined),
+            label: 'الإدارة',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: appLocalizations.profile,
+            label: 'الحساب',
           ),
         ],
       ),

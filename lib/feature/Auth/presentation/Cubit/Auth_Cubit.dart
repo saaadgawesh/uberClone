@@ -1,13 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uberCloneDriver/feature/Auth/DomainLayer/UserCases/LoginUser.dart';
+import 'package:uberCloneDriver/feature/Auth/DomainLayer/UserCases/LogoutUser.dart';
 import 'package:uberCloneDriver/feature/Auth/DomainLayer/UserCases/RegisterUser.dart';
 import 'package:uberCloneDriver/feature/Auth/presentation/Cubit/Auth_State.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final Registeruser _registeruser;
   final Loginuser _loginuser;
+  final Logoutuser _logoutuser;
 
-  AuthCubit(this._registeruser, this._loginuser) : super(InitialAuthState());
+  AuthCubit(this._registeruser, this._loginuser, this._logoutuser)
+    : super(InitialAuthState());
 
   Future<void> register(
     String email,
@@ -38,6 +41,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(LoadingAuthState());
 
     try {
+      await _logoutuser();
       emit(SuccessAuthState());
     } catch (e) {
       emit(ErrorAuthState(e.toString()));

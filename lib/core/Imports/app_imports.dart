@@ -4,9 +4,9 @@ export 'dart:convert';
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:firebase_auth/firebase_auth.dart';
 export 'package:firebase_core/firebase_core.dart';
+export 'package:flutter/material.dart';
 //===============================flutter==================================
-export 'package:flutter/material.dart';
-export 'package:flutter/material.dart';
+
 export 'package:flutter/services.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:flutter_localizations/flutter_localizations.dart';
@@ -14,9 +14,9 @@ export 'package:flutter_map/flutter_map.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 //===============================provider==================================
 export 'package:provider/provider.dart';
+export 'package:uberCloneDriver/App.dart';
 //===============================uberCloneDriver==================================
 
-export 'package:uberCloneDriver/App.dart';
 export 'package:uberCloneDriver/core/constant/App_Color.dart';
 export 'package:uberCloneDriver/core/constant/assets.dart';
 export 'package:uberCloneDriver/core/extension/navigation.dart';
@@ -49,6 +49,7 @@ export 'package:uberCloneDriver/core/widgets/showEditNameDialog.dart';
 export 'package:uberCloneDriver/core/widgets/spacing.dart';
 export 'package:uberCloneDriver/feature/Auth/DomainLayer/Repositoryimpl/Auth_Repository_impl.dart';
 export 'package:uberCloneDriver/feature/Auth/DomainLayer/UserCases/LoginUser.dart';
+export 'package:uberCloneDriver/feature/Auth/DomainLayer/UserCases/LogoutUser.dart';
 export 'package:uberCloneDriver/feature/Auth/DomainLayer/UserCases/RegisterUser.dart';
 export 'package:uberCloneDriver/feature/Auth/presentation/Cubit/Auth_Cubit.dart';
 export 'package:uberCloneDriver/feature/Auth/presentation/Cubit/Auth_State.dart';
@@ -58,8 +59,11 @@ export 'package:uberCloneDriver/feature/Auth/presentation/widgets/BuildLoginForm
 export 'package:uberCloneDriver/feature/Auth/presentation/widgets/BuildRegisterForm.dart';
 export 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/Reports.dart';
 export 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/home.dart';
+export 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/management.dart';
+export 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/notifications.dart';
 export 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/profile.dart';
 export 'package:uberCloneDriver/feature/BottomNavBar/Tabs/screens/requests.dart';
+export 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/admin_dashboard_repository.dart';
 export 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/DriverRepository.dart';
 export 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/Processitem.dart';
 export 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/acceptTrip.dart';
@@ -77,3 +81,4 @@ export 'package:uberCloneDriver/feature/TripSummary/presentation/widgets/TripSum
 export 'package:uberCloneDriver/feature/TripSummary/presentation/widgets/Trip_Summary_titleSection.dart';
 export 'package:uberCloneDriver/firebase_options.dart';
 export 'package:uberCloneDriver/l10n/AppLocalizations/app_localizations.dart';
+export 'package:uberCloneDriver/main.dart';
