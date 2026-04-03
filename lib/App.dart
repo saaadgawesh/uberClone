@@ -1,18 +1,24 @@
 import 'package:uberCloneDriver/core/widgets/getStartScreen.dart';
+import 'package:uberCloneDriver/feature/Auth/data/repositories/auth_repository_impl.dart';
+import 'package:uberCloneDriver/feature/Auth/domain/use_cases/login_use_case.dart';
+import 'package:uberCloneDriver/feature/Auth/domain/use_cases/logout_use_case.dart';
+import 'package:uberCloneDriver/feature/Auth/domain/use_cases/register_use_case.dart';
 
 import 'core/Imports/app_imports.dart';
 
 class App extends StatelessWidget {
+
+
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
     SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
-    final authrepo = AuthRepositoryImpl();
-    final registeruser = Registeruser(authrepo);
-    final loginuser = Loginuser(authrepo);
-    final logoutuser = Logoutuser(authrepo);
+    final authrepo = AuthRepositoryImpl(_);
+    final registeruser = RegisterUseCase(authrepo);
+    final loginuser = LoginUseCase(authrepo);
+    final logoutuser = LogoutUseCase( authrepo);
     return BlocProvider(
       create: (context) => AuthCubit(registeruser, loginuser, logoutuser),
       child: ScreenUtilInit(

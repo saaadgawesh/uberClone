@@ -1,4 +1,4 @@
-import 'package:uberCloneDriver/feature/BottomNavBar/Tabs/widgets/admin_dashboard_repository.dart';
+import 'package:uberCloneDriver/feature/BottomNavBar/tabs/widgets/admin_dashboard_repository.dart';
 
 import '../../../../core/Imports/app_imports.dart';
 
