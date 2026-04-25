@@ -1,4 +1,5 @@
 import "../../../../core/App_Imports/app_imports.dart";
+import 'package:uberCloneRider/core/widgets/AppscaffoldMessanger.dart';
 
 class BuildRegisterForm extends StatefulWidget {
   const BuildRegisterForm({
@@ -62,7 +63,7 @@ class _BuildRegisterFormState extends State<BuildRegisterForm> {
           hintText: applocalization.enteryouremail,
           filledColor: AppColors.whiteColor,
           labelText: applocalization.email,
-          // validator: Validator.validateEmail,
+          validator: Validator.validateEmail,
           keyboardType: TextInputType.emailAddress,
           controller: widget._emailController,
         ),
@@ -88,11 +89,19 @@ class _BuildRegisterFormState extends State<BuildRegisterForm> {
                 : applocalization.register,
             bgButtonColor: AppColors.blueColor,
             onPressed: () {
+              if (!widget._formKey.currentState!.validate()) return;
+
+              final phone = int.tryParse(widget._phoneController.text.trim());
+              if (phone == null) {
+                AppScaffoldMessanger(context, 'Please enter a valid phone number');
+                return;
+              }
+
               context.read<AuthCubit>().register(
                 widget._emailController.text.trim(),
                 widget._passwordController.text.trim(),
                 widget._nameController.text.trim(),
-                int.parse(widget._phoneController.text.trim()),
+                phone,
               );
             },
             textcolor: AppColors.whiteColor,

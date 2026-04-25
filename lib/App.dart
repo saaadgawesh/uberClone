@@ -1,4 +1,4 @@
-import 'package:uberCloneRider/core/widgets/getstartScreen.dart';
+import 'package:uberCloneRider/core/di/service_Locator.dart';
 
 import 'core/App_Imports/app_imports.dart';
 
@@ -11,23 +11,24 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-  // @override
-  // void initState() {
-  //   NotificationService().init();
-  //   NotificationService().setUserRole(UserRole.rider);
-  //   super.initState();
-  // }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      NotificationService().setNavigatorKey(navigatorKey);
+      NotificationService().setUserRole(UserRole.rider);
+      NotificationService().setUserCollection('Rider');
+      NotificationService().init();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final currentUser = FirebaseAuth.instance.currentUser;
     final settingsProvider = Provider.of<SettingsProvider>(context);
 
-    final authrepo = AuthRepositoryImpl();
-    final registeruser = Registeruser(authrepo);
-    final loginuser = Loginuser(authrepo);
     return BlocProvider(
-      create: (context) => AuthCubit(registeruser, loginuser),
+      create: (context) => servicelocator<AuthCubit>(),
       child: ScreenUtilInit(
         designSize: const Size(430, 932),
         minTextAdapt: true,
@@ -41,11 +42,8 @@ class _AppState extends State<App> {
           themeMode: ThemeMode.light,
           darkTheme: Appthem.lighttheme,
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: currentUser == null
-              ? Routes.splashScreen
-              : Routes.navbar,
+          initialRoute: Routes.splashScreen,
           locale: Locale(settingsProvider.languauge),
-          home: getStartScreen(),
         ),
       ),
     );

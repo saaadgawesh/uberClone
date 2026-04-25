@@ -57,7 +57,7 @@ class SettingsProvider with ChangeNotifier {
     if (user != null) {
       final uid = user.uid;
       final doc = await FirebaseFirestore.instance
-          .collection('Admin')
+          .collection('Rider')
           .doc(uid)
           .get();
 
@@ -76,7 +76,7 @@ class SettingsProvider with ChangeNotifier {
 
     final uid = user.uid;
 
-    await FirebaseFirestore.instance.collection('Admin').doc(uid).update({
+    await FirebaseFirestore.instance.collection('Rider').doc(uid).update({
       'name': newName,
     });
 

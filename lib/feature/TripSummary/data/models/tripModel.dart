@@ -39,6 +39,10 @@ class Tripmodel {
       'riderId': riderId,
       'riderName': riderName,
       'driverId': driverId,
+      'fromLat': startLocation.latitude,
+      'fromLng': startLocation.longitude,
+      'toLat': endLocation.latitude,
+      'toLng': endLocation.longitude,
       'startLocation': {
         'lat': startLocation.latitude,
         'lng': startLocation.longitude,
@@ -59,21 +63,35 @@ class Tripmodel {
 
   /// 🔁 إنشاء Object من Firestore
   factory Tripmodel.fromMap(Map<String, dynamic> map) {
+    final startLocationMap =
+        (map['startLocation'] as Map<String, dynamic>?) ??
+        {
+          'lat': map['fromLat'],
+          'lng': map['fromLng'],
+        };
+    final endLocationMap =
+        (map['endLocation'] as Map<String, dynamic>?) ??
+        {
+          'lat': map['toLat'],
+          'lng': map['toLng'],
+        };
+
     return Tripmodel(
       tripId: map['tripId'] ?? '',
       riderId: map['riderId'] ?? '',
       riderName: map['riderName'] ?? '',
       driverId: map['driverId'] ?? '',
       startLocation: LatLng(
-        (map['startLocation']['lat'] as num?)?.toDouble() ?? 0.0,
-        (map['startLocation']['lng'] as num?)?.toDouble() ?? 0.0,
+        (startLocationMap['lat'] as num?)?.toDouble() ?? 0.0,
+        (startLocationMap['lng'] as num?)?.toDouble() ?? 0.0,
       ),
       endLocation: LatLng(
-        (map['endLocation']['lat'] as num?)?.toDouble() ?? 0.0,
-        (map['endLocation']['lng'] as num?)?.toDouble() ?? 0.0,
+        (endLocationMap['lat'] as num?)?.toDouble() ?? 0.0,
+        (endLocationMap['lng'] as num?)?.toDouble() ?? 0.0,
       ),
-      startAddress: map['startAddress'] ?? '',
-      endAddress: map['endAddress'] ?? '',
+      startAddress:
+          (map['startAddress'] ?? map['fromAddress'] ?? '').toString(),
+      endAddress: (map['endAddress'] ?? map['toAddress'] ?? '').toString(),
       durationMin: (map['durationMin'] as num?)?.toDouble() ?? 0.0,
       price: (map['price'] as num?)?.toDouble() ?? 0.0,
       distanceKm: (map['distanceKm'] as num?)?.toDouble() ?? 0.0,

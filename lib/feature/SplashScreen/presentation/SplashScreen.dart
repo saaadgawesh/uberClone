@@ -12,6 +12,17 @@ class _SplashScreenState extends State<SplashScreen> {
   final PageController _pageController = PageController();
 
   @override
+  void initState() {
+    super.initState();
+    // If user is already logged in, skip splash and go to navbar
+    if (FirebaseAuth.instance.currentUser != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        context.pushReplacementNamed(Routes.navbar);
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     return Scaffold(
@@ -99,7 +110,12 @@ class _SplashScreenState extends State<SplashScreen> {
                 curve: Curves.easeInOut,
               );
             } else {
-              context.pushNamed(Routes.navbar);
+              final currentUser = FirebaseAuth.instance.currentUser;
+              if (currentUser != null) {
+                context.pushNamed(Routes.navbar);
+              } else {
+                context.pushNamed(Routes.login);
+              }
             }
           },
         ),

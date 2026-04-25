@@ -122,6 +122,38 @@ class _ProfileState extends State<Profile> {
                   ],
                 ),
               ),
+              VSpace(5),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const SupportScreen()),
+                  );
+                },
+                child: CustomContainer(
+                  bgContainerColor: context.bgColor,
+                  height: appHeight(context) * 0.1,
+                  width: appWidth(context),
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.symmetric(
+                      horizontal: 10,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomAppText(
+                          text: 'الاستفسارات والشكاوى',
+                          fontWeight: FontWeight.bold,
+                          textColor: AppColors.whiteColor,
+                        ),
+                        customAppIcon(
+                          iconName: Icons.support_agent_outlined,
+                          iconColor: AppColors.whiteColor,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

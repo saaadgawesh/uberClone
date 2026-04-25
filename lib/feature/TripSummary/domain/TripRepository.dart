@@ -21,23 +21,37 @@ class TripRepository {
       throw Exception("Driver not found");
     }
 
+    final riderDoc = await FirebaseFirestore.instance
+        .collection('Rider')
+        .doc(currentUserId)
+        .get();
+    final riderName = (riderDoc.data()?['name'] ?? tripmodel.riderName).toString();
+    final driverData = snapshot.data() ?? <String, dynamic>{};
+
     final tripRef = FirebaseFirestore.instance.collection('trips').doc();
 
-    await tripRef.set({
-      'tripId': tripRef.id,
-      'driverId': driverId,
-      'riderId': currentUserId,
-      'riderName': tripmodel.riderName,
-      'status': 'requested',
-      'fromLat': tripmodel.startLocation.latitude,
-      'fromLng': tripmodel.startLocation.longitude,
-      'toLat': tripmodel.endLocation.latitude,
-      'toLng': tripmodel.endLocation.longitude,
-      'price': tripmodel.price,
-      'createdAt': FieldValue.serverTimestamp(),
-    });
+    final tripData = tripmodel.toMap()
+      ..addAll({
+        'tripId': tripRef.id,
+        'driverId': driverId,
+        'riderId': currentUserId,
+        'riderName': riderName,
+        'driverName': (driverData['name'] ?? '').toString(),
+        'driverPhone': driverData['phone']?.toString(),
+        'driverCarModel': (driverData['carModel'] ?? '').toString(),
+        'driverCarNumber': (driverData['carNumber'] ?? '').toString(),
+        'status': 'requested',
+        'createdAt': FieldValue.serverTimestamp(),
+        'updatedAt': FieldValue.serverTimestamp(),
+      });
 
-    await driverDoc.set({'status': 'requested'}, SetOptions(merge: true));
+    await tripRef.set(tripData);
+
+    await driverDoc.set({
+      'status': 'requested',
+      'currentTripId': tripRef.id,
+      'updatedAt': FieldValue.serverTimestamp(),
+    }, SetOptions(merge: true));
 
     return tripRef.id;
   }

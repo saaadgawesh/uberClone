@@ -58,7 +58,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enteryourcarNumber => 'Enter your car Number';
 
   @override
-  String get selectDestinationfirst => 'Select Destination first';
+  String get selectDestinationfirst => 'Select a destination first';
 
   @override
   String get confirmLocation => 'Confirm Location';

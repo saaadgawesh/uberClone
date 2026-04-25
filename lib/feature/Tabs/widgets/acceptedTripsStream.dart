@@ -7,6 +7,5 @@ Stream<QuerySnapshot> acceptedTripsStream() {
     return FirebaseFirestore.instance
         .collection('trips')
         .where('riderId', isEqualTo: riderId)
-        .where('status', isEqualTo: 'accepted')
         .snapshots();
   }

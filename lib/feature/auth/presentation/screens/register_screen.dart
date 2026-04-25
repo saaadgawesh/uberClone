@@ -43,28 +43,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: BlocConsumer<AuthCubit, AuthState>(
                 listener: (context, state) {
                   if (state is SuccessAuthState) {
-                    // تنفيذ الـ navigation بعد أول frame
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      context.pop(); // يغلق أي Loading
-                      // ScaffoldMessenger.of(context).showSnackBar(
-                      //   SnackBar(
-                      //     behavior: SnackBarBehavior.floating,
-                      //     backgroundColor: Colors.green,
-                      //     content: Center(
-                      //       child: Text(applocalization.registerSuccessful),
-                      //     ),
-                      //   ),
-                      // );
                       AppScaffoldMessanger(
                         context,
                         applocalization.registerSuccessful,
-
                       );
                       context.pushReplacementNamed(Routes.login);
                     });
                   } else if (state is ErrorAuthState) {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Center(child: ErrorIndicator(state.e));
+                      AppScaffoldMessanger(context, state.e);
                     });
                   }
                 },

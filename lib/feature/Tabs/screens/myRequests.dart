@@ -1,260 +1,3 @@
-// import '../../../core/App_Imports/app_imports.dart';
-
-// class MyRequests extends StatefulWidget {
-//   const MyRequests({super.key});
-
-//   @override
-//   State<MyRequests> createState() => _MyRequestsState();
-// }
-
-// class _MyRequestsState extends State<MyRequests> {
-//   String? riderId;
-//   late Box<TripsModel> tripsBox;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     riderId = FirebaseAuth.instance.currentUser?.uid;
-//     tripsBox = Hive.box<TripsModel>('tripsBox');
-
-//     if (riderId != null) {
-//       // حفظ الـ FCM token في Firestore
-//       FirebaseMessaging.instance.getToken().then((token) {
-//         if (token != null) {
-//           FirebaseFirestore.instance.collection('Riders').doc(riderId).update({
-//             'riderToken': token,
-//           });
-//         }
-//       });
-//     }
-
-//     // تهيئة NotificationService
-//     NotificationService().setUserRole(UserRole.rider);
-//     NotificationService().init();
-
-//     // استقبال الإشعارات أثناء foreground
-//     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-//       final type = message.data['type'] ?? '';
-//       final tripId = message.data['tripId'] ?? '';
-//       String body = '';
-
-//       if (type == 'trip_accepted') {
-//         body = 'السائق وافق على الرحلة 🚗';
-//       } else if (type == 'driver_rejected') {
-//         body = 'السائق رفض الرحلة، جاري البحث عن سائق آخر 🚗';
-//       }
-
-//       if (body.isNotEmpty) {
-//         NotificationService().showNotification(
-//           title: 'رحلتك',
-//           body: body,
-//           payload: tripId,
-//         );
-
-//         if (mounted) {
-//           ScaffoldMessenger.of(
-//             context,
-//           ).showSnackBar(SnackBar(content: Text(body)));
-//         }
-//       }
-//     });
-
-//     // استقبال الاشعارات عند فتح التطبيق من notification
-//     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-//       final tripId = message.data['tripId'] ?? '';
-//       if (tripId.isNotEmpty) {
-//         NotificationService().handleNavigation(tripId);
-//       }
-//     });
-//   }
-
-//   /// Stream الرحلات المقبولة من Firestore
-//   Stream<QuerySnapshot> acceptedTripsStream() {
-//     return FirebaseFirestore.instance
-//         .collection('trips')
-//         .where('riderId', isEqualTo: riderId)
-//         .where('status', isEqualTo: 'accepted')
-//         .snapshots();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     if (riderId == null) {
-//       return const Scaffold(body: Center(child: CircularProgressIndicator()));
-//     }
-
-//     return Scaffold(
-//       appBar: DefaultAppBar(title: 'الرحلات المقبولة'),
-//       body: StreamBuilder<QuerySnapshot>(
-//         stream: acceptedTripsStream(),
-//         builder: (context, snapshot) {
-//           if (snapshot.connectionState == ConnectionState.waiting) {
-//             return Center(
-//               child: CircularProgressIndicator(color: context.bgColor),
-//             );
-//           }
-
-//           if (snapshot.hasError) {
-//             return const Center(child: Text('حدث خطأ أثناء تحميل البيانات'));
-//           }
-
-//           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-//             return const Center(child: Text('لا توجد رحلات مقبولة حالياً'));
-//           }
-
-//           /// فلترة الرحلات اللي اتعملها حذف أو completed من Hive
-//           final trips = snapshot.data!.docs.where((doc) {
-//             return !tripsBox.containsKey(doc.id);
-//           }).toList();
-
-//           if (trips.isEmpty) {
-//             return const Center(child: Text('لا توجد رحلات حالياً'));
-//           }
-
-//           return ListView.builder(
-//             itemCount: trips.length,
-//             itemBuilder: (context, index) {
-//               final tripDoc = trips[index];
-//               final trip = tripDoc.data() as Map<String, dynamic>;
-
-//               final double fromLat = (trip['fromLat'] as num).toDouble();
-//               final double fromLng = (trip['fromLng'] as num).toDouble();
-//               final double toLat = (trip['toLat'] as num).toDouble();
-//               final double toLng = (trip['toLng'] as num).toDouble();
-//               final double price = (trip['price'] as num).toDouble();
-//               final String driverIdFromTrip = trip['driverId'];
-
-//               return Dismissible(
-//                 key: ValueKey(tripDoc.id),
-//                 background: Container(
-//                   color: Colors.green,
-//                   alignment: Alignment.centerLeft,
-//                   padding: const EdgeInsets.symmetric(horizontal: 20),
-//                   child: const Icon(Icons.check, color: Colors.white),
-//                 ),
-//                 secondaryBackground: Container(
-//                   color: Colors.red,
-//                   alignment: Alignment.centerRight,
-//                   padding: const EdgeInsets.symmetric(horizontal: 20),
-//                   child: const Icon(Icons.delete, color: Colors.white),
-//                 ),
-//                 confirmDismiss: (direction) async {
-//                   if (direction == DismissDirection.startToEnd) {
-//                     tripsBox.put(
-//                       tripDoc.id,
-//                       TripsModel(
-//                         tripId: tripDoc.id,
-//                         status: 'completed',
-//                         actionDate: DateTime.now(),
-//                       ),
-//                     );
-//                   } else {
-//                     tripsBox.put(
-//                       tripDoc.id,
-//                       TripsModel(
-//                         tripId: tripDoc.id,
-//                         status: 'deleted',
-//                         actionDate: DateTime.now(),
-//                       ),
-//                     );
-//                   }
-//                   return true;
-//                 },
-//                 child: Card(
-//                   color: context.bgColor,
-//                   margin: const EdgeInsets.all(12),
-//                   shape: RoundedRectangleBorder(
-//                     borderRadius: BorderRadius.circular(12),
-//                   ),
-//                   child: Padding(
-//                     padding: const EdgeInsets.all(12),
-//                     child: Row(
-//                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                       children: [
-//                         customAppIcon(
-//                           iconName: Icons.arrow_back_ios,
-//                           iconColor: AppColors.greenColor,
-//                         ),
-//                         AppDivider(
-//                           height: appHeight(context) * 0.2,
-//                           indent: 1,
-//                           endindent: 2,
-//                         ),
-//                         Column(
-//                           crossAxisAlignment: CrossAxisAlignment.center,
-//                           children: [
-//                             MyRequestItem(
-//                               'الحالة',
-//                               trip['status'],
-//                               context,
-//                               appWidth(context) * 0.65,
-//                             ),
-//                             const SizedBox(height: 10),
-//                             defaultElevatedButton(
-//                               onPressed: () {
-//                                 showDriverLocationDialog(
-//                                   context,
-//                                   driverIdFromTrip,
-//                                 );
-//                               },
-//                               textbutton: 'عرض موقع السائق',
-//                               bgButtonColor: AppColors.whiteColor,
-//                               width: appWidth(context) * 0.65,
-//                               textcolor: context.bgColor,
-//                             ),
-//                             const SizedBox(height: 10),
-//                             defaultElevatedButton(
-//                               onPressed: () {
-//                                 openRouteInGoogleMaps(
-//                                   fromLat: fromLat,
-//                                   fromLng: fromLng,
-//                                   toLat: toLat,
-//                                   toLng: toLng,
-//                                 );
-//                               },
-//                               textbutton: 'عرض رحلتك',
-//                               bgButtonColor: AppColors.whiteColor,
-//                               width: appWidth(context) * 0.65,
-//                               textcolor: context.bgColor,
-//                             ),
-//                             const SizedBox(height: 10),
-//                             defaultElevatedButton(
-//                               onPressed: () {
-//                                 Navigator.pushNamed(
-//                                   context,
-//                                   Routes.paymentmethods,
-//                                 );
-//                               },
-//                               textbutton: 'دفع ${price.toInt()} جنيه',
-//                               bgButtonColor: Colors.red,
-//                               width: appWidth(context) * 0.65,
-//                               textcolor: Colors.white,
-//                             ),
-//                           ],
-//                         ),
-//                         AppDivider(
-//                           height: appHeight(context) * 0.2,
-//                           indent: 0,
-//                           endindent: 0,
-//                         ),
-//                         customAppIcon(
-//                           iconName: Icons.arrow_forward_ios,
-//                           iconColor: AppColors.redColor,
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-//                 ),
-//               );
-//             },
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
-//================================================================================================
-
 import '../../../core/App_Imports/app_imports.dart';
 
 class MyRequests extends StatefulWidget {
@@ -266,25 +9,24 @@ class MyRequests extends StatefulWidget {
 
 class _MyRequestsState extends State<MyRequests> {
   String? riderId;
-  late Box<TripsModel> tripsBox;
 
   @override
   void initState() {
     super.initState();
     riderId = FirebaseAuth.instance.currentUser?.uid;
-    tripsBox = Hive.box<TripsModel>('tripsBox');
-
-    // تهيئة NotificationService
     NotificationService().setUserRole(UserRole.rider);
+    NotificationService().setUserCollection('Rider');
     NotificationService().init();
   }
 
-  /// Stream الرحلات المقبولة من Firestore
-  Stream<QuerySnapshot> acceptedTripsStream() {
+  Stream<QuerySnapshot<Map<String, dynamic>>> riderTripsStream() {
+    if (riderId == null) {
+      return const Stream.empty();
+    }
+
     return FirebaseFirestore.instance
         .collection('trips')
         .where('riderId', isEqualTo: riderId)
-        .where('status', isEqualTo: 'accepted')
         .snapshots();
   }
 
@@ -295,9 +37,9 @@ class _MyRequestsState extends State<MyRequests> {
     }
 
     return Scaffold(
-      appBar: DefaultAppBar(title: 'الرحلات المقبولة'),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: acceptedTripsStream(),
+      appBar: DefaultAppBar(title: 'طلباتي'),
+      body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+        stream: riderTripsStream(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -306,161 +48,112 @@ class _MyRequestsState extends State<MyRequests> {
           }
 
           if (snapshot.hasError) {
-            return const Center(child: Text('حدث خطأ أثناء تحميل البيانات'));
+            return const Center(child: Text('حدث خطأ أثناء تحميل الطلبات'));
           }
 
-          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text('لا توجد رحلات مقبولة حالياً'));
-          }
+          final docs = snapshot.data?.docs.toList() ?? [];
+          docs.sort((a, b) {
+            final aTime =
+                (a.data()['createdAt'] as Timestamp?)?.millisecondsSinceEpoch ??
+                0;
+            final bTime =
+                (b.data()['createdAt'] as Timestamp?)?.millisecondsSinceEpoch ??
+                0;
+            return bTime.compareTo(aTime);
+          });
 
-          /// فلترة الرحلات اللي اتعملها حذف أو completed من Hive
-          final trips = snapshot.data!.docs.where((doc) {
-            return !tripsBox.containsKey(doc.id);
-          }).toList();
-
-          if (trips.isEmpty) {
-            return const Center(child: Text('لا توجد رحلات حالياً'));
+          if (docs.isEmpty) {
+            return const Center(child: Text('لا توجد طلبات حتى الآن'));
           }
 
           return ListView.builder(
-            itemCount: trips.length,
+            padding: const EdgeInsets.all(12),
+            itemCount: docs.length,
             itemBuilder: (context, index) {
-              final tripDoc = trips[index];
-              final trip = tripDoc.data() as Map<String, dynamic>;
+              final tripDoc = docs[index];
+              final trip = tripDoc.data();
 
-              final double fromLat = (trip['fromLat'] as num).toDouble();
-              final double fromLng = (trip['fromLng'] as num).toDouble();
-              final double toLat = (trip['toLat'] as num).toDouble();
-              final double toLng = (trip['toLng'] as num).toDouble();
-              final double price = (trip['price'] as num).toDouble();
-              final String driverIdFromTrip = trip['driverId'];
+              final normalizedTrip = Tripmodel.fromMap(trip);
+              final status = normalizedTrip.status;
+              final price = normalizedTrip.price;
+              final driverIdFromTrip = normalizedTrip.driverId;
+              final driverName =
+                  (trip['driverName'] ?? driverIdFromTrip).toString();
+              final fromLat = normalizedTrip.startLocation.latitude;
+              final fromLng = normalizedTrip.startLocation.longitude;
+              final toLat = normalizedTrip.endLocation.latitude;
+              final toLng = normalizedTrip.endLocation.longitude;
 
-              return Dismissible(
-                key: ValueKey(tripDoc.id),
-
-                /// سحب يمين = رحلة ناجحة
-                background: Container(
-                  color: Colors.green,
-                  alignment: Alignment.centerLeft,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: const Icon(Icons.check, color: Colors.white),
-                ),
-
-                /// سحب شمال = حذف
-                secondaryBackground: Container(
-                  color: Colors.red,
-                  alignment: Alignment.centerRight,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: const Icon(Icons.delete, color: Colors.white),
-                ),
-                confirmDismiss: (direction) async {
-                  if (direction == DismissDirection.startToEnd) {
-                    /// تثبيت كرحلة ناجحة
-                    tripsBox.put(
-                      tripDoc.id,
-                      TripsModel(
-                        tripId: tripDoc.id,
-                        status: 'completed',
-                        actionDate: DateTime.now(),
-                      ),
-                    );
-                  } else {
-                    /// حذف محلي
-                    tripsBox.put(
-                      tripDoc.id,
-                      TripsModel(
-                        tripId: tripDoc.id,
-                        status: 'deleted',
-                        actionDate: DateTime.now(),
-                      ),
-                    );
-                  }
-                  return true;
-                },
-                child: Card(
+              return Container(
+                margin: const EdgeInsets.only(bottom: 12),
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
                   color: context.bgColor,
-                  margin: const EdgeInsets.all(12),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        customAppIcon(
-                          iconName: Icons.arrow_back_ios,
-                          iconColor: AppColors.greenColor,
-                        ),
-                        AppDivider(
-                          height: appHeight(context) * 0.2,
-                          indent: 1,
-                          endindent: 2,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            MyRequestItem(
-                              'الحالة',
-                              trip['status'],
-                              context,
-                              appWidth(context) * 0.65,
-                            ),
-                            const SizedBox(height: 10),
-                            defaultElevatedButton(
-                              onPressed: () {
-                                showDriverLocationDialog(
-                                  context,
-                                  driverIdFromTrip,
-                                );
-                              },
-                              textbutton: 'عرض موقع السائق',
-                              bgButtonColor: AppColors.whiteColor,
-                              width: appWidth(context) * 0.65,
-                              textcolor: context.bgColor,
-                            ),
-                            const SizedBox(height: 10),
-                            defaultElevatedButton(
-                              onPressed: () {
-                                openRouteInGoogleMaps(
-                                  fromLat: fromLat,
-                                  fromLng: fromLng,
-                                  toLat: toLat,
-                                  toLng: toLng,
-                                );
-                              },
-                              textbutton: 'عرض رحلتك',
-                              bgButtonColor: AppColors.whiteColor,
-                              width: appWidth(context) * 0.65,
-                              textcolor: context.bgColor,
-                            ),
-                            const SizedBox(height: 10),
-                            defaultElevatedButton(
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  Routes.paymentmethods,
-                                );
-                              },
-                              textbutton: 'دفع ${price.toInt()} جنيه',
-                              bgButtonColor: Colors.red,
-                              width: appWidth(context) * 0.65,
-                              textcolor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        AppDivider(
-                          height: appHeight(context) * 0.2,
-                          indent: 0,
-                          endindent: 0,
-                        ),
-                        customAppIcon(
-                          iconName: Icons.arrow_forward_ios,
-                          iconColor: AppColors.redColor,
-                        ),
-                      ],
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MyRequestItem(
+                      'الحالة',
+                      _statusLabel(status),
+                      context,
+                      appWidth(context),
                     ),
-                  ),
+                    MyRequestItem(
+                      'السعر',
+                      '${price.toStringAsFixed(0)} جنيه',
+                      context,
+                      appWidth(context),
+                    ),
+                    if (driverIdFromTrip.isNotEmpty)
+                      MyRequestItem(
+                        'السائق',
+                        driverName,
+                        context,
+                        appWidth(context),
+                      ),
+                    const SizedBox(height: 8),
+                    defaultElevatedButton(
+                      onPressed: () {
+                        openRouteInGoogleMaps(
+                          fromLat: fromLat,
+                          fromLng: fromLng,
+                          toLat: toLat,
+                          toLng: toLng,
+                        );
+                      },
+                      textbutton: 'عرض الرحلة',
+                      bgButtonColor: AppColors.whiteColor,
+                      width: appWidth(context),
+                      textcolor: context.bgColor,
+                    ),
+                    if (driverIdFromTrip.isNotEmpty &&
+                        (status == 'accepted' || status == 'ongoing')) ...[
+                      const SizedBox(height: 10),
+                      defaultElevatedButton(
+                        onPressed: () {
+                          showDriverLocationDialog(context, driverIdFromTrip);
+                        },
+                        textbutton: 'عرض موقع السائق',
+                        bgButtonColor: AppColors.whiteColor,
+                        width: appWidth(context),
+                        textcolor: context.bgColor,
+                      ),
+                    ],
+                    if (status == 'accepted' || status == 'completed') ...[
+                      const SizedBox(height: 10),
+                      defaultElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, Routes.paymentmethods);
+                        },
+                        textbutton: 'الدفع ${price.toStringAsFixed(0)} جنيه',
+                        bgButtonColor: Colors.red,
+                        width: appWidth(context),
+                        textcolor: Colors.white,
+                      ),
+                    ],
+                  ],
                 ),
               );
             },
@@ -468,5 +161,25 @@ class _MyRequestsState extends State<MyRequests> {
         },
       ),
     );
+  }
+}
+
+String _statusLabel(String status) {
+  switch (status) {
+    case 'accepted':
+      return 'تم قبول الرحلة';
+    case 'requested':
+    case 'pending':
+      return 'جارٍ البحث عن سائق';
+    case 'ongoing':
+      return 'الرحلة جارية';
+    case 'completed':
+      return 'تمت الرحلة';
+    case 'no_driver':
+      return 'لا يوجد سائق متاح';
+    case 'rejected':
+      return 'تم رفض الرحلة';
+    default:
+      return 'جارٍ البحث عن سائق';
   }
 }

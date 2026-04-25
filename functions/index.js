@@ -1,162 +1,232 @@
-// /**
-//  * Import function triggers from their respective submodules:
-//  *
-//  * const {onCall} = require("firebase-functions/v2/https");
-//  * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
-//  *
-//  * See a full list of supported triggers at https://firebase.google.com/docs/functions
-//  */
-
-// const {setGlobalOptions} = require("firebase-functions");
-// const {onRequest} = require("firebase-functions/https");
-// const logger = require("firebase-functions/logger");
-
-// // For cost control, you can set the maximum number of containers that can be
-// // running at the same time. This helps mitigate the impact of unexpected
-// // traffic spikes by instead downgrading performance. This limit is a
-// // per-function limit. You can override the limit for each function using the
-// // `maxInstances` option in the function's options, e.g.
-// // `onRequest({ maxInstances: 5 }, (req, res) => { ... })`.
-// // NOTE: setGlobalOptions does not apply to functions using the v1 API. V1
-// // functions should each use functions.runWith({ maxInstances: 10 }) instead.
-// // In the v1 API, each function can only serve one request per container, so
-// // this will be the maximum concurrent request count.
-// setGlobalOptions({ maxInstances: 10 });
-
-// // Create and deploy your first functions
-// // https://firebase.google.com/docs/functions/get-started
-
-// // exports.helloWorld = onRequest((request, response) => {
-// //   logger.info("Hello logs!", {structuredData: true});
-// //   response.send("Hello from Firebase!");
-// // });
-// const functions = require('firebase-functions');
-// const admin = require('firebase-admin');
-
-// admin.initializeApp();
-
-// // ================= Example HTTP Function =================
-// exports.helloWorld = functions.https.onRequest((req, res) => {
-//   console.log("helloWorld function called");
-//   res.send("Hello from Firebase Functions!");
-// });
-
-// // ================= Example Callable Function =================
-// exports.createPayment = functions.https.onCall(async (data, context) => {
-//   console.log("createPayment called with data:", data);
-
-//   // مثال بسيط: استقبال بيانات الدفع
-//   const amount = data.amount || 0;
-//   const riderId = data.riderId || "unknown";
-
-//   // حفظ الدفع في Firestore Emulator
-//   try {
-//     const paymentRef = admin.firestore().collection("payments").doc();
-//     await paymentRef.set({
-//       paymentId: paymentRef.id,
-//       riderId: riderId,
-//       amount: amount,
-//       status: "pending",
-//       createdAt: admin.firestore.FieldValue.serverTimestamp(),
-//     });
-
-//     return { success: true, paymentId: paymentRef.id };
-//   } catch (err) {
-//     console.error("Error creating payment:", err);
-//     throw new functions.https.HttpsError('internal', 'Failed to create payment');
-//   }
-// });
-/**
- * Import function triggers from their respective submodules:
- *
- * const {onCall} = require("firebase-functions/v2/https");
- * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
-
-const { setGlobalOptions } = require("firebase-functions");
-const { onRequest } = require("firebase-functions/https");
-const logger = require("firebase-functions/logger");
-
-// For cost control, you can set the maximum number of containers that can be
-// running at the same time. This helps mitigate the impact of unexpected
-// traffic spikes by instead downgrading performance. This limit is a
-// per-function limit. You can override the limit for each function using the
-// `maxInstances` option in the function's options, e.g.
-// `onRequest({ maxInstances: 5 }, (req, res) => { ... })`.
-// NOTE: setGlobalOptions does not apply to functions using the v1 API. V1
-// functions should each use functions.runWith({ maxInstances: 10 }) instead.
-// In the v1 API, each function can only serve one request per container, so
-// this will be the maximum concurrent request count.
-setGlobalOptions({ maxInstances: 10 });
-
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
-
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
-const admin = require('firebase-admin');
-const functions = require('firebase-functions');
+const admin = require("firebase-admin");
+const functions = require("firebase-functions");
 
 admin.initializeApp();
 
-exports.onTripStatusChanged = functions.firestore
-  .document('trips/{tripId}')
-  .onUpdate(async (change, context) => {
-    const before = change.before.data();
-    const after = change.after.data();
+exports.onTripCreated = functions.firestore
+  .document("trips/{tripId}")
+  .onCreate(async (snapshot, context) => {
+    const trip = snapshot.data() || {};
+    const tripId = context.params.tripId;
 
-    // لو الحالة لم تتغير
-    if (before.status === after.status) return;
+    if (!trip.driverId) return null;
 
-    const riderToken = after.riderToken;
-    if (!riderToken) return;
+    const driverToken = await getUserToken("Driver", trip.driverId);
+    if (!driverToken) return null;
 
-    let payload = null;
-
-    if (after.status === 'accepted') {
-      payload = {
-        notification: {
-          title: '✅ تم قبول الرحلة',
-          body: 'السائق في الطريق إليك 🚗'
-        },
-        data: {
-          type: 'trip_accepted',
-          tripId: context.params.tripId
-        }
-      };
-    }
-
-    if (after.status === 'rejected') {
-      payload = {
-        notification: {
-          title: '🚗 تم رفض الرحلة',
-          body: 'نبحث عن سائق قريب'
-        },
-        data: {
-          type: 'driver_rejected',
-          tripId: context.params.tripId
-        }
-      };
-    }
-
-    if (after.status === 'no_driver') {
-      payload = {
-        notification: {
-          title: '🚫 لا يوجد سائق متاح',
-          body: 'نعتذر، لا يوجد سائق متاح حاليا'
-        },
-        data: {
-          type: 'no_driver',
-          tripId: context.params.tripId
-        }
-      };
-    }
-
-    if (payload) {
-      await admin.messaging().sendToDevice(riderToken, payload);
-    }
+    return sendToTokens([driverToken], {
+      notification: {
+        title: "رحلة جديدة",
+        body: "تم إرسال طلب رحلة جديد إليك",
+      },
+      data: {
+        type: "new_trip",
+        tripId,
+      },
+    });
   });
+
+exports.onTripUpdated = functions.firestore
+  .document("trips/{tripId}")
+  .onUpdate(async (change, context) => {
+    const before = change.before.data() || {};
+    const after = change.after.data() || {};
+    const tripId = context.params.tripId;
+    const tasks = [];
+
+    if (
+      before.driverId !== after.driverId &&
+      after.driverId &&
+      (after.status === "requested" || after.status === "pending")
+    ) {
+      const newDriverToken = await getUserToken("Driver", after.driverId);
+      if (newDriverToken) {
+        tasks.push(
+          sendToTokens([newDriverToken], {
+            notification: {
+              title: "رحلة جديدة",
+              body: "تم توجيه الرحلة إليك",
+            },
+            data: {
+              type: "new_trip",
+              tripId,
+            },
+          }),
+        );
+      }
+    }
+
+    if (before.status === after.status) {
+      return Promise.all(tasks);
+    }
+
+    const riderToken = after.riderId
+      ? await getUserToken("Rider", after.riderId)
+      : null;
+
+    const driverToken = after.driverId
+      ? await getUserToken("Driver", after.driverId)
+      : null;
+
+    if (after.status === "accepted" && riderToken) {
+      tasks.push(
+        sendToTokens([riderToken], {
+          notification: {
+            title: "تم قبول الرحلة",
+            body: "السائق وافق على الرحلة وهو في الطريق إليك",
+          },
+          data: {
+            type: "trip_accepted",
+            tripId,
+          },
+        }),
+      );
+    }
+
+    if (after.status === "rejected" && riderToken) {
+      tasks.push(
+        sendToTokens([riderToken], {
+          notification: {
+            title: "تم رفض الرحلة",
+            body: "السائق رفض الرحلة وجارٍ البحث عن بديل",
+          },
+          data: {
+            type: "driver_rejected",
+            tripId,
+          },
+        }),
+      );
+    }
+
+    if (after.status === "no_driver" && riderToken) {
+      tasks.push(
+        sendToTokens([riderToken], {
+          notification: {
+            title: "لا يوجد سائق متاح",
+            body: "لم يتم العثور على سائق متاح حاليًا",
+          },
+          data: {
+            type: "no_driver",
+            tripId,
+          },
+        }),
+      );
+    }
+
+    if (after.status === "completed" && riderToken) {
+      tasks.push(
+        sendToTokens([riderToken], {
+          notification: {
+            title: "انتهت الرحلة",
+            body: "تم إنهاء الرحلة بنجاح",
+          },
+          data: {
+            type: "trip_completed",
+            tripId,
+          },
+        }),
+      );
+    }
+
+    if (after.status === "cancelled") {
+      const tokens = [riderToken, driverToken].filter(Boolean);
+      if (tokens.length > 0) {
+        tasks.push(
+          sendToTokens(tokens, {
+            notification: {
+              title: "تم إلغاء الرحلة",
+              body: "تم إلغاء الرحلة الحالية",
+            },
+            data: {
+              type: "trip_cancelled",
+              tripId,
+            },
+          }),
+        );
+      }
+    }
+
+    return Promise.all(tasks);
+  });
+
+exports.onPaymentCreated = functions.firestore
+  .document("payments/{paymentId}")
+  .onCreate(async (snapshot) => {
+    const payment = snapshot.data() || {};
+    const tokens = [];
+
+    if (payment.riderId) {
+      const riderToken = await getUserToken("Rider", payment.riderId);
+      if (riderToken) tokens.push(riderToken);
+    }
+
+    if (payment.driverId) {
+      const driverToken = await getUserToken("Driver", payment.driverId);
+      if (driverToken) tokens.push(driverToken);
+    }
+
+    if (tokens.length === 0) return null;
+
+    return sendToTokens(tokens, {
+      notification: {
+        title: "تحديث دفع",
+        body: "تم إنشاء عملية دفع جديدة مرتبطة بالرحلة",
+      },
+      data: {
+        type: "payment_created",
+        tripId: payment.tripId || "",
+      },
+    });
+  });
+
+exports.onSupportRequestCreated = functions.firestore
+  .document("support_requests/{requestId}")
+  .onCreate(async (snapshot, context) => {
+    const supportRequest = snapshot.data() || {};
+    const adminsSnapshot = await admin.firestore().collection("Admin").get();
+
+    const tokens = adminsSnapshot.docs
+      .map((doc) => doc.data().fcmToken)
+      .filter(Boolean);
+
+    if (tokens.length === 0) return null;
+
+    return sendToTokens(tokens, {
+      notification: {
+        title: "طلب دعم جديد",
+        body: `${supportRequest.riderName || "راكب"} أرسل ${
+          supportRequest.type === "complaint" ? "شكوى" : "استفسار"
+        }`,
+      },
+      data: {
+        type: "support_request_created",
+        requestId: context.params.requestId,
+        riderId: supportRequest.riderId || "",
+      },
+    });
+  });
+
+async function getUserToken(collection, userId) {
+  const doc = await admin.firestore().collection(collection).doc(userId).get();
+  if (!doc.exists) return null;
+
+  return doc.data().fcmToken || null;
+}
+
+async function sendToTokens(tokens, payload) {
+  const uniqueTokens = [...new Set(tokens.filter(Boolean))];
+  if (uniqueTokens.length === 0) return null;
+
+  return admin.messaging().sendEachForMulticast({
+    tokens: uniqueTokens,
+    notification: payload.notification,
+    data: stringifyData(payload.data || {}),
+  });
+}
+
+function stringifyData(data) {
+  return Object.entries(data).reduce((result, [key, value]) => {
+    result[key] = value == null ? "" : String(value);
+    return result;
+  }, {});
+}

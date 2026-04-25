@@ -7,6 +7,30 @@ import '../../../core/App_Imports/app_imports.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
+    // Check if user is authenticated for protected routes
+    bool isAuthenticated = FirebaseAuth.instance.currentUser != null;
+    List<String> protectedRoutes = [
+      Routes.navbar,
+      Routes.home,
+      Routes.profile,
+      Routes.myrequests,
+      Routes.requestcar,
+      Routes.searchingForDriverScreen,
+      Routes.paymentmethods,
+      Routes.walletpage,
+      Routes.mytrip,
+      Routes.thelastTrips,
+      Routes.offers,
+      Routes.tripSummary,
+    ];
+
+    if (protectedRoutes.contains(settings.name) && !isAuthenticated) {
+      return MaterialPageRoute(
+        builder: (_) => const LoginScreen(),
+        settings: settings,
+      );
+    }
+
     switch (settings.name) {
       case Routes.register:
         return MaterialPageRoute(

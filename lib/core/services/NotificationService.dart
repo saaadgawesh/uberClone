@@ -4,29 +4,38 @@ enum UserRole { rider, driver }
 
 class NotificationService {
   static final NotificationService _instance = NotificationService._internal();
-
   factory NotificationService() => _instance;
-
   NotificationService._internal();
 
   final FlutterLocalNotificationsPlugin _local =
       FlutterLocalNotificationsPlugin();
 
   bool _initialized = false;
-
-  UserRole currentRole = UserRole.rider; // قيمة افتراضية
+  UserRole currentRole = UserRole.rider;
+  String? _userCollection;
+  GlobalKey<NavigatorState>? _navigatorKey;
 
   void setUserRole(UserRole role) {
     currentRole = role;
   }
 
-  /// ----------------------------------------
-  /// INITIALIZE
-  /// ----------------------------------------
+  void setUserCollection(String collection) {
+    _userCollection = collection;
+    if (_initialized) {
+      _syncCurrentToken();
+    }
+  }
+
+  void setNavigatorKey(GlobalKey<NavigatorState> navigatorKey) {
+    _navigatorKey = navigatorKey;
+  }
+
   Future<void> init() async {
     if (_initialized) return;
 
     await FirebaseMessaging.instance.requestPermission();
+    await _syncCurrentToken();
+    FirebaseMessaging.instance.onTokenRefresh.listen(_saveTokenToFirestore);
 
     const androidInit = AndroidInitializationSettings('@mipmap/ic_launcher');
     const initSettings = InitializationSettings(android: androidInit);
@@ -57,9 +66,6 @@ class NotificationService {
     _initialized = true;
   }
 
-  /// ----------------------------------------
-  /// FOREGROUND FCM
-  /// ----------------------------------------
   void handleForegroundFCM(RemoteMessage message) {
     final data = message.data;
     final type = data['type'] ?? '';
@@ -67,76 +73,75 @@ class NotificationService {
 
     if (!_shouldReceive(type)) return;
 
-    String title = 'إشعار جديد';
-    String body = '';
-
-    switch (type) {
-      case 'new_trip':
-        title = '🚕 رحلة جديدة';
-        body = 'يوجد رحلة جديدة متاحة';
-        break;
-      case 'trip_accepted':
-        title = '✅ تم قبول الرحلة';
-        body = 'السائق وافق على الرحلة';
-        break;
-      case 'driver_rejected':
-        title = '🚗 تم رفض الرحلة';
-        body = 'نبحث عن سائق قريب';
-        break;
-      case 'trip_cancelled':
-        title = '❌ تم إلغاء الرحلة';
-        body = 'تم إلغاء الرحلة';
-        break;
-    }
-
-    showNotification(title: title, body: body, payload: tripId);
+    final content = _mapNotificationContent(type);
+    showNotification(
+      title: content.$1,
+      body: content.$2,
+      payload: tripId,
+    );
   }
 
-  /// ----------------------------------------
-  /// FILTER BY ROLE
-  /// ----------------------------------------
   bool _shouldReceive(String type) {
     if (currentRole == UserRole.driver) {
-      return type == 'new_trip' || type == 'trip_cancelled';
+      return {
+        'new_trip',
+        'trip_cancelled',
+        'payment_created',
+      }.contains(type);
     }
 
-    if (currentRole == UserRole.rider) {
-      return type == 'trip_accepted' ||
-          type == 'driver_rejected' ||
-          type == 'trip_cancelled';
-    }
-
-    return false;
+    return {
+      'trip_accepted',
+      'driver_rejected',
+      'trip_cancelled',
+      'no_driver',
+      'trip_completed',
+      'payment_created',
+    }.contains(type);
   }
 
-  /// ----------------------------------------
-  /// FIRESTORE LISTENER (Driver)
-  /// ----------------------------------------
+  (String, String) _mapNotificationContent(String type) {
+    switch (type) {
+      case 'new_trip':
+        return ('رحلة جديدة', 'تم توجيه رحلة جديدة إلى السائق');
+      case 'trip_accepted':
+        return ('تم قبول الرحلة', 'السائق وافق على الرحلة');
+      case 'driver_rejected':
+        return ('تم رفض الرحلة', 'جارٍ البحث عن سائق آخر');
+      case 'trip_cancelled':
+        return ('تم إلغاء الرحلة', 'تم إلغاء الرحلة الحالية');
+      case 'no_driver':
+        return ('لا يوجد سائق', 'لم يتم العثور على سائق متاح الآن');
+      case 'trip_completed':
+        return ('انتهت الرحلة', 'تم إنهاء الرحلة بنجاح');
+      case 'payment_created':
+        return ('تحديث دفع', 'تم إنشاء عملية دفع مرتبطة بالرحلة');
+      default:
+        return ('إشعار جديد', 'هناك تحديث جديد على الرحلة');
+    }
+  }
+
   void listenToDriverTrips(String driverId) {
     FirebaseFirestore.instance
         .collection('trips')
         .where('driverId', isEqualTo: driverId)
         .snapshots()
         .listen((snapshot) {
-          for (var change in snapshot.docChanges) {
-            if (change.type == DocumentChangeType.added) {
-              final trip = change.doc.data();
-              if (trip != null) {
-                final riderName = trip['riderName'] ?? 'راكب جديد';
-                showNotification(
-                  title: '🚗 رحلة جديدة',
-                  body: '$riderName بحاجة لمشوار',
-                  payload: change.doc.id,
-                );
-              }
-            }
+          for (final change in snapshot.docChanges) {
+            if (change.type != DocumentChangeType.added) continue;
+            final trip = change.doc.data();
+            if (trip == null) continue;
+
+            final riderName = (trip['riderName'] ?? 'راكب جديد').toString();
+            showNotification(
+              title: 'رحلة جديدة',
+              body: '$riderName بحاجة إلى مشوار',
+              payload: change.doc.id,
+            );
           }
         });
   }
 
-  /// ----------------------------------------
-  /// SHOW LOCAL NOTIFICATION
-  /// ----------------------------------------
   Future<void> showNotification({
     required String title,
     required String body,
@@ -161,19 +166,31 @@ class NotificationService {
     );
   }
 
-  /// ----------------------------------------
-  /// NAVIGATION
-  /// ----------------------------------------
   void handleNavigation(String tripId) {
     if (tripId.isEmpty) return;
 
-    print('Navigate to trip page: $tripId');
+    final navigatorState = _navigatorKey?.currentState;
+    if (navigatorState == null) return;
 
-    // حسب الدور:
-    // if (currentRole == UserRole.driver) {
-    //   Navigator.push(...)
-    // } else {
-    //   Navigator.push(...)
-    // }
+    navigatorState.pushNamed(Routes.myrequests);
+  }
+
+  Future<void> _syncCurrentToken() async {
+    final token = await FirebaseMessaging.instance.getToken();
+    if (token != null) {
+      await _saveTokenToFirestore(token);
+    }
+  }
+
+  Future<void> _saveTokenToFirestore(String token) async {
+    final user = FirebaseAuth.instance.currentUser;
+    final collection = _userCollection;
+
+    if (user == null || collection == null) return;
+
+    await FirebaseFirestore.instance.collection(collection).doc(user.uid).set({
+      'fcmToken': token,
+      'updatedAt': FieldValue.serverTimestamp(),
+    }, SetOptions(merge: true));
   }
 }

@@ -57,13 +57,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get enteryourcarNumber => 'Enter your car Number';
 
   @override
-  String get selectDestinationfirst => 'اختيار جهه وصول اولا';
+  String get selectDestinationfirst => 'حدد وجهتك أولاً';
 
   @override
   String get confirmLocation => 'تاكيد الموقع';
 
   @override
-  String get searchdestination => 'ابحث عن جهه وصول';
+  String get searchdestination => 'ابحث عن جهة الوصول';
 
   @override
   String get tripSummary => 'ملخص الرحله';

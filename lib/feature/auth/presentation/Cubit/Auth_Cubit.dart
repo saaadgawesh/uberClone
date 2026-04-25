@@ -1,10 +1,14 @@
+import 'package:injectable/injectable.dart';
 import '../../../../core/App_Imports/app_imports.dart';
 
+@injectable
 class AuthCubit extends Cubit<AuthState> {
   final Registeruser _registeruser;
   final Loginuser _loginuser;
+  final Logoutuser _logoutuser;
 
-  AuthCubit(this._registeruser, this._loginuser) : super(InitialAuthState());
+  AuthCubit(this._registeruser, this._loginuser, this._logoutuser)
+      : super(InitialAuthState());
 
   Future<void> register(
     String email,
@@ -36,6 +40,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(LoadingAuthState());
 
     try {
+      await _logoutuser();
       emit(SuccessAuthState());
     } catch (e) {
       emit(ErrorAuthState(e.toString()));

@@ -38,7 +38,15 @@ class _PaymentMethodState extends State<PaymentMethod> {
             return const Center(child: Text('لا توجد رحلات مقبولة حالياً'));
           }
 
-          acceptedTrips = snapshot.data!.docs;
+          acceptedTrips = snapshot.data!.docs.where((doc) {
+            final trip = doc.data() as Map<String, dynamic>;
+            final status = (trip['status'] ?? '').toString();
+            return status == 'accepted' || status == 'completed';
+          }).toList();
+
+          if (acceptedTrips == null || acceptedTrips!.isEmpty) {
+            return const Center(child: Text('لا توجد رحلات قابلة للدفع حاليًا'));
+          }
 
           return SingleChildScrollView(
             child: Container(

@@ -1,10 +1,20 @@
 
 
+import 'package:injectable/injectable.dart';
 import 'package:uberCloneRider/core/App_Imports/app_imports.dart';
 
+@LazySingleton(as: Authrepository)
 class AuthRepositoryImpl implements Authrepository {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  Future<String?> _getFcmTokenSafely() async {
+    try {
+      return await FirebaseMessaging.instance.getToken();
+    } catch (_) {
+      return null;
+    }
+  }
 
   // ================= REGISTER =================
   @override
@@ -15,8 +25,9 @@ class AuthRepositoryImpl implements Authrepository {
     int phone,
   ) async {
     try {
+      final normalizedEmail = email.trim().toLowerCase();
       final credential = await auth.createUserWithEmailAndPassword(
-        email: email,
+        email: normalizedEmail,
         password: password,
       );
 
@@ -25,15 +36,17 @@ class AuthRepositoryImpl implements Authrepository {
       final userModel = Usermodel(
         id: uid,
         name: name,
-        email: email,
+        email: normalizedEmail,
         phone: phone,
       );
 
+      final fcmToken = await _getFcmTokenSafely();
       await firestore.collection('Rider').doc(uid).set({
         "id": uid,
         "name": name,
-        "email": email,
+        "email": normalizedEmail,
         "phone": phone,
+        "fcmToken": fcmToken,
 
         "updatedAt": FieldValue.serverTimestamp(),
       });
@@ -55,6 +68,8 @@ class AuthRepositoryImpl implements Authrepository {
         default:
           throw Exception(e.message ?? 'register-failed');
       }
+    } on FirebaseException catch (e) {
+      throw Exception(e.message ?? 'firestore-write-failed');
     }
   }
 
@@ -62,8 +77,9 @@ class AuthRepositoryImpl implements Authrepository {
   @override
   Future<UserEntity> login(String email, String password) async {
     try {
+      final normalizedEmail = email.trim().toLowerCase();
       final credential = await auth.signInWithEmailAndPassword(
-        email: email,
+        email: normalizedEmail,
         password: password,
       );
 
@@ -72,8 +88,16 @@ class AuthRepositoryImpl implements Authrepository {
           .doc(credential.user!.uid)
           .get();
 
+      final fcmToken = await _getFcmTokenSafely();
+      await firestore.collection('Rider').doc(credential.user!.uid).set({
+        if (fcmToken != null) 'fcmToken': fcmToken,
+        'updatedAt': FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
+
       if (!doc.exists) {
-        throw Exception('User data not found in Firestore');
+        throw Exception(
+          'Authenticated with Firebase, but rider profile was not found in Firestore.',
+        );
       }
 
       final userModel = Usermodel.fromjson(doc.data()!);
@@ -91,12 +115,15 @@ class AuthRepositoryImpl implements Authrepository {
         case 'user-disabled':
           throw Exception('user-disabled');
         case 'user-not-found':
-          throw Exception('user-not-found');
+        case 'invalid-credential':
+          throw Exception('invalid-email-or-password');
         case 'wrong-password':
-          throw Exception('wrong-password');
+          throw Exception('invalid-email-or-password');
         default:
           throw Exception(e.message ?? 'login-failed');
       }
+    } on FirebaseException catch (e) {
+      throw Exception(e.message ?? 'firestore-read-failed');
     }
   }
 
